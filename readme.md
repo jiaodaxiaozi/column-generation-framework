@@ -1,16 +1,13 @@
 Column Generation Framework
 ===========================
 
-Directories
------------
+Column Generation is a very useful approach to solve large-scale linear programming problems. 
+This is the column generation framework that I developed during my Ph.D study, written in OPL. 
 
-- examples 	   : contain examples 
-
-
+Interested readers are encouraged to see [Column Generation](http://www.amazon.com/Column-Generation-Gerad-25th-Anniversary/dp/0387254854)
 
 
-
-Calling : oplrun -D input="test.dat" ..\..\solver.mod
+oplrun -D input="test.dat" ..\..\solver.mod
 
 
 
