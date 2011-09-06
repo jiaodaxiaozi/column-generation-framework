@@ -1,12 +1,7 @@
-/*********************************************
- * COLUMN GENERATION - GLOBAL DATA STRUCTURE
- *
- *
- * Author: Hoang Hai Anh
- * Email : hoanghaianh@gmail.com
- *
- *********************************************/
-include "../../sysmsg.mod" ;
+
+
+include "../../sysmsg.mod" ; // include this line in every global configuration file
+
 
 
 float W = ... ; 
@@ -26,24 +21,10 @@ tuple pattern_record {
 float dual_demand[ 1..nitem ] = ... ;
 
 
-/*---------------------------------------------------------------------------------------------------------------------------
- *
- *
- *                                           GLOBAL FUNCTIONS & INIT CODE
- *
- *
- *--------------------------------------------------------------------------------------------------------------------------*/
 
+execute  {
 
-execute GLOBAL_FUNCTIONS {
-
-		// init data
-		if ( CALLBACK == "INIT" ){
-			writeln();
-			writeln("Cutting Stock Problem");
-			writeln();
-		}
-		
+	
 		
 		function printPattern( c ) {
 			

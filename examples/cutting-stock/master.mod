@@ -14,11 +14,11 @@ dvar int+   z[ patternset ] ; // number of copy of configurations
 
 
 
-execute STARTSOLVEINT {
+execute{
 
 	
 
-	if ( PROBLEM_STATUS == "INTEGER" ) {
+	if ( isModel( "MASTER" ) ) {
 		
 		// CPLEX setting parameters for solving MIP
 		
@@ -27,6 +27,12 @@ execute STARTSOLVEINT {
 		cplex.parallelmode = -1 ; // opportunistic mode
 		cplex.threads = 0 ; // use maximum threads
 
+	}
+	
+	if ( isModel("MASTER-RELAX" ) ) {
+	
+		solNextModel( "PRICE" );
+	
 	}
 	
 	
@@ -66,10 +72,11 @@ execute CollectDualValues {
 execute InRelaxProcess {
 
 
-	if (  PROBLEM_STATUS == "RELAX" ){
+	if ( isModel( "MASTER-RELAX" ) ){
 
 		writeln("Master Objective : " , cplex.getObjValue() , " number of patterns = ",  patternset.size );
-		line_sep();
+		
+		
 		
 	}	
 
@@ -77,7 +84,11 @@ execute InRelaxProcess {
 
 execute DisplayResult {
 
-	if ( PROBLEM_STATUS == "INTEGER" ) {
+	if (isModel( "MASTER") ) {
+	
+		writeln();
+		writeln("FINAL SOLUTION");
+		writeln();
 
 		var nconfig = 0 ;
 		for (var c in patternset )
@@ -87,6 +98,7 @@ execute DisplayResult {
 			printPattern( c ) ;
 		}
 
+		writeln();
 
 	} // end display 
 

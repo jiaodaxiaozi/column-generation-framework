@@ -19,6 +19,8 @@ execute {
 	cplex.parallelmode = -1 ; // opportunistic mode
 	cplex.threads = 0 ; // use maximum threads
 	
+	solNextModel( "MASTER-RELAX" );
+	nosolNextModel( "MASTER" );
 }
 
 dvar  int+ x[ 1..nitem ] ;
@@ -38,16 +40,24 @@ subject to {
  *********************************************/
 
 execute {
-
-	// print price objective 
-	line_sep();
+	
+	
 	writeln("Price Objective : " , cplex.getObjValue()  );  
-	
-	
+		
 	// add new column
 	patternset.addOnly( x.solutionValue );
+		
 	
-	PRICING_STATUS = "STOP" ;
+	
+	
+	
+	
+	
+	
+			
+	
+	
+	
 }  
 
   
