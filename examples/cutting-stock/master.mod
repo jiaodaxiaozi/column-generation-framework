@@ -18,7 +18,7 @@ execute{
 
 	
 
-	if ( isModel( "MASTER" ) ) {
+	if ( isModel( "FINAL" ) ) {
 		
 		// CPLEX setting parameters for solving MIP
 		
@@ -29,9 +29,9 @@ execute{
 
 	}
 	
-	if ( isModel("MASTER-RELAX" ) ) {
+	if ( isModel("START" ) ) {
 	
-		solNextModel( "PRICE" );
+		setNextModel( "PRICE" );
 	
 	}
 	
@@ -72,7 +72,7 @@ execute CollectDualValues {
 execute InRelaxProcess {
 
 
-	if ( isModel( "MASTER-RELAX" ) ){
+	if ( isModel( "START" ) ){
 
 		writeln("Master Objective : " , cplex.getObjValue() , " number of patterns = ",  patternset.size );
 		
@@ -84,10 +84,10 @@ execute InRelaxProcess {
 
 execute DisplayResult {
 
-	if (isModel( "MASTER") ) {
+	if (isModel( "FINAL") ) {
 	
 		writeln();
-		writeln("FINAL SOLUTION");
+		lineSep( " FINAL SOLUTION "  , "-" );
 		writeln();
 
 		var nconfig = 0 ;

@@ -6,6 +6,8 @@
  *
  *********************************************/
 
+include "plugins.mod" ; 
+ 
 string input = "" ;
 
   
@@ -19,11 +21,11 @@ main {
  *
  *--------------------------------------------------------------------------------------------------------------------------*/
 
-
-var sys_avatar        = "[:)]" ;	
 var parameter_file    = "params.mod" ;
 var model_define_file = "model.ini"  ;    
-
+var __START__           = "START" ;
+var __RELAX__           = "RELAX" ;
+var __FINAL__           = "FINAL" ;
 
 		
 /*---------------------------------------------------------------------------------------------------------------------------
@@ -40,7 +42,7 @@ var model_define_file = "model.ini"  ;
 	
 	assertExisted( fname );
  
-	this.mipid          = id ; // id of this model
+	this.mipid          = id   ; // id of this model
 	this.mipsource 		= new IloOplModelSource( fname ); // init source file 
 	this.mipdefinition	= new IloOplModelDefinition( this.mipsource ); // init definition	
 	this.mipsolver		= new IloCplex() ; // init solver
@@ -65,9 +67,8 @@ var model_define_file = "model.ini"  ;
 	this.mipsolver.clearModel(); // reset model
 	var theopl = new IloOplModel( this.mipdefinition , this.mipsolver ) ;  // create execution object	
 	
-	// reset state	
+	// reset next model
 	globalData._NEXT_MODEL_  = "" ;	
-	globalData._NOSOL_MODEL_  = "" ;	
 	
 	theopl.addDataSource( globalData ) ;	// add data source 
 	theopl.generate() ; // generate execution object
@@ -78,12 +79,10 @@ var model_define_file = "model.ini"  ;
 	
 		this.obj = this.mipsolver.getObjValue(); // get objective 		
 		theopl.postProcess() ;  // call post process	
-		globalData._MODEL_  = theopl._NEXT_MODEL_  ;	// next model to solve
-	}
-	else {
-		this.obj = null; // null if unsuccessful
-		globalData._MODEL_ = theopl._NOSOL_MODEL_
-	}			
+
+	}	else	this.obj = null; // null if unsuccessful
+	
+	globalData._MODEL_  = theopl._NEXT_MODEL_  ;	// next model to solve
 	
 	// update information
 	this.solvetime = elapsedTime( timeMark ); // running time
@@ -92,7 +91,7 @@ var model_define_file = "model.ini"  ;
 	theopl.end(); // clear execution object
 	
 	// display result
-	write( sys_avatar , " solve " + this.mipid  + " (\"" + this.mipsource.name + "\"" + ( this.relax ? ",\"relax\"" : "" ) + ") => " );
+	write( AVATAR() , " solve " + this.mipid  + " (\"" + this.mipsource.name + "\"" + ( this.relax ? ",\"relax\"" : "" ) + ") => " );
 	write( " number called: " , this.ncall , " runtime: ", this.solvetime , " acc. time: " , this.acctime  );
 	writeln(" obj: " , this.obj  );
 	writeln();
@@ -105,64 +104,13 @@ var model_define_file = "model.ini"  ;
 /*---------------------------------------------------------------------------------------------------------------------------
  *
  *
- * PLUGINS 
+ * FUNCTIONS
  *
  *
  *--------------------------------------------------------------------------------------------------------------------------*/
 
 
 
-//// LINE SEPARATOR //// 
-var half_line_sep_length = 50 ;
-	
-function lineSep( label  , sep ) {
-
-	var halflen  =  half_line_sep_length -  label.length / 2 ;
-	var i ;
-	for ( i = 1 ; i <= halflen ; i ++ ) write( sep );
-	write( label );
-	
-	for ( i = 1 ; i <= halflen ; i ++ ) write( sep );	
-	writeln();
-	
-}
-	
-//// MARK TIME MOMENT ////
-function  timeMarker() {
-
-	return (new Date());
-}
-
-//// ELAPSED TIME FROM MARKED ////
-function elapsedTime( previous ) {
-
-	var currentMoment = new Date();
-	return Opl.round(( currentMoment - previous ) / 1000.0 );
-}
-
-//// COMPUTE GAP BETWEEN TWO NUMBERS ////	
-function GAP( relaxObj , intObj ) {	
-	
-	return Opl.abs( intObj - relaxObj ) / ( Opl.abs( relaxObj ) + 1.0e-6 ) * 100.0;		
-	
-}
-
-//// ASSERT EXISTED FILE ////
-
-function assertExisted( fname ) {
-
-	// check existed file ?
-	var f = new IloOplInputFile( fname );
-	
-	if ( ! f.exists ) {
-	
-		writeln( sys_avatar , " " , fname , " does not exist ! " );
-		writeln();
-		stop();
-	}
-	
-	f.close();
-}
 
 //// INDEX OF MODEL BY NAME ////
 
@@ -176,9 +124,24 @@ function indexModel( m ) {
 	return null ;
 }
 
+///// ASSERT EXIST MODEL ///
+function assertModel( m ) {
+
+	if ( indexModel(m)==null ) {
+	
+		writeln( AVATAR() , " no model with id: " ,m , " !" );
+		writeln();
+		stop();
+	}
+	
+}
+
+
 //// READ MODEL DEFINITION FILE ////
 function readModelDefinition() {
 
+	var  TERM_MODEL = "MODEL" ;
+	var  TERM_RELAX = "RELAX" ;
 	
 	var f = new IloOplInputFile( );
 	f.open(model_define_file );
@@ -193,44 +156,30 @@ function readModelDefinition() {
 	  var pieces = line.split(" "); // split into term
 	  
 	  var terms = new Array();
-	  	  	  	  
+
 	  for ( var i = 0 ; i < pieces.length ; i ++ ){
 	   
 	    // not empty term
 		if ( pieces[i].length ) terms[ terms.length ] = pieces[ i ] ;
-				
+
 	  }
 	  
-	  // [MODEL]
-	  if ( terms[0] == "MODEL" ) {
-	  
-		writeln( "[" + terms[0] + "]" , " >>> " ,terms[1] , " >>> " , terms[2] , " : " , terms[3] );		
-		lstModel[ lstModel.length ] = new MIPMODEL( terms[1] , terms[2] , terms[3].toUpperCase() == "RELAX" ); // create model
+	  // [MODEL] //
+	  if ( terms[0] == TERM_MODEL ) {
+	   
+	    var isrelax ;
+	    if ( terms[3] == null ) isrelax = false ; else isrelax = terms[3].toUpperCase() == TERM_RELAX ;
+	    
+		writeln( "[" + terms[0] + "]" , " >>> " ,terms[1] , " >>> " , terms[2] , " : " , isrelax ? "relax" : "norelax"  );		
+		lstModel[ lstModel.length ] = new MIPMODEL( terms[1] , terms[2] , isrelax ); // create model
 		
 	  }
-	  
-	  // [START]
-	  if ( terms[0] == "START" ) {
-	  		
-		writeln(  "[" + terms[0] + "]" , " >>> "  , terms[1]  );		
-		globalData._MODEL_ = terms[1]; // starting model
-	  
-	  }
-	  
-	  // [FINAL]
-	  if (  terms[0] == "FINAL" ) {
-	  
-		writeln(  "[" + terms[0] + "]" , " >>> "  , terms[1] , " >>> "  , terms[2]   );		  
-		
-		final_relax_id = terms[1] ;
-		final_int_id   = terms[2] ;
-		
-		
-	  }
-      	  
+
     } // end while
 
 	f.close();	
+	
+	
 }
 	
 /*---------------------------------------------------------------------------------------------------------------------------
@@ -245,15 +194,15 @@ function readModelDefinition() {
 	writeln();	
 	writeln();
 	
-	if ( thisOplModel.input == "" ) {   writeln( sys_avatar , "  input need to be specified ( -D input=filename ) " ); writeln(); stop(); }	
+	if ( thisOplModel.input == "" ) {   writeln( AVATAR() , "  input need to be specified ( -D input=filename ) " ); writeln(); stop(); }	
 	
-	writeln( sys_avatar , " INPUT        : " , thisOplModel.input );
+	writeln( AVATAR() , " INPUT        : " , thisOplModel.input );
 	
 	assertExisted(  model_define_file );
 	assertExisted(  parameter_file );
 	
-	writeln( sys_avatar , " PARAMETER    : " , parameter_file );
-	writeln( sys_avatar , " MODEL DEFINE : " , model_define_file );
+	writeln( AVATAR() , " PARAMETER    : " , parameter_file );
+	writeln( AVATAR() , " MODEL DEFINE : " , model_define_file );
 		
 	
 /*---------------------------------------------------------------------------------------------------------------------------
@@ -272,14 +221,14 @@ function readModelDefinition() {
 	var _sysData = new IloOplDataElements();
 	
 	// init system variable
-	_sysData._MODEL_  = "" ;	
+	_sysData._MODEL_       = __START__ ;	
 	_sysData._NEXT_MODEL_  = "" ;	
-	_sysData._NOSOL_MODEL_  = "" ;	
+
 	
 	// load global data
 	var globalSource = new IloOplModelSource( parameter_file );
 	var globalDef    = new IloOplModelDefinition( globalSource );	
-	var globalOpl = new IloOplModel( globalDef , cplex ) ;
+	var globalOpl    = new IloOplModel( globalDef , cplex ) ;
 	
 	globalOpl.addDataSource( _userData );
 	globalOpl.addDataSource( _sysData  );				
@@ -291,8 +240,7 @@ function readModelDefinition() {
 	// create list of models
 	var lstModel = new Array();
 	
-	var final_relax_id     = "" ; 	// relax master problem
-	var final_int_id       = "" ; 	// restricted master problem
+	
  
 /*---------------------------------------------------------------------------------------------------------------------------
  *
@@ -304,6 +252,11 @@ function readModelDefinition() {
 
  readModelDefinition(); // read model definition 
  
+ assertModel( __START__ );
+ assertModel( __RELAX__ );
+ assertModel( __FINAL__ );
+ 
+ var   starting_process_moment =  timeMarker(); 
  
  while ( globalData._MODEL_ ){
  	
@@ -311,20 +264,15 @@ function readModelDefinition() {
 	
 	// not found any model
 	if ( callModel == null ) {
-	  writeln( sys_avatar , " no model with id: " , globalData._MODEL_ , " !" );
+	  writeln( AVATAR() , " no model with id: " , globalData._MODEL_ , " !" );
 	  stop();
 	} else callModel.mipsolve();
 		
 	
  } // end while
  
-
-
-
-
-
-
-
+ 
+ 
 
 /*---------------------------------------------------------------------------------------------------------------------------
  *
@@ -334,23 +282,98 @@ function readModelDefinition() {
  *
  *--------------------------------------------------------------------------------------------------------------------------*/
 
- lineSep(" PERFORMANCE INFORMATION " ,"=" );
+
  
-var relaxModel = indexModel( final_relax_id );
+// get relax solution 
+
+globalData._MODEL_ = __RELAX__ ;
+var relaxModel = indexModel( globalData._MODEL_ );
+relaxModel.mipsolve();
 var relaxObj = relaxModel.obj ;
-var intModel = indexModel( final_int_id );
-var intObj   = intModel.obj ;
 
-writeln("RELAX OBJ : " , relaxObj );
-writeln("INT OBJ   : " , intObj );
+// get final solution
+globalData._MODEL_ = __FINAL__ ;
+var finalModel = indexModel( globalData._MODEL_ );
 
-writeln("GAP       : " , GAP( relaxObj , intObj ) );	
+finalModel.mipsolve();
+var intObj   = finalModel.obj ;
+
+var elapsed_runtime = elapsedTime( starting_process_moment );
+
+lineSep(" PERFORMANCE INFORMATION " ,"=" );
+writeln();
+
+writeln("RELAX-SOLUTION : " , relaxObj );
+writeln("INT-SOLUTION   : " , intObj );
+writeln("SOLUTION-GAP   : " , GAP( relaxObj , intObj ) );	
+writeln("RUNTIME        : " , elapsed_runtime );
+writeln();
+lineSep("" ,"-");	
+writeln();
+
+// estimate size
+var m ;
+var model ;
+
+
+function maxLength( n, st  ) {
+
+  return  n < st.toString().length ? st.toString().length : n ;
+}
+
+var txt_id_size = maxLength( 0 , "MODEL" );
+var txt_call_size = maxLength( 0 , "CALL" );
+var txt_total_size = maxLength( 0 , "TOTAL-TIME" );
+var txt_mean_size = maxLength( 0 , "MEAN-TIME" );
+var txt_relax_size = maxLength( 0 , "RELAX" );
+var txt_source_size = maxLength( 0 , "SOURCE" );
+
+for ( m = 0 ; m < lstModel.length ; m++ ){
+
+	model = lstModel[ m ] ;
+	
+	txt_id_size   = maxLength( txt_id_size , model.mipid ) ;    
+	txt_call_size = maxLength( txt_call_size , model.ncall ) ; 	
+	txt_total_size= maxLength( txt_total_size , model.acctime ) ; 	
+	txt_mean_size= maxLength( txt_mean_size , model.acctime /  model.ncall  ) ; 	
+	txt_relax_size= maxLength( txt_relax_size , model.relax  ) ; 	
+	txt_source_size= maxLength( txt_source_size , model.mipsource.name  ) ; 	
+}
+
+leftWrite( "MODEL" , txt_id_size + 1 );
+leftWrite( "CALL" , txt_call_size + 1); 
+leftWrite( "TOTAL-TIME" , txt_total_size + 1 );
+leftWrite( "MEAN-TIME" , txt_mean_size + 1 );
+leftWrite( "RELAX" , txt_relax_size + 1 );
+leftWrite( "SOURCE" , txt_source_size + 1 );
+
+writeln();
+
+leftWrite( "-----" , txt_id_size + 1 );
+leftWrite( "----" , txt_call_size + 1 ); 
+leftWrite( "----------" ,txt_total_size + 1 ); 
+leftWrite( "---------" , txt_mean_size + 1 );
+leftWrite( "-----" , txt_relax_size + 1 );
+leftWrite( "------" , txt_source_size + 1 );
+writeln();
+
+for ( m = 0 ; m < lstModel.length ; m++ ){
+
+ model = lstModel[ m ] ;
+
+leftWrite( model.mipid , txt_id_size + 1 );
+leftWrite( model.ncall , txt_call_size + 1 );
+leftWrite( model.acctime ,txt_total_size + 1 );
+leftWrite( model.acctime /  model.ncall ,txt_mean_size + 1 ); 
+leftWrite( model.relax ,txt_relax_size + 1 );
+leftWrite(  model.mipsource.name ,txt_source_size + 1 );
+writeln();
+
+}
 	
 
-	
-
-
-
+writeln();
+lineSep("" ,"-");	
 
 
 }

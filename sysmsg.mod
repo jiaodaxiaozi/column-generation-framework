@@ -1,28 +1,33 @@
-string _MODEL_        = ... ; // current solving model
-
+string _MODEL_         = ... ; // current solving model
 string _NEXT_MODEL_    = ... ; // next model to solve
-string _NOSOL_MODEL_   = ... ; // in case of no solution, which model to solve next
+
 
 
 execute {
 
+	//// IS THAT MODEL ////
 	function isModel( m ){
 	
-		return _MODEL_ == m;
+		return getModel() == m;
+	
 	}
-
-	function solNextModel( m ) {
+	
+	//// GET CURRENT MODEL ////
+	function getModel() {
+	
+		return _MODEL_ ;
+	}
+	
+	//// NEXT MODEL TO SOLVE ////
+	function setNextModel( m ) {
 	
 		_NEXT_MODEL_ = m ;
 	}
 	
-	function nosolNextModel( m ) {
-		_NOSOL_MODEL_ = m ;
-	}
-
+	
 
 }
 
 
-
+include "plugins.mod" ; 
 

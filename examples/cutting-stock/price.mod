@@ -19,8 +19,8 @@ execute {
 	cplex.parallelmode = -1 ; // opportunistic mode
 	cplex.threads = 0 ; // use maximum threads
 	
-	solNextModel( "MASTER-RELAX" );
-	nosolNextModel( "MASTER" );
+	
+	
 }
 
 dvar  int+ x[ 1..nitem ] ;
@@ -48,14 +48,7 @@ execute {
 	patternset.addOnly( x.solutionValue );
 		
 	
-	
-	
-	
-	
-	
-	
-			
-	
+	setNextModel( "START" );
 	
 	
 }  

@@ -14,4 +14,19 @@ This source is published under MIT licence. If you use it, it is very appreciate
 
 
 Usage
------
+=====
+
+### Configuration Files:
+
++ params.mod : contain definition of your data
++ model.ini  : define nodes with corresponding models
+
+
+### Special Nodes:
+
++ START : will be called first
++ RELAX : relax version of Restricted Master Problem (RMP)
++ FINAL : the RMP problem
+
+
+run _oplrun -D input="datafile" ../../solver.mod_  in your directory.
