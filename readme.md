@@ -18,15 +18,17 @@ Usage
 
 ### Configuration Files:
 
-+ params.mod : contain definition of your data
-+ model.ini  : define nodes with corresponding models
++ params.mod : contain definition of your data. _sysmsg.mod_ need to be included in this file
++ model.ini  : define loading models
 
 
 ### Special Nodes:
 
 + START : will be called first
 + RELAX : relax version of Restricted Master Problem (RMP)
-+ FINAL : the RMP problem
++ FINAL : the RMP problem that contains the solution
 
 
-run _oplrun -D input="datafile" ../../solver.mod_  in your directory.
+### Running
+
+_oplrun -D input="datafile" [path-to]/solver.mod_  in your directory.
