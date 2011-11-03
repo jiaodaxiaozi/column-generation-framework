@@ -66,6 +66,7 @@ So those are predefined states :
 otherwise, you can create whatever state you want. Notice that each state must define by itself the next state to be solved.
 The system provides the following state-related functions that can be used inside each model:
 
-- isModel( X )   = true if the current solving model is X, false otherwise.
+- isModel( X )      = _true_ if the current solving model is X, _false_ otherwise.
+- getModel( )       : return the current model.    
 - setNextModel( X ) : set the next model to be solved.
 
