@@ -40,20 +40,21 @@ which is the next state to be solved. It can also return __empty__ state which m
 is reported by compared state __RELAX__, that supposes to be _RELAX RESTRICTED MASTER PROBLEM (RMP)_, and __FINAL__, that supposes
 to be _RMP_. The overall optimization process is described as follows. 
 
-> load _states_ from _model.ini_
->
-> state = __START__
->
-> while state  != __empty__
->
-> 	state = __empty__
-> 	if solving( state.model )
-> 		state = solving.nextmodel
-> 	
-> relax objective   = solving( __RELAX__ )
-> integer objective = solving( __FINAL__ )
->
-> report result
+	load _states_ from _model.ini_
+	
+	state = __START__
+
+	while state  != __empty__
+
+		state = __empty__
+		
+		if solving( state.model )
+			state = solving.nextmodel
+
+	relax objective   = solving( __RELAX__ )
+	integer objective = solving( __FINAL__ )
+
+	report result
 
 
 So those are predefined states :
