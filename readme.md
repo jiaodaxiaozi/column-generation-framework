@@ -37,30 +37,30 @@ _oplrun -D input="datafile" [path-to]/solver.mod_  in your directory.
 Actually, the program is just a state machine. At the initial step, it loads a list of states from _model.ini_, each state
 is assigned to an OPL model. First, the program starts processing a special state named __START__. The state will decide 
 which is the next state to be solved. It can also return __empty__ state which means the process is finished. The result
-is reported by compared state __RELAX__, that supposes to be _RELAX RESTRICTED MASTER PROBLEM_, and __FINAL__, that supposes
-to be _RESTRICTED MASTER PROBLEM_. The overall optimization process is described as follows. 
+is reported by compared state __RELAX__, that supposes to be _RELAX RESTRICTED MASTER PROBLEM (RMP)_, and __FINAL__, that supposes
+to be _RMP_. The overall optimization process is described as follows. 
 
-1. load _states_ from _model.ini_
-1.
-2. state = __START__
-3.
-3. while state  != __empty__
-3.
-3. 	state = __empty__
-3.      if solving( state.model )
-4. 		state = solving.nextmodel
-5. 	
-3. relax objective   = solving( __RELAX__ )
-3. integer objective = solving( __FINAL__ )
-3.
-3. report result
+> load _states_ from _model.ini_
+>
+> state = __START__
+>
+> while state  != __empty__
+>
+> 	state = __empty__
+> 	if solving( state.model )
+> 		state = solving.nextmodel
+> 	
+> relax objective   = solving( __RELAX__ )
+> integer objective = solving( __FINAL__ )
+>
+> report result
 
 
 So those are predefined states :
 
-+ START : will be called first
-+ RELAX : relax version of Restricted Master Problem (RMP)
-+ FINAL : the RMP problem that contains the solution
++ __START__ : will be called first
++ __RELAX__ : relax version of RMP
++ __FINAL__ : the RMP problem that contains the solution
 
 otherwise, you can create whatever state you want. Notice that each state must define by itself the next state to be solved.
 The system provides the following state-related functions that can be used inside each model:
