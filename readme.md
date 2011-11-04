@@ -31,8 +31,8 @@ The following paragraphs give more detail.
 _oplrun -D input="datafile" [path-to]/solver.mod_  in your directory.
 
 
-### How It works
-
+How It works
+============
 
 Actually, the program is just a state machine. At the initial step, it loads a list of states from _model.ini_, each state
 is assigned to an OPL model. First, the program starts processing a special state named __START__. The state will decide 
@@ -56,6 +56,8 @@ to be _RMP_. The overall optimization process is described as follows.
 
 	report result
 
+APIs
+====
 
 So those are predefined states :
 
