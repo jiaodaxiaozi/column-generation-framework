@@ -294,7 +294,6 @@ var relaxObj = relaxModel.obj ;
 // get final solution
 globalData._MODEL_ = __FINAL__ ;
 var finalModel = indexModel( globalData._MODEL_ );
-
 finalModel.mipsolve();
 var intObj   = finalModel.obj ;
 
