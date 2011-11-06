@@ -68,7 +68,8 @@ var __FINAL__           = "FINAL" ;
 	var theopl = new IloOplModel( this.mipdefinition , this.mipsolver ) ;  // create execution object	
 	
 	// reset next model
-	globalData._NEXT_MODEL_  = "" ;	
+	globalData._NEXT_MODEL_  = "" ;
+	globalData._NEXT_PARAM_  = "" ;	
 	
 	theopl.addDataSource( globalData ) ;	// add data source 
 	theopl.generate() ; // generate execution object
@@ -81,8 +82,11 @@ var __FINAL__           = "FINAL" ;
 		theopl.postProcess() ;  // call post process	
 
 	}	else	this.obj = null; // null if unsuccessful
-	
-	globalData._MODEL_  = theopl._NEXT_MODEL_  ;	// next model to solve
+
+	// next model to solve
+
+	globalData._MODEL_  = theopl._NEXT_MODEL_  ;	
+	globalData._PARAM_  = theopl._NEXT_PARAM_  ;
 	
 	// update information
 	this.solvetime = elapsedTime( timeMark ); // running time
@@ -221,8 +225,10 @@ function readModelDefinition() {
 	var _sysData = new IloOplDataElements();
 	
 	// init system variable
-	_sysData._MODEL_       = __START__ ;	
+	_sysData._MODEL_       = __START__ ;
+	_sysData._PARAM_       = ""	
 	_sysData._NEXT_MODEL_  = "" ;	
+	_sysData._NEXT_PARAM_  = "" ;
 
 	
 	// load global data

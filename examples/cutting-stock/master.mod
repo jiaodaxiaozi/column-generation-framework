@@ -31,7 +31,7 @@ execute{
 	
 	if ( isModel("START" ) ) {
 	
-		setNextModel( "PRICE" );
+		setNextModel( "PRICE"  );
 	
 	}
 	
