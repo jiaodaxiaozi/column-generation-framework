@@ -4,6 +4,8 @@ string _PARAM_         = ... ; // current model parameter
 string _NEXT_MODEL_    = ... ; // next model to solve
 string _NEXT_PARAM_    = ... ; // next model's parameter
 
+string _MODEL_LOG_     = ... ; // model log file
+
 string _PARAM_SEP_     = ":" ; // separator for arrays
 
 execute {
@@ -21,6 +23,13 @@ execute {
 		return _MODEL_ ;
 	}
 
+
+	function setModelLog( log ) {
+
+		_MODEL_LOG_ = log ;
+		
+
+	}
 	
 	//// GET CURRENT PARAMETER ////
 

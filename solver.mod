@@ -70,6 +70,7 @@ var __FINAL__           = "FINAL" ;
 	// reset next model
 	globalData._NEXT_MODEL_  = "" ;
 	globalData._NEXT_PARAM_  = "" ;	
+	globalData._MODEL_LOG_   = "" ;
 	
 	theopl.addDataSource( globalData ) ;	// add data source 
 	theopl.generate() ; // generate execution object
@@ -83,11 +84,21 @@ var __FINAL__           = "FINAL" ;
 
 	}	else	this.obj = null; // null if unsuccessful
 
+	
+	// export log file
+	if (  theopl._MODEL_LOG_ != "" ){ 
+
+		writeln( AVATAR() , " exporting model : " , this.mipid , " => " , theopl._MODEL_LOG_ );
+		this.mipsolver.exportModel( theopl._MODEL_LOG_ );
+	}
+	
+
 	// next model to solve
 
-	globalData._MODEL_  = theopl._NEXT_MODEL_  ;	
-	globalData._PARAM_  = theopl._NEXT_PARAM_  ;
-	
+	globalData._MODEL_  = theopl._NEXT_MODEL_   ;	
+	globalData._PARAM_  = theopl._NEXT_PARAM_   ;
+	globalData._MODEL_LOG_ = theopl._MODEL_LOG_ ;	
+
 	// update information
 	this.solvetime = elapsedTime( timeMark ); // running time
 	this.acctime += this.solvetime ; // accumulated running time				
@@ -226,7 +237,8 @@ function readModelDefinition() {
 	
 	// init system variable
 	_sysData._MODEL_       = __START__ ;
-	_sysData._PARAM_       = ""	
+	_sysData._PARAM_       = "" ;
+	_sysData._MODEL_LOG_   = "" ;
 	_sysData._NEXT_MODEL_  = "" ;	
 	_sysData._NEXT_PARAM_  = "" ;
 
