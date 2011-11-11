@@ -108,7 +108,8 @@ var __FINAL__           = "FINAL" ;
 	// display result
 	write( AVATAR() , " solve " + this.mipid  + " (\"" + this.mipsource.name + "\"" + ( this.relax ? ",\"relax\"" : "" ) + ") => " );
 	write( " number called: " , this.ncall , " runtime: ", this.solvetime , " acc. time: " , this.acctime  );
-	writeln(" obj: " , this.obj  );
+	write(" obj: " , this.obj  );
+	writeln( " param (" ,  globalData._PARAM_ , ")"  );
 	writeln();
 	
 	
@@ -173,9 +174,15 @@ function readModelDefinition() {
 	  var terms = new Array();
 
 	  for ( var i = 0 ; i < pieces.length ; i ++ ){
-	   
-	    // not empty term
-		if ( pieces[i].length ) terms[ terms.length ] = pieces[ i ] ;
+	  
+		// split again by tab
+
+		var tabs = pieces[ i ].split("\t");
+
+		for ( var j = 0 ; j < tabs.length ; j ++ )
+ 
+		    // not empty term
+			if ( tabs[ j ].length ) terms[ terms.length ] = tabs[ j ] ;
 
 	  }
 	  
