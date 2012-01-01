@@ -35,10 +35,9 @@ How It works
 ============
 
 Actually, the program is just a state machine. At the initial step, it loads a list of states from _model.ini_, each state
-is assigned to an OPL model. First, the program starts processing a special state named __START__. The state will decide 
-which is the next state to be solved. It can also return __empty__ state which means the process is finished. The result
-is reported by compared state __RELAX__, that supposes to be _RELAX RESTRICTED MASTER PROBLEM (RMP)_, and __FINAL__, that supposes
-to be _RMP_. The overall optimization process is described as follows. 
+is assigned to an OPL model. First, the program starts processing a special state named __ROOT__. The state will decide 
+which is the next state to be solved. It can also return __empty__ state which means the process is finished. 
+The overall optimization process is described as follows. 
 
 	load _states_ from _model.ini_
 	
@@ -51,26 +50,23 @@ to be _RMP_. The overall optimization process is described as follows.
 		if solving( state.model )
 			state = solving.nextmodel
 
-	relax objective   = solving( __RELAX__ )
-	integer objective = solving( __FINAL__ )
-
-	report result
 
 APIs
 ====
 
-So those are predefined states :
+There is only one predefined state:
 
-+ __START__ : will be called first
-+ __RELAX__ : relax version of RMP
-+ __FINAL__ : the RMP problem that contains the solution
++ __ROOT__ : will be called first
 
 otherwise, you can create whatever state you want. Notice that each state must define by itself the next state to be solved.
+The final state is responsible to compute the GAP and other metrics by it own.
 The system provides the following state-related functions that can be used inside each model:
 
 - isModel( X )      = _true_ if the current solving model is X, _false_ otherwise.
-- getModel( )       : return the current model.    
-- getModelParam()   : return the current parameter which is an Array of Integers.
+- getModel()       : return the current model.    
 - setNextModel( X ) : set __X__ the next model to be solved. Parameter is undefined.
-- setNextModel(X,P) : set __X__ the next model with parameter __P__ to be solved. __P__ is an Array of Integers.
 - setModelLog( log ): .lp file that will be exported from the current model when it is solved.
+
+__Extra functions__:
+
+- GAP( X , Y ) : return difference in percentage between X and Y in comparison to X.

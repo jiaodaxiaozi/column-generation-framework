@@ -20,7 +20,7 @@ execute {
 	cplex.threads = 0 ; // use maximum threads
 	
 	
-	
+	setNextModel("FINAL");
 }
 
 dvar  int+ x[ 1..nitem ] ;
@@ -48,7 +48,7 @@ execute {
 	patternset.addOnly( x.solutionValue );
 		
 	
-	setNextModel( "START"  );
+	setNextModel( "ROOT"  );
 	
 	
 }  

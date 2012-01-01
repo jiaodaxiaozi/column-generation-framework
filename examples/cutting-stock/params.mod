@@ -20,7 +20,7 @@ tuple pattern_record {
  
 float dual_demand[ 1..nitem ] = ... ;
 
-
+float relaxobj[ 0..1 ] = ... ;
 
 execute  {
 

@@ -85,6 +85,10 @@ function assertExisted( fname ) {
 }
 
 
+///// RETURN MAX( n , len( st ) ) //////
+function maxLength( n, st  ) {
+  return  n < st.toString().length ? st.toString().length : n ;
+}
 
 
 

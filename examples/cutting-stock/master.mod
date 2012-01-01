@@ -29,7 +29,7 @@ execute{
 
 	}
 	
-	if ( isModel("START" ) ) {
+	if ( isModel("ROOT" ) ) {
 	
 		setNextModel( "PRICE"  );
 	
@@ -72,10 +72,10 @@ execute CollectDualValues {
 execute InRelaxProcess {
 
 
-	if ( isModel( "START" ) ){
+	if ( isModel( "ROOT" ) ){
 
-		writeln("Master Objective : " , cplex.getObjValue() , " number of patterns = ",  patternset.size );
-		
+		writeln("Master Objective : " , relaxobj[0] , " number of patterns = ",  patternset.size );
+		relaxobj[ 0 ] = cplex.getObjValue();
 		
 		
 	}	
@@ -99,6 +99,9 @@ execute DisplayResult {
 		}
 
 		writeln();
+        writeln("Relax = " , relaxobj[0] );
+        writeln("Int   = " , cplex.getObjValue());
+        writeln("GAP : " , GAP( relaxobj[0]  , cplex.getObjValue() ));
 
 	} // end display 
 

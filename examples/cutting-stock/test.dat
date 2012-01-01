@@ -8,3 +8,4 @@ item_demand = [ 22 , 25 , 12 ,14 , 18 , 18 , 20 , 10 , 12 , 14 , 16 , 18 , 20 ];
 
 patternset = {} ;
 dual_demand = [] ;
+relaxobj = [];
