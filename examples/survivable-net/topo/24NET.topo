@@ -1,0 +1,116 @@
+
+TAG 1
+
+
+node 0
+node 1 
+node 2 
+node 3 
+node 4 
+node 5 
+node 6 
+node 7 
+node 8 
+node 9 
+node 10
+node 11 
+node 12 
+node 13 
+node 14 
+node 15
+node 16
+node 17
+node 18
+node 19 
+node 20
+node 21
+node 22
+node 23
+
+link 1  source 1  dest 0  length 1
+link 1  source 0  dest 1  length 1
+link 1  source 1  dest 2  length 1
+link 1  source 2  dest 1  length 1
+link 1  source 5  dest 0  length 1
+link 1  source 0  dest 5  length 1
+link 1  source 1  dest 5  length 1
+link 1  source 5  dest 1  length 1
+link 1  source 2  dest 4  length 1
+link 1  source 4  dest 2  length 1
+link 1  source 2  dest 3  length 1
+link 1  source 3  dest 2  length 1
+link 1  source 4  dest 3  length 1
+link 1  source 3  dest 4  length 1
+link 1  source 2  dest 6  length 1
+link 1  source 6  dest 2  length 1
+link 1  source 3  dest 6  length 1
+link 1  source 6  dest 3  length 1
+link 1  source 5  dest 6  length 1
+link 1  source 6  dest 5  length 1
+link 1  source 4  dest 7  length 1
+link 1  source 7  dest 4  length 1
+link 1  source 6  dest 7  length 1
+link 1  source 7  dest 6  length 1
+link 1  source 7  dest 9  length 1
+link 1  source 9  dest 7  length 1
+link 1  source 6  dest 8  length 1
+link 1  source 8  dest 6  length 1
+link 1  source 5  dest 8  length 1
+link 1  source 8  dest 5  length 1
+link 1  source 5  dest 10 length 1
+link 1  source 10 dest 5  length 1
+link 1  source 8  dest 9  length 1
+link 1  source 9  dest 8  length 1
+link 1  source 8  dest 10 length 1
+link 1  source 10 dest 8  length 1
+link 1  source 8  dest 11 length 1
+link 1  source 11 dest 8  length 1
+link 1  source 9  dest 12 length 1
+link 1  source 12 dest 9  length 1
+link 1  source 13 dest 9  length 1
+link 1  source 9  dest 13 length 1
+link 1  source 11 dest 10 length 1
+link 1  source 10 dest 11 length 1
+link 1  source 11 dest 12 length 1
+link 1  source 12 dest 11 length 1
+link 1  source 12 dest 13 length 1
+link 1  source 13 dest 12 length 1
+link 1  source 14 dest 10 length 1
+link 1  source 10 dest 14 length 1
+link 1  source 11 dest 15 length 1
+link 1  source 15 dest 11 length 1
+link 1  source 12 dest 16 length 1
+link 1  source 16 dest 12 length 1
+link 1  source 13 dest 17 length 1
+link 1  source 17 dest 13 length 1
+link 1  source 10 dest 18 length 1
+link 1  source 18 dest 10 length 1
+link 1  source 14 dest 15 length 1
+link 1  source 15 dest 14 length 1
+link 1  source 18 dest 19 length 1
+link 1  source 19 dest 18 length 1
+link 1  source 14 dest 19 length 1
+link 1  source 19 dest 14 length 1
+link 1  source 19 dest 20 length 1
+link 1  source 20 dest 19 length 1
+link 1  source 15 dest 20 length 1
+link 1  source 20 dest 15 length 1
+link 1  source 15 dest 16 length 1
+link 1  source 16 dest 15 length 1
+link 1  source 16 dest 17 length 1
+link 1  source 17 dest 16 length 1
+link 1  source 16 dest 22 length 1
+link 1  source 22 dest 16 length 1
+link 1  source 17 dest 23 length 1
+link 1  source 23 dest 17 length 1
+link 1  source 16 dest 21 length 1
+link 1  source 21 dest 16 length 1
+link 1  source 15 dest 21 length 1
+link 1  source 21 dest 15 length 1
+link 1  source 21 dest 20 length 1
+link 1  source 20 dest 21 length 1
+link 1  source 21 dest 22 length 1
+link 1  source 22 dest 21 length 1
+link 1  source 22 dest 23 length 1
+link 1  source 23 dest 22 length 1
+

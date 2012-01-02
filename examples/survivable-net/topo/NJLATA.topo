@@ -1,0 +1,62 @@
+TAG 1
+
+node 0
+node 1 
+node 2 
+node 3 
+node 4 
+node 5 
+node 6 
+node 7 
+node 8 
+node 9 
+node 10
+
+
+link 1  source 1  dest 0  length 1306
+link 2  source 0  dest 1  length 1306
+link 3  source 0  dest 2  length 2032
+link 4  source 2  dest 0  length 2032
+link 5  source 1  dest 2  length 3529
+link 6  source 2  dest 1  length 3529
+link 7  source 1  dest 3  length 822
+link 8  source 3  dest 1  length 822
+link 9  source 2  dest 5  length 1209
+link 10 source 5  dest 2  length 1209
+link 11 source 3  dest 2  length 2403
+link 12 source 2  dest 3  length 2403
+link 13 source 3  dest 5  length 854
+link 14 source 5  dest 3  length 854
+link 15 source 4  dest 3  length 2693
+link 16 source 3  dest 4  length 269
+link 17 source 2  dest 4  length 1661
+link 18 source 4  dest 2  length 1661
+link 19 source 2  dest 7  length 871
+link 20 source 7  dest 2  length 871
+link 21 source 6  dest 3  length 1274
+link 22 source 3  dest 6  length 1274
+link 23 source 6  dest 7  length 2209
+link 24 source 7  dest 6  length 2209
+link 25 source 3  dest 7  length 983
+link 26 source 7  dest 3  length 983
+link 27 source 4  dest 7  length 680
+link 28 source 7  dest 4  length 680
+link 29 source 5  dest 7  length 1096
+link 30 source 7  dest 5  length 1096
+link 31 source 5  dest 8  length 454
+link 32 source 8  dest 5  length 454
+link 33 source 8  dest 3  length 612
+link 34 source 3  dest 8  length 612
+link 35 source 9  dest 3  length 580
+link 36 source 3  dest 9  length 580
+link 38 source 7  dest 8  length 1048
+link 39 source 8  dest 7  length 661
+link 40 source 7  dest 9  length 661
+link 41 source 9  dest 7  length 387
+link 42 source 8  dest 10 length 387
+link 43 source 10 dest 8  length 387
+link 44 source 8  dest 9  length 387
+link 45 source 9  dest 8  length 387
+link 46 source 10 dest 9  length 387
+link 47 source 9  dest 10 length 387
+

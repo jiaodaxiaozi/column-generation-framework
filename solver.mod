@@ -13,6 +13,8 @@ string input = "" ;
   
 main {
 
+
+
 /*---------------------------------------------------------------------------------------------------------------------------
  *
  *
@@ -25,6 +27,26 @@ var parameter_file    = "params.mod" ;
 var model_define_file = "model.ini"  ;    
 var __ROOT__          = "ROOT" ;
 
+
+/////// SETTING NEXT STATE //////////
+function nextState( nextObj , curObj ) {
+
+    if ( curObj == null ) {
+    
+        nextObj._NEXT_MODEL_  = "" ;    
+        nextObj._MODEL_LOG_   = "" ;        
+        nextObj._MODEL_STATUS_= 0  ;
+    
+    } else {
+   
+        nextObj._MODEL_       = curObj._NEXT_MODEL_ ;    
+        
+        nextObj._MODEL_LOG_   = curObj._MODEL_LOG_ ;        
+        nextObj._MODEL_STATUS_= curObj._MODEL_STATUS_  ;
+
+    }
+    
+}
         
 /*---------------------------------------------------------------------------------------------------------------------------
  *
@@ -65,8 +87,7 @@ var __ROOT__          = "ROOT" ;
     var theopl = new IloOplModel( this.mipdefinition , this.mipsolver ) ;  // create execution object    
     
     // reset next model
-    globalData._NEXT_MODEL_  = "" ;    
-    globalData._MODEL_LOG_   = "" ;
+    nextState( globalData , null );
     
     theopl.addDataSource( globalData ) ;    // add data source 
     theopl.generate() ; // generate execution object
@@ -86,10 +107,9 @@ var __ROOT__          = "ROOT" ;
     
 
     // next model to solve
-
-    globalData._MODEL_  = theopl._NEXT_MODEL_   ;    
-    globalData._MODEL_LOG_ = theopl._MODEL_LOG_ ;    
-
+    
+    nextState( globalData , theopl );
+    
     // update information
     this.solvetime = elapsedTime( timeMark ); // running time
     this.acctime += this.solvetime ; // accumulated running time                
@@ -97,9 +117,10 @@ var __ROOT__          = "ROOT" ;
     theopl.end(); // clear execution object
     
     // display result
-    write( AVATAR() , " solve " + this.mipid  + " (\"" + this.mipsource.name + "\"" + ( this.relax ? ",\"relax\"" : "" ) + ") => " );
-    writeln( " called: " , this.ncall , " runtime: ", this.solvetime , " acc. time: " , this.acctime  );    
-    
+    if ( globalData._MODEL_STATUS_ > 0 ) {
+        write( AVATAR() , " solve " + this.mipid  + " (\"" + this.mipsource.name + "\"" + ( this.relax ? ",\"relax\"" : "" ) + ") => " );
+        writeln( " called: " , this.ncall , " runtime: ", this.solvetime , " acc. time: " , this.acctime  );    
+    }
     
     
  } 
@@ -181,7 +202,7 @@ function readModelDefinition() {
         var isrelax = ( terms[3] == null ) ? false : terms[3].toUpperCase() == TERM_RELAX;
         
         
-        writeln( "[" + terms[0] + "]" , " >>> " , terms[1]  , " >>> " , terms[2] , " : " , isrelax ? "relax" : "norelax"  );        
+        writeln( "[" + terms[0] + "]" , " >>> " , terms[1]  , " >>> " , terms[2] , " " , isrelax ? "(relax)" : ""  );        
         lstModel[ lstModel.length ] = new MIPMODEL( terms[1] , terms[2] , isrelax ); // create model
         
       }
@@ -231,12 +252,10 @@ function readModelDefinition() {
     // create system data
     var _sysData = new IloOplDataElements();
     
-    // init system variable
+    nextState( _sysData , null );
     _sysData._MODEL_       = __ROOT__ ;
-    _sysData._MODEL_LOG_   = "" ;
-    _sysData._NEXT_MODEL_  = "" ;    
-
-
+    
+    
     
     // load global data
     var globalSource = new IloOplModelSource( parameter_file );

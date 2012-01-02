@@ -1,0 +1,62 @@
+
+TAG 2
+
+node N1
+node N2
+node N3	
+node N4	
+node N5	
+node N6	
+node N7	
+node N8	
+node N9	
+node N10	
+node N11	
+node N12	
+node N13	
+node N14	
+node N15	
+node N16	
+node N17	
+node N18	
+node N19	
+
+
+link S1  N1	N2 	255.979
+link S2	 N1	N3	325.346
+link S3	 N1	N16	166.208
+link S4	 N2	N3	85
+link S5	 N2	N17	87.321
+link S6	 N3	N4	235.053
+link S7	 N3	N5	92.195
+link S8	 N4	N5	226.385
+link S9	 N5	N6	79.057
+link S10 N5	N7	134.35
+link S11 N5	N10	165
+link S12 N5	N16	190.591
+link S13 N5	N17	82.765
+link S14 N6	N7	72.801
+link S15 N6	N10	93.408
+link S16 N6	N11	92.195
+link S17 N6	N17	107.703
+link S18 N6	N19	80.156
+link S19 N7	N8	52.202
+link S20 N8	N9	120.208
+link S21 N8	N10	111.803
+link S22 N9	N10	173.349
+link S23 N10	N11	54.083
+link S24 N10	N12	167.705
+link S25 N11	N12	120
+link S26 N11	N18	94.34
+link S27 N11	N19	55.902
+link S28 N12	N13	76.485
+link S29 N12	N15	178.885
+link S30 N12	N16	122.577
+link S31 N12	N18	64.031
+link S32 N13	N14	106.066
+link S33 N14	N16	203.531
+link S34 N15	N16	68.007
+link S35 N16	N17	116.726
+link S36 N16	N18	95.525
+link S37 N18	N19	70.178
+
