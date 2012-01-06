@@ -1,6 +1,7 @@
 include "../../sysmsg.mod" ; // include this line in every global configuration file
 
-int NROUTE[0..0] = ... ;
+int   NROUTE[0..0] = ... ;
+float RELAX[ 0..0] = ... ;
 
 { string } nodeset = ... ; 
 

@@ -103,9 +103,20 @@ float startcap    = sum( e in edgeset ) capacity[e];
 float addroutecap = sum( e in edgeset  ) addrouting[e ];
 int   nfull       = sum( l in logicset ) (  (sum ( f in 1..nfailure ) (1-protect[ f ][ l ])) == 0 ? 1 : 0 ) ;
 
+float totalfl     = sum( l in logicset , f in 1..nfailure ) (1-protect[ f ][ l ]) ; 
+float failperlink = card( logicset ) == nfull ? 0 : totalfl/ (card(logicset)-nfull)  ;
+float linkperfail = card( logicset ) == nfull ? 0 : totalfl / nfailure  ;
+
 float useforprotect[ f in 1..nfailure ][ e in edgeset ] = sum( l2 in logicset , l1 in logicset ) flow[ f ][ l1 ][ l2 ] * reserve[ e ][ l1 ] ;
 float reserveprotect[ e in edgeset ] = max (f in 1..nfailure ) useforprotect[ f ][ e ];
 float protectcap = sum( e in edgeset ) reserveprotect[ e ];
+int   nselect = sum ( c in configset ) z[c] > 0.5 ? 1:0 ;
+
+float meanreserve = ( routecost + noroutecost ) / card(edgeset) ;
+float stdreserve  = sqrt( sum (  e in edgeset ) ( (sum( l in logicset )reserve[ e ][ l ]) - meanreserve )*( (sum( l in logicset )reserve[e][l]) - meanreserve ) / card( edgeset ) );
+
+int   maxwave = max( e in edgeset ) ( sum( l in logicset ) reserve[e][l] );
+
 /********************************************** 
 
     POST PROCESSING
@@ -154,10 +165,21 @@ execute InRelaxProcess {
         writeln("ADD-ROUTING = " , addroutecap , " " , addroutecap / startcap * 100 , " (%)" );
         writeln("NFULL = " , nfull );
         writeln("NCONNECT-ISSUES = " , logicset.size - nfull , " " ,  (logicset.size - nfull) / logicset.size * 100 , " (%)" ); 
-        
+        writeln("FAIL-PER-LOGIC-LINK = " , failperlink );
+        writeln("LOGIC-LINK-PER-FAIL = " , linkperfail );
+	writeln("TOTAL-FL = " , totalfl );
+	writeln();
+	writeln("NCONFIG = " , configset.size );
+	writeln("NSELECT = " , nselect ,  nselect / configset.size * 100 , "(%)");
+	 
         writeln("PROTECT-CAP = " , protectcap , " " , protectcap / (routecost + noroutecost)  );
-        
-    }
+       
+	writeln("GAP =" , GAP( RELAX[0] , cplex.getObjValue())); 
+	writeln("MEAN-RESERVE = " , meanreserve );
+	writeln("STD-RESERVE = " , stdreserve );	
+	writeln("MAX-WAVE = " , maxwave );
+
+    } else RELAX[0] = cplex.getObjValue();
 
 }
 

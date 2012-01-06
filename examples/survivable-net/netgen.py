@@ -258,27 +258,29 @@ if __name__ == "__main__" :
         for i in range( 1 ) :
 
             if basename == "NSF" :    
-                #while not generate_by_degree( basename , 0 , 21 ,  i ) : pass
-                #while not generate_by_degree( basename , 0 , 25 ,  i ) : pass
-
+                while not generate_by_degree( basename , 0 , 21 ,  i ) : pass
+                while not generate_by_degree( basename , 0 , 25 ,  i ) : pass
                 while not generate_by_degree( basename , 0 , 50 ,  i ) : pass
+                while not generate_by_degree( basename , 0 , 80 ,  i ) : pass
 
             if basename == "EURO" :    
-                #while not generate_by_degree( basename , 3 ,  0 ,  i ) : pass
-                #while not generate_by_degree( basename , 0 , 30 ,  i ) : pass
-                #while not generate_by_degree( basename , 0 , 35 ,  i ) : pass
-
+                
+		while not generate_by_degree( basename , 3 ,  0 ,  i ) : pass
+                
+		while not generate_by_degree( basename , 0 , 30 ,  i ) : pass
+                while not generate_by_degree( basename , 0 , 35 ,  i ) : pass
                 while not generate_by_degree( basename , 0 , 70 ,  i ) : pass
+                while not generate_by_degree( basename , 0 , 100 ,  i ) : pass
 
             if basename == "NJLATA" :    
-                #while not generate_by_degree( basename , 3 ,  0 ,  i ) : pass
-                #while not generate_by_degree( basename , 0 , 20 ,  i ) : pass
-
+                while not generate_by_degree( basename , 3 ,  0 ,  i ) : pass
+		while not generate_by_degree( basename , 0 , 20 ,  i ) : pass
                 while not generate_by_degree( basename , 0 , 40 ,  i ) : pass
+                while not generate_by_degree( basename , 0 , 70 ,  i ) : pass
 
             if basename == "24NET" :
 
-                #while not generate_by_degree( basename , 0 , 40 ,  i ) : pass
-                #while not generate_by_degree( basename , 0 , 45 ,  i ) : pass
-
-                while not generate_by_degree( basename , 0 , 90 ,  i ) : pass
+                while not generate_by_degree( basename , 0 , 40  ,  i ) : pass
+                while not generate_by_degree( basename , 0 , 45  ,  i ) : pass
+                while not generate_by_degree( basename , 0 , 90  ,  i ) : pass
+                while not generate_by_degree( basename , 0 , 120 ,  i ) : pass

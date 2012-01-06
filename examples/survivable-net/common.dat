@@ -5,3 +5,4 @@ configset = {};
 thepath=[];
 NROUTE =[];
 addrouting = [] ;
+RELAX = [] ;

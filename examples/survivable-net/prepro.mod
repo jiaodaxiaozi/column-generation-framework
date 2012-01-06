@@ -74,7 +74,7 @@ execute {
 
     writeln( " length = " , pathcost );
 
-    configset.addOnly( configset.size , lg.id , pathcost , thepath );
+    //configset.addOnly( configset.size , lg.id , pathcost , thepath );
  }
  
 
