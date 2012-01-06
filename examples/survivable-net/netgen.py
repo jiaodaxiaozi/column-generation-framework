@@ -2,6 +2,7 @@ import random
 import os
 import re
 from sets import Set
+import math
 
 def primecover( s ) :
     return "\"" + s + "\"" 
@@ -37,20 +38,111 @@ def checkTopoNotConnect( topo , s , d ) :
     return 0
 
 
+lstNode = []
+lstEdge = []
+lstUedge = Set()  
+nfailure = 0
+logicdeg = {}
+logictopo = []
+capacity = {}
+shortest = {}
+mody = {}
 
-def generate_by_degree( basename , degree , genedge , iter ):
+def generate_logic( degree , genedge , ishalf ) :
 
+    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure , shortest
+
+    
+    logicdeg = {}
+    logictopo = []
+
+    for v in lstNode :    
+        logicdeg[ v ] = 0 
+
+    random.seed()
+    
+    # GENERATE BY DEGREE
+    if degree > 0 :
+        while ( 1 ) :
+
+            underdeg = [ v for v in lstNode if logicdeg[v] < degree ]
+
+            if not len( underdeg ):
+                break
+        
+            # take two random variables from underdeg
+
+            v1 = random.choice( underdeg )    
+            v2 = random.choice( underdeg )
+
+            if len( underdeg ) > 1 :
+                while v1 == v2 :
+                    v2 = random.choice( underdeg )                        
+            else :
+                while v1 == v2 :
+                    v2 = random.choice( lstNode )
+
+            # update degree
+            logicdeg[ v1 ] += 1
+            logicdeg[ v2 ] += 1
+
+            logictopo.append( [ v1 , v2 ] )        
+            logictopo.append( [ v2 , v1 ] )
+
+    else :
+
+        # GENERATE BY EDGE
+        tmpNode = Set()
+        
+        while (2 * len( tmpNode )) < len( lstNode ) :
+        
+            v = random.choice( lstNode )
+            tmpNode.add( v )
+        
+        
+        print "- half node : " , tmpNode
+        
+        ge = 0    
+        while ge < genedge :
+
+            if not ishalf :
+                v1 = random.choice( lstNode )    
+                v2 = random.choice( lstNode )
+            else :
+                v1 = random.choice( list(tmpNode) )
+                v2 = random.choice( list(tmpNode) )
+                
+            
+            if  (v1 != v2)  :
+
+                logictopo.append( [ v1 , v2 ] )
+                logictopo.append( [ v2 , v1 ] )                
+                ge += 1
+
+    
+    # checking 2-vertex connected 
+    
+    n_not_connect = 0
+
+    for v1,v2 in logictopo :
+    
+        
+        n_not_connect += checkTopoNotConnect( logictopo , v1 , v2 )
+        if n_not_connect > 0 :
+            return 0
+    
+    return 1
+    
+def reading_data( basename ) :
+
+    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure 
+    
+    lstNode = [] 
+    lstEdge = [] 
+    lstUedge = Set()  
+    
 
     ffile = open( "./topo/" + basename + ".topo" )
-
-    if degree :
-        fnet  = open( "./net/" +  basename +  "-s" + "-d" + str(degree) + "-" + str(iter) +  ".net" , "w" )
-    else :
-        fnet  = open( "./net/" +  basename +  "-s" + "-e" + str(genedge) + "-" + str(iter) +  ".net" , "w" )
-
-    lstNode = [];    
-    lstEdge = [];
-
     tag = 0
 
     edgename = 0
@@ -86,20 +178,66 @@ def generate_by_degree( basename , degree , genedge , iter ):
                 lstEdge.append( ( str(edgename) + 'a' , item[2] , item[3] , item[4] ) )
                 lstEdge.append( ( str(edgename) + 'b' , item[3] , item[2] , item[4] ) )
 
-    print "finish reading network"
+    # get set of all undirect edge
+    lstUedge = Set( )
 
+    for edge in lstEdge :
+        lstUedge.add( Set(( edge[1] , edge[2] )) )
+        
+    nfailure = len( lstUedge )
+    
+    print "number of edges : " , len( lstEdge )
+    print "number of nodes : " , len( lstNode )
+    print "number of single failure : " , nfailure
+    print "------------------------------------"
+    
+    ffile.close()
+
+def write_basic( fnet , nloc ) :
+
+    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure , shortest , mody
     # write node set
     fnet.write("nodeset = {\n" )
 
+    
     for nnode in lstNode :
         fnet.write( primecover( nnode ) + ",\n" )
 
     fnet.write("};\n")
 
+    # compute capacity
+    
+    for e in lstEdge :    
+        capacity[ e ] = 0
+    
+    for x,y in logictopo[ 0 : nloc ] :
+    
+        for e in shortest[ (x,y) ] :
+        
+            capacity[ e ] += 1
+    
     # write edgeset 
     
+    for e in lstEdge :
+        
+        if mody[e] > 0 :
+            dv =  0.2 * capacity[e]   
+        else :
+            dv =   -0.2 * capacity[e]  
+        
+            
+        
+        newe =  math.ceil( capacity[ e ] +  dv )
+        
+        if ( newe < 1 ) : 
+            newe = 1
+        
+        print e , ":" , capacity[e ] , "=>" , newe 
+        
+        capacity[ e ] = newe
+            
     fnet.write("edgeset = {\n" )
-
+    
     for nedge in lstEdge :
         fnet.write("< ")
 
@@ -107,22 +245,17 @@ def generate_by_degree( basename , degree , genedge , iter ):
             fnet.write( primecover( item ) + "," )
     
         fnet.write( nedge[ -1 ] )
+        fnet.write( "," + str(capacity[ nedge ]) )
 
         fnet.write(" >,\n")
 
     fnet.write("};\n")
     
-    print "finish writing basic information "
-
-    # get set of all undirect edge
-    lstUedge = Set( )
-
-    for edge in lstEdge :
-        lstUedge.add( Set(( edge[1] , edge[2] )) )
-
+    print "finish writing basic information"
+    
     # print all single link failure
 
-    fnet.write("nfailure = "  + str( len( lstUedge ) ) + ";\n" )
+    fnet.write("nfailure = "  + str(  nfailure ) + ";\n" )
 
     fnet.write( "failureset = [ \n" )
 
@@ -137,72 +270,19 @@ def generate_by_degree( basename , degree , genedge , iter ):
     fnet.write( "]; \n" )
 
     print "finish writing single failure"
-
-    # generate logical topology
-    logicdeg = {}
-    logictopo = []
-
-
-    for v in lstNode :    
-        logicdeg[ v ] = 0 
-
-    random.seed()
-
-    # GENERATE BY DEGREE
-    if degree > 0 :
-        while ( 1 ) :
-
-            underdeg = [ v for v in lstNode if logicdeg[v] < degree ]
-
-            if not len( underdeg ):
-                break
-        
-            # take two random variables from underdeg
-
-            v1 = random.choice( underdeg )    
-            v2 = random.choice( underdeg )
-
-            if len( underdeg ) > 1 :
-                while v1 == v2 :
-                    v2 = random.choice( underdeg )                        
-            else :
-                while v1 == v2 :
-                    v2 = random.choice( lstNode )
-
-            # update degree
-            logicdeg[ v1 ] += 1
-            logicdeg[ v2 ] += 1
-
-            logictopo.append( [ v1 , v2 ] )        
-            logictopo.append( [ v2 , v1 ] )
-
-    else :
-
-        # GENERATE BY EDGE
-        ge = 0    
-        while ge < genedge :
-
-            v1 = random.choice( lstNode )    
-            v2 = random.choice( lstNode )
-            
-            if  (v1 != v2)  :
-
-                logictopo.append( [ v1 , v2 ] )
-                logictopo.append( [ v2 , v1 ] )                
-                ge += 1
-
-   
-
+    
+def write_logic( fnet , nloc )  :
+    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure , shortest
     fnet.write("logicset = { \n" )
 
     id = 0 
-
-    for v1,v2 in logictopo:
+    for v1,v2 in logictopo[ 0 : nloc ] :
         fnet.write("< " + str(id) + " , " + primecover( v1 ) + " , " + primecover( v2 ) + " , 1 >\n" ) 
-	id += 1
-
+        id += 1
+        
     fnet.write("};\n" )
 
+def write_common( fnet ) :
 
     # write common data
     fcommon = open( "common.dat" )
@@ -211,37 +291,129 @@ def generate_by_degree( basename , degree , genedge , iter ):
         fnet.write( li )
     fcommon.close()
     
-    ffile.close()    
-    fnet.close()
 
-    print "finish generating logical topo "
-    
-    # checking 2-vertex connected 
-    
-    n_not_connect = 0
+def compute_shortest( ) :
 
-    for v1,v2 in logictopo :
+    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure , capacity , shortest , mody
+
+
+    shortest = {}
+    mody = {}
     
+    for e in lstEdge :
         
-        n_not_connect += checkTopoNotConnect( logictopo , v1 , v2 )
-        if n_not_connect > 0 :
-            return 0
+        mody[ e ] = 0
+        while mody[e] == 0 :
+            mody[  e ] = random.randint( - 1 , 1 )
+        
+        
+    # generate capacity
+    
+    for  x , y in logictopo :    
+        
+        #print "shortest path : "  , x , " => " , y
+        
+        shortest[ (x,y) ] = []
+        
+        dis = {}
+        pre = {}
+        notvisit = Set()
+        
+        for v in lstNode:
+            dis[ v ] = 100000
+            notvisit.add( v )
+        
+        dis[ x ] = 0 
+        pre[ x ] = x 
+        
+        consider = x
+        
+        
+        while consider != y :
+        
+            notvisit.remove( consider )
+        
+            for e in lstEdge :
+                                            
+                
+                
+                if  ( e[1] == consider )  :
+                                        
+                    if ( dis[ consider ] + 1 ) < dis[ e[2] ] :
+                        
+                        dis[ e[2] ] = dis[ consider ] + 1
+                        pre[ e[2] ] = e[1 ]
+                    
+            consider = y
+            for v  in notvisit :
+                if dis[v ] < dis[ consider ] :
+                    consider = v
+    
+        consider = y
+        thelen = 0
+        
+        while consider != x :
+
+            for e in lstEdge :
+                if ( e[1] == pre[consider] and e[2] == consider ) :
+                    shortest[ ( x , y ) ].append( e )
+        
             
-    print "finish checking logic topo"
+            thelen = thelen + 1
+            consider = pre[ consider ]
+        
+                    
+        
 
-    if degree > 0 :
-        print "generate by degree " , degree, " single failure for topo " , basename , " at iter " , iter 
-    else :
+            
+    
+def generate_topo( basename , lstDegree , lstNoLogic , iter , ishalf ):
 
-        print "generate by edge " , genedge, " single failure for topo " , basename , " at iter " , iter 
+    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure 
+    
+    reading_data( basename )
+    
+    
+    # generate by degree
+    for degree in lstDegree :
+    
+        while not generate_logic( degree , 0 , ishalf ) : pass
+        compute_shortest()
+        
+        fnet  = open( "./net/" +  basename +  "-s" + "-d" + str(degree) + "-" + str(iter) +  ".net" , "w" )        
+        write_basic( fnet , 1000000)
+        write_logic( fnet , 1000000 )
+        write_common( fnet )
+        fnet.close()
 
-    return 1
+
+    while not generate_logic( 0 , len( lstNode ) * len( lstNode ) , ishalf ) : pass
+    compute_shortest()
+    
+    for nloc in lstNoLogic :
+        
+        if not ishalf :
+            fnet  = open( "./net/" +  basename +  "-s" + "-e" + str(nloc) + "-" + str(iter) +  ".net" , "w" )
+        else :
+            fnet  = open( "./net/" +  basename +  "-hs" + "-e" + str(nloc) + "-" + str(iter) +  ".net" , "w" )
+        
+        write_basic( fnet , nloc )        
+        write_logic( fnet , nloc )
+        write_common( fnet )
+        fnet.close()
+
+
+
 
 if __name__ == "__main__" :
 
-
-    os.system("rm -f net/*")
+    print "delete old files "
+    for ff in os.listdir("net" ) :
+        
+        file_path = os.path.join("net", ff )
+        os.unlink( file_path )
     
+    print ""
     print "GENERATE NETWORKS"
     print ""
 
@@ -255,32 +427,22 @@ if __name__ == "__main__" :
         print "" 
         print "TOPO :" , basename , "\n"
 
-        for i in range( 1 ) :
+        for i in range( 10 ) :
 
             if basename == "NSF" :    
-                while not generate_by_degree( basename , 0 , 21 ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 25 ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 50 ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 80 ,  i ) : pass
+            
+                generate_topo( basename , [] , [ 21 , 25 , 50 , 80 ] , i , False) 
+                
 
             if basename == "EURO" :    
                 
-		while not generate_by_degree( basename , 3 ,  0 ,  i ) : pass
+                generate_topo( basename , [3 ] ,  [ 30 , 35 , 70 , 100 ] ,  i , False) 
                 
-		while not generate_by_degree( basename , 0 , 30 ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 35 ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 70 ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 100 ,  i ) : pass
-
             if basename == "NJLATA" :    
-                while not generate_by_degree( basename , 3 ,  0 ,  i ) : pass
-		while not generate_by_degree( basename , 0 , 20 ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 40 ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 70 ,  i ) : pass
+            
+                generate_topo( basename , [ 3 ] ,  [ 20 , 40 , 70 ] ,  i , False) 
 
             if basename == "24NET" :
 
-                while not generate_by_degree( basename , 0 , 40  ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 45  ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 90  ,  i ) : pass
-                while not generate_by_degree( basename , 0 , 120 ,  i ) : pass
+                generate_topo( basename , [  ] , [ 40 , 90 , 120 ]  ,  i , False) 
+                generate_topo( basename , [  ] , [ 40 , 90 , 130 ]  ,  i , True ) 

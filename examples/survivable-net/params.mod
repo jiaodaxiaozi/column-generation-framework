@@ -10,6 +10,7 @@ tuple edge_record {
    string src; // source  
    string dst; // destination
    float  distance ; // distance 
+   float  cap ; // capacity
  };
 
 { edge_record } edgeset = ... ;
@@ -48,7 +49,6 @@ tuple config_record {
 { config_record } configset = ... ;
 float dual_support[ logicset ] = ... ;
 float dual_reserve[ logicset ][ edgeset ] = ... ;
-int capacity[ edgeset ]  = ... ;
 int thepath[ edgeset ] = ... ;
 int addrouting[ edgeset ] = ... ;
 

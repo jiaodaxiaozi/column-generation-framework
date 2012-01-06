@@ -1,6 +1,5 @@
 dual_support=[];
 dual_reserve=[];
-capacity=[]; 
 configset = {};
 thepath=[];
 NROUTE =[];

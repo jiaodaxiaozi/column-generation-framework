@@ -47,7 +47,7 @@ subject to {
     
     // routing constraint
     forall( e in edgeset )
-        sum( l in logicset ) reserve[ e ][ l ]   <= capacity[ e ] ; 
+        sum( l in logicset ) reserve[ e ][ l ]   <= e.cap ; 
         
     
 

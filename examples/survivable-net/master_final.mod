@@ -60,8 +60,8 @@ subject to {
     
     // routing constraint
     forall( e in edgeset ){
-        sum( l in logicset ) f_route[ e ][ l ] <= capacity[ e ] ; 
-        sum( l in logicset ) reserve[ e ][ l ] <=  (capacity[e] + addrouting[ e ]) ; 
+        sum( l in logicset ) f_route[ e ][ l ] <= e.cap ; 
+        sum( l in logicset ) reserve[ e ][ l ] <=  ( e.cap + addrouting[ e ]) ; 
     }
 
     
@@ -99,7 +99,7 @@ subject to {
 
 float routecost   = sum( l in logicset , e in edgeset ) f_route[e][l ] ; 
 float noroutecost = sum( l in logicset , e in edgeset ) f_noroute[e][l ] ; 
-float startcap    = sum( e in edgeset ) capacity[e];
+float startcap    = sum( e in edgeset ) e.cap;
 float addroutecap = sum( e in edgeset  ) addrouting[e ];
 int   nfull       = sum( l in logicset ) (  (sum ( f in 1..nfailure ) (1-protect[ f ][ l ])) == 0 ? 1 : 0 ) ;
 
@@ -162,22 +162,25 @@ execute InRelaxProcess {
         writeln("L-LINK   = " , logicset.size );
         writeln("NFAILURE = " , nfailure );
         writeln("ROUTED   = " , NROUTE[0] , " " , NROUTE[0] / logicset.size * 100 , " (%)" );
-        writeln("ADD-ROUTING = " , addroutecap , " " , addroutecap / startcap * 100 , " (%)" );
+        
         writeln("NFULL = " , nfull );
+        writeln("LOGIC-LINK-PER-FAIL = " , linkperfail );
+        writeln("TOTAL-FL = " , totalfl );
+        writeln();
         writeln("NCONNECT-ISSUES = " , logicset.size - nfull , " " ,  (logicset.size - nfull) / logicset.size * 100 , " (%)" ); 
         writeln("FAIL-PER-LOGIC-LINK = " , failperlink );
-        writeln("LOGIC-LINK-PER-FAIL = " , linkperfail );
-	writeln("TOTAL-FL = " , totalfl );
-	writeln();
-	writeln("NCONFIG = " , configset.size );
-	writeln("NSELECT = " , nselect ,  nselect / configset.size * 100 , "(%)");
-	 
-        writeln("PROTECT-CAP = " , protectcap , " " , protectcap / (routecost + noroutecost)  );
+        writeln("ADD-ROUTING = " , addroutecap , " " , addroutecap / startcap * 100 , " (%)" );
+        writeln("PROTECT-CAP = " , protectcap , " " , protectcap / (routecost + noroutecost)  );        
+        writeln();
+        writeln("NCONFIG = " , configset.size );
+        writeln("NSELECT = " , nselect ,  nselect / configset.size * 100 , "(%)");
+
+        
        
-	writeln("GAP =" , GAP( RELAX[0] , cplex.getObjValue())); 
-	writeln("MEAN-RESERVE = " , meanreserve );
-	writeln("STD-RESERVE = " , stdreserve );	
-	writeln("MAX-WAVE = " , maxwave );
+        writeln("GAP =" , GAP( RELAX[0] , cplex.getObjValue())); 
+        writeln("MEAN-RESERVE = " , meanreserve );
+        writeln("STD-RESERVE = " , stdreserve );	
+        writeln("MAX-WAVE = " , maxwave );
 
     } else RELAX[0] = cplex.getObjValue();
 
