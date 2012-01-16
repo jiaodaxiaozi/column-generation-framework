@@ -276,7 +276,7 @@ def write_logic( fnet , nloc )  :
     fnet.write("logicset = { \n" )
 
     id = 0 
-    for v1,v2 in logictopo[ 0 : nloc ] :
+    for v1,v2 in logictopo[ 0 :  nloc ] :
         fnet.write("< " + str(id) + " , " + primecover( v1 ) + " , " + primecover( v2 ) + " , 1 >\n" ) 
         id += 1
         
@@ -397,8 +397,8 @@ def generate_topo( basename , lstDegree , lstNoLogic , iter , ishalf ):
         else :
             fnet  = open( "./net/" +  basename +  "-hs" + "-e" + str(nloc) + "-" + str(iter) +  ".net" , "w" )
         
-        write_basic( fnet , nloc )        
-        write_logic( fnet , nloc )
+        write_basic( fnet , 2 * nloc )        
+        write_logic( fnet , 2 * nloc )
         write_common( fnet )
         fnet.close()
 
@@ -427,7 +427,7 @@ if __name__ == "__main__" :
         print "" 
         print "TOPO :" , basename , "\n"
 
-        for i in range( 10 ) :
+        for i in range( 1 ) :
 
             if basename == "NSF" :    
             
@@ -436,7 +436,7 @@ if __name__ == "__main__" :
 
             if basename == "EURO" :    
                 
-                generate_topo( basename , [3 ] ,  [ 30 , 35 , 70 , 100 ] ,  i , False) 
+                generate_topo( basename , [3 ] ,  [ 30 , 35 , 70  ] ,  i , False) 
                 
             if basename == "NJLATA" :    
             
@@ -444,5 +444,5 @@ if __name__ == "__main__" :
 
             if basename == "24NET" :
 
-                generate_topo( basename , [  ] , [ 40 , 90 , 120 ]  ,  i , False) 
-                generate_topo( basename , [  ] , [ 40 , 90 , 130 ]  ,  i , True ) 
+                generate_topo( basename , [  ] , [ 40 , 70 , 90  ]  ,  i , False) 
+                generate_topo( basename , [  ] , [ 40 , 90 , 110 ]  ,  i , True ) 

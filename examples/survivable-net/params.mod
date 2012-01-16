@@ -2,6 +2,7 @@ include "../../sysmsg.mod" ; // include this line in every global configuration 
 
 int   NROUTE[0..0] = ... ;
 float RELAX[ 0..0] = ... ;
+int   NWAVE[ 0..0] = ... ;
 
 { string } nodeset = ... ; 
 
@@ -42,17 +43,21 @@ tuple config_record {
     int id   ;
     int logic_id ;
     float cost   ;
-     int routing[ edgeset ] ;    
+    int routing[ edgeset ] ;    
 };
 
 
 { config_record } configset = ... ;
+{ config_record } basicset = ... ;
 float dual_support[ logicset ] = ... ;
 float dual_reserve[ logicset ][ edgeset ] = ... ;
 int thepath[ edgeset ] = ... ;
 int addrouting[ edgeset ] = ... ;
 
+int  capwave[ edgeset ] = ... ;
 
+{ config_record } configsol = ... ;
+{ config_record } removesol = ... ;
 /*---------------------------------------------------------------------------------------------------------------------------
  *
  *
@@ -194,7 +199,7 @@ function DIJKSTRA( request , disp , takeroutecost )
 
     if ( dualcost > -0.0001 ) return false ;
 
-    configset.addOnly( configset.size , request.id , routecost , thepath );    
+    configset.addOnly( configset.size , request.id , routecost , thepath  );    
 
 
     return true;

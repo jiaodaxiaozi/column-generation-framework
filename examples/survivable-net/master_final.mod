@@ -15,6 +15,8 @@ dvar int+ broken[  1..nfailure ][ logicset ] in 0..1;
 
 float DUMMY_COST = 100000 ;
 
+float basic_rate_threshold = 0.5 ;
+
 execute STARTSOLVEINT {
 
 
@@ -101,21 +103,20 @@ float routecost   = sum( l in logicset , e in edgeset ) f_route[e][l ] ;
 float noroutecost = sum( l in logicset , e in edgeset ) f_noroute[e][l ] ; 
 float startcap    = sum( e in edgeset ) e.cap;
 float addroutecap = sum( e in edgeset  ) addrouting[e ];
-int   nfull       = sum( l in logicset ) (  (sum ( f in 1..nfailure ) (1-protect[ f ][ l ])) == 0 ? 1 : 0 ) ;
+float   nfull       = sum( l in logicset ) (  (sum ( f in 1..nfailure ) (1-protect[ f ][ l ])) == 0 ? 1 : 0 ) ;
 
 float totalfl     = sum( l in logicset , f in 1..nfailure ) (1-protect[ f ][ l ]) ; 
-float failperlink = card( logicset ) == nfull ? 0 : totalfl/ (card(logicset)-nfull)  ;
-float linkperfail = card( logicset ) == nfull ? 0 : totalfl / nfailure  ;
+float failperlink = card( logicset ) == nfull ? 0 : (totalfl/ (card(logicset)-nfull))  ;
+float linkperfail = card( logicset ) == nfull ? 0 : (totalfl / nfailure)  ;
 
 float useforprotect[ f in 1..nfailure ][ e in edgeset ] = sum( l2 in logicset , l1 in logicset ) flow[ f ][ l1 ][ l2 ] * reserve[ e ][ l1 ] ;
 float reserveprotect[ e in edgeset ] = max (f in 1..nfailure ) useforprotect[ f ][ e ];
 float protectcap = sum( e in edgeset ) reserveprotect[ e ];
-int   nselect = sum ( c in configset ) z[c] > 0.5 ? 1:0 ;
+float nselect = sum ( c in configset ) z[c]  ;
 
 float meanreserve = ( routecost + noroutecost ) / card(edgeset) ;
 float stdreserve  = sqrt( sum (  e in edgeset ) ( (sum( l in logicset )reserve[ e ][ l ]) - meanreserve )*( (sum( l in logicset )reserve[e][l]) - meanreserve ) / card( edgeset ) );
 
-int   maxwave = max( e in edgeset ) ( sum( l in logicset ) reserve[e][l] );
 
 /********************************************** 
 
@@ -173,14 +174,38 @@ execute InRelaxProcess {
         writeln("PROTECT-CAP = " , protectcap , " " , protectcap / (routecost + noroutecost)  );        
         writeln();
         writeln("NCONFIG = " , configset.size );
-        writeln("NSELECT = " , nselect ,  nselect / configset.size * 100 , "(%)");
+        writeln("NSELECT = " , nselect , " " ,  nselect / configset.size * 100 , "(%)");
 
         
-       
         writeln("GAP =" , GAP( RELAX[0] , cplex.getObjValue())); 
         writeln("MEAN-RESERVE = " , meanreserve );
         writeln("STD-RESERVE = " , stdreserve );	
-        writeln("MAX-WAVE = " , maxwave );
+
+	for ( var c in configset ){
+
+		if (z[c].solutionValue > 0.5 ){
+			configsol.addOnly( c );
+		}
+
+
+	}
+
+	output_section("RESULT");
+	output_value( "NCONNECT" ,  (logicset.size - nfull) / logicset.size * 100 ) ;
+	output_value( "FAIL-PER-LINK" , failperlink );
+	output_value( "ADD-ROUTING" , addroutecap / startcap * 100 );
+	output_value( "PROTECT-RATIO" ,  protectcap / (routecost + noroutecost) );
+	output_value( "CONFIG-GENERATE" , configset.size );
+	output_value( "CONFIG-SELECT" , nselect );
+	output_value( "OBJ" ,  routecost + noroutecost );
+	output_value( "GAP" , GAP( RELAX[0] , cplex.getObjValue()));
+
+
+	for ( var e in edgeset )
+		capwave[ e ] = 0 ;
+
+	NWAVE[0] = 0;
+	setNextModel("MAXWAVE");
 
     } else RELAX[0] = cplex.getObjValue();
 

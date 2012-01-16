@@ -9,8 +9,9 @@
 include "plugins.mod" ; 
  
 string input = "" ;
-
-  
+string output= "" ;
+string workpath = "" ; 
+ 
 main {
 
 
@@ -34,20 +35,17 @@ function nextState( nextObj , curObj ) {
     if ( curObj == null ) {
     
         nextObj._NEXT_MODEL_  = "" ;    
-        nextObj._MODEL_LOG_   = "" ;        
-        nextObj._MODEL_STATUS_= 0  ;
-    
+        nextObj._MODEL_STATUS_= 0  ;    
+	
     } else {
    
         nextObj._MODEL_       = curObj._NEXT_MODEL_ ;    
-        
-        nextObj._MODEL_LOG_   = curObj._MODEL_LOG_ ;        
         nextObj._MODEL_STATUS_= curObj._MODEL_STATUS_  ;
-
     }
-    
+
+     nextObj._OUTFILE_ = thisOplModel.output ; 
 }
-        
+    
 /*---------------------------------------------------------------------------------------------------------------------------
  *
  *
@@ -97,14 +95,6 @@ function nextState( nextObj , curObj ) {
     if ( this.mipsolver.solve() )      
         theopl.postProcess() ;  // call post process    
 
-    
-    // export log file
-    if (  theopl._MODEL_LOG_ != "" ){ 
-
-        writeln( AVATAR() , " exporting model : " , this.mipid , " => " , theopl._MODEL_LOG_ );
-        this.mipsolver.exportModel( theopl._MODEL_LOG_ );
-    }
-    
 
     // next model to solve
     
@@ -228,11 +218,28 @@ function readModelDefinition() {
     
     if ( thisOplModel.input == "" ) {   writeln( AVATAR() , "  input need to be specified ( -D input=filename ) " ); writeln(); stop(); }    
     
-    writeln( AVATAR() , " INPUT        : " , thisOplModel.input );
+    writeln( AVATAR() , " INPUT        : " , thisOplModel.input  );
     
+    if ( thisOplModel.output != "" ){
+	writeln( AVATAR() , " OUTPUT       : " , thisOplModel.output );
+
+	var outname = getCurrentPath() + "/" + thisOplModel.output ;
+
+	var ofile =  new IloOplOutputFile( outname );
+	ofile.write("");
+	ofile.close();
+ 
+
+    }
+   
+	 
+    writeln( AVATAR() , " PATH         : " , getCurrentPath() );
+    
+
     assertExisted(  model_define_file );
     assertExisted(  parameter_file );
-    
+    assertExisted(  thisOplModel.input );    
+
     writeln( AVATAR() , " PARAMETER    : " , parameter_file );
     writeln( AVATAR() , " MODEL DEFINE : " , model_define_file );
         
@@ -253,9 +260,9 @@ function readModelDefinition() {
     var _sysData = new IloOplDataElements();
     
     nextState( _sysData , null );
-    _sysData._MODEL_       = __ROOT__ ;
-    
-    
+
+     _sysData._MODEL_    = __ROOT__ ;
+
     
     // load global data
     var globalSource = new IloOplModelSource( parameter_file );
@@ -365,6 +372,7 @@ leftWrite( "-----" , txt_relax_size + 1 );
 leftWrite( "------" , txt_source_size + 1 );
 writeln();
 
+
 for ( m = 0 ; m < lstModel.length ; m++ ){
 
  model = lstModel[ m ] ;
@@ -374,8 +382,12 @@ leftWrite( model.ncall , txt_call_size + 1 );
 leftWrite( model.acctime ,txt_total_size + 1 );
 leftWrite( model.acctime /  model.ncall ,txt_mean_size + 1 ); 
 leftWrite( model.relax ,txt_relax_size + 1 );
-leftWrite(  model.mipsource.name ,txt_source_size + 1 );
+leftWrite( model.mipsource.name ,txt_source_size + 1 );
 writeln();
+
+output_section( "RUNTIME-" + model.mipid );
+output_value( "CALL" , model.ncall );
+output_value( "TOTALTIME" , model.acctime );
 
 }
   
@@ -384,5 +396,9 @@ lineSep("" ,"-");
 writeln("OVERALL-RUNTIME: " , elapsed_runtime );
 lineSep("" ,"-");    
 writeln();
-}
- 
+
+output_section( "RUNTIME" );
+output_value( "TOTALTIME" , elapsed_runtime );
+
+
+} 

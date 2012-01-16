@@ -90,6 +90,13 @@ function maxLength( n, st  ) {
   return  n < st.toString().length ? st.toString().length : n ;
 }
 
+///////// GET CURRENT ABSOLUTE PATH //////////   
+function getCurrentPath(){
+
+ return IloOplGetEnv("PWD");
+
+}
+ 
 
 
 }; // end execute

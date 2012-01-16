@@ -99,9 +99,16 @@ execute DisplayResult {
 		}
 
 		writeln();
-        writeln("Relax = " , relaxobj[0] );
-        writeln("Int   = " , cplex.getObjValue());
-        writeln("GAP : " , GAP( relaxobj[0]  , cplex.getObjValue() ));
+	
+		output_section("RESULT");
+
+	        writeln("Relax = " , relaxobj[0] );
+        	writeln("Int   = " , cplex.getObjValue());
+	        writeln("GAP : " , GAP( relaxobj[0]  , cplex.getObjValue() ));
+
+		output_value( "RELAX" , relaxobj[0] );
+		output_value( "OBJ" , cplex.getObjValue());
+		output_value( "GAP" , GAP( relaxobj[0]  , cplex.getObjValue() ));
 
 	} // end display 
 

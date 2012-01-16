@@ -111,7 +111,15 @@ execute InRelaxProcess {
         for ( var e in edgeset )
             addrouting[ e ] = addroute[e].solutionValue ;
    
-        
+   	writeln("number of configuration = " , configset.size );     
+
+	for ( var c in configset )
+	if ( z[c].solutionValue > 0 ) {
+
+		basicset.addOnly( c );
+	}
+	writeln("number of basic configuration = "  , basicset.size );
+
     }
 
 }

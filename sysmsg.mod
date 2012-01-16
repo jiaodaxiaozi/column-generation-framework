@@ -1,8 +1,8 @@
-string _MODEL_         = ... ; // current solving model
-string _NEXT_MODEL_    = ... ; // next model to solve
-string _MODEL_LOG_     = ... ; // model log file
-int    _MODEL_STATUS_  = ... ; // model show status
+string _MODEL_          = ... ; // current solving model
+string _NEXT_MODEL_     = ... ; // next model to solve
+int    _MODEL_STATUS_   = ... ; // model show status
 
+string _OUTFILE_        = ... ; // output filename
 
 execute {
 
@@ -21,13 +21,6 @@ execute {
         return _MODEL_ ;
     }
 
-    //// SET MODEL EXPORT ////
-    function setModelLog( log ) {
-
-        _MODEL_LOG_ = log ;
-        
-
-    }
     
     ///// MODEL STATUS //////
     function setModelStatus( status ) {
@@ -41,8 +34,59 @@ execute {
         _NEXT_MODEL_ = m ;
 
     }
+
+
     
-    
+    function read_output_content() {
+
+        var s = new IloOplOutputString();
+
+	if ( _OUTFILE_ == "" ) return s ;
+
+	var outname = getCurrentPath() + "/" + _OUTFILE_ ; 
+        var f = new IloOplInputFile();
+        f.open( outname );
+
+        while (!f.eof) {
+          s.writeln(f.readline());
+        }
+
+        f.close();
+
+	return s;
+    }
+
+    function write_output_content( content ) {
+	
+	if ( _OUTFILE_ == "" ) return ;
+
+
+	var outname = getCurrentPath() + "/" + _OUTFILE_ ; 
+        var f = new IloOplOutputFile();
+        f.open( outname );
+	f.write( content.getString() );
+	f.close();     
+    }
+
+    //// OUTPUT SECTION ////
+    function output_section( txt ) {
+
+	var content = read_output_content() ;
+
+	content.write( "[" + txt + "]" ) ; 
+	write_output_content( content );
+
+    }    
+   
+    ///// OUTPUT VALUE ////
+    function output_value( param , value ) {
+	
+	var content = read_output_content() ;
+
+	content.write( param + "=" + value ) ; 
+	write_output_content( content );
+
+    } 
 
 }
 

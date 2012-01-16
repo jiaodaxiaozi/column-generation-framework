@@ -65,7 +65,6 @@ The system provides the following state-related functions that can be used insid
 - isModel( X )      = _true_ if the current solving model is X, _false_ otherwise.
 - getModel()       : return the current model.    
 - setNextModel( X ) : set __X__ the next model to be solved. Parameter is undefined.
-- setModelLog( log ): .lp file that will be exported from the current model when it is solved.
 
 __Extra functions__:
 
