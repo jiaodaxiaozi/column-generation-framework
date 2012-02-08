@@ -3,9 +3,8 @@ import glob
 import time
 import commands
 
-inputdir  = "net/24NET-hs4-e130-0.net"
-inputdir  = "net/24NET-s1-e40-0.net"
-inputdir = "net/NJ*s1*e40-0.net"
+inputdir  = "net/NSF*.net"
+#inputdir = "net/NJ*s1*e40-0.net"
 outputdir = "out/"
 inidir    = "ini/"
 
@@ -36,11 +35,11 @@ if __name__ == "__main__" :
 		os.system( exe )
 
 		
-		output = commands.getoutput('bjobs | wc -l')
+		output = commands.getoutput('bjobs | grep PEND | wc -l')
 		print "PENDING JOBS =  "  , output
 		
 		time.sleep(5)
 		
-		while int(output) > 20 :
+		while int(output) > 1 :
 			time.sleep(5)	
-			output = commands.getoutput('bjobs | wc -l')
+			output = commands.getoutput('bjobs | grep PEND | wc -l')
