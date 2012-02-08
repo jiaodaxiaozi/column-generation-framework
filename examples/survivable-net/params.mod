@@ -1,8 +1,7 @@
 include "../../sysmsg.mod" ; // include this line in every global configuration file
 
 int   NROUTE[0..0] = ... ;
-float RELAX[ 0..0] = ... ;
-int   NWAVE[ 0..0] = ... ;
+float RELAX[ 0..10] = ... ;
 
 { string } nodeset = ... ; 
 
@@ -33,8 +32,6 @@ int nfailure = ... ;
 { string } logicnodeset = { l.src | l in logicset } union { l.dst | l in logicset } ;
 
 
-
-
 int efail [ f in 1..nfailure ][ e in edgeset ] = (  e.id in failureset[ f ] )  ? 1 : 0 ;
 
 
@@ -43,21 +40,25 @@ tuple config_record {
     int id   ;
     int logic_id ;
     float cost   ;
-    int routing[ edgeset ] ;    
 };
 
+tuple route_record {
+
+	int config_id ;
+	string edge_id ;
+}
 
 { config_record } configset = ... ;
-{ config_record } basicset = ... ;
+{ route_record  } routeset  = ... ;
+
+
 float dual_support[ logicset ] = ... ;
 float dual_reserve[ logicset ][ edgeset ] = ... ;
 int thepath[ edgeset ] = ... ;
 int addrouting[ edgeset ] = ... ;
 
-int  capwave[ edgeset ] = ... ;
 
 { config_record } configsol = ... ;
-{ config_record } removesol = ... ;
 /*---------------------------------------------------------------------------------------------------------------------------
  *
  *
@@ -191,16 +192,29 @@ function DIJKSTRA( request , disp , takeroutecost )
     }
 
     var dualcost  = edis[ request.dst ] + dual_support[ request ];
-    
-    if ( takeroutecost ) dualcost += routecost ;
 
+
+    if ( takeroutecost ) {
+
+    	  dualcost  = routecost + edis[ request.dst ] - dual_support[ request ];
+	}
 
     if ( disp ) writeln( "route cost : " , routecost , " price cost : " , dualcost );
 
     if ( dualcost > -0.0001 ) return false ;
+ 
+    var cid = 0 ;
 
-    configset.addOnly( configset.size , request.id , routecost , thepath  );    
+    for ( var c in configset )
+	if ( cid < c.id ) cid = c.id ;
 
+     cid = cid + 1 ;
+ 
+    configset.addOnly( cid , request.id , routecost   );    
+
+   for ( e in edgeset )
+   if ( thepath[ e ] > 0 )
+	routeset.addOnly( cid , e.id );
 
     return true;
 } // end distra

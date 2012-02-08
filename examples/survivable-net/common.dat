@@ -1,12 +1,9 @@
 dual_support=[];
 dual_reserve=[];
 configset = {};
+routeset = {} ;
 thepath=[];
 NROUTE =[];
 addrouting = [] ;
 RELAX = [] ;
 configsol = {};
-removesol = {};
-NWAVE = [] ;
-capwave = [] ;
-basicset = {} ;

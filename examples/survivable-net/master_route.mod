@@ -14,8 +14,8 @@ execute STARTSOLVEINT {
 
     if ( isModel("ROUTE") ) {
         
-        cplex.tilim = 4 * 3600  ; // limit 4h searching for integer solution 
-        cplex.epgap = 0.03 ;    // stop with small gap
+        cplex.tilim = 12 * 3600  ; // limit 12h searching for integer solution 
+        cplex.epgap = 0.0 ;    // stop with small gap
         cplex.parallelmode = -1 ; // opportunistic mode
         cplex.threads = 0 ; // use maximum threads
 
@@ -42,7 +42,7 @@ subject to {
 
     forall ( l in logicset , e in edgeset )
     ctReserve :
-        reserve[e][l] == sum ( c in configset : c.logic_id == l.id ) z[c] * c.routing[e] ;
+        reserve[e][l] == sum ( c in configset , r in routeset : c.logic_id == l.id && r.config_id == c.id && r.edge_id == e.id ) z[c]  ;
 
     
     // routing constraint
@@ -77,7 +77,7 @@ execute {
         dual_reserve[l][e] = ctReserve[ l ][e].dual ;    
 
 
-    writeln("Master Objective : " , cplex.getObjValue() );
+    writeln("Master Objective : " , cplex.getObjValue() , " nconfig : " , configset.size );
 
     if ( isModel("ROUTE") ){
     

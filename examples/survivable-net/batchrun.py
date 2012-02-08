@@ -1,12 +1,15 @@
 import os
 import glob
 import time
+import commands
 
-inputdir  = "net/NSF*21.net"
+inputdir  = "net/24NET-hs4-e130-0.net"
+inputdir  = "net/24NET-s1-e40-0.net"
+inputdir = "net/NJ*s1*e40-0.net"
 outputdir = "out/"
 inidir    = "ini/"
 
-cmd = "bsub -n 4 -q \"long\" -M 25165824 -J %s -oo %s -eo %s oplrun -deploy -D input=\"%s\" -D output=\"%s\" ../../solver.mod"
+cmd = "bsub  -n 8 -q \"long\" -M 134217728 -J %s -oo %s -eo %s oplrun -deploy -D input=\"%s\" -D output=\"%s\" ../../solver.mod"
 
 if __name__ == "__main__" :
 
@@ -31,4 +34,13 @@ if __name__ == "__main__" :
 
 		print "execute  : " , exe 
 		os.system( exe )
-		time.sleep(10)
+
+		
+		output = commands.getoutput('bjobs | wc -l')
+		print "PENDING JOBS =  "  , output
+		
+		time.sleep(5)
+		
+		while int(output) > 20 :
+			time.sleep(5)	
+			output = commands.getoutput('bjobs | wc -l')

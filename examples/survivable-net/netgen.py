@@ -3,21 +3,46 @@ import os
 import re
 from sets import Set
 import math
+import sys
 
+
+#
+# Convert a set to set of string
+#
+def set2char( F ) :
+
+	F1 = []
+	for fs in F :
+		
+		fs1 = []
+
+		for s in fs :
+			fs1.append(  Set( [ str( x ) for x in s ] ) )
+
+		F1.append( fs1 )
+
+	return F1
+
+#
+# Add " to string
+#
 def primecover( s ) :
     return "\"" + s + "\"" 
 
-# check if topo removing (s , d) is not connected ? yes return 1, no return 0
-def checkTopoNotConnect( topo , s , d ) :
+#
+# compute number of color after removing S
+#
+def checkNumberColor( topo , S ) :
 
-    temptopo = [ x for x in topo if x != [s,d] and x != [d,s] ]
-    
+    temptopo = [ x for x in topo if x not in S ]
+
+    # first set color of all nodes = 0    
     color = {}
     for x in topo :
         for v in x :
             color[ v ] = 0
 
-
+    # paint node v with color c
     def travel( v , c  ) :
     
         color[ v ] = c 
@@ -28,29 +53,31 @@ def checkTopoNotConnect( topo , s , d ) :
                     if color[ u ] == 0 :
                         travel( u , c )    
     
-    travel( s , 1 )
-    
+    # compute number of color    
+    ncolor = 0
     for x in topo :
-        for v in x :
-            if color[ v ]==0 :
-                return 1    
-    
-    return 0
+	for v in x  :
+	    if color[v] == 0 :
+		ncolor = ncolor + 1
+		travel( v , ncolor )
+    return ncolor
 
 
 lstNode = []
 lstEdge = []
-lstUedge = Set()  
-nfailure = 0
 logicdeg = {}
 logictopo = []
 capacity = {}
 shortest = {}
 mody = {}
+F1 = Set()
+F2 = Set()
+F3 = Set()
+F4 = Set()
 
 def generate_logic( degree , genedge , ishalf ) :
 
-    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure , shortest
+    global logicdeg , logictopo  , lstNode , lstEdge , shortest
 
     
     logicdeg = {}
@@ -100,7 +127,7 @@ def generate_logic( degree , genedge , ishalf ) :
             tmpNode.add( v )
         
         
-        print "- half node : " , tmpNode
+        #print "- half node : " , tmpNode
         
         ge = 0    
         while ge < genedge :
@@ -120,27 +147,18 @@ def generate_logic( degree , genedge , ishalf ) :
                 ge += 1
 
     
-    # checking 2-vertex connected 
-    
-    n_not_connect = 0
-
-    for v1,v2 in logictopo :
-    
-        
-        n_not_connect += checkTopoNotConnect( logictopo , v1 , v2 )
-        if n_not_connect > 0 :
-            return 0
-    
-    return 1
-    
+#
+# Reading topo information
+#
+   
 def reading_data( basename ) :
 
-    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure 
+    global logicdeg , logictopo  , lstNode , lstEdge , F1 , F2 , F3 , F4 
     
     lstNode = [] 
     lstEdge = [] 
-    lstUedge = Set()  
     
+    print "READ TOPO : " , basename
 
     ffile = open( "./topo/" + basename + ".topo" )
     tag = 0
@@ -179,23 +197,81 @@ def reading_data( basename ) :
                 lstEdge.append( ( str(edgename) + 'b' , item[3] , item[2] , item[4] ) )
 
     # get set of all undirect edge
+    F1 = Set( )
+    F2 = Set( )
+    F3 = Set( )
+    F4 = Set( )
+
+    # get set of all undirect edge
     lstUedge = Set( )
 
     for edge in lstEdge :
         lstUedge.add( Set(( edge[1] , edge[2] )) )
         
-    nfailure = len( lstUedge )
+    # build single failure set 
+    for e in lstUedge :
+	if checkNumberColor( lstUedge ,  Set( [e] ) ) == 1 :
+        	F1.add(  Set([e]) )
     
+    # build higher order failure set
+    for v in lstNode :
+	temp = Set()
+
+	for e in lstUedge: 
+	    if v in e :
+		temp.add( e )			    
+
+	
+	# build dual
+	for e1 in temp :
+	    for e2 in temp :
+		if len( Set( [e1,e2] ) ) == 2 :
+		    if checkNumberColor( lstUedge ,  Set( [e1,e2] ) ) == 1 :
+		        F2.add( Set( [ e1 , e2 ] ) )
+	# build third
+	for e1 in temp :
+	    for e2 in temp :
+		for e3 in temp :
+		    if len( Set([e1,e2,e3]) )== 3 :
+		    	if checkNumberColor( lstUedge ,  Set( [e1,e2,e3] ) ) == 1 :
+		            F3.add( Set( [ e1 , e2 , e3 ] ) )
+	# build fourth
+ 	for e1 in temp :
+	    for e2 in temp :
+		for e3 in temp :
+		    for e4 in temp :
+			if len( Set([ e1 , e2, e3 ,e4]) )== 4 :
+		    	    if checkNumberColor( lstUedge ,  Set( [e1,e2,e3,e4] ) ) == 1 :
+		                F4.add( Set( [ e1 , e2 , e3 , e4 ] ) )
+
+
     print "number of edges : " , len( lstEdge )
     print "number of nodes : " , len( lstNode )
-    print "number of single failure : " , nfailure
+    print "number of single failure : " , len( F1 )
+    print "number of dual failure   : " , len( F2 )
+    print "number of third failure  : " , len( F3 )
+    print "number of fourth failure : " , len( F4 )
+    
+    F1 = [ x for x in F1 ]
+    F2 = [ x for x in F2 ]
+    F3 = [ x for x in F3 ]
+    F4 = [ x for x in F4 ]
+
+    random.shuffle(  F1 )
+    random.shuffle(  F2 )
+    random.shuffle(  F3 )
+    random.shuffle(  F4 )
+
+
     print "------------------------------------"
     
     ffile.close()
+#
+# Writing basic information : node set + edge set + failure set
+#
+def write_basic( fnet , nloc , sce ) :
 
-def write_basic( fnet , nloc ) :
-
-    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure , shortest , mody
+    global logicdeg , logictopo  , lstNode , lstEdge , shortest , mody , F1,F2,F3,F4
     # write node set
     fnet.write("nodeset = {\n" )
 
@@ -225,14 +301,12 @@ def write_basic( fnet , nloc ) :
         else :
             dv =   -0.2 * capacity[e]  
         
-            
-        
         newe =  math.ceil( capacity[ e ] +  dv )
         
         if ( newe < 1 ) : 
             newe = 1
         
-        print e , ":" , capacity[e ] , "=>" , newe 
+        #print e , ":" , capacity[e ] , "=>" , newe 
         
         capacity[ e ] = newe
             
@@ -253,26 +327,52 @@ def write_basic( fnet , nloc ) :
     
     print "finish writing basic information"
     
-    # print all single link failure
+    # print all link failure
 
-    fnet.write("nfailure = "  + str(  nfailure ) + ";\n" )
+    FSET = Set();
+
+
+
+    if sce == 1 :
+	FSET = F1
+
+    if sce == 2 : 
+	FSET = F1 + F2[ 0 : len(F2)/20 +1 ]
+    if sce == 3 :
+	FSET = F1 + F2[ 0 : len(F2)/20 +1 ] + F3[ 0 : len(F3)/20 + 1 ]
+
+    if sce == 4 : 
+	FSET = F1 + F2[ 0 : len(F2)/10 +1 ] + F3[ 0 : len(F3)/10 + 1 ] 
+
+    if sce == 5 : 
+
+	FSET = F1 + F2[ 0 : len(F2)/10 +1 ] + F3[ 0 : len(F3)/10 + 1 ] + F4[ 0 : len(F4)/20 + 1 ]
+
+    FSET  = set2char( FSET )
+    
+    fnet.write("nfailure = "  + str(  len( FSET) ) + ";\n" )
 
     fnet.write( "failureset = [ \n" )
 
-    for uedge in lstUedge : 
+    for fs in FSET : 
         fnet.write( "{ " )
 
         for edge in lstEdge :
-            if (( edge[1] in  uedge ) and ( edge[2] in uedge ) ):
-                fnet.write( primecover( edge[0] ) + " ")    
+            for uedge in fs :	
+		#print "check " , edge[1], edge[2] , " in " , uedge	
+                if (( edge[1] in  uedge ) and ( edge[2] in uedge ) ):
+                    fnet.write( primecover( edge[0] ) + " ")    
 
         fnet.write( " },\n" )
     fnet.write( "]; \n" )
 
-    print "finish writing single failure"
-    
+    print "finish writing failure"
+
+#
+# Writing logicset from 0 to nloc
+#    
 def write_logic( fnet , nloc )  :
-    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure , shortest
+    global logictopo
     fnet.write("logicset = { \n" )
 
     id = 0 
@@ -281,7 +381,9 @@ def write_logic( fnet , nloc )  :
         id += 1
         
     fnet.write("};\n" )
-
+#
+# Writing common information
+#
 def write_common( fnet ) :
 
     # write common data
@@ -290,11 +392,13 @@ def write_common( fnet ) :
     for li in cmlist:
         fnet.write( li )
     fcommon.close()
-    
 
+#
+# Compute shortest path for artificial capacity constraints    
+#
 def compute_shortest( ) :
 
-    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure , capacity , shortest , mody
+    global logicdeg , logictopo  , lstNode , lstEdge , capacity , shortest , mody
 
 
     shortest = {}
@@ -335,8 +439,6 @@ def compute_shortest( ) :
         
             for e in lstEdge :
                                             
-                
-                
                 if  ( e[1] == consider )  :
                                         
                     if ( dis[ consider ] + 1 ) < dis[ e[2] ] :
@@ -362,45 +464,45 @@ def compute_shortest( ) :
             thelen = thelen + 1
             consider = pre[ consider ]
         
-                    
-        
+#                    
+# generate topo    
+#
+def generate_topo( basename , lstDegree , lstNoLogic , iter , ishalf , listSCE ):
 
-            
-    
-def generate_topo( basename , lstDegree , lstNoLogic , iter , ishalf ):
+    global logicdeg , logictopo  , lstNode , lstEdge  
 
-    global logicdeg , logictopo  , lstNode , lstEdge , lstUedge , nfailure 
-    
+    # read generate topo data    
     reading_data( basename )
     
     
     # generate by degree
     for degree in lstDegree :
     
-        while not generate_logic( degree , 0 , ishalf ) : pass
+        generate_logic( degree , 0 , ishalf )
         compute_shortest()
-        
-        fnet  = open( "./net/" +  basename +  "-s" + "-d" + str(degree) + "-" + str(iter) +  ".net" , "w" )        
-        write_basic( fnet , 1000000)
-        write_logic( fnet , 1000000 )
-        write_common( fnet )
-        fnet.close()
+    
+	for sce in listSCE :    
+        	fnet  = open( "./net/" +  basename +  "-s" + str(sce) + "-d" + str(degree) + "-" + str(iter) +  ".net" , "w" )        
+        	write_basic( fnet , 1000000 , sce )
+       		write_logic( fnet , 1000000 )
+        	write_common( fnet )
+        	fnet.close()
 
 
-    while not generate_logic( 0 , len( lstNode ) * len( lstNode ) , ishalf ) : pass
+    generate_logic( 0 , len( lstNode ) * len( lstNode ) , ishalf )
     compute_shortest()
     
     for nloc in lstNoLogic :
+        for sce in listSCE : 
+        	if not ishalf :
+            		fnet  = open( "./net/" +  basename +  "-s" + str(sce) + "-e" + str(nloc) + "-" + str(iter) +  ".net" , "w" )
+        	else :
+            		fnet  = open( "./net/" +  basename +  "-hs" + str(sce) + "-e" + str(nloc) + "-" + str(iter) +  ".net" , "w" )
         
-        if not ishalf :
-            fnet  = open( "./net/" +  basename +  "-s" + "-e" + str(nloc) + "-" + str(iter) +  ".net" , "w" )
-        else :
-            fnet  = open( "./net/" +  basename +  "-hs" + "-e" + str(nloc) + "-" + str(iter) +  ".net" , "w" )
-        
-        write_basic( fnet , 2 * nloc )        
-        write_logic( fnet , 2 * nloc )
-        write_common( fnet )
-        fnet.close()
+        	write_basic( fnet , 2 * nloc , sce )        
+        	write_logic( fnet , 2 * nloc )
+       		write_common( fnet )
+        	fnet.close()
 
 
 
@@ -431,18 +533,21 @@ if __name__ == "__main__" :
 
             if basename == "NSF" :    
             
-                generate_topo( basename , [] , [ 21 , 25 , 50 , 80 ] , i , False) 
+               generate_topo( basename , [] , [ 21 , 25 , 50 , 80 ] , i , False , [1,2,3,4,5] ) 
                 
 
             if basename == "EURO" :    
                 
-                generate_topo( basename , [3 ] ,  [ 30 , 35 , 70  ] ,  i , False) 
+               generate_topo( basename , [3 ] ,  [ 30 , 35 , 70 , 100  ] ,  i , False , [1,2,3,4,5] ) 
                 
             if basename == "NJLATA" :    
             
-                generate_topo( basename , [ 3 ] ,  [ 20 , 40 , 70 ] ,  i , False) 
+                generate_topo( basename , [ 3 ] ,  [ 20, 40, 70 ] ,  i , False , [1,2,3,4,5] ) 
+
+            if basename == "test" :
+                generate_topo( basename , [ 3 ] ,  [ 20 ] ,  i , False , [1,2,3,4,5] ) 
 
             if basename == "24NET" :
 
-                generate_topo( basename , [  ] , [ 40 , 70 , 90  ]  ,  i , False) 
-                generate_topo( basename , [  ] , [ 40 , 90 , 110 ]  ,  i , True ) 
+	       generate_topo( basename , [  ] , [ 40 , 90 , 120  ]  ,  i , False , [1,2,3,4,5] ) 
+               generate_topo( basename , [  ] , [ 40 , 90 , 130  ]  ,  i , True ,  [1,2,3,4,5] ) 

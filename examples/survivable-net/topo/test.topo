@@ -1,0 +1,29 @@
+TAG 1
+
+node 1 
+node 2 
+node 3 
+node 4 
+node 5 
+node 6 
+
+
+link 1  source 1  dest 6  length 1
+link 2  source 6  dest 1  length 1
+link 3  source 1  dest 2  length 1
+link 4  source 2  dest 1  length 1
+link 5  source 4  dest 6  length 1
+link 6  source 6  dest 4  length 1
+link 7  source 3  dest 2  length 1
+link 8  source 2  dest 3  length 1
+link 9  source 4  dest 2  length 1
+link 10  source 2  dest 4  length 1
+link 11  source 3  dest 5  length 1
+link 12  source 5  dest 3  length 1
+link 13  source 4  dest 5  length 1
+link 14  source 5  dest 4  length 1
+link 15  source 2  dest 6  length 1
+link 16  source 6  dest 2  length 1
+link 17  source 2  dest 5  length 1
+link 18  source 5  dest 2  length 1
+

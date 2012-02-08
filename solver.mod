@@ -54,6 +54,7 @@ function nextState( nextObj , curObj ) {
  *
  *--------------------------------------------------------------------------------------------------------------------------*/
 
+
  function MIPMODEL( id , fname , relax ){
  
     //// CONSTRUCTOR ////
@@ -63,7 +64,6 @@ function nextState( nextObj , curObj ) {
     this.mipid          = id   ; // id of this model
     this.mipsource      = new IloOplModelSource( fname ); // init source file 
     this.mipdefinition  = new IloOplModelDefinition( this.mipsource ); // init definition    
-    this.mipsolver      = new IloCplex() ; // init solver
     
     this.ncall          = 0    ; // number of calling time
     this.acctime        = 0    ; // accumulated running time in seconds
@@ -76,35 +76,46 @@ function nextState( nextObj , curObj ) {
             
  }
 
+
  //// SOLVING MODEL ////
  function mipsolve(  ) {
  
     var timeMark = timeMarker(); // mark time moment
     this.ncall ++ ; // update number of calling 
-    this.mipsolver.clearModel(); // reset model
-    var theopl = new IloOplModel( this.mipdefinition , this.mipsolver ) ;  // create execution object    
+   
+    cplex.epgap = 0.0 ;
+    cplex.workmem = 4096 ;
+    cplex.nodefileind = 3 ;
+    cplex.parallelmode = -1 ; // opportunistic mode
+    cplex.threads = 0 ; // use maximum threads
+
+
+    var theopl         = new IloOplModel( this.mipdefinition , cplex ) ;  // create execution object    
     
+    theopl.settings.mainEndEnabled = true ;
+ 
     // reset next model
     nextState( globalData , null );
     
     theopl.addDataSource( globalData ) ;    // add data source 
     theopl.generate() ; // generate execution object
-    
+   
+     
+ 
     if ( this.relax )    theopl.convertAllIntVars() ;    // relax model
     
-    if ( this.mipsolver.solve() )      
+    if ( cplex.solve() )      
         theopl.postProcess() ;  // call post process    
 
-
     // next model to solve
-    
     nextState( globalData , theopl );
-    
+ 
+    cplex.clearModel();
+ 
     // update information
     this.solvetime = elapsedTime( timeMark ); // running time
     this.acctime += this.solvetime ; // accumulated running time                
-    
-    theopl.end(); // clear execution object
+ 
     
     // display result
     if ( globalData._MODEL_STATUS_ > 0 ) {
@@ -307,7 +318,8 @@ function readModelDefinition() {
       writeln( AVATAR() , " no model with id: " , globalData._MODEL_ , " !" );
       stop();
     } else callModel.mipsolve();
-        
+      
+
     
  } // end while
  
