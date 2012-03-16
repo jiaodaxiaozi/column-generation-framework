@@ -2,11 +2,10 @@
 include "params.mod";
 
 
-dvar int+     route[ logicset ] in 0..1; // can route
+dvar int+      route[ logicset ] in 0..1; // can route
 dvar int+      z[  configset ] in 0..1; // number of copy of configurations
 dvar int+      reserve[ edgeset ][ logicset ]  in 0..1 ;
 dvar int+      f_route [ edgeset ][ logicset ] in 0..1 ;
-dvar int+      f_noroute [ edgeset ][ logicset ] in 0..1 ;
 
 
 dvar int+      addroute[ edgeset ] ;
@@ -18,11 +17,8 @@ execute STARTSOLVEINT {
     if ( isModel("ADD-ROUTE") ) {
         
         cplex.tilim = 12 * 3600  ; // limit 12h searching for integer solution 
-        cplex.epgap = 0.00 ;    // stop with small gap
-        cplex.parallelmode = -1 ; // opportunistic mode
-        cplex.threads = 0 ; // use maximum threads
 
-        setNextModel("RELAX-FINAL");
+        setNextModel("RELAX-PROTECT");
     }
 
 
@@ -50,14 +46,12 @@ subject to {
     // decompose route vs no route
     forall ( l in logicset , e in edgeset ){
 
-        reserve[ e ][ l ] == f_route[ e ][ l ] + f_noroute[ e ][ l ];
+        f_route[ e ][ l ] <= reserve[e][l];
+	    f_route[ e ][ l ] <= route[ l ] ;
+	    f_route[ e ][ l ] >= route[ l ] + reserve[e][l] - 1 ;
 
-	f_route[ e ][ l ] <= route[ l ] ;
 
     }
-
-    forall( l in logicset )
-	route[ l ] <= sum( e in edgeset ) f_route[ e ][ l ] ;
 
     
     // routing constraint
@@ -110,15 +104,29 @@ execute InRelaxProcess {
 
 
     if ( isModel("ADD-ROUTE") ) {
-        writeln();
-        writeln("additional routing bandwidth : " , addcap );
-        writeln();
+        
+
+        output_section("ADD-ROUTE");
+        output_value("GAP" , GAP( NROUTE[2] , cplex.getObjValue() ) );
+	    output_value( "ADD-CAP" , addcap );
+	    output_value( "ADD-ROUTING" , addcap / startcap * 100 );
+        
+
+        lineSep("ADD ROUTE" , "-" );
+
+        
         for ( var e in edgeset )
             addrouting[ e ] = addroute[e].solutionValue ;
    
-   	writeln("configset = " , configset.size );    
-	writeln("routeset  = " , routeset.size );
-    }
+   	    writeln("configset = " , configset.size );    
+	    writeln("routeset  = " , routeset.size );
+
+        writeln();
+        for ( e in edgeset ) 
+            if ( addrouting[e] > 0.5 )
+                writeln("add " , addrouting[e] , " to " , e );
+
+    } else NROUTE[2] = cplex.getObjValue();
 
 }
 

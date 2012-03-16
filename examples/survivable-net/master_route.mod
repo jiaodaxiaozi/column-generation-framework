@@ -15,9 +15,6 @@ execute STARTSOLVEINT {
     if ( isModel("ROUTE") ) {
         
         cplex.tilim = 12 * 3600  ; // limit 12h searching for integer solution 
-        cplex.epgap = 0.0 ;    // stop with small gap
-        cplex.parallelmode = -1 ; // opportunistic mode
-        cplex.threads = 0 ; // use maximum threads
 
     }
     
@@ -82,12 +79,23 @@ execute {
     if ( isModel("ROUTE") ){
     
         NROUTE[0] = nroute ;
-        writeln();
-        writeln("Maximum routing logical links : " , NROUTE[0] , " (" , NROUTE[0] / logicset.size * 100.0 , " %)" );
-        writeln();
-        
+
+        lineSep("ROUTING" , "-");
+
+        output_section("MAX-ROUTING");
+        output_value("ROUTED-LOGICAL-LINK" , NROUTE[0] );
+        output_value("GAP" , GAP( NROUTE[1] , cplex.getObjValue() ));
+     
+
+        for ( l in logicset )
+        if ( route[l].solutionValue < 0.5 )
+            writeln("cannot route " , l );
+          
         setNextModel("RELAX-ADD-ROUTE");
-        
+
+    } else {
+
+        NROUTE[1] = cplex.getObjValue();
     }
 
 

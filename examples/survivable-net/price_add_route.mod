@@ -8,7 +8,7 @@ execute {
 	var ret = 0 ;
 	for ( var ll in logicset ) {
 
-		if ( DIJKSTRA( ll , false , false , false )) ret = ret + 1 ;
+		if ( DIJKSTRA( ll , false , false  )) ret = ret + 1 ;
 
 	}
 

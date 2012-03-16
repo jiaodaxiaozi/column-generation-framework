@@ -6,4 +6,5 @@ thepath=[];
 NROUTE =[];
 addrouting = [] ;
 RELAX = [] ;
+NPROTECT=[];
 configsol = {};

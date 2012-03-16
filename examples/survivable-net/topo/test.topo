@@ -1,29 +1,52 @@
 TAG 1
 
-node 1 
-node 2 
-node 3 
-node 4 
-node 5 
-node 6 
+node v1 
+node v2 
+node v3 
+node v4 
+node v5 
+node v6
+node v7 
 
 
-link 1  source 1  dest 6  length 1
-link 2  source 6  dest 1  length 1
-link 3  source 1  dest 2  length 1
-link 4  source 2  dest 1  length 1
-link 5  source 4  dest 6  length 1
-link 6  source 6  dest 4  length 1
-link 7  source 3  dest 2  length 1
-link 8  source 2  dest 3  length 1
-link 9  source 4  dest 2  length 1
-link 10  source 2  dest 4  length 1
-link 11  source 3  dest 5  length 1
-link 12  source 5  dest 3  length 1
-link 13  source 4  dest 5  length 1
-link 14  source 5  dest 4  length 1
-link 15  source 2  dest 6  length 1
-link 16  source 6  dest 2  length 1
-link 17  source 2  dest 5  length 1
-link 18  source 5  dest 2  length 1
+link 1  source v1  dest v2  length 1
+link 2  source v2  dest v1  length 1
+link 3  source v1  dest v3  length 1
+link 4  source v3  dest v1  length 1
+link 5  source v3  dest v5  length 1
+link 6  source v5  dest v3  length 1
+link 7  source v2  dest v4  length 1
+link 8  source v4  dest v2  length 1
+link 9  source v2  dest v7  length 1
+link 10 source v7  dest v2  length 1
+link 11 source v6  dest v7  length 1
+link 12 source v7  dest v6  length 1
+link 13 source v4  dest v6  length 1
+link 14 source v6  dest v4  length 1
+link 15 source v6  dest v5  length 1
+link 16 source v5  dest v6  length 1
+link 17 source v4  dest v5  length 1
+link 18 source v5  dest v4  length 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

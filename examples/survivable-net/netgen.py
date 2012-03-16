@@ -1,7 +1,6 @@
 import random
 import os
 import re
-from sets import Set
 import math
 import sys
 
@@ -17,7 +16,7 @@ def set2char( F ) :
 		fs1 = []
 
 		for s in fs :
-			fs1.append(  Set( [ str( x ) for x in s ] ) )
+			fs1.append(  set( [ str( x ) for x in s ] ) )
 
 		F1.append( fs1 )
 
@@ -70,10 +69,11 @@ logictopo = []
 capacity = {}
 shortest = {}
 mody = {}
-F1 = Set()
-F2 = Set()
-F3 = Set()
-F4 = Set()
+F1 = set()
+F2 = set()
+F3 = set()
+F4 = set()
+FNODE = set()
 
 def generate_logic( degree , genedge , ishalf ) :
 
@@ -119,7 +119,7 @@ def generate_logic( degree , genedge , ishalf ) :
     else :
 
         # GENERATE BY EDGE
-        tmpNode = Set()
+        tmpNode = set()
         
         while (2 * len( tmpNode )) < len( lstNode ) :
         
@@ -153,7 +153,7 @@ def generate_logic( degree , genedge , ishalf ) :
    
 def reading_data( basename ) :
 
-    global logicdeg , logictopo  , lstNode , lstEdge , F1 , F2 , F3 , F4 
+    global logicdeg , logictopo  , lstNode , lstEdge , F1 , F2 , F3 , F4 , FNODE 
     
     lstNode = [] 
     lstEdge = [] 
@@ -197,25 +197,36 @@ def reading_data( basename ) :
                 lstEdge.append( ( str(edgename) + 'b' , item[3] , item[2] , item[4] ) )
 
     # get set of all undirect edge
-    F1 = Set( )
-    F2 = Set( )
-    F3 = Set( )
-    F4 = Set( )
+    F1 = set( )
+    F2 = set( )
+    F3 = set( )
+    F4 = set( )
+    FNODE = set ( )
 
     # get set of all undirect edge
-    lstUedge = Set( )
+    lstUedge = set( )
 
     for edge in lstEdge :
-        lstUedge.add( Set(( edge[1] , edge[2] )) )
+        lstUedge.add( frozenset( ( edge[1] , edge[2] )) )
         
     # build single failure set 
     for e in lstUedge :
-	if checkNumberColor( lstUedge ,  Set( [e] ) ) == 1 :
-        	F1.add(  Set([e]) )
-    
+	if checkNumberColor( lstUedge ,  set( [e] ) ) == 1 :
+        	F1.add(  frozenset([e]) )
+
+    # build single node failure set
+    for v in lstNode :
+	tempnodeset = set()
+	for e in lstUedge :
+	    if v in e :
+		tempnodeset.add( e )  
+	
+	#print "number color = " , checkNumberColor( lstUedge , tempnodeset)
+	FNODE.add( frozenset( tempnodeset ) ) 
+
     # build higher order failure set
     for v in lstNode :
-	temp = Set()
+	temp = set()
 
 	for e in lstUedge: 
 	    if v in e :
@@ -225,24 +236,24 @@ def reading_data( basename ) :
 	# build dual
 	for e1 in temp :
 	    for e2 in temp :
-		if len( Set( [e1,e2] ) ) == 2 :
-		    if checkNumberColor( lstUedge ,  Set( [e1,e2] ) ) == 1 :
-		        F2.add( Set( [ e1 , e2 ] ) )
+		if len( set( [e1,e2] ) ) == 2 :
+		    if checkNumberColor( lstUedge ,  set( [e1,e2] ) ) == 1 :
+		        F2.add( frozenset( [ e1 , e2 ] ) )
 	# build third
 	for e1 in temp :
 	    for e2 in temp :
 		for e3 in temp :
-		    if len( Set([e1,e2,e3]) )== 3 :
-		    	if checkNumberColor( lstUedge ,  Set( [e1,e2,e3] ) ) == 1 :
-		            F3.add( Set( [ e1 , e2 , e3 ] ) )
+		    if len( frozenset([e1,e2,e3]) )== 3 :
+		    	if checkNumberColor( lstUedge ,  frozenset( [e1,e2,e3] ) ) == 1 :
+		            F3.add( frozenset( [ e1 , e2 , e3 ] ) )
 	# build fourth
  	for e1 in temp :
 	    for e2 in temp :
 		for e3 in temp :
 		    for e4 in temp :
-			if len( Set([ e1 , e2, e3 ,e4]) )== 4 :
-		    	    if checkNumberColor( lstUedge ,  Set( [e1,e2,e3,e4] ) ) == 1 :
-		                F4.add( Set( [ e1 , e2 , e3 , e4 ] ) )
+			if len( frozenset([ e1 , e2, e3 ,e4]) )== 4 :
+		    	    if checkNumberColor( lstUedge ,  frozenset( [e1,e2,e3,e4] ) ) == 1 :
+		                F4.add( frozenset( [ e1 , e2 , e3 , e4 ] ) )
 
 
     print "number of edges : " , len( lstEdge )
@@ -271,7 +282,7 @@ def reading_data( basename ) :
 #
 def write_basic( fnet , nloc , sce ) :
 
-    global logicdeg , logictopo  , lstNode , lstEdge , shortest , mody , F1,F2,F3,F4
+    global logicdeg , logictopo  , lstNode , lstEdge , shortest , mody , F1,F2,F3,F4 , FNODE
     # write node set
     fnet.write("nodeset = {\n" )
 
@@ -329,7 +340,7 @@ def write_basic( fnet , nloc , sce ) :
     
     # print all link failure
 
-    FSET = Set();
+    FSET = set();
 
 
 
@@ -337,16 +348,18 @@ def write_basic( fnet , nloc , sce ) :
 	FSET = F1
 
     if sce == 2 : 
-	FSET = F1 + F2[ 0 : len(F2)/20 +1 ]
+	FSET = F1 + F2[ 0 : len(F2)/14 +1 ]
     if sce == 3 :
-	FSET = F1 + F2[ 0 : len(F2)/20 +1 ] + F3[ 0 : len(F3)/20 + 1 ]
+	FSET = F1 + F2[ 0 : len(F2)/14 +1 ] + F3[ 0 : len(F3)/14 + 1 ]
 
     if sce == 4 : 
 	FSET = F1 + F2[ 0 : len(F2)/10 +1 ] + F3[ 0 : len(F3)/10 + 1 ] 
 
     if sce == 5 : 
-
 	FSET = F1 + F2[ 0 : len(F2)/10 +1 ] + F3[ 0 : len(F3)/10 + 1 ] + F4[ 0 : len(F4)/20 + 1 ]
+
+    if sce == 6 :
+	FSET = FNODE
 
     FSET  = set2char( FSET )
     
@@ -421,7 +434,7 @@ def compute_shortest( ) :
         
         dis = {}
         pre = {}
-        notvisit = Set()
+        notvisit = set()
         
         for v in lstNode:
             dis[ v ] = 100000
@@ -509,11 +522,11 @@ def generate_topo( basename , lstDegree , lstNoLogic , iter , ishalf , listSCE )
 
 if __name__ == "__main__" :
 
-    print "delete old files "
-    for ff in os.listdir("net" ) :
+    #print "delete old files "
+    #for ff in os.listdir("net" ) :
         
-        file_path = os.path.join("net", ff )
-        os.unlink( file_path )
+    #    file_path = os.path.join("net", ff )
+    #    os.unlink( file_path )
     
     print ""
     print "GENERATE NETWORKS"
@@ -531,23 +544,20 @@ if __name__ == "__main__" :
 
         for i in range( 1 ) :
 
-            if basename == "NSF" :    
-            
-               generate_topo( basename , [] , [ 21 , 25 , 50 , 80 ] , i , False , [1,2,3,4,5] ) 
+            #if basename == "NSF" :    
+            #    generate_topo( basename , [] , [ 21 , 25 , 50 , 80 ] , i , False , [1,2,3,4,5,6] ) 
                 
 
-            if basename == "EURO" :    
+            #if basename == "EURO" :    
+            #    generate_topo( basename , [3 ] ,  [ 30 , 35 , 70 , 90  ] ,  i , False , [1,2,3,4,5,6] ) 
                 
-               generate_topo( basename , [3 ] ,  [ 30 , 35 , 70 , 100  ] ,  i , False , [1,2,3,4,5] ) 
-                
-            if basename == "NJLATA" :    
-            
-                generate_topo( basename , [ 3 ] ,  [ 20, 40, 70 ] ,  i , False , [1,2,3,4,5] ) 
+            #if basename == "NJLATA" :    
+            #    generate_topo( basename , [ 3 ] ,  [ 20, 40, 70 ] ,  i , False , [1,2,3,4,5,6] ) 
 
-            if basename == "test" :
-                generate_topo( basename , [ 3 ] ,  [ 20 ] ,  i , False , [1,2,3,4,5] ) 
+            #if basename == "test" :
+		
+            #    generate_topo( basename , [ 3 ] ,  [ 20 ] ,  i , False , [1,2,3,4,5,6] ) 
 
             if basename == "24NET" :
-
-	       generate_topo( basename , [  ] , [ 40 , 90 , 120  ]  ,  i , False , [1,2,3,4,5] ) 
-               generate_topo( basename , [  ] , [ 40 , 90 , 130  ]  ,  i , True ,  [1,2,3,4,5] ) 
+                generate_topo( basename , [  ] , [ 40 , 70 , 90  ]  ,  i , False , [1,2,3,4,5,6] ) 
+                generate_topo( basename , [  ] , [ 40 , 90 , 120  ]  ,  i , True ,  [1,2,3,4,5,6] ) 

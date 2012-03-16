@@ -82,16 +82,23 @@ function nextState( nextObj , curObj ) {
  
     var timeMark = timeMarker(); // mark time moment
     this.ncall ++ ; // update number of calling 
-   
-    cplex.epgap = 0.0 ;
-    cplex.workmem = 4096 ;
-    cplex.nodefileind = 3 ;
+
+    cplex.clearModel();
+    cplex.tilim = 3600 * 48;   
+    cplex.epgap = 0.03 ; // full search
+
+
+    //cplex.workdir = "/lscratch";
+    cplex.workmem = 1024 * 40  ;
+    cplex.nodefileind = 0 ;
+    //cplex.trelim  = 1024 * 8 ;
+
     cplex.parallelmode = -1 ; // opportunistic mode
     cplex.threads = 0 ; // use maximum threads
 
-
     var theopl         = new IloOplModel( this.mipdefinition , cplex ) ;  // create execution object    
-    
+
+
     theopl.settings.mainEndEnabled = true ;
  
     // reset next model
@@ -99,8 +106,7 @@ function nextState( nextObj , curObj ) {
     
     theopl.addDataSource( globalData ) ;    // add data source 
     theopl.generate() ; // generate execution object
-   
-     
+    
  
     if ( this.relax )    theopl.convertAllIntVars() ;    // relax model
     
@@ -110,7 +116,6 @@ function nextState( nextObj , curObj ) {
     // next model to solve
     nextState( globalData , theopl );
  
-    cplex.clearModel();
  
     // update information
     this.solvetime = elapsedTime( timeMark ); // running time
@@ -122,8 +127,9 @@ function nextState( nextObj , curObj ) {
         write( AVATAR() , " solve " + this.mipid  + " (\"" + this.mipsource.name + "\"" + ( this.relax ? ",\"relax\"" : "" ) + ") => " );
         writeln( " called: " , this.ncall , " runtime: ", this.solvetime , " acc. time: " , this.acctime  );    
     }
-    
-    
+   
+ 
+    //theopl.end();
  } 
  
 

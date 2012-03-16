@@ -1,7 +1,8 @@
 include "../../sysmsg.mod" ; // include this line in every global configuration file
 
-int   NROUTE[0..0] = ... ;
-float RELAX[ 0..10] = ... ;
+float   NPROTECT[ 0..20 ] = ... ;
+float   NROUTE[0..20] = ... ;
+float   RELAX[ 0..20] = ... ;
 
 { string } nodeset = ... ; 
 
@@ -57,6 +58,7 @@ float dual_reserve[ logicset ][ edgeset ] = ... ;
 int thepath[ edgeset ] = ... ;
 int addrouting[ edgeset ] = ... ;
 
+float startcap    = sum( e in edgeset ) e.cap;
 
 { config_record } configsol = ... ;
 /*---------------------------------------------------------------------------------------------------------------------------

@@ -8,12 +8,15 @@ dvar int  flow[ logicset ][ edgeset ] in 0..1 ;
 execute {
 
     writeln("Preprocessing ...") ;
+        
 
-
-    cplex.epgap = 0;
-
-//    for ( var e in edgeset )
-  //      writeln("capacity of " , e , " = " , e.cap );
+         writeln("STARTCAP = " , startcap );
+        writeln("E-LINK   = " , edgeset.size );
+        writeln("L-LINK   = " , logicset.size );
+        writeln("NFAILURE = " , nfailure );
+        
+    for ( var e in edgeset )
+        writeln("capacity of " , e , " = " , e.cap );
 }
 
 minimize sum( l in logicset , e in edgeset ) flow[ l ][ e ] ;
@@ -49,12 +52,12 @@ execute {
     var pathcost = 0 ;
     var cid = configset.size ;	
 
-     // write("SP l-link " + lg + " : "  ) ;
+    write("SP l-link " + lg + " : "  ) ;
 
     for ( var e in edgeset ) 
     if ( flow[ lg ][ e ].solutionValue > 0.5 ) {
 
-        // write( e.src + "-" + e.dst , " " ) ;
+         write( e.src + "-" + e.dst , " " ) ;
 
         pathcost = pathcost + 1;
 	routeset.addOnly( cid , e.id );
@@ -62,7 +65,7 @@ execute {
     } else
         thepath[ e ] = 0 ;
 
-    // writeln( " length = " , pathcost );
+     writeln( " length = " , pathcost );
 
     configset.addOnly( cid , lg.id , pathcost   );
     
@@ -74,5 +77,6 @@ execute {
 writeln("NUMBER CONFIGSETS : " , configset.size );
 
 setNextModel("RELAX-ROUTE");
+
 
 } 
