@@ -28,7 +28,7 @@ The following paragraphs give more detail.
 
 ### Running
 
-_oplrun -D input="datafile" [path-to]/solver.mod_  in your directory.
+_oplrun -D input="datafile" -D output="resultfile" [path-to]/solver.mod_  in your directory.
 
 
 How It works
