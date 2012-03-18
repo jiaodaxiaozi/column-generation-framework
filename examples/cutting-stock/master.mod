@@ -16,7 +16,7 @@ dvar int+   z[ patternset ] ; // number of copy of configurations
 
 execute{
 
-	
+    setModelStatus( 1 );	
 
 	if ( isModel( "FINAL" ) ) {
 		

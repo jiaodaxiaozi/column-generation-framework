@@ -56,7 +56,7 @@ APIs
 
 There is only one predefined state:
 
-+ __ROOT__ : will be called first
+Model __ROOT__: will be called first
 
 otherwise, you can create whatever state you want. Notice that each state must define by itself the next state to be solved.
 The final state is responsible to compute the GAP and other metrics by it own.
@@ -64,8 +64,29 @@ The system provides the following state-related functions that can be used insid
 
 - isModel( X )      = _true_ if the current solving model is X, _false_ otherwise.
 - getModel()       : return the current model.    
-- setNextModel( X ) : set __X__ the next model to be solved. Parameter is undefined.
+- setNextModel( X ): set __X__ the next model to be solved. Parameter is undefined.
+- setModelStatus( s ): if __s__ > 0 then display infos of the solving process of each model after it is solved, otherwise do nothing.
 
 __Extra functions__:
 
 - GAP( X , Y ) : return difference in percentage between X and Y in comparison to X.
+
+- timeMarker() : return the current time object.
+- elapsedTime( marker ): calculate the elapsed time from __marker__ in seconds.
+
+- AVATAR() : return signature of the program.
+- lineSep( label , sep ): display a line of __sep__ with __label__ in middle on screen.
+- leftWrite( st , len ) : display a string with length __len__ on screen with __st__ aligned to the left.
+- rightWrite( st , len) : display a string with length __len__ on screen with __st__ aligned to the right.
+- maxLength( n , st )   : return MAX( n , len( st ) ).
+
+
+- assertExisted( name ) : check if file __name__ existed or not.
+- getCurrentPath() : return the working directory.
+
+__Output Data__:
+
+The output file has INI format which two functions are provided in order to work with.
+
+- output_section( txt ): start writing new Section __txt__.
+- output_value( param , value ): write Param __param__ with Value __value__ to the output.
