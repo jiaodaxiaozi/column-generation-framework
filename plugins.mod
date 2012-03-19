@@ -91,12 +91,13 @@ function maxLength( n, st  ) {
 }
 
 ///////// GET CURRENT ABSOLUTE PATH //////////   
-function getCurrentPath(){
+function getPWDPath(){
 
- return IloOplGetEnv("PWD");
+		if ( ! IloOplGetEnv("PWD") ) return "./" ; // if on windows system
+			else
+		return IloOplGetEnv("PWD") + "/"; // on linux
 
-}
- 
+} 
 
 
 }; // end execute

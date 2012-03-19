@@ -10,7 +10,7 @@ include "plugins.mod" ;
  
 string input = "" ;
 string output= "" ;
-string workpath = "" ; 
+
  
 main {
 
@@ -84,12 +84,12 @@ function nextState( nextObj , curObj ) {
     this.ncall ++ ; // update number of calling 
 
     cplex.clearModel();
-    cplex.tilim = 3600 * 48;   
-    cplex.epgap = 0.03 ; // full search
+    cplex.tilim = 3600 * 48;  // 2 days solving 
+    cplex.epgap = 0.00 ; // full search
 
 
     //cplex.workdir = "/lscratch";
-    cplex.workmem = 1024 * 40  ;
+    cplex.workmem = 1024 * 20  ;
     cplex.nodefileind = 3 ;
     cplex.trelim  = 1024 * 40 ;
 
@@ -235,23 +235,14 @@ function readModelDefinition() {
     
     if ( thisOplModel.input == "" ) {   writeln( AVATAR() , "  input need to be specified ( -D input=filename ) " ); writeln(); stop(); }    
     
+	writeln( AVATAR() , " PATH         : " , getPWDPath() );	
     writeln( AVATAR() , " INPUT        : " , thisOplModel.input  );
     
-    if ( thisOplModel.output != "" ){
-	writeln( AVATAR() , " OUTPUT       : " , thisOplModel.output );
-
-	var outname = getCurrentPath() + "/" + thisOplModel.output ;
-
-	var ofile =  new IloOplOutputFile( outname );
-	ofile.write("");
-	ofile.close();
- 
-
+    if ( thisOplModel.output != "" ){		
+		writeln( AVATAR() , " OUTPUT       : " , thisOplModel.output ); 
     }
    
-	 
-    writeln( AVATAR() , " PATH         : " , getCurrentPath() );
-    
+        
 
     assertExisted(  model_define_file );
     assertExisted(  parameter_file );
@@ -259,7 +250,8 @@ function readModelDefinition() {
 
     writeln( AVATAR() , " PARAMETER    : " , parameter_file );
     writeln( AVATAR() , " MODEL DEFINE : " , model_define_file );
-        
+    
+
     
 /*---------------------------------------------------------------------------------------------------------------------------
  *
@@ -307,6 +299,8 @@ function readModelDefinition() {
  *--------------------------------------------------------------------------------------------------------------------------*/
 
  readModelDefinition(); // read model definition 
+ 
+ empty_output();
  
  assertModel( __ROOT__ );
 
@@ -401,11 +395,12 @@ leftWrite( model.acctime ,txt_total_size + 1 );
 leftWrite( model.acctime /  model.ncall ,txt_mean_size + 1 ); 
 leftWrite( model.relax ,txt_relax_size + 1 );
 leftWrite( model.mipsource.name ,txt_source_size + 1 );
-writeln();
 
-output_section( "RUNTIME-" + model.mipid );
-output_value( "CALL" , model.ncall );
-output_value( "TOTALTIME" , model.acctime );
+	writeln();
+	
+	output_section( "RUNTIME-" + model.mipid );
+	output_value( "CALL" , model.ncall );
+	output_value( "TOTALTIME" , model.acctime );
 
 }
   
