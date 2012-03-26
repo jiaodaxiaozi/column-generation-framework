@@ -1,0 +1,162 @@
+// NODE : 11
+// EDGE : 25
+// REQUEST : 55
+// AVE CONNECT : 7.86364
+// AVE DEGREE : 4.54545
+// DUAL-FAILURE PERCENT = 10
+// NUM DUAL-FAILURE = 30
+nodeset = { 
+"Paris",
+"Milan",
+"Zurich",
+"Prague",
+"Vienna",
+"Berlin",
+"Amsterdam",
+"Luxembourg",
+"Brussels",
+"London",
+"Copenhagen"
+};
+edgeset = { 
+<"LINK1","London","Copenhagen",1>,
+<"LINK2","London","Paris",1>,
+<"LINK3","London","Brussels",1>,
+<"LINK4","Paris","Brussels",1>,
+<"LINK5","London","Amsterdam",1>,
+<"LINK6","Amsterdam","Copenhagen",1>,
+<"LINK7","Brussels","Amsterdam",1>,
+<"LINK8","Brussels","Luxembourg",1>,
+<"LINK9","Amsterdam","Luxembourg",1>,
+<"LINK10","Amsterdam","Berlin",1>,
+<"LINK11","Copenhagen","Berlin",1>,
+<"LINK12","Paris","Berlin",1>,
+<"LINK13","Copenhagen","Prague",1>,
+<"LINK14","Luxembourg","Prague",1>,
+<"LINK15","Prague","Berlin",1>,
+<"LINK16","Berlin","Vienna",1>,
+<"LINK17","Prague","Vienna",1>,
+<"LINK18","Luxembourg","Zurich",1>,
+<"LINK19","Zurich","Prague",1>,
+<"LINK20","Zurich","Vienna",1>,
+<"LINK21","Paris","Zurich",1>,
+<"LINK22","Brussels","Milan",1>,
+<"LINK23","Paris","Milan",1>,
+<"LINK24","Zurich","Milan",1>,
+<"LINK25","Milan","Vienna",1>
+ }; 
+requestset={
+< "Paris" , "Milan" , 12.5 >,
+< "Paris" , "Zurich" , 15 >,
+< "Paris" , "Prague" , 2.5 >,
+< "Paris" , "Vienna" , 5 >,
+< "Paris" , "Berlin" , 27.5 >,
+< "Paris" , "Amsterdam" , 12.5 >,
+< "Paris" , "Luxembourg" , 2.5 >,
+< "Paris" , "Brussels" , 17.5 >,
+< "Paris" , "London" , 25 >,
+< "Paris" , "Copenhagen" , 2.5 >,
+< "Milan" , "Zurich" , 15 >,
+< "Milan" , "Prague" , 2.5 >,
+< "Milan" , "Vienna" , 7.5 >,
+< "Milan" , "Berlin" , 22.5 >,
+< "Milan" , "Amsterdam" , 5 >,
+< "Milan" , "Luxembourg" , 2.5 >,
+< "Milan" , "Brussels" , 5 >,
+< "Milan" , "London" , 7.5 >,
+< "Milan" , "Copenhagen" , 2.5 >,
+< "Zurich" , "Prague" , 2.5 >,
+< "Zurich" , "Vienna" , 7.5 >,
+< "Zurich" , "Berlin" , 27.5 >,
+< "Zurich" , "Amsterdam" , 7.5 >,
+< "Zurich" , "Luxembourg" , 2.5 >,
+< "Zurich" , "Brussels" , 7.5 >,
+< "Zurich" , "London" , 7.5 >,
+< "Zurich" , "Copenhagen" , 2.5 >,
+< "Prague" , "Vienna" , 2.5 >,
+< "Prague" , "Berlin" , 5 >,
+< "Prague" , "Amsterdam" , 2.5 >,
+< "Prague" , "Luxembourg" , 2.5 >,
+< "Prague" , "Brussels" , 2.5 >,
+< "Prague" , "London" , 2.5 >,
+< "Prague" , "Copenhagen" , 2.5 >,
+< "Vienna" , "Berlin" , 22.5 >,
+< "Vienna" , "Amsterdam" , 2.5 >,
+< "Vienna" , "Luxembourg" , 2.5 >,
+< "Vienna" , "Brussels" , 2.5 >,
+< "Vienna" , "London" , 5 >,
+< "Vienna" , "Copenhagen" , 2.5 >,
+< "Berlin" , "Amsterdam" , 20 >,
+< "Berlin" , "Luxembourg" , 5 >,
+< "Berlin" , "Brussels" , 15 >,
+< "Berlin" , "London" , 20 >,
+< "Berlin" , "Copenhagen" , 7.5 >,
+< "Amsterdam" , "Luxembourg" , 2.5 >,
+< "Amsterdam" , "Brussels" , 10 >,
+< "Amsterdam" , "London" , 12.5 >,
+< "Amsterdam" , "Copenhagen" , 2.5 >,
+< "Luxembourg" , "Brussels" , 2.5 >,
+< "Luxembourg" , "London" , 2.5 >,
+< "Luxembourg" , "Copenhagen" , 2.5 >,
+< "Brussels" , "London" , 10 >,
+< "Brussels" , "Copenhagen" , 2.5 >,
+< "London" , "Copenhagen" , 2.5 >,
+};
+nfailure = 55 ;
+failureset = [ 
+{ "LINK1" }
+{ "LINK2" }
+{ "LINK3" }
+{ "LINK4" }
+{ "LINK5" }
+{ "LINK6" }
+{ "LINK7" }
+{ "LINK8" }
+{ "LINK9" }
+{ "LINK10" }
+{ "LINK11" }
+{ "LINK12" }
+{ "LINK13" }
+{ "LINK14" }
+{ "LINK15" }
+{ "LINK16" }
+{ "LINK17" }
+{ "LINK18" }
+{ "LINK19" }
+{ "LINK20" }
+{ "LINK21" }
+{ "LINK22" }
+{ "LINK23" }
+{ "LINK24" }
+{ "LINK25" }
+{ "LINK21","LINK25" }
+{ "LINK2","LINK9" }
+{ "LINK18","LINK25" }
+{ "LINK7","LINK10" }
+{ "LINK6","LINK20" }
+{ "LINK16","LINK22" }
+{ "LINK12","LINK14" }
+{ "LINK9","LINK18" }
+{ "LINK1","LINK5" }
+{ "LINK2","LINK16" }
+{ "LINK12","LINK15" }
+{ "LINK18","LINK23" }
+{ "LINK4","LINK13" }
+{ "LINK9","LINK10" }
+{ "LINK12","LINK20" }
+{ "LINK5","LINK24" }
+{ "LINK7","LINK23" }
+{ "LINK1","LINK9" }
+{ "LINK4","LINK10" }
+{ "LINK12","LINK22" }
+{ "LINK10","LINK18" }
+{ "LINK11","LINK18" }
+{ "LINK22","LINK25" }
+{ "LINK5","LINK25" }
+{ "LINK2","LINK15" }
+{ "LINK5","LINK13" }
+{ "LINK1","LINK3" }
+{ "LINK4","LINK7" }
+{ "LINK12","LINK13" }
+{ "LINK11","LINK17" }
+ ]; 

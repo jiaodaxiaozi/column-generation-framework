@@ -1,0 +1,24 @@
+/*********************************************
+ * COLUMN GENERATION - GLOBAL DATA INITIALIZATION
+ *
+ *
+ * Author: Hoang Hai Anh
+ * Email : hoanghaianh@gmail.com
+ *
+ * Updated: April 14, 2011
+ *********************************************/
+
+TEMPVAR = [] ;
+
+enter_point = [];
+
+recovery     = [];
+acceptfailureset   = [];
+poolset = {} ;
+dual_protect = [] ;
+
+poolcycle = {};
+consider_cycle = [] ;
+running = [] ;
+
+preobj = [];

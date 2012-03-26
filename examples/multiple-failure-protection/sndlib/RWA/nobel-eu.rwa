@@ -1,0 +1,452 @@
+
+
+NODE Amsterdam ( 4.51 52.2 ) 
+NODE Athens ( 23.42 37.58 ) 
+NODE Barcelona ( 2.07 41.22 ) 
+NODE Belgrade ( 20.25 44.47 ) 
+NODE Berlin ( 13.21 52.31 ) 
+NODE Bordeaux ( -0.35 44.51 ) 
+NODE Brussels ( 4.2 50.49 ) 
+NODE Budapest ( 19.02 47.29 ) 
+NODE Copenhagen ( 12.32 55.41 ) 
+NODE Dublin ( -6.15 53.21 ) 
+NODE Frankfurt ( 8.38 50.07 ) 
+NODE Glasgow ( -4.16 55.51 ) 
+NODE Hamburg ( 10.0 53.33 ) 
+NODE London ( -0.07 51.3 ) 
+NODE Lyon ( 4.49 45.43 ) 
+NODE Madrid ( -3.42 40.25 ) 
+NODE Milan ( 9.11 45.28 ) 
+NODE Munich ( 11.33 48.07 ) 
+NODE Oslo ( 10.45 59.54 ) 
+NODE Paris ( 2.2 48.51 ) 
+NODE Prague ( 14.25 50.04 ) 
+NODE Rome ( 12.29 41.53 ) 
+NODE Stockholm ( 18.03 59.19 ) 
+NODE Strasbourg ( 7.45 48.35 ) 
+NODE Vienna ( 16.21 48.12 ) 
+NODE Warsaw ( 20.59 52.14 ) 
+NODE Zagreb ( 15.57 45.48 ) 
+NODE Zurich ( 8.32 47.22 ) 
+
+EDGE L11 ( Amsterdam Brussels )
+EDGE L21 ( Amsterdam Glasgow )
+EDGE L31 ( Amsterdam Hamburg )
+EDGE L41 ( Amsterdam London )
+EDGE L51 ( Athens Belgrade )
+EDGE L61 ( Athens Rome )
+EDGE L71 ( Barcelona Lyon )
+EDGE L81 ( Barcelona Madrid )
+EDGE L91 ( Belgrade Budapest )
+EDGE L101 ( Belgrade Zagreb )
+EDGE L111 ( Berlin Copenhagen )
+EDGE L121 ( Berlin Hamburg )
+EDGE L131 ( Berlin Munich )
+EDGE L141 ( Berlin Prague )
+EDGE L151 ( Berlin Warsaw )
+EDGE L161 ( Bordeaux Madrid )
+EDGE L171 ( Bordeaux Paris )
+EDGE L181 ( Brussels Frankfurt )
+EDGE L191 ( Brussels Paris )
+EDGE L201 ( Budapest Prague )
+EDGE L211 ( Budapest Warsaw )
+EDGE L221 ( Copenhagen Oslo )
+EDGE L231 ( Dublin Glasgow )
+EDGE L241 ( Dublin London )
+EDGE L251 ( Frankfurt Hamburg )
+EDGE L261 ( Frankfurt Munich )
+EDGE L271 ( Frankfurt Strasbourg )
+EDGE L281 ( London Paris )
+EDGE L291 ( Lyon Paris )
+EDGE L301 ( Milan Munich )
+EDGE L311 ( Milan Rome )
+EDGE L321 ( Milan Zurich )
+EDGE L331 ( Munich Vienna )
+EDGE L341 ( Oslo Stockholm )
+EDGE L351 ( Paris Strasbourg )
+EDGE L361 ( Prague Vienna )
+EDGE L371 ( Rome Zagreb )
+EDGE L381 ( Stockholm Warsaw )
+EDGE L391 ( Zurich Lyon )
+EDGE L401 ( Strasbourg Zurich )
+EDGE L411 ( Vienna Zagreb )
+
+
+REQUEST Amsterdam Athens 6.0
+REQUEST Amsterdam Barcelona 6.0
+REQUEST Amsterdam Belgrade 2.0
+REQUEST Amsterdam Berlin 16.0
+REQUEST Amsterdam Bordeaux 4.0
+REQUEST Amsterdam Brussels 16.0
+REQUEST Amsterdam Budapest 4.0
+REQUEST Amsterdam Copenhagen 8.0
+REQUEST Amsterdam Dublin 4.0
+REQUEST Amsterdam Frankfurt 20.0
+REQUEST Amsterdam Glasgow 26.0
+REQUEST Amsterdam Hamburg 28.0
+REQUEST Amsterdam London 38.0
+REQUEST Amsterdam Lyon 8.0
+REQUEST Amsterdam Madrid 6.0
+REQUEST Amsterdam Milan 16.0
+REQUEST Amsterdam Munich 14.0
+REQUEST Amsterdam Oslo 8.0
+REQUEST Amsterdam Paris 10.0
+REQUEST Amsterdam Prague 8.0
+REQUEST Amsterdam Rome 14.0
+REQUEST Amsterdam Stockholm 12.0
+REQUEST Amsterdam Strasbourg 10.0
+REQUEST Amsterdam Vienna 6.0
+REQUEST Amsterdam Warsaw 18.0
+REQUEST Amsterdam Zagreb 2.0
+REQUEST Amsterdam Zurich 8.0
+REQUEST Athens Barcelona 2.0
+REQUEST Athens Belgrade 2.0
+REQUEST Athens Berlin 2.0
+REQUEST Athens Bordeaux 2.0
+REQUEST Athens Brussels 2.0
+REQUEST Athens Budapest 2.0
+REQUEST Athens Copenhagen 2.0
+REQUEST Athens Dublin 2.0
+REQUEST Athens Frankfurt 8.0
+REQUEST Athens Glasgow 2.0
+REQUEST Athens Hamburg 2.0
+REQUEST Athens London 4.0
+REQUEST Athens Lyon 2.0
+REQUEST Athens Madrid 2.0
+REQUEST Athens Milan 2.0
+REQUEST Athens Munich 2.0
+REQUEST Athens Oslo 2.0
+REQUEST Athens Paris 2.0
+REQUEST Athens Prague 2.0
+REQUEST Athens Rome 2.0
+REQUEST Athens Stockholm 2.0
+REQUEST Athens Strasbourg 2.0
+REQUEST Athens Vienna 2.0
+REQUEST Athens Warsaw 2.0
+REQUEST Athens Zagreb 2.0
+REQUEST Athens Zurich 2.0
+REQUEST Barcelona Belgrade 2.0
+REQUEST Barcelona Berlin 4.0
+REQUEST Barcelona Bordeaux 4.0
+REQUEST Barcelona Brussels 2.0
+REQUEST Barcelona Budapest 2.0
+REQUEST Barcelona Copenhagen 2.0
+REQUEST Barcelona Dublin 2.0
+REQUEST Barcelona Frankfurt 18.0
+REQUEST Barcelona Glasgow 4.0
+REQUEST Barcelona Hamburg 4.0
+REQUEST Barcelona London 12.0
+REQUEST Barcelona Lyon 4.0
+REQUEST Barcelona Madrid 6.0
+REQUEST Barcelona Milan 6.0
+REQUEST Barcelona Munich 4.0
+REQUEST Barcelona Oslo 2.0
+REQUEST Barcelona Paris 2.0
+REQUEST Barcelona Prague 2.0
+REQUEST Barcelona Rome 4.0
+REQUEST Barcelona Stockholm 2.0
+REQUEST Barcelona Strasbourg 2.0
+REQUEST Barcelona Vienna 2.0
+REQUEST Barcelona Warsaw 4.0
+REQUEST Barcelona Zagreb 2.0
+REQUEST Barcelona Zurich 2.0
+REQUEST Belgrade Berlin 2.0
+REQUEST Belgrade Bordeaux 2.0
+REQUEST Belgrade Brussels 2.0
+REQUEST Belgrade Budapest 2.0
+REQUEST Belgrade Copenhagen 2.0
+REQUEST Belgrade Dublin 2.0
+REQUEST Belgrade Frankfurt 4.0
+REQUEST Belgrade Glasgow 2.0
+REQUEST Belgrade Hamburg 2.0
+REQUEST Belgrade London 2.0
+REQUEST Belgrade Lyon 2.0
+REQUEST Belgrade Madrid 2.0
+REQUEST Belgrade Milan 2.0
+REQUEST Belgrade Munich 2.0
+REQUEST Belgrade Oslo 2.0
+REQUEST Belgrade Paris 2.0
+REQUEST Belgrade Prague 2.0
+REQUEST Belgrade Rome 2.0
+REQUEST Belgrade Stockholm 2.0
+REQUEST Belgrade Strasbourg 2.0
+REQUEST Belgrade Vienna 2.0
+REQUEST Belgrade Warsaw 2.0
+REQUEST Belgrade Zagreb 2.0
+REQUEST Belgrade Zurich 2.0
+REQUEST Berlin Bordeaux 2.0
+REQUEST Berlin Brussels 4.0
+REQUEST Berlin Budapest 2.0
+REQUEST Berlin Copenhagen 4.0
+REQUEST Berlin Dublin 2.0
+REQUEST Berlin Frankfurt 28.0
+REQUEST Berlin Glasgow 8.0
+REQUEST Berlin Hamburg 14.0
+REQUEST Berlin London 12.0
+REQUEST Berlin Lyon 4.0
+REQUEST Berlin Madrid 2.0
+REQUEST Berlin Milan 6.0
+REQUEST Berlin Munich 8.0
+REQUEST Berlin Oslo 2.0
+REQUEST Berlin Paris 4.0
+REQUEST Berlin Prague 8.0
+REQUEST Berlin Rome 4.0
+REQUEST Berlin Stockholm 4.0
+REQUEST Berlin Strasbourg 4.0
+REQUEST Berlin Vienna 4.0
+REQUEST Berlin Warsaw 12.0
+REQUEST Berlin Zagreb 2.0
+REQUEST Berlin Zurich 4.0
+REQUEST Bordeaux Brussels 2.0
+REQUEST Bordeaux Budapest 2.0
+REQUEST Bordeaux Copenhagen 2.0
+REQUEST Bordeaux Dublin 2.0
+REQUEST Bordeaux Frankfurt 8.0
+REQUEST Bordeaux Glasgow 4.0
+REQUEST Bordeaux Hamburg 2.0
+REQUEST Bordeaux London 16.0
+REQUEST Bordeaux Lyon 4.0
+REQUEST Bordeaux Madrid 4.0
+REQUEST Bordeaux Milan 4.0
+REQUEST Bordeaux Munich 4.0
+REQUEST Bordeaux Oslo 2.0
+REQUEST Bordeaux Paris 4.0
+REQUEST Bordeaux Prague 2.0
+REQUEST Bordeaux Rome 4.0
+REQUEST Bordeaux Stockholm 2.0
+REQUEST Bordeaux Strasbourg 2.0
+REQUEST Bordeaux Vienna 2.0
+REQUEST Bordeaux Warsaw 2.0
+REQUEST Bordeaux Zagreb 2.0
+REQUEST Bordeaux Zurich 2.0
+REQUEST Brussels Budapest 2.0
+REQUEST Brussels Copenhagen 2.0
+REQUEST Brussels Dublin 2.0
+REQUEST Brussels Frankfurt 10.0
+REQUEST Brussels Glasgow 4.0
+REQUEST Brussels Hamburg 4.0
+REQUEST Brussels London 10.0
+REQUEST Brussels Lyon 2.0
+REQUEST Brussels Madrid 2.0
+REQUEST Brussels Milan 4.0
+REQUEST Brussels Munich 4.0
+REQUEST Brussels Oslo 2.0
+REQUEST Brussels Paris 4.0
+REQUEST Brussels Prague 2.0
+REQUEST Brussels Rome 2.0
+REQUEST Brussels Stockholm 2.0
+REQUEST Brussels Strasbourg 4.0
+REQUEST Brussels Vienna 2.0
+REQUEST Brussels Warsaw 4.0
+REQUEST Brussels Zagreb 2.0
+REQUEST Brussels Zurich 2.0
+REQUEST Budapest Copenhagen 2.0
+REQUEST Budapest Dublin 2.0
+REQUEST Budapest Frankfurt 8.0
+REQUEST Budapest Glasgow 2.0
+REQUEST Budapest Hamburg 2.0
+REQUEST Budapest London 4.0
+REQUEST Budapest Lyon 2.0
+REQUEST Budapest Madrid 2.0
+REQUEST Budapest Milan 2.0
+REQUEST Budapest Munich 4.0
+REQUEST Budapest Oslo 2.0
+REQUEST Budapest Paris 2.0
+REQUEST Budapest Prague 2.0
+REQUEST Budapest Rome 2.0
+REQUEST Budapest Stockholm 2.0
+REQUEST Budapest Strasbourg 2.0
+REQUEST Budapest Vienna 4.0
+REQUEST Budapest Warsaw 4.0
+REQUEST Budapest Zagreb 2.0
+REQUEST Budapest Zurich 2.0
+REQUEST Copenhagen Dublin 2.0
+REQUEST Copenhagen Frankfurt 4.0
+REQUEST Copenhagen Glasgow 2.0
+REQUEST Copenhagen Hamburg 4.0
+REQUEST Copenhagen London 4.0
+REQUEST Copenhagen Lyon 2.0
+REQUEST Copenhagen Madrid 2.0
+REQUEST Copenhagen Milan 2.0
+REQUEST Copenhagen Munich 2.0
+REQUEST Copenhagen Oslo 2.0
+REQUEST Copenhagen Paris 2.0
+REQUEST Copenhagen Prague 2.0
+REQUEST Copenhagen Rome 2.0
+REQUEST Copenhagen Stockholm 2.0
+REQUEST Copenhagen Strasbourg 2.0
+REQUEST Copenhagen Vienna 2.0
+REQUEST Copenhagen Warsaw 4.0
+REQUEST Copenhagen Zagreb 2.0
+REQUEST Copenhagen Zurich 2.0
+REQUEST Dublin Frankfurt 2.0
+REQUEST Dublin Glasgow 4.0
+REQUEST Dublin Hamburg 2.0
+REQUEST Dublin London 6.0
+REQUEST Dublin Lyon 2.0
+REQUEST Dublin Madrid 2.0
+REQUEST Dublin Milan 2.0
+REQUEST Dublin Munich 2.0
+REQUEST Dublin Oslo 2.0
+REQUEST Dublin Paris 2.0
+REQUEST Dublin Prague 2.0
+REQUEST Dublin Rome 2.0
+REQUEST Dublin Stockholm 2.0
+REQUEST Dublin Strasbourg 2.0
+REQUEST Dublin Vienna 2.0
+REQUEST Dublin Warsaw 2.0
+REQUEST Dublin Zagreb 2.0
+REQUEST Dublin Zurich 2.0
+REQUEST Frankfurt Glasgow 14.0
+REQUEST Frankfurt Hamburg 20.0
+REQUEST Frankfurt London 20.0
+REQUEST Frankfurt Lyon 16.0
+REQUEST Frankfurt Madrid 10.0
+REQUEST Frankfurt Milan 28.0
+REQUEST Frankfurt Munich 32.0
+REQUEST Frankfurt Oslo 4.0
+REQUEST Frankfurt Paris 8.0
+REQUEST Frankfurt Prague 14.0
+REQUEST Frankfurt Rome 26.0
+REQUEST Frankfurt Stockholm 8.0
+REQUEST Frankfurt Strasbourg 24.0
+REQUEST Frankfurt Vienna 10.0
+REQUEST Frankfurt Warsaw 34.0
+REQUEST Frankfurt Zagreb 4.0
+REQUEST Frankfurt Zurich 14.0
+REQUEST Glasgow Hamburg 8.0
+REQUEST Glasgow London 54.0
+REQUEST Glasgow Lyon 4.0
+REQUEST Glasgow Madrid 4.0
+REQUEST Glasgow Milan 8.0
+REQUEST Glasgow Munich 8.0
+REQUEST Glasgow Oslo 4.0
+REQUEST Glasgow Paris 6.0
+REQUEST Glasgow Prague 4.0
+REQUEST Glasgow Rome 6.0
+REQUEST Glasgow Stockholm 4.0
+REQUEST Glasgow Strasbourg 4.0
+REQUEST Glasgow Vienna 4.0
+REQUEST Glasgow Warsaw 8.0
+REQUEST Glasgow Zagreb 2.0
+REQUEST Glasgow Zurich 4.0
+REQUEST Hamburg London 14.0
+REQUEST Hamburg Lyon 4.0
+REQUEST Hamburg Madrid 2.0
+REQUEST Hamburg Milan 6.0
+REQUEST Hamburg Munich 6.0
+REQUEST Hamburg Oslo 2.0
+REQUEST Hamburg Paris 4.0
+REQUEST Hamburg Prague 4.0
+REQUEST Hamburg Rome 4.0
+REQUEST Hamburg Stockholm 4.0
+REQUEST Hamburg Strasbourg 4.0
+REQUEST Hamburg Vienna 2.0
+REQUEST Hamburg Warsaw 8.0
+REQUEST Hamburg Zagreb 2.0
+REQUEST Hamburg Zurich 4.0
+REQUEST London Lyon 8.0
+REQUEST London Madrid 20.0
+REQUEST London Milan 12.0
+REQUEST London Munich 12.0
+REQUEST London Oslo 4.0
+REQUEST London Paris 22.0
+REQUEST London Prague 6.0
+REQUEST London Rome 10.0
+REQUEST London Stockholm 6.0
+REQUEST London Strasbourg 8.0
+REQUEST London Vienna 4.0
+REQUEST London Warsaw 12.0
+REQUEST London Zagreb 2.0
+REQUEST London Zurich 6.0
+REQUEST Lyon Madrid 2.0
+REQUEST Lyon Milan 8.0
+REQUEST Lyon Munich 4.0
+REQUEST Lyon Oslo 2.0
+REQUEST Lyon Paris 4.0
+REQUEST Lyon Prague 2.0
+REQUEST Lyon Rome 4.0
+REQUEST Lyon Stockholm 2.0
+REQUEST Lyon Strasbourg 4.0
+REQUEST Lyon Vienna 2.0
+REQUEST Lyon Warsaw 4.0
+REQUEST Lyon Zagreb 2.0
+REQUEST Lyon Zurich 4.0
+REQUEST Madrid Milan 4.0
+REQUEST Madrid Munich 4.0
+REQUEST Madrid Oslo 2.0
+REQUEST Madrid Paris 2.0
+REQUEST Madrid Prague 2.0
+REQUEST Madrid Rome 4.0
+REQUEST Madrid Stockholm 2.0
+REQUEST Madrid Strasbourg 2.0
+REQUEST Madrid Vienna 2.0
+REQUEST Madrid Warsaw 4.0
+REQUEST Madrid Zagreb 2.0
+REQUEST Madrid Zurich 2.0
+REQUEST Milan Munich 12.0
+REQUEST Milan Oslo 2.0
+REQUEST Milan Paris 4.0
+REQUEST Milan Prague 4.0
+REQUEST Milan Rome 10.0
+REQUEST Milan Stockholm 2.0
+REQUEST Milan Strasbourg 8.0
+REQUEST Milan Vienna 4.0
+REQUEST Milan Warsaw 6.0
+REQUEST Milan Zagreb 2.0
+REQUEST Milan Zurich 8.0
+REQUEST Munich Oslo 2.0
+REQUEST Munich Paris 4.0
+REQUEST Munich Prague 6.0
+REQUEST Munich Rome 6.0
+REQUEST Munich Stockholm 2.0
+REQUEST Munich Strasbourg 8.0
+REQUEST Munich Vienna 4.0
+REQUEST Munich Warsaw 8.0
+REQUEST Munich Zagreb 2.0
+REQUEST Munich Zurich 6.0
+REQUEST Oslo Paris 2.0
+REQUEST Oslo Prague 2.0
+REQUEST Oslo Rome 2.0
+REQUEST Oslo Stockholm 2.0
+REQUEST Oslo Strasbourg 2.0
+REQUEST Oslo Vienna 2.0
+REQUEST Oslo Warsaw 2.0
+REQUEST Oslo Zagreb 2.0
+REQUEST Oslo Zurich 2.0
+REQUEST Paris Prague 2.0
+REQUEST Paris Rome 4.0
+REQUEST Paris Stockholm 2.0
+REQUEST Paris Strasbourg 4.0
+REQUEST Paris Vienna 2.0
+REQUEST Paris Warsaw 4.0
+REQUEST Paris Zagreb 2.0
+REQUEST Paris Zurich 2.0
+REQUEST Prague Rome 4.0
+REQUEST Prague Stockholm 2.0
+REQUEST Prague Strasbourg 2.0
+REQUEST Prague Vienna 4.0
+REQUEST Prague Warsaw 6.0
+REQUEST Prague Zagreb 2.0
+REQUEST Prague Zurich 2.0
+REQUEST Rome Stockholm 2.0
+REQUEST Rome Strasbourg 4.0
+REQUEST Rome Vienna 4.0
+REQUEST Rome Warsaw 6.0
+REQUEST Rome Zagreb 2.0
+REQUEST Rome Zurich 4.0
+REQUEST Stockholm Strasbourg 2.0
+REQUEST Stockholm Vienna 2.0
+REQUEST Stockholm Warsaw 4.0
+REQUEST Stockholm Zagreb 2.0
+REQUEST Stockholm Zurich 2.0
+REQUEST Strasbourg Vienna 2.0
+REQUEST Strasbourg Warsaw 4.0
+REQUEST Strasbourg Zagreb 2.0
+REQUEST Strasbourg Zurich 8.0
+REQUEST Vienna Warsaw 4.0
+REQUEST Vienna Zagreb 2.0
+REQUEST Vienna Zurich 2.0
+REQUEST Warsaw Zagreb 2.0
+REQUEST Warsaw Zurich 4.0
+REQUEST Zagreb Zurich 2.0

@@ -1,0 +1,176 @@
+// NODE : 11
+// EDGE : 47
+// REQUEST : 55
+// AVE CONNECT : 37.9273
+// AVE DEGREE : 8.54545
+// DUAL-FAILURE PERCENT = 0
+// NUM DUAL-FAILURE = 0
+nodeset = { 
+"Leipzig",
+"Hamburg",
+"Hannover",
+"Stuttgart",
+"Muenchen",
+"Koeln",
+"Erlangen",
+"Berlin",
+"Essen",
+"Frankfurt",
+"IP"
+};
+edgeset = { 
+<"LINK1","Leipzig","Berlin",1>,
+<"LINK2","Leipzig","Koeln",1>,
+<"LINK3","Leipzig","Muenchen",1>,
+<"LINK4","Hamburg","Essen",1>,
+<"LINK5","Hamburg","Berlin",1>,
+<"LINK6","Hamburg","Erlangen",1>,
+<"LINK7","Hamburg","Stuttgart",1>,
+<"LINK8","Hamburg","Muenchen",1>,
+<"LINK9","Hannover","Frankfurt",1>,
+<"LINK10","Hannover","Essen",1>,
+<"LINK11","Hannover","Koeln",1>,
+<"LINK12","Stuttgart","Essen",1>,
+<"LINK13","Stuttgart","Erlangen",1>,
+<"LINK14","Stuttgart","Koeln",1>,
+<"LINK15","Muenchen","Essen",1>,
+<"LINK16","Muenchen","Berlin",1>,
+<"LINK17","Muenchen","Erlangen",1>,
+<"LINK18","Koeln","Erlangen",1>,
+<"LINK19","Erlangen","Frankfurt",1>,
+<"LINK20","Berlin","Essen",1>,
+<"LINK21","IP","Frankfurt",1>,
+<"LINK22","IP","Hannover",1>,
+<"LINK23","Leipzig","Essen",1>,
+<"LINK24","Leipzig","Erlangen",1>,
+<"LINK25","Leipzig","Stuttgart",1>,
+<"LINK26","Leipzig","Hannover",1>,
+<"LINK27","Leipzig","Hamburg",1>,
+<"LINK28","Leipzig","Frankfurt",1>,
+<"LINK29","Hamburg","Frankfurt",1>,
+<"LINK30","Hamburg","Koeln",1>,
+<"LINK31","Hamburg","Hannover",1>,
+<"LINK32","Hannover","Berlin",1>,
+<"LINK33","Hannover","Erlangen",1>,
+<"LINK34","Hannover","Muenchen",1>,
+<"LINK35","Hannover","Stuttgart",1>,
+<"LINK36","Stuttgart","Frankfurt",1>,
+<"LINK37","Stuttgart","Berlin",1>,
+<"LINK38","Stuttgart","Muenchen",1>,
+<"LINK39","Muenchen","Frankfurt",1>,
+<"LINK40","Muenchen","Koeln",1>,
+<"LINK41","Koeln","Frankfurt",1>,
+<"LINK42","Koeln","Essen",1>,
+<"LINK43","Koeln","Berlin",1>,
+<"LINK44","Erlangen","Essen",1>,
+<"LINK45","Erlangen","Berlin",1>,
+<"LINK46","Berlin","Frankfurt",1>,
+<"LINK47","Essen","Frankfurt",1>
+ }; 
+requestset={
+< "Frankfurt" , "Essen" , 109.0 >,
+< "IP" , "Berlin" , 85.0 >,
+< "Koeln" , "Stuttgart" , 5.0 >,
+< "Essen" , "Stuttgart" , 5.0 >,
+< "Essen" , "Erlangen" , 5.0 >,
+< "Erlangen" , "Leipzig" , 5.0 >,
+< "Erlangen" , "Koeln" , 5.0 >,
+< "Stuttgart" , "Hamburg" , 4.0 >,
+< "Stuttgart" , "Erlangen" , 4.0 >,
+< "Erlangen" , "Hannover" , 4.0 >,
+< "IP" , "Leipzig" , 82.0 >,
+< "Erlangen" , "Hamburg" , 4.0 >,
+< "Muenchen" , "Frankfurt" , 82.0 >,
+< "IP" , "Hamburg" , 79.0 >,
+< "Hamburg" , "Frankfurt" , 73.0 >,
+< "IP" , "Koeln" , 69.0 >,
+< "Frankfurt" , "Hannover" , 67.0 >,
+< "Koeln" , "Frankfurt" , 100.0 >,
+< "Frankfurt" , "Erlangen" , 65.0 >,
+< "Berlin" , "Leipzig" , 63.0 >,
+< "Frankfurt" , "Stuttgart" , 58.0 >,
+< "IP" , "Hannover" , 56.0 >,
+< "Essen" , "IP" , 56.0 >,
+< "Leipzig" , "Frankfurt" , 99.0 >,
+< "Muenchen" , "IP" , 54.0 >,
+< "Berlin" , "Koeln" , 50.0 >,
+< "Koeln" , "Leipzig" , 49.0 >,
+< "IP" , "Erlangen" , 48.0 >,
+< "Essen" , "Leipzig" , 48.0 >,
+< "Essen" , "Koeln" , 48.0 >,
+< "Leipzig" , "Hannover" , 45.0 >,
+< "Muenchen" , "Stuttgart" , 40.0 >,
+< "IP" , "Frankfurt" , 38.0 >,
+< "Essen" , "Muenchen" , 38.0 >,
+< "IP" , "Stuttgart" , 33.0 >,
+< "Muenchen" , "Erlangen" , 32.0 >,
+< "Koeln" , "Hannover" , 30.0 >,
+< "Berlin" , "Muenchen" , 26.0 >,
+< "Berlin" , "Hannover" , 26.0 >,
+< "Essen" , "Hannover" , 22.0 >,
+< "Leipzig" , "Muenchen" , 20.0 >,
+< "Frankfurt" , "Berlin" , 93.0 >,
+< "Leipzig" , "Hamburg" , 20.0 >,
+< "Koeln" , "Hamburg" , 18.0 >,
+< "Muenchen" , "Hannover" , 16.0 >,
+< "Leipzig" , "Stuttgart" , 14.0 >,
+< "Hamburg" , "Essen" , 14.0 >,
+< "Muenchen" , "Hamburg" , 12.0 >,
+< "Koeln" , "Muenchen" , 12.0 >,
+< "Hamburg" , "Berlin" , 12.0 >,
+< "Berlin" , "Essen" , 11.0 >,
+< "Hannover" , "Hamburg" , 10.0 >,
+< "Stuttgart" , "Berlin" , 8.0 >,
+< "Erlangen" , "Berlin" , 8.0 >,
+< "Hannover" , "Stuttgart" , 7.0 >,
+};
+nfailure = 47 ;
+failureset = [ 
+{ "LINK1" }
+{ "LINK2" }
+{ "LINK3" }
+{ "LINK4" }
+{ "LINK5" }
+{ "LINK6" }
+{ "LINK7" }
+{ "LINK8" }
+{ "LINK9" }
+{ "LINK10" }
+{ "LINK11" }
+{ "LINK12" }
+{ "LINK13" }
+{ "LINK14" }
+{ "LINK15" }
+{ "LINK16" }
+{ "LINK17" }
+{ "LINK18" }
+{ "LINK19" }
+{ "LINK20" }
+{ "LINK21" }
+{ "LINK22" }
+{ "LINK23" }
+{ "LINK24" }
+{ "LINK25" }
+{ "LINK26" }
+{ "LINK27" }
+{ "LINK28" }
+{ "LINK29" }
+{ "LINK30" }
+{ "LINK31" }
+{ "LINK32" }
+{ "LINK33" }
+{ "LINK34" }
+{ "LINK35" }
+{ "LINK36" }
+{ "LINK37" }
+{ "LINK38" }
+{ "LINK39" }
+{ "LINK40" }
+{ "LINK41" }
+{ "LINK42" }
+{ "LINK43" }
+{ "LINK44" }
+{ "LINK45" }
+{ "LINK46" }
+{ "LINK47" }
+ ]; 

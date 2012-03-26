@@ -24,9 +24,10 @@ main {
  *
  *--------------------------------------------------------------------------------------------------------------------------*/
 
-var parameter_file    = "params.mod" ;
-var model_define_file = "model.ini"  ;    
-var __ROOT__          = "ROOT" ;
+var parameter_file    = "params.mod"  ;
+var parameter_data    = "params.dat"  ;
+var model_define_file = "model.ini"   ;    
+var __ROOT__          = "ROOT"        ;
 
 
 /////// SETTING NEXT STATE //////////
@@ -83,15 +84,18 @@ function nextState( nextObj , curObj ) {
     var timeMark = timeMarker(); // mark time moment
     this.ncall ++ ; // update number of calling 
 
+	
     cplex.clearModel();
     cplex.tilim = 3600 * 48;  // 2 days solving 
     cplex.epgap = 0.00 ; // full search
 
 
     //cplex.workdir = "/lscratch";
-    cplex.workmem = 1024 * 20  ;
+    cplex.workmem = 1024 * 30  ;
     cplex.nodefileind = 3 ;
     cplex.trelim  = 1024 * 40 ;
+	cplex.intsollim = 2100000000 ;
+	cplex.cutup =1000000000 ;
 
     cplex.parallelmode = -1 ; // opportunistic mode
     cplex.threads = 0 ; // use maximum threads
@@ -246,10 +250,12 @@ function readModelDefinition() {
 
     assertExisted(  model_define_file );
     assertExisted(  parameter_file );
+	assertExisted(  parameter_data );
     assertExisted(  thisOplModel.input );    
 
-    writeln( AVATAR() , " PARAMETER    : " , parameter_file );
-    writeln( AVATAR() , " MODEL DEFINE : " , model_define_file );
+    writeln( AVATAR() , " PARAMETER DEFINITION   : " , parameter_file );
+	writeln( AVATAR() , " PARAMETER DATA         : " , parameter_data );
+    writeln( AVATAR() , " MODEL DEFINE           : " , model_define_file );
     
 
     
@@ -264,6 +270,9 @@ function readModelDefinition() {
     
     // create user data    
     var _userData = new IloOplDataSource( thisOplModel.input); 
+	
+	// create parammeter data
+	var _paramData = new IloOplDataSource( parameter_data ); 
     
     // create system data
     var _sysData = new IloOplDataElements();
@@ -279,6 +288,7 @@ function readModelDefinition() {
     var globalOpl    = new IloOplModel( globalDef , cplex ) ;
     
     globalOpl.addDataSource( _userData );
+	globalOpl.addDataSource( _paramData );
     globalOpl.addDataSource( _sysData  );                
     globalOpl.generate();
             

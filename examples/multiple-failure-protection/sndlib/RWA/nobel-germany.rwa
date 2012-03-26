@@ -1,0 +1,169 @@
+
+
+NODE Hannover ( 9.8 52.39 ) 
+NODE Frankfurt ( 8.66 50.14 ) 
+NODE Hamburg ( 10.08 53.55 ) 
+NODE Norden ( 7.21 53.6 ) 
+NODE Bremen ( 8.8 53.08 ) 
+NODE Berlin ( 13.48 52.52 ) 
+NODE Muenchen ( 11.55 48.15 ) 
+NODE Ulm ( 9.99 48.4 ) 
+NODE Nuernberg ( 11.08 49.45 ) 
+NODE Stuttgart ( 9.12 48.73 ) 
+NODE Karlsruhe ( 8.41 49.01 ) 
+NODE Mannheim ( 8.49 49.49 ) 
+NODE Essen ( 7.0 51.44 ) 
+NODE Dortmund ( 7.48 51.51 ) 
+NODE Duesseldorf ( 6.78 51.22 ) 
+NODE Koeln ( 7.01 50.92 ) 
+NODE Leipzig ( 12.38 51.34 ) 
+
+EDGE L11 ( Berlin Hamburg )
+EDGE L21 ( Berlin Hannover )
+EDGE L31 ( Berlin Leipzig )
+EDGE L41 ( Bremen Hamburg )
+EDGE L51 ( Bremen Hannover )
+EDGE L61 ( Bremen Norden )
+EDGE L71 ( Dortmund Essen )
+EDGE L81 ( Dortmund Hannover )
+EDGE L91 ( Dortmund Koeln )
+EDGE L101 ( Dortmund Norden )
+EDGE L111 ( Duesseldorf Essen )
+EDGE L121 ( Duesseldorf Koeln )
+EDGE L131 ( Frankfurt Hannover )
+EDGE L141 ( Frankfurt Koeln )
+EDGE L151 ( Frankfurt Leipzig )
+EDGE L161 ( Frankfurt Mannheim )
+EDGE L171 ( Frankfurt Nuernberg )
+EDGE L181 ( Hamburg Hannover )
+EDGE L191 ( Hannover Leipzig )
+EDGE L201 ( Karlsruhe Mannheim )
+EDGE L211 ( Karlsruhe Stuttgart )
+EDGE L221 ( Leipzig Nuernberg )
+EDGE L231 ( Muenchen Nuernberg )
+EDGE L241 ( Muenchen Ulm )
+EDGE L251 ( Nuernberg Stuttgart )
+EDGE L261 ( Stuttgart Ulm )
+
+
+REQUEST Berlin Bremen 4.0
+REQUEST Berlin Dortmund 4.0
+REQUEST Berlin Duesseldorf 4.0
+REQUEST Berlin Essen 4.0
+REQUEST Berlin Frankfurt 12.0
+REQUEST Berlin Hamburg 8.0
+REQUEST Berlin Hannover 8.0
+REQUEST Berlin Karlsruhe 2.0
+REQUEST Berlin Koeln 4.0
+REQUEST Berlin Leipzig 14.0
+REQUEST Berlin Mannheim 2.0
+REQUEST Berlin Muenchen 4.0
+REQUEST Berlin Nuernberg 4.0
+REQUEST Berlin Stuttgart 6.0
+REQUEST Berlin Ulm 4.0
+REQUEST Bremen Dortmund 2.0
+REQUEST Bremen Duesseldorf 2.0
+REQUEST Bremen Essen 2.0
+REQUEST Bremen Frankfurt 6.0
+REQUEST Bremen Hamburg 6.0
+REQUEST Bremen Hannover 6.0
+REQUEST Bremen Karlsruhe 2.0
+REQUEST Bremen Koeln 2.0
+REQUEST Bremen Leipzig 4.0
+REQUEST Bremen Mannheim 2.0
+REQUEST Bremen Muenchen 2.0
+REQUEST Bremen Nuernberg 2.0
+REQUEST Bremen Stuttgart 2.0
+REQUEST Bremen Ulm 2.0
+REQUEST Dortmund Duesseldorf 8.0
+REQUEST Dortmund Essen 8.0
+REQUEST Dortmund Frankfurt 10.0
+REQUEST Dortmund Hamburg 4.0
+REQUEST Dortmund Hannover 6.0
+REQUEST Dortmund Karlsruhe 2.0
+REQUEST Dortmund Koeln 6.0
+REQUEST Dortmund Leipzig 6.0
+REQUEST Dortmund Mannheim 2.0
+REQUEST Dortmund Muenchen 4.0
+REQUEST Dortmund Nuernberg 2.0
+REQUEST Dortmund Stuttgart 4.0
+REQUEST Dortmund Ulm 2.0
+REQUEST Duesseldorf Essen 10.0
+REQUEST Duesseldorf Frankfurt 12.0
+REQUEST Duesseldorf Hamburg 4.0
+REQUEST Duesseldorf Hannover 6.0
+REQUEST Duesseldorf Karlsruhe 2.0
+REQUEST Duesseldorf Koeln 12.0
+REQUEST Duesseldorf Leipzig 6.0
+REQUEST Duesseldorf Mannheim 2.0
+REQUEST Duesseldorf Muenchen 4.0
+REQUEST Duesseldorf Nuernberg 4.0
+REQUEST Duesseldorf Stuttgart 4.0
+REQUEST Duesseldorf Ulm 2.0
+REQUEST Essen Frankfurt 8.0
+REQUEST Essen Hamburg 4.0
+REQUEST Essen Hannover 4.0
+REQUEST Essen Karlsruhe 2.0
+REQUEST Essen Koeln 6.0
+REQUEST Essen Leipzig 4.0
+REQUEST Essen Mannheim 2.0
+REQUEST Essen Muenchen 2.0
+REQUEST Essen Nuernberg 2.0
+REQUEST Essen Stuttgart 4.0
+REQUEST Essen Ulm 2.0
+REQUEST Frankfurt Hamburg 12.0
+REQUEST Frankfurt Hannover 14.0
+REQUEST Frankfurt Karlsruhe 4.0
+REQUEST Frankfurt Koeln 12.0
+REQUEST Frankfurt Leipzig 18.0
+REQUEST Frankfurt Mannheim 10.0
+REQUEST Frankfurt Muenchen 10.0
+REQUEST Frankfurt Norden 50.0
+REQUEST Frankfurt Nuernberg 10.0
+REQUEST Frankfurt Stuttgart 14.0
+REQUEST Frankfurt Ulm 8.0
+REQUEST Hamburg Hannover 10.0
+REQUEST Hamburg Karlsruhe 2.0
+REQUEST Hamburg Koeln 4.0
+REQUEST Hamburg Leipzig 8.0
+REQUEST Hamburg Mannheim 2.0
+REQUEST Hamburg Muenchen 4.0
+REQUEST Hamburg Nuernberg 4.0
+REQUEST Hamburg Stuttgart 4.0
+REQUEST Hamburg Ulm 4.0
+REQUEST Hannover Karlsruhe 2.0
+REQUEST Hannover Koeln 6.0
+REQUEST Hannover Leipzig 10.0
+REQUEST Hannover Mannheim 4.0
+REQUEST Hannover Muenchen 4.0
+REQUEST Hannover Nuernberg 4.0
+REQUEST Hannover Stuttgart 6.0
+REQUEST Hannover Ulm 4.0
+REQUEST Karlsruhe Koeln 2.0
+REQUEST Karlsruhe Leipzig 2.0
+REQUEST Karlsruhe Mannheim 2.0
+REQUEST Karlsruhe Muenchen 2.0
+REQUEST Karlsruhe Nuernberg 2.0
+REQUEST Karlsruhe Stuttgart 4.0
+REQUEST Karlsruhe Ulm 2.0
+REQUEST Koeln Leipzig 6.0
+REQUEST Koeln Mannheim 2.0
+REQUEST Koeln Muenchen 4.0
+REQUEST Koeln Nuernberg 4.0
+REQUEST Koeln Stuttgart 4.0
+REQUEST Koeln Ulm 4.0
+REQUEST Leipzig Mannheim 4.0
+REQUEST Leipzig Muenchen 8.0
+REQUEST Leipzig Nuernberg 6.0
+REQUEST Leipzig Stuttgart 8.0
+REQUEST Leipzig Ulm 6.0
+REQUEST Mannheim Muenchen 2.0
+REQUEST Mannheim Nuernberg 2.0
+REQUEST Mannheim Stuttgart 4.0
+REQUEST Mannheim Ulm 2.0
+REQUEST Muenchen Nuernberg 6.0
+REQUEST Muenchen Stuttgart 6.0
+REQUEST Muenchen Ulm 6.0
+REQUEST Nuernberg Stuttgart 6.0
+REQUEST Nuernberg Ulm 4.0
+REQUEST Stuttgart Ulm 8.0

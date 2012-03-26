@@ -1,0 +1,173 @@
+
+
+NODE Leipzig ( 12.3797 51.3384 ) 
+NODE Hamburg ( 9.98792 53.5624 ) 
+NODE Hannover ( 9.72435 52.3798 ) 
+NODE Stuttgart ( 9.09565 48.7424 ) 
+NODE Muenchen ( 11.6718 48.2651 ) 
+NODE Koeln ( 7.19069 50.7725 ) 
+NODE Erlangen ( 11.0262 49.5737 ) 
+NODE Berlin ( 13.2944 52.4558 ) 
+NODE Essen ( 7.00796 51.4674 ) 
+NODE Frankfurt ( 8.72819 50.1172 ) 
+NODE IP ( 7.21 53.6 ) 
+
+EDGE Berlin_Leipzig1 ( Leipzig Berlin )
+EDGE Koeln_Leipzig1 ( Leipzig Koeln )
+EDGE Leipzig_Muenchen1 ( Leipzig Muenchen )
+EDGE Essen_Hamburg1 ( Hamburg Essen )
+EDGE Berlin_Hamburg1 ( Hamburg Berlin )
+EDGE Erlangen_Hamburg1 ( Hamburg Erlangen )
+EDGE Hamburg_Stuttgart1 ( Hamburg Stuttgart )
+EDGE Hamburg_Muenchen1 ( Hamburg Muenchen )
+EDGE Frankfurt_Hannover1 ( Hannover Frankfurt )
+EDGE Essen_Hannover1 ( Hannover Essen )
+EDGE Hannover_Koeln1 ( Hannover Koeln )
+EDGE Essen_Stuttgart1 ( Stuttgart Essen )
+EDGE Erlangen_Stuttgart1 ( Stuttgart Erlangen )
+EDGE Koeln_Stuttgart1 ( Stuttgart Koeln )
+EDGE Essen_Muenchen1 ( Muenchen Essen )
+EDGE Berlin_Muenchen1 ( Muenchen Berlin )
+EDGE Erlangen_Muenchen1 ( Muenchen Erlangen )
+EDGE Erlangen_Koeln1 ( Koeln Erlangen )
+EDGE Erlangen_Frankfurt1 ( Erlangen Frankfurt )
+EDGE Berlin_Essen1 ( Berlin Essen )
+EDGE Frankfurt_IP1 ( IP Frankfurt )
+EDGE Hannover_IP1 ( IP Hannover )
+EDGE Essen_Leipzig1 ( Leipzig Essen )
+EDGE Erlangen_Leipzig1 ( Leipzig Erlangen )
+EDGE Leipzig_Stuttgart1 ( Leipzig Stuttgart )
+EDGE Hannover_Leipzig1 ( Leipzig Hannover )
+EDGE Hamburg_Leipzig1 ( Leipzig Hamburg )
+EDGE Frankfurt_Leipzig1 ( Leipzig Frankfurt )
+EDGE Frankfurt_Hamburg1 ( Hamburg Frankfurt )
+EDGE Hamburg_Koeln1 ( Hamburg Koeln )
+EDGE Hamburg_Hannover1 ( Hamburg Hannover )
+EDGE Berlin_Hannover1 ( Hannover Berlin )
+EDGE Erlangen_Hannover1 ( Hannover Erlangen )
+EDGE Hannover_Muenchen1 ( Hannover Muenchen )
+EDGE Hannover_Stuttgart1 ( Hannover Stuttgart )
+EDGE Frankfurt_Stuttgart1 ( Stuttgart Frankfurt )
+EDGE Berlin_Stuttgart1 ( Stuttgart Berlin )
+EDGE Muenchen_Stuttgart1 ( Stuttgart Muenchen )
+EDGE Frankfurt_Muenchen1 ( Muenchen Frankfurt )
+EDGE Koeln_Muenchen1 ( Muenchen Koeln )
+EDGE Frankfurt_Koeln1 ( Koeln Frankfurt )
+EDGE Essen_Koeln1 ( Koeln Essen )
+EDGE Berlin_Koeln1 ( Koeln Berlin )
+EDGE Erlangen_Essen1 ( Erlangen Essen )
+EDGE Berlin_Erlangen1 ( Erlangen Berlin )
+EDGE Berlin_Frankfurt1 ( Berlin Frankfurt )
+EDGE Essen_Frankfurt1 ( Essen Frankfurt )
+
+
+REQUEST Frankfurt Essen 109.0
+REQUEST IP Berlin 85.0
+REQUEST Koeln Stuttgart 5.0
+REQUEST Essen Stuttgart 5.0
+REQUEST Essen Erlangen 5.0
+REQUEST Erlangen Leipzig 5.0
+REQUEST Erlangen Koeln 5.0
+REQUEST Erlangen Essen 5.0
+REQUEST Stuttgart Koeln 4.0
+REQUEST Stuttgart Hamburg 4.0
+REQUEST Stuttgart Erlangen 4.0
+REQUEST Erlangen Hannover 4.0
+REQUEST IP Leipzig 82.0
+REQUEST Erlangen Hamburg 4.0
+REQUEST Muenchen Frankfurt 82.0
+REQUEST IP Hamburg 79.0
+REQUEST Essen Frankfurt 79.0
+REQUEST Hamburg Stuttgart 77.0
+REQUEST Hamburg Frankfurt 73.0
+REQUEST IP Koeln 69.0
+REQUEST Frankfurt Hannover 67.0
+REQUEST Leipzig IP 65.0
+REQUEST Koeln Frankfurt 100.0
+REQUEST Frankfurt Erlangen 65.0
+REQUEST Koeln IP 63.0
+REQUEST Berlin Leipzig 63.0
+REQUEST Berlin IP 62.0
+REQUEST Hamburg IP 61.0
+REQUEST Frankfurt Muenchen 59.0
+REQUEST Frankfurt Stuttgart 58.0
+REQUEST IP Hannover 56.0
+REQUEST Essen IP 56.0
+REQUEST Hannover Frankfurt 55.0
+REQUEST Leipzig Frankfurt 99.0
+REQUEST Muenchen IP 54.0
+REQUEST Berlin Koeln 50.0
+REQUEST Koeln Leipzig 49.0
+REQUEST IP Erlangen 48.0
+REQUEST Essen Leipzig 48.0
+REQUEST Essen Koeln 48.0
+REQUEST Leipzig Hannover 45.0
+REQUEST IP Muenchen 44.0
+REQUEST Muenchen Stuttgart 40.0
+REQUEST IP Frankfurt 38.0
+REQUEST IP Essen 98.0
+REQUEST Essen Muenchen 38.0
+REQUEST Koeln Essen 36.0
+REQUEST Stuttgart Frankfurt 35.0
+REQUEST IP Stuttgart 33.0
+REQUEST Hannover IP 33.0
+REQUEST Muenchen Erlangen 32.0
+REQUEST Leipzig Berlin 32.0
+REQUEST Koeln Hannover 30.0
+REQUEST Stuttgart IP 29.0
+REQUEST Erlangen Frankfurt 29.0
+REQUEST Frankfurt Leipzig 98.0
+REQUEST Leipzig Essen 28.0
+REQUEST Berlin Muenchen 26.0
+REQUEST Berlin Hannover 26.0
+REQUEST Muenchen Berlin 24.0
+REQUEST Frankfurt IP 23.0
+REQUEST Erlangen IP 23.0
+REQUEST Muenchen Essen 22.0
+REQUEST Essen Hannover 22.0
+REQUEST Hamburg Erlangen 21.0
+REQUEST Leipzig Muenchen 20.0
+REQUEST Frankfurt Berlin 93.0
+REQUEST Leipzig Hamburg 20.0
+REQUEST Hannover Essen 19.0
+REQUEST Erlangen Stuttgart 19.0
+REQUEST Leipzig Koeln 18.0
+REQUEST Koeln Hamburg 18.0
+REQUEST Muenchen Hannover 16.0
+REQUEST Leipzig Erlangen 16.0
+REQUEST Muenchen Leipzig 15.0
+REQUEST Leipzig Stuttgart 14.0
+REQUEST Hamburg Essen 14.0
+REQUEST Berlin Frankfurt 93.0
+REQUEST Essen Hamburg 14.0
+REQUEST Hannover Leipzig 13.0
+REQUEST Hannover Erlangen 13.0
+REQUEST Hannover Berlin 13.0
+REQUEST Muenchen Hamburg 12.0
+REQUEST Koeln Muenchen 12.0
+REQUEST Koeln Berlin 12.0
+REQUEST Hamburg Berlin 12.0
+REQUEST Erlangen Muenchen 12.0
+REQUEST Berlin Hamburg 12.0
+REQUEST Frankfurt Koeln 92.0
+REQUEST Muenchen Koeln 11.0
+REQUEST Hamburg Koeln 11.0
+REQUEST Berlin Essen 11.0
+REQUEST Hannover Muenchen 10.0
+REQUEST Hannover Koeln 10.0
+REQUEST Hannover Hamburg 10.0
+REQUEST Hamburg Muenchen 10.0
+REQUEST Hamburg Leipzig 10.0
+REQUEST Hamburg Hannover 10.0
+REQUEST Essen Berlin 10.0
+REQUEST Frankfurt Hamburg 92.0
+REQUEST Stuttgart Berlin 8.0
+REQUEST Erlangen Berlin 8.0
+REQUEST Berlin Erlangen 8.0
+REQUEST Koeln Erlangen 7.0
+REQUEST Hannover Stuttgart 7.0
+REQUEST Berlin Stuttgart 7.0
+REQUEST Stuttgart Muenchen 6.0
+REQUEST Stuttgart Leipzig 6.0
+REQUEST Stuttgart Hannover 6.0
+REQUEST Stuttgart Essen 5.0

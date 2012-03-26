@@ -1,0 +1,805 @@
+
+
+NODE Aachen ( 6.04 50.76 ) 
+NODE Augsburg ( 10.9 48.33 ) 
+NODE Bayreuth ( 11.59 49.93 ) 
+NODE Berlin ( 13.39 52.52 ) 
+NODE Bielefeld ( 8.5 52.04 ) 
+NODE Braunschweig ( 10.55 52.28 ) 
+NODE Bremen ( 8.85 53.11 ) 
+NODE Bremerhaven ( 8.58 53.54 ) 
+NODE Chemnitz ( 12.93 50.84 ) 
+NODE Darmstadt ( 8.65 49.89 ) 
+NODE Dortmund ( 7.45 51.51 ) 
+NODE Dresden ( 13.73 51.03 ) 
+NODE Duesseldorf ( 6.77 51.25 ) 
+NODE Erfurt ( 11.04 50.98 ) 
+NODE Essen ( 7.02 51.46 ) 
+NODE Flensburg ( 9.45 54.77 ) 
+NODE Frankfurt ( 8.71 50.12 ) 
+NODE Freiburg ( 7.8 47.98 ) 
+NODE Fulda ( 9.69 50.56 ) 
+NODE Giessen ( 8.67 50.57 ) 
+NODE Greifswald ( 13.4 54.09 ) 
+NODE Hamburg ( 9.99 53.57 ) 
+NODE Hannover ( 9.72 52.38 ) 
+NODE Kaiserslautern ( 7.75 49.43 ) 
+NODE Karlsruhe ( 8.41 49.01 ) 
+NODE Kassel ( 9.51 51.32 ) 
+NODE Kempten ( 10.32 47.72 ) 
+NODE Kiel ( 10.12 54.34 ) 
+NODE Koblenz ( 7.52 50.4 ) 
+NODE Koeln ( 6.87 50.94 ) 
+NODE Konstanz ( 9.18 47.66 ) 
+NODE Leipzig ( 12.38 51.34 ) 
+NODE Magdeburg ( 11.64 52.14 ) 
+NODE Mannheim ( 8.49 49.49 ) 
+NODE Muenchen ( 11.57 48.15 ) 
+NODE Muenster ( 7.6 51.97 ) 
+NODE Norden ( 7.21 53.6 ) 
+NODE Nuernberg ( 11.03 49.57 ) 
+NODE Oldenburg ( 8.21 53.11 ) 
+NODE Osnabrueck ( 8.03 52.28 ) 
+NODE Passau ( 13.46 48.57 ) 
+NODE Regensburg ( 12.09 49.0 ) 
+NODE Saarbruecken ( 7.03 49.23 ) 
+NODE Schwerin ( 11.45 53.55 ) 
+NODE Siegen ( 8.03 50.91 ) 
+NODE Stuttgart ( 9.1 48.74 ) 
+NODE Trier ( 6.68 49.75 ) 
+NODE Ulm ( 9.99 48.4 ) 
+NODE Wesel ( 6.37 51.39 ) 
+NODE Wuerzburg ( 9.97 49.78 ) 
+
+EDGE L11 ( Duesseldorf Essen )
+EDGE L21 ( Dortmund Essen )
+EDGE L31 ( Wesel Essen )
+EDGE L41 ( Koeln Duesseldorf )
+EDGE L51 ( Aachen Koeln )
+EDGE L61 ( Koblenz Koeln )
+EDGE L71 ( Muenster Dortmund )
+EDGE L81 ( Siegen Dortmund )
+EDGE L91 ( Kassel Dortmund )
+EDGE L101 ( Wesel Aachen )
+EDGE L111 ( Trier Aachen )
+EDGE L121 ( Bielefeld Muenster )
+EDGE L131 ( Osnabrueck Muenster )
+EDGE L141 ( Siegen Koblenz )
+EDGE L151 ( Frankfurt Koblenz )
+EDGE L161 ( Kaiserslautern Koblenz )
+EDGE L171 ( Trier Koblenz )
+EDGE L181 ( Bielefeld Siegen )
+EDGE L191 ( Giessen Siegen )
+EDGE L201 ( Oldenburg Wesel )
+EDGE L211 ( Norden Wesel )
+EDGE L221 ( Leipzig Berlin )
+EDGE L231 ( Dresden Berlin )
+EDGE L241 ( Schwerin Berlin )
+EDGE L251 ( Magdeburg Berlin )
+EDGE L261 ( Greifswald Berlin )
+EDGE L271 ( Dresden Leipzig )
+EDGE L281 ( Erfurt Leipzig )
+EDGE L291 ( Magdeburg Leipzig )
+EDGE L301 ( Bayreuth Leipzig )
+EDGE L311 ( Erfurt Dresden )
+EDGE L321 ( Chemnitz Dresden )
+EDGE L331 ( Chemnitz Erfurt )
+EDGE L341 ( Kassel Erfurt )
+EDGE L351 ( Wuerzburg Erfurt )
+EDGE L361 ( Bayreuth Chemnitz )
+EDGE L371 ( Magdeburg Schwerin )
+EDGE L381 ( Greifswald Schwerin )
+EDGE L391 ( Hamburg Schwerin )
+EDGE L401 ( Kiel Schwerin )
+EDGE L411 ( Braunschweig Magdeburg )
+EDGE L421 ( Kiel Hamburg )
+EDGE L431 ( Hannover Hamburg )
+EDGE L441 ( Braunschweig Hamburg )
+EDGE L451 ( Oldenburg Bremen )
+EDGE L461 ( Bremerhaven Bremen )
+EDGE L471 ( Hannover Bremen )
+EDGE L481 ( Flensburg Kiel )
+EDGE L491 ( Norden Oldenburg )
+EDGE L501 ( Osnabrueck Oldenburg )
+EDGE L511 ( Bremerhaven Flensburg )
+EDGE L521 ( Bielefeld Hannover )
+EDGE L531 ( Braunschweig Hannover )
+EDGE L541 ( Osnabrueck Hannover )
+EDGE L551 ( Braunschweig Bielefeld )
+EDGE L561 ( Kassel Braunschweig )
+EDGE L571 ( Giessen Kassel )
+EDGE L581 ( Fulda Kassel )
+EDGE L591 ( Darmstadt Frankfurt )
+EDGE L601 ( Giessen Frankfurt )
+EDGE L611 ( Fulda Frankfurt )
+EDGE L621 ( Mannheim Darmstadt )
+EDGE L631 ( Kaiserslautern Darmstadt )
+EDGE L641 ( Karlsruhe Mannheim )
+EDGE L651 ( Saarbruecken Kaiserslautern )
+EDGE L661 ( Karlsruhe Kaiserslautern )
+EDGE L671 ( Fulda Giessen )
+EDGE L681 ( Saarbruecken Trier )
+EDGE L691 ( Wuerzburg Fulda )
+EDGE L701 ( Karlsruhe Saarbruecken )
+EDGE L711 ( Karlsruhe Stuttgart )
+EDGE L721 ( Ulm Stuttgart )
+EDGE L731 ( Konstanz Stuttgart )
+EDGE L741 ( Wuerzburg Stuttgart )
+EDGE L751 ( Freiburg Karlsruhe )
+EDGE L761 ( Augsburg Ulm )
+EDGE L771 ( Freiburg Konstanz )
+EDGE L781 ( Kempten Konstanz )
+EDGE L791 ( Augsburg Muenchen )
+EDGE L801 ( Kempten Muenchen )
+EDGE L811 ( Passau Muenchen )
+EDGE L821 ( Nuernberg Muenchen )
+EDGE L831 ( Regensburg Muenchen )
+EDGE L841 ( Wuerzburg Augsburg )
+EDGE L851 ( Regensburg Passau )
+EDGE L861 ( Bayreuth Nuernberg )
+EDGE L871 ( Wuerzburg Nuernberg )
+EDGE L881 ( Regensburg Nuernberg )
+
+
+REQUEST Essen Duesseldorf 34.0
+REQUEST Essen Koeln 9.0
+REQUEST Essen Dortmund 9.0
+REQUEST Essen Aachen 2.0
+REQUEST Essen Muenster 2.0
+REQUEST Essen Koblenz 2.0
+REQUEST Essen Siegen 2.0
+REQUEST Essen Wesel 2.0
+REQUEST Essen Berlin 2.0
+REQUEST Essen Leipzig 2.0
+REQUEST Essen Dresden 2.0
+REQUEST Essen Erfurt 2.0
+REQUEST Essen Chemnitz 2.0
+REQUEST Essen Schwerin 2.0
+REQUEST Essen Magdeburg 2.0
+REQUEST Essen Hamburg 2.0
+REQUEST Essen Bremen 2.0
+REQUEST Essen Kiel 2.0
+REQUEST Essen Norden 2.0
+REQUEST Essen Hannover 2.0
+REQUEST Essen Bielefeld 2.0
+REQUEST Essen Osnabrueck 2.0
+REQUEST Essen Frankfurt 2.0
+REQUEST Essen Darmstadt 2.0
+REQUEST Essen Mannheim 2.0
+REQUEST Essen Saarbruecken 2.0
+REQUEST Essen Stuttgart 2.0
+REQUEST Essen Karlsruhe 2.0
+REQUEST Essen Muenchen 2.0
+REQUEST Essen Augsburg 2.0
+REQUEST Essen Nuernberg 2.0
+REQUEST Essen Wuerzburg 2.0
+REQUEST Duesseldorf Koeln 76.0
+REQUEST Duesseldorf Dortmund 25.0
+REQUEST Duesseldorf Aachen 3.0
+REQUEST Duesseldorf Muenster 6.0
+REQUEST Duesseldorf Koblenz 2.0
+REQUEST Duesseldorf Siegen 2.0
+REQUEST Duesseldorf Wesel 5.0
+REQUEST Duesseldorf Berlin 4.0
+REQUEST Duesseldorf Leipzig 2.0
+REQUEST Duesseldorf Dresden 2.0
+REQUEST Duesseldorf Erfurt 2.0
+REQUEST Duesseldorf Schwerin 2.0
+REQUEST Duesseldorf Magdeburg 2.0
+REQUEST Duesseldorf Greifswald 2.0
+REQUEST Duesseldorf Hamburg 15.0
+REQUEST Duesseldorf Bremen 2.0
+REQUEST Duesseldorf Kiel 2.0
+REQUEST Duesseldorf Oldenburg 2.0
+REQUEST Duesseldorf Flensburg 2.0
+REQUEST Duesseldorf Bremerhaven 2.0
+REQUEST Duesseldorf Norden 2.0
+REQUEST Duesseldorf Hannover 19.0
+REQUEST Duesseldorf Bielefeld 4.0
+REQUEST Duesseldorf Braunschweig 2.0
+REQUEST Duesseldorf Osnabrueck 2.0
+REQUEST Duesseldorf Kassel 2.0
+REQUEST Duesseldorf Frankfurt 33.0
+REQUEST Duesseldorf Darmstadt 2.0
+REQUEST Duesseldorf Mannheim 2.0
+REQUEST Duesseldorf Giessen 2.0
+REQUEST Duesseldorf Trier 2.0
+REQUEST Duesseldorf Fulda 2.0
+REQUEST Duesseldorf Saarbruecken 2.0
+REQUEST Duesseldorf Stuttgart 5.0
+REQUEST Duesseldorf Karlsruhe 2.0
+REQUEST Duesseldorf Ulm 2.0
+REQUEST Duesseldorf Freiburg 2.0
+REQUEST Duesseldorf Muenchen 4.0
+REQUEST Duesseldorf Augsburg 2.0
+REQUEST Duesseldorf Nuernberg 2.0
+REQUEST Duesseldorf Wuerzburg 2.0
+REQUEST Duesseldorf Regensburg 2.0
+REQUEST Koeln Dortmund 13.0
+REQUEST Koeln Aachen 10.0
+REQUEST Koeln Muenster 2.0
+REQUEST Koeln Koblenz 5.0
+REQUEST Koeln Siegen 4.0
+REQUEST Koeln Wesel 2.0
+REQUEST Koeln Berlin 11.0
+REQUEST Koeln Leipzig 3.0
+REQUEST Koeln Dresden 2.0
+REQUEST Koeln Erfurt 2.0
+REQUEST Koeln Chemnitz 2.0
+REQUEST Koeln Schwerin 2.0
+REQUEST Koeln Magdeburg 2.0
+REQUEST Koeln Hamburg 5.0
+REQUEST Koeln Bremen 2.0
+REQUEST Koeln Kiel 2.0
+REQUEST Koeln Oldenburg 2.0
+REQUEST Koeln Bremerhaven 2.0
+REQUEST Koeln Norden 2.0
+REQUEST Koeln Hannover 12.0
+REQUEST Koeln Bielefeld 2.0
+REQUEST Koeln Braunschweig 2.0
+REQUEST Koeln Osnabrueck 2.0
+REQUEST Koeln Kassel 2.0
+REQUEST Koeln Frankfurt 28.0
+REQUEST Koeln Darmstadt 2.0
+REQUEST Koeln Mannheim 2.0
+REQUEST Koeln Kaiserslautern 2.0
+REQUEST Koeln Giessen 2.0
+REQUEST Koeln Trier 5.0
+REQUEST Koeln Fulda 2.0
+REQUEST Koeln Saarbruecken 2.0
+REQUEST Koeln Stuttgart 7.0
+REQUEST Koeln Karlsruhe 2.0
+REQUEST Koeln Ulm 2.0
+REQUEST Koeln Konstanz 2.0
+REQUEST Koeln Freiburg 2.0
+REQUEST Koeln Muenchen 3.0
+REQUEST Koeln Augsburg 2.0
+REQUEST Koeln Kempten 2.0
+REQUEST Koeln Nuernberg 3.0
+REQUEST Koeln Bayreuth 2.0
+REQUEST Koeln Wuerzburg 2.0
+REQUEST Koeln Regensburg 2.0
+REQUEST Dortmund Aachen 2.0
+REQUEST Dortmund Muenster 6.0
+REQUEST Dortmund Koblenz 2.0
+REQUEST Dortmund Siegen 5.0
+REQUEST Dortmund Wesel 2.0
+REQUEST Dortmund Berlin 2.0
+REQUEST Dortmund Leipzig 5.0
+REQUEST Dortmund Dresden 2.0
+REQUEST Dortmund Erfurt 2.0
+REQUEST Dortmund Chemnitz 2.0
+REQUEST Dortmund Schwerin 2.0
+REQUEST Dortmund Magdeburg 2.0
+REQUEST Dortmund Greifswald 2.0
+REQUEST Dortmund Hamburg 3.0
+REQUEST Dortmund Bremen 2.0
+REQUEST Dortmund Kiel 2.0
+REQUEST Dortmund Oldenburg 2.0
+REQUEST Dortmund Flensburg 2.0
+REQUEST Dortmund Bremerhaven 2.0
+REQUEST Dortmund Norden 2.0
+REQUEST Dortmund Hannover 15.0
+REQUEST Dortmund Bielefeld 8.0
+REQUEST Dortmund Braunschweig 2.0
+REQUEST Dortmund Osnabrueck 2.0
+REQUEST Dortmund Kassel 2.0
+REQUEST Dortmund Frankfurt 6.0
+REQUEST Dortmund Darmstadt 2.0
+REQUEST Dortmund Mannheim 2.0
+REQUEST Dortmund Giessen 2.0
+REQUEST Dortmund Fulda 2.0
+REQUEST Dortmund Saarbruecken 2.0
+REQUEST Dortmund Stuttgart 2.0
+REQUEST Dortmund Karlsruhe 2.0
+REQUEST Dortmund Ulm 2.0
+REQUEST Dortmund Freiburg 2.0
+REQUEST Dortmund Muenchen 2.0
+REQUEST Dortmund Augsburg 2.0
+REQUEST Dortmund Nuernberg 2.0
+REQUEST Dortmund Wuerzburg 2.0
+REQUEST Aachen Muenster 2.0
+REQUEST Aachen Koblenz 2.0
+REQUEST Aachen Wesel 2.0
+REQUEST Aachen Berlin 2.0
+REQUEST Aachen Dresden 2.0
+REQUEST Aachen Erfurt 2.0
+REQUEST Aachen Hamburg 2.0
+REQUEST Aachen Bremerhaven 2.0
+REQUEST Aachen Norden 2.0
+REQUEST Aachen Osnabrueck 2.0
+REQUEST Aachen Frankfurt 3.0
+REQUEST Aachen Kaiserslautern 2.0
+REQUEST Aachen Trier 2.0
+REQUEST Aachen Fulda 2.0
+REQUEST Aachen Saarbruecken 2.0
+REQUEST Aachen Konstanz 2.0
+REQUEST Aachen Freiburg 3.0
+REQUEST Aachen Nuernberg 2.0
+REQUEST Muenster Siegen 2.0
+REQUEST Muenster Wesel 2.0
+REQUEST Muenster Berlin 2.0
+REQUEST Muenster Schwerin 2.0
+REQUEST Muenster Hamburg 2.0
+REQUEST Muenster Bremen 2.0
+REQUEST Muenster Bremerhaven 2.0
+REQUEST Muenster Norden 2.0
+REQUEST Muenster Hannover 2.0
+REQUEST Muenster Bielefeld 5.0
+REQUEST Muenster Osnabrueck 2.0
+REQUEST Muenster Kassel 3.0
+REQUEST Muenster Frankfurt 3.0
+REQUEST Muenster Fulda 2.0
+REQUEST Muenster Konstanz 2.0
+REQUEST Muenster Nuernberg 2.0
+REQUEST Koblenz Siegen 2.0
+REQUEST Koblenz Berlin 2.0
+REQUEST Koblenz Dresden 2.0
+REQUEST Koblenz Hamburg 2.0
+REQUEST Koblenz Bremerhaven 2.0
+REQUEST Koblenz Norden 2.0
+REQUEST Koblenz Bielefeld 2.0
+REQUEST Koblenz Osnabrueck 2.0
+REQUEST Koblenz Kassel 2.0
+REQUEST Koblenz Frankfurt 2.0
+REQUEST Koblenz Darmstadt 6.0
+REQUEST Koblenz Mannheim 2.0
+REQUEST Koblenz Kaiserslautern 2.0
+REQUEST Koblenz Giessen 2.0
+REQUEST Koblenz Trier 2.0
+REQUEST Koblenz Fulda 2.0
+REQUEST Koblenz Saarbruecken 2.0
+REQUEST Koblenz Konstanz 2.0
+REQUEST Koblenz Wuerzburg 2.0
+REQUEST Siegen Berlin 2.0
+REQUEST Siegen Hamburg 2.0
+REQUEST Siegen Bremerhaven 2.0
+REQUEST Siegen Osnabrueck 2.0
+REQUEST Siegen Frankfurt 2.0
+REQUEST Siegen Mannheim 2.0
+REQUEST Siegen Giessen 2.0
+REQUEST Siegen Fulda 2.0
+REQUEST Siegen Saarbruecken 2.0
+REQUEST Siegen Konstanz 2.0
+REQUEST Siegen Nuernberg 2.0
+REQUEST Wesel Berlin 2.0
+REQUEST Wesel Hamburg 2.0
+REQUEST Wesel Bremerhaven 2.0
+REQUEST Wesel Norden 2.0
+REQUEST Wesel Bielefeld 2.0
+REQUEST Wesel Osnabrueck 2.0
+REQUEST Wesel Frankfurt 2.0
+REQUEST Wesel Fulda 2.0
+REQUEST Wesel Saarbruecken 2.0
+REQUEST Wesel Konstanz 2.0
+REQUEST Berlin Leipzig 20.0
+REQUEST Berlin Dresden 11.0
+REQUEST Berlin Erfurt 3.0
+REQUEST Berlin Chemnitz 2.0
+REQUEST Berlin Schwerin 3.0
+REQUEST Berlin Magdeburg 7.0
+REQUEST Berlin Greifswald 4.0
+REQUEST Berlin Hamburg 23.0
+REQUEST Berlin Bremen 2.0
+REQUEST Berlin Kiel 2.0
+REQUEST Berlin Oldenburg 2.0
+REQUEST Berlin Bremerhaven 2.0
+REQUEST Berlin Hannover 25.0
+REQUEST Berlin Bielefeld 2.0
+REQUEST Berlin Braunschweig 2.0
+REQUEST Berlin Osnabrueck 2.0
+REQUEST Berlin Kassel 2.0
+REQUEST Berlin Frankfurt 16.0
+REQUEST Berlin Darmstadt 2.0
+REQUEST Berlin Mannheim 2.0
+REQUEST Berlin Kaiserslautern 2.0
+REQUEST Berlin Giessen 2.0
+REQUEST Berlin Trier 2.0
+REQUEST Berlin Fulda 2.0
+REQUEST Berlin Saarbruecken 2.0
+REQUEST Berlin Stuttgart 3.0
+REQUEST Berlin Karlsruhe 2.0
+REQUEST Berlin Ulm 2.0
+REQUEST Berlin Konstanz 2.0
+REQUEST Berlin Freiburg 2.0
+REQUEST Berlin Muenchen 4.0
+REQUEST Berlin Augsburg 2.0
+REQUEST Berlin Passau 2.0
+REQUEST Berlin Nuernberg 3.0
+REQUEST Berlin Bayreuth 2.0
+REQUEST Berlin Wuerzburg 2.0
+REQUEST Leipzig Dresden 10.0
+REQUEST Leipzig Erfurt 11.0
+REQUEST Leipzig Chemnitz 3.0
+REQUEST Leipzig Schwerin 2.0
+REQUEST Leipzig Magdeburg 6.0
+REQUEST Leipzig Greifswald 2.0
+REQUEST Leipzig Hamburg 17.0
+REQUEST Leipzig Hannover 3.0
+REQUEST Leipzig Bielefeld 2.0
+REQUEST Leipzig Braunschweig 2.0
+REQUEST Leipzig Frankfurt 4.0
+REQUEST Leipzig Darmstadt 2.0
+REQUEST Leipzig Mannheim 2.0
+REQUEST Leipzig Stuttgart 2.0
+REQUEST Leipzig Karlsruhe 2.0
+REQUEST Leipzig Ulm 2.0
+REQUEST Leipzig Muenchen 3.0
+REQUEST Leipzig Augsburg 2.0
+REQUEST Leipzig Nuernberg 9.0
+REQUEST Leipzig Wuerzburg 2.0
+REQUEST Dresden Erfurt 2.0
+REQUEST Dresden Chemnitz 4.0
+REQUEST Dresden Schwerin 2.0
+REQUEST Dresden Magdeburg 2.0
+REQUEST Dresden Greifswald 2.0
+REQUEST Dresden Hamburg 2.0
+REQUEST Dresden Bremen 2.0
+REQUEST Dresden Kiel 2.0
+REQUEST Dresden Norden 2.0
+REQUEST Dresden Hannover 2.0
+REQUEST Dresden Bielefeld 2.0
+REQUEST Dresden Braunschweig 2.0
+REQUEST Dresden Kassel 2.0
+REQUEST Dresden Frankfurt 2.0
+REQUEST Dresden Darmstadt 2.0
+REQUEST Dresden Mannheim 2.0
+REQUEST Dresden Trier 2.0
+REQUEST Dresden Stuttgart 2.0
+REQUEST Dresden Karlsruhe 2.0
+REQUEST Dresden Ulm 2.0
+REQUEST Dresden Konstanz 2.0
+REQUEST Dresden Freiburg 2.0
+REQUEST Dresden Muenchen 2.0
+REQUEST Dresden Augsburg 2.0
+REQUEST Dresden Nuernberg 2.0
+REQUEST Dresden Bayreuth 2.0
+REQUEST Dresden Wuerzburg 2.0
+REQUEST Dresden Regensburg 2.0
+REQUEST Erfurt Chemnitz 2.0
+REQUEST Erfurt Schwerin 2.0
+REQUEST Erfurt Magdeburg 6.0
+REQUEST Erfurt Hamburg 2.0
+REQUEST Erfurt Bremen 2.0
+REQUEST Erfurt Kiel 2.0
+REQUEST Erfurt Hannover 2.0
+REQUEST Erfurt Bielefeld 2.0
+REQUEST Erfurt Braunschweig 2.0
+REQUEST Erfurt Kassel 2.0
+REQUEST Erfurt Frankfurt 5.0
+REQUEST Erfurt Darmstadt 2.0
+REQUEST Erfurt Mannheim 2.0
+REQUEST Erfurt Giessen 2.0
+REQUEST Erfurt Fulda 2.0
+REQUEST Erfurt Stuttgart 2.0
+REQUEST Erfurt Karlsruhe 2.0
+REQUEST Erfurt Muenchen 2.0
+REQUEST Erfurt Augsburg 2.0
+REQUEST Erfurt Nuernberg 2.0
+REQUEST Erfurt Bayreuth 2.0
+REQUEST Erfurt Wuerzburg 2.0
+REQUEST Chemnitz Schwerin 2.0
+REQUEST Chemnitz Magdeburg 2.0
+REQUEST Chemnitz Hamburg 2.0
+REQUEST Chemnitz Hannover 2.0
+REQUEST Chemnitz Bielefeld 2.0
+REQUEST Chemnitz Braunschweig 2.0
+REQUEST Chemnitz Frankfurt 2.0
+REQUEST Chemnitz Mannheim 2.0
+REQUEST Chemnitz Giessen 2.0
+REQUEST Chemnitz Stuttgart 2.0
+REQUEST Chemnitz Karlsruhe 2.0
+REQUEST Chemnitz Muenchen 2.0
+REQUEST Chemnitz Augsburg 2.0
+REQUEST Chemnitz Nuernberg 2.0
+REQUEST Chemnitz Bayreuth 2.0
+REQUEST Chemnitz Wuerzburg 2.0
+REQUEST Schwerin Magdeburg 2.0
+REQUEST Schwerin Greifswald 2.0
+REQUEST Schwerin Hamburg 8.0
+REQUEST Schwerin Bremen 2.0
+REQUEST Schwerin Kiel 3.0
+REQUEST Schwerin Hannover 2.0
+REQUEST Schwerin Bielefeld 2.0
+REQUEST Schwerin Frankfurt 2.0
+REQUEST Schwerin Mannheim 2.0
+REQUEST Schwerin Stuttgart 2.0
+REQUEST Schwerin Karlsruhe 2.0
+REQUEST Schwerin Muenchen 2.0
+REQUEST Schwerin Augsburg 2.0
+REQUEST Schwerin Nuernberg 2.0
+REQUEST Schwerin Wuerzburg 2.0
+REQUEST Magdeburg Greifswald 2.0
+REQUEST Magdeburg Hamburg 2.0
+REQUEST Magdeburg Bremen 2.0
+REQUEST Magdeburg Kiel 2.0
+REQUEST Magdeburg Hannover 2.0
+REQUEST Magdeburg Bielefeld 2.0
+REQUEST Magdeburg Braunschweig 3.0
+REQUEST Magdeburg Frankfurt 2.0
+REQUEST Magdeburg Mannheim 2.0
+REQUEST Magdeburg Stuttgart 2.0
+REQUEST Magdeburg Karlsruhe 2.0
+REQUEST Magdeburg Muenchen 2.0
+REQUEST Magdeburg Augsburg 2.0
+REQUEST Magdeburg Nuernberg 2.0
+REQUEST Magdeburg Bayreuth 2.0
+REQUEST Magdeburg Wuerzburg 2.0
+REQUEST Greifswald Hamburg 2.0
+REQUEST Greifswald Bremen 2.0
+REQUEST Greifswald Kiel 2.0
+REQUEST Greifswald Hannover 2.0
+REQUEST Greifswald Bielefeld 2.0
+REQUEST Greifswald Frankfurt 2.0
+REQUEST Greifswald Karlsruhe 2.0
+REQUEST Hamburg Bremen 13.0
+REQUEST Hamburg Kiel 14.0
+REQUEST Hamburg Oldenburg 2.0
+REQUEST Hamburg Flensburg 3.0
+REQUEST Hamburg Bremerhaven 3.0
+REQUEST Hamburg Norden 2.0
+REQUEST Hamburg Hannover 71.0
+REQUEST Hamburg Bielefeld 3.0
+REQUEST Hamburg Braunschweig 2.0
+REQUEST Hamburg Osnabrueck 2.0
+REQUEST Hamburg Kassel 2.0
+REQUEST Hamburg Frankfurt 11.0
+REQUEST Hamburg Darmstadt 2.0
+REQUEST Hamburg Mannheim 2.0
+REQUEST Hamburg Giessen 2.0
+REQUEST Hamburg Fulda 2.0
+REQUEST Hamburg Saarbruecken 2.0
+REQUEST Hamburg Stuttgart 3.0
+REQUEST Hamburg Karlsruhe 2.0
+REQUEST Hamburg Ulm 2.0
+REQUEST Hamburg Freiburg 2.0
+REQUEST Hamburg Muenchen 6.0
+REQUEST Hamburg Augsburg 2.0
+REQUEST Hamburg Nuernberg 2.0
+REQUEST Hamburg Wuerzburg 2.0
+REQUEST Hamburg Regensburg 2.0
+REQUEST Bremen Kiel 2.0
+REQUEST Bremen Oldenburg 4.0
+REQUEST Bremen Flensburg 2.0
+REQUEST Bremen Bremerhaven 2.0
+REQUEST Bremen Norden 3.0
+REQUEST Bremen Hannover 11.0
+REQUEST Bremen Bielefeld 2.0
+REQUEST Bremen Braunschweig 2.0
+REQUEST Bremen Osnabrueck 2.0
+REQUEST Bremen Kassel 2.0
+REQUEST Bremen Frankfurt 2.0
+REQUEST Bremen Darmstadt 2.0
+REQUEST Bremen Mannheim 2.0
+REQUEST Bremen Giessen 2.0
+REQUEST Bremen Trier 2.0
+REQUEST Bremen Stuttgart 2.0
+REQUEST Bremen Karlsruhe 2.0
+REQUEST Bremen Muenchen 2.0
+REQUEST Bremen Augsburg 2.0
+REQUEST Bremen Nuernberg 2.0
+REQUEST Bremen Wuerzburg 2.0
+REQUEST Kiel Oldenburg 2.0
+REQUEST Kiel Flensburg 3.0
+REQUEST Kiel Bremerhaven 2.0
+REQUEST Kiel Hannover 2.0
+REQUEST Kiel Bielefeld 2.0
+REQUEST Kiel Braunschweig 2.0
+REQUEST Kiel Kassel 2.0
+REQUEST Kiel Frankfurt 2.0
+REQUEST Kiel Darmstadt 2.0
+REQUEST Kiel Mannheim 2.0
+REQUEST Kiel Stuttgart 2.0
+REQUEST Kiel Karlsruhe 2.0
+REQUEST Kiel Muenchen 2.0
+REQUEST Kiel Augsburg 2.0
+REQUEST Kiel Nuernberg 2.0
+REQUEST Kiel Bayreuth 2.0
+REQUEST Kiel Wuerzburg 2.0
+REQUEST Oldenburg Bremerhaven 2.0
+REQUEST Oldenburg Norden 2.0
+REQUEST Oldenburg Hannover 2.0
+REQUEST Oldenburg Bielefeld 2.0
+REQUEST Oldenburg Osnabrueck 2.0
+REQUEST Oldenburg Frankfurt 2.0
+REQUEST Oldenburg Stuttgart 2.0
+REQUEST Oldenburg Muenchen 2.0
+REQUEST Flensburg Bremerhaven 2.0
+REQUEST Flensburg Hannover 2.0
+REQUEST Flensburg Bielefeld 2.0
+REQUEST Flensburg Frankfurt 5.0
+REQUEST Bremerhaven Hannover 2.0
+REQUEST Bremerhaven Bielefeld 2.0
+REQUEST Bremerhaven Frankfurt 2.0
+REQUEST Norden Hannover 2.0
+REQUEST Norden Bielefeld 2.0
+REQUEST Norden Osnabrueck 2.0
+REQUEST Norden Frankfurt 2.0
+REQUEST Norden Saarbruecken 2.0
+REQUEST Norden Konstanz 2.0
+REQUEST Norden Muenchen 2.0
+REQUEST Norden Passau 2.0
+REQUEST Hannover Bielefeld 25.0
+REQUEST Hannover Braunschweig 5.0
+REQUEST Hannover Osnabrueck 3.0
+REQUEST Hannover Kassel 6.0
+REQUEST Hannover Frankfurt 49.0
+REQUEST Hannover Darmstadt 2.0
+REQUEST Hannover Mannheim 2.0
+REQUEST Hannover Giessen 2.0
+REQUEST Hannover Trier 2.0
+REQUEST Hannover Fulda 2.0
+REQUEST Hannover Saarbruecken 2.0
+REQUEST Hannover Stuttgart 2.0
+REQUEST Hannover Karlsruhe 2.0
+REQUEST Hannover Ulm 2.0
+REQUEST Hannover Konstanz 2.0
+REQUEST Hannover Freiburg 2.0
+REQUEST Hannover Muenchen 2.0
+REQUEST Hannover Augsburg 2.0
+REQUEST Hannover Nuernberg 4.0
+REQUEST Hannover Wuerzburg 2.0
+REQUEST Bielefeld Braunschweig 2.0
+REQUEST Bielefeld Osnabrueck 4.0
+REQUEST Bielefeld Kassel 3.0
+REQUEST Bielefeld Frankfurt 3.0
+REQUEST Bielefeld Darmstadt 2.0
+REQUEST Bielefeld Mannheim 2.0
+REQUEST Bielefeld Giessen 2.0
+REQUEST Bielefeld Fulda 2.0
+REQUEST Bielefeld Saarbruecken 2.0
+REQUEST Bielefeld Stuttgart 2.0
+REQUEST Bielefeld Karlsruhe 2.0
+REQUEST Bielefeld Ulm 2.0
+REQUEST Bielefeld Muenchen 2.0
+REQUEST Bielefeld Augsburg 2.0
+REQUEST Bielefeld Nuernberg 2.0
+REQUEST Bielefeld Bayreuth 2.0
+REQUEST Bielefeld Wuerzburg 2.0
+REQUEST Braunschweig Kassel 2.0
+REQUEST Braunschweig Frankfurt 2.0
+REQUEST Braunschweig Stuttgart 2.0
+REQUEST Braunschweig Karlsruhe 2.0
+REQUEST Braunschweig Muenchen 2.0
+REQUEST Osnabrueck Frankfurt 2.0
+REQUEST Osnabrueck Stuttgart 2.0
+REQUEST Osnabrueck Muenchen 2.0
+REQUEST Kassel Frankfurt 2.0
+REQUEST Kassel Darmstadt 2.0
+REQUEST Kassel Mannheim 2.0
+REQUEST Kassel Giessen 2.0
+REQUEST Kassel Fulda 2.0
+REQUEST Kassel Stuttgart 2.0
+REQUEST Kassel Karlsruhe 2.0
+REQUEST Kassel Muenchen 2.0
+REQUEST Kassel Nuernberg 2.0
+REQUEST Frankfurt Darmstadt 25.0
+REQUEST Frankfurt Mannheim 35.0
+REQUEST Frankfurt Kaiserslautern 2.0
+REQUEST Frankfurt Giessen 9.0
+REQUEST Frankfurt Trier 2.0
+REQUEST Frankfurt Fulda 2.0
+REQUEST Frankfurt Saarbruecken 5.0
+REQUEST Frankfurt Stuttgart 19.0
+REQUEST Frankfurt Karlsruhe 8.0
+REQUEST Frankfurt Ulm 5.0
+REQUEST Frankfurt Konstanz 3.0
+REQUEST Frankfurt Freiburg 2.0
+REQUEST Frankfurt Muenchen 3.0
+REQUEST Frankfurt Augsburg 2.0
+REQUEST Frankfurt Kempten 2.0
+REQUEST Frankfurt Passau 2.0
+REQUEST Frankfurt Nuernberg 23.0
+REQUEST Frankfurt Bayreuth 2.0
+REQUEST Frankfurt Wuerzburg 3.0
+REQUEST Frankfurt Regensburg 2.0
+REQUEST Darmstadt Mannheim 4.0
+REQUEST Darmstadt Kaiserslautern 2.0
+REQUEST Darmstadt Giessen 2.0
+REQUEST Darmstadt Trier 3.0
+REQUEST Darmstadt Fulda 2.0
+REQUEST Darmstadt Saarbruecken 2.0
+REQUEST Darmstadt Stuttgart 2.0
+REQUEST Darmstadt Karlsruhe 2.0
+REQUEST Darmstadt Ulm 2.0
+REQUEST Darmstadt Freiburg 2.0
+REQUEST Darmstadt Muenchen 2.0
+REQUEST Darmstadt Augsburg 2.0
+REQUEST Darmstadt Nuernberg 2.0
+REQUEST Darmstadt Wuerzburg 2.0
+REQUEST Mannheim Kaiserslautern 4.0
+REQUEST Mannheim Giessen 2.0
+REQUEST Mannheim Trier 2.0
+REQUEST Mannheim Fulda 2.0
+REQUEST Mannheim Saarbruecken 5.0
+REQUEST Mannheim Stuttgart 5.0
+REQUEST Mannheim Karlsruhe 4.0
+REQUEST Mannheim Ulm 2.0
+REQUEST Mannheim Konstanz 2.0
+REQUEST Mannheim Freiburg 2.0
+REQUEST Mannheim Muenchen 2.0
+REQUEST Mannheim Augsburg 2.0
+REQUEST Mannheim Kempten 2.0
+REQUEST Mannheim Nuernberg 2.0
+REQUEST Mannheim Bayreuth 2.0
+REQUEST Mannheim Wuerzburg 2.0
+REQUEST Kaiserslautern Trier 2.0
+REQUEST Kaiserslautern Saarbruecken 2.0
+REQUEST Kaiserslautern Stuttgart 2.0
+REQUEST Kaiserslautern Karlsruhe 3.0
+REQUEST Kaiserslautern Muenchen 2.0
+REQUEST Giessen Fulda 2.0
+REQUEST Giessen Stuttgart 2.0
+REQUEST Giessen Karlsruhe 2.0
+REQUEST Giessen Muenchen 2.0
+REQUEST Giessen Nuernberg 2.0
+REQUEST Giessen Wuerzburg 2.0
+REQUEST Trier Saarbruecken 2.0
+REQUEST Trier Stuttgart 2.0
+REQUEST Trier Karlsruhe 2.0
+REQUEST Trier Muenchen 2.0
+REQUEST Fulda Stuttgart 2.0
+REQUEST Fulda Karlsruhe 2.0
+REQUEST Fulda Muenchen 2.0
+REQUEST Fulda Nuernberg 2.0
+REQUEST Fulda Bayreuth 2.0
+REQUEST Fulda Wuerzburg 2.0
+REQUEST Saarbruecken Stuttgart 2.0
+REQUEST Saarbruecken Karlsruhe 2.0
+REQUEST Saarbruecken Freiburg 2.0
+REQUEST Saarbruecken Muenchen 2.0
+REQUEST Saarbruecken Augsburg 2.0
+REQUEST Saarbruecken Nuernberg 2.0
+REQUEST Stuttgart Karlsruhe 35.0
+REQUEST Stuttgart Ulm 11.0
+REQUEST Stuttgart Konstanz 4.0
+REQUEST Stuttgart Freiburg 6.0
+REQUEST Stuttgart Muenchen 30.0
+REQUEST Stuttgart Augsburg 2.0
+REQUEST Stuttgart Kempten 2.0
+REQUEST Stuttgart Passau 2.0
+REQUEST Stuttgart Nuernberg 35.0
+REQUEST Stuttgart Bayreuth 2.0
+REQUEST Stuttgart Wuerzburg 2.0
+REQUEST Stuttgart Regensburg 2.0
+REQUEST Karlsruhe Ulm 2.0
+REQUEST Karlsruhe Konstanz 2.0
+REQUEST Karlsruhe Freiburg 5.0
+REQUEST Karlsruhe Muenchen 4.0
+REQUEST Karlsruhe Augsburg 2.0
+REQUEST Karlsruhe Kempten 2.0
+REQUEST Karlsruhe Nuernberg 2.0
+REQUEST Karlsruhe Bayreuth 2.0
+REQUEST Karlsruhe Wuerzburg 2.0
+REQUEST Ulm Konstanz 2.0
+REQUEST Ulm Muenchen 2.0
+REQUEST Ulm Augsburg 2.0
+REQUEST Ulm Kempten 2.0
+REQUEST Ulm Nuernberg 2.0
+REQUEST Ulm Wuerzburg 2.0
+REQUEST Konstanz Freiburg 3.0
+REQUEST Konstanz Muenchen 5.0
+REQUEST Konstanz Augsburg 2.0
+REQUEST Konstanz Kempten 2.0
+REQUEST Konstanz Bayreuth 2.0
+REQUEST Freiburg Muenchen 2.0
+REQUEST Muenchen Augsburg 20.0
+REQUEST Muenchen Kempten 2.0
+REQUEST Muenchen Passau 5.0
+REQUEST Muenchen Nuernberg 32.0
+REQUEST Muenchen Bayreuth 2.0
+REQUEST Muenchen Wuerzburg 3.0
+REQUEST Muenchen Regensburg 2.0
+REQUEST Augsburg Kempten 2.0
+REQUEST Augsburg Nuernberg 2.0
+REQUEST Augsburg Bayreuth 2.0
+REQUEST Augsburg Wuerzburg 2.0
+REQUEST Passau Nuernberg 2.0
+REQUEST Passau Bayreuth 2.0
+REQUEST Passau Wuerzburg 2.0
+REQUEST Passau Regensburg 2.0
+REQUEST Nuernberg Bayreuth 5.0
+REQUEST Nuernberg Wuerzburg 10.0
+REQUEST Nuernberg Regensburg 9.0
+REQUEST Bayreuth Wuerzburg 3.0
+REQUEST Bayreuth Regensburg 3.0

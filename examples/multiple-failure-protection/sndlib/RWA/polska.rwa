@@ -1,0 +1,101 @@
+
+
+NODE Gdansk ( 18.6 54.2 ) 
+NODE Bydgoszcz ( 17.9 53.1 ) 
+NODE Kolobrzeg ( 16.1 54.2 ) 
+NODE Katowice ( 18.8 50.3 ) 
+NODE Krakow ( 19.8 50.0 ) 
+NODE Bialystok ( 23.1 53.1 ) 
+NODE Lodz ( 19.4 51.7 ) 
+NODE Poznan ( 16.8 52.4 ) 
+NODE Rzeszow ( 21.9 50.0 ) 
+NODE Szczecin ( 14.5 53.4 ) 
+NODE Warsaw ( 21.0 52.2 ) 
+NODE Wroclaw ( 16.9 51.1 ) 
+
+EDGE Link_0_101 ( Gdansk Warsaw )
+EDGE Link_0_21 ( Gdansk Kolobrzeg )
+EDGE Link_1_21 ( Bydgoszcz Kolobrzeg )
+EDGE Link_1_71 ( Bydgoszcz Poznan )
+EDGE Link_1_101 ( Bydgoszcz Warsaw )
+EDGE Link_2_91 ( Kolobrzeg Szczecin )
+EDGE Link_3_41 ( Katowice Krakow )
+EDGE Link_3_61 ( Katowice Lodz )
+EDGE Link_3_111 ( Katowice Wroclaw )
+EDGE Link_4_81 ( Krakow Rzeszow )
+EDGE Link_4_101 ( Krakow Warsaw )
+EDGE Link_5_81 ( Bialystok Rzeszow )
+EDGE Link_5_101 ( Bialystok Warsaw )
+EDGE Link_6_101 ( Lodz Warsaw )
+EDGE Link_6_111 ( Lodz Wroclaw )
+EDGE Link_7_91 ( Poznan Szczecin )
+EDGE Link_7_111 ( Poznan Wroclaw )
+EDGE Link_0_51 ( Gdansk Bialystok )
+
+
+REQUEST Gdansk Bydgoszcz 195.0
+REQUEST Gdansk Kolobrzeg 158.0
+REQUEST Gdansk Katowice 174.0
+REQUEST Gdansk Krakow 101.0
+REQUEST Gdansk Bialystok 198.0
+REQUEST Gdansk Lodz 158.0
+REQUEST Gdansk Poznan 182.0
+REQUEST Gdansk Rzeszow 154.0
+REQUEST Gdansk Szczecin 175.0
+REQUEST Gdansk Warsaw 122.0
+REQUEST Gdansk Wroclaw 114.0
+REQUEST Bydgoszcz Kolobrzeg 179.0
+REQUEST Bydgoszcz Katowice 117.0
+REQUEST Bydgoszcz Krakow 105.0
+REQUEST Bydgoszcz Bialystok 159.0
+REQUEST Bydgoszcz Lodz 198.0
+REQUEST Bydgoszcz Poznan 189.0
+REQUEST Bydgoszcz Rzeszow 166.0
+REQUEST Bydgoszcz Szczecin 142.0
+REQUEST Bydgoszcz Warsaw 137.0
+REQUEST Bydgoszcz Wroclaw 163.0
+REQUEST Kolobrzeg Katowice 131.0
+REQUEST Kolobrzeg Krakow 159.0
+REQUEST Kolobrzeg Bialystok 164.0
+REQUEST Kolobrzeg Lodz 128.0
+REQUEST Kolobrzeg Poznan 195.0
+REQUEST Kolobrzeg Rzeszow 130.0
+REQUEST Kolobrzeg Szczecin 105.0
+REQUEST Kolobrzeg Warsaw 173.0
+REQUEST Kolobrzeg Wroclaw 157.0
+REQUEST Katowice Krakow 194.0
+REQUEST Katowice Bialystok 125.0
+REQUEST Katowice Lodz 110.0
+REQUEST Katowice Poznan 132.0
+REQUEST Katowice Rzeszow 159.0
+REQUEST Katowice Szczecin 109.0
+REQUEST Katowice Warsaw 126.0
+REQUEST Katowice Wroclaw 100.0
+REQUEST Krakow Bialystok 124.0
+REQUEST Krakow Lodz 106.0
+REQUEST Krakow Poznan 136.0
+REQUEST Krakow Rzeszow 144.0
+REQUEST Krakow Szczecin 168.0
+REQUEST Krakow Warsaw 119.0
+REQUEST Krakow Wroclaw 127.0
+REQUEST Bialystok Lodz 105.0
+REQUEST Bialystok Poznan 147.0
+REQUEST Bialystok Rzeszow 140.0
+REQUEST Bialystok Szczecin 198.0
+REQUEST Bialystok Warsaw 104.0
+REQUEST Bialystok Wroclaw 113.0
+REQUEST Lodz Poznan 169.0
+REQUEST Lodz Rzeszow 187.0
+REQUEST Lodz Szczecin 196.0
+REQUEST Lodz Warsaw 193.0
+REQUEST Lodz Wroclaw 151.0
+REQUEST Poznan Rzeszow 106.0
+REQUEST Poznan Szczecin 125.0
+REQUEST Poznan Warsaw 194.0
+REQUEST Poznan Wroclaw 194.0
+REQUEST Rzeszow Szczecin 123.0
+REQUEST Rzeszow Warsaw 181.0
+REQUEST Rzeszow Wroclaw 193.0
+REQUEST Szczecin Warsaw 181.0
+REQUEST Szczecin Wroclaw 195.0
+REQUEST Warsaw Wroclaw 141.0

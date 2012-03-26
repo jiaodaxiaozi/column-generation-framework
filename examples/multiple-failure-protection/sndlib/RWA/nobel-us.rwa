@@ -1,0 +1,131 @@
+
+
+NODE Palo-Alto ( -122.07 37.25 ) 
+NODE San-Diego ( -117.08 32.42 ) 
+NODE Boulder ( -105.16 40.0 ) 
+NODE Washington ( -77.02 38.52 ) 
+NODE Atlanta ( -84.23 33.44 ) 
+NODE Urbana-Champaign ( -88.14 40.06 ) 
+NODE Ann-Arbor ( -83.43 42.16 ) 
+NODE Lincoln ( -96.42 40.47 ) 
+NODE Princeton ( -74.39 40.21 ) 
+NODE Ithaca ( -76.3 42.26 ) 
+NODE Pittsburgh ( -79.58 40.26 ) 
+NODE Houston ( -95.21 29.45 ) 
+NODE Salt-Lake-City ( -111.55 40.39 ) 
+NODE Seattle ( -122.24 47.33 ) 
+
+EDGE L11 ( Palo-Alto San-Diego )
+EDGE L21 ( Palo-Alto Salt-Lake-City )
+EDGE L31 ( Palo-Alto Seattle )
+EDGE L41 ( San-Diego Houston )
+EDGE L51 ( San-Diego Seattle )
+EDGE L61 ( Boulder Lincoln )
+EDGE L71 ( Boulder Houston )
+EDGE L81 ( Boulder Salt-Lake-City )
+EDGE L91 ( Washington Princeton )
+EDGE L101 ( Washington Ithaca )
+EDGE L111 ( Washington Houston )
+EDGE L121 ( Atlanta Pittsburgh )
+EDGE L131 ( Atlanta Houston )
+EDGE L141 ( Urbana-Champaign Lincoln )
+EDGE L151 ( Urbana-Champaign Pittsburgh )
+EDGE L161 ( Urbana-Champaign Seattle )
+EDGE L171 ( Ann-Arbor Princeton )
+EDGE L181 ( Ann-Arbor Ithaca )
+EDGE L191 ( Ann-Arbor Salt-Lake-City )
+EDGE L201 ( Princeton Pittsburgh )
+EDGE L211 ( Ithaca Pittsburgh )
+
+
+REQUEST Palo-Alto San-Diego 52.0
+REQUEST Palo-Alto Boulder 18.0
+REQUEST Palo-Alto Washington 32.0
+REQUEST Palo-Alto Atlanta 64.0
+REQUEST Palo-Alto Urbana-Champaign 40.0
+REQUEST Palo-Alto Ann-Arbor 34.0
+REQUEST Palo-Alto Lincoln 14.0
+REQUEST Palo-Alto Princeton 16.0
+REQUEST Palo-Alto Ithaca 50.0
+REQUEST Palo-Alto Pittsburgh 40.0
+REQUEST Palo-Alto Houston 52.0
+REQUEST Palo-Alto Salt-Lake-City 22.0
+REQUEST Palo-Alto Seattle 24.0
+REQUEST San-Diego Boulder 26.0
+REQUEST San-Diego Washington 46.0
+REQUEST San-Diego Atlanta 94.0
+REQUEST San-Diego Urbana-Champaign 58.0
+REQUEST San-Diego Ann-Arbor 48.0
+REQUEST San-Diego Lincoln 20.0
+REQUEST San-Diego Princeton 22.0
+REQUEST San-Diego Ithaca 74.0
+REQUEST San-Diego Pittsburgh 56.0
+REQUEST San-Diego Houston 76.0
+REQUEST San-Diego Salt-Lake-City 30.0
+REQUEST San-Diego Seattle 32.0
+REQUEST Boulder Washington 22.0
+REQUEST Boulder Atlanta 44.0
+REQUEST Boulder Urbana-Champaign 30.0
+REQUEST Boulder Ann-Arbor 24.0
+REQUEST Boulder Lincoln 12.0
+REQUEST Boulder Princeton 10.0
+REQUEST Boulder Ithaca 34.0
+REQUEST Boulder Pittsburgh 26.0
+REQUEST Boulder Houston 40.0
+REQUEST Boulder Salt-Lake-City 16.0
+REQUEST Boulder Seattle 14.0
+REQUEST Washington Atlanta 122.0
+REQUEST Washington Urbana-Champaign 74.0
+REQUEST Washington Ann-Arbor 70.0
+REQUEST Washington Lincoln 22.0
+REQUEST Washington Princeton 60.0
+REQUEST Washington Ithaca 168.0
+REQUEST Washington Pittsburgh 194.0
+REQUEST Washington Houston 78.0
+REQUEST Washington Salt-Lake-City 24.0
+REQUEST Washington Seattle 26.0
+REQUEST Atlanta Urbana-Champaign 148.0
+REQUEST Atlanta Ann-Arbor 126.0
+REQUEST Atlanta Lincoln 44.0
+REQUEST Atlanta Princeton 54.0
+REQUEST Atlanta Ithaca 182.0
+REQUEST Atlanta Pittsburgh 144.0
+REQUEST Atlanta Houston 172.0
+REQUEST Atlanta Salt-Lake-City 46.0
+REQUEST Atlanta Seattle 52.0
+REQUEST Urbana-Champaign Ann-Arbor 102.0
+REQUEST Urbana-Champaign Lincoln 34.0
+REQUEST Urbana-Champaign Princeton 34.0
+REQUEST Urbana-Champaign Ithaca 114.0
+REQUEST Urbana-Champaign Pittsburgh 88.0
+REQUEST Urbana-Champaign Houston 102.0
+REQUEST Urbana-Champaign Salt-Lake-City 30.0
+REQUEST Urbana-Champaign Seattle 34.0
+REQUEST Ann-Arbor Lincoln 26.0
+REQUEST Ann-Arbor Princeton 32.0
+REQUEST Ann-Arbor Ithaca 110.0
+REQUEST Ann-Arbor Pittsburgh 86.0
+REQUEST Ann-Arbor Houston 84.0
+REQUEST Ann-Arbor Salt-Lake-City 26.0
+REQUEST Ann-Arbor Seattle 28.0
+REQUEST Lincoln Princeton 10.0
+REQUEST Lincoln Ithaca 34.0
+REQUEST Lincoln Pittsburgh 26.0
+REQUEST Lincoln Houston 38.0
+REQUEST Lincoln Salt-Lake-City 12.0
+REQUEST Lincoln Seattle 12.0
+REQUEST Princeton Ithaca 168.0
+REQUEST Princeton Pittsburgh 236.0
+REQUEST Princeton Houston 36.0
+REQUEST Princeton Salt-Lake-City 12.0
+REQUEST Princeton Seattle 12.0
+REQUEST Ithaca Pittsburgh 324.0
+REQUEST Ithaca Houston 122.0
+REQUEST Ithaca Salt-Lake-City 36.0
+REQUEST Ithaca Seattle 42.0
+REQUEST Pittsburgh Houston 94.0
+REQUEST Pittsburgh Salt-Lake-City 28.0
+REQUEST Pittsburgh Seattle 32.0
+REQUEST Houston Salt-Lake-City 40.0
+REQUEST Houston Seattle 42.0
+REQUEST Salt-Lake-City Seattle 16.0

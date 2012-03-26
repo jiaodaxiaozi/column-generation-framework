@@ -1,0 +1,252 @@
+// NODE : 12
+// EDGE : 18
+// REQUEST : 66
+// AVE CONNECT : 150.652
+// AVE DEGREE : 3
+// DUAL-FAILURE PERCENT = 80
+// NUM DUAL-FAILURE = 122
+nodeset = { 
+"Gdansk",
+"Bydgoszcz",
+"Kolobrzeg",
+"Katowice",
+"Krakow",
+"Bialystok",
+"Lodz",
+"Poznan",
+"Rzeszow",
+"Szczecin",
+"Warsaw",
+"Wroclaw"
+};
+edgeset = { 
+<"LINK1","Gdansk","Warsaw",1>,
+<"LINK2","Gdansk","Kolobrzeg",1>,
+<"LINK3","Bydgoszcz","Kolobrzeg",1>,
+<"LINK4","Bydgoszcz","Poznan",1>,
+<"LINK5","Bydgoszcz","Warsaw",1>,
+<"LINK6","Kolobrzeg","Szczecin",1>,
+<"LINK7","Katowice","Krakow",1>,
+<"LINK8","Katowice","Lodz",1>,
+<"LINK9","Katowice","Wroclaw",1>,
+<"LINK10","Krakow","Rzeszow",1>,
+<"LINK11","Krakow","Warsaw",1>,
+<"LINK12","Bialystok","Rzeszow",1>,
+<"LINK13","Bialystok","Warsaw",1>,
+<"LINK14","Lodz","Warsaw",1>,
+<"LINK15","Lodz","Wroclaw",1>,
+<"LINK16","Poznan","Szczecin",1>,
+<"LINK17","Poznan","Wroclaw",1>,
+<"LINK18","Gdansk","Bialystok",1>
+ }; 
+requestset={
+< "Gdansk" , "Bydgoszcz" , 195.0 >,
+< "Gdansk" , "Kolobrzeg" , 158.0 >,
+< "Gdansk" , "Katowice" , 174.0 >,
+< "Gdansk" , "Krakow" , 101.0 >,
+< "Gdansk" , "Bialystok" , 198.0 >,
+< "Gdansk" , "Lodz" , 158.0 >,
+< "Gdansk" , "Poznan" , 182.0 >,
+< "Gdansk" , "Rzeszow" , 154.0 >,
+< "Gdansk" , "Szczecin" , 175.0 >,
+< "Gdansk" , "Warsaw" , 122.0 >,
+< "Gdansk" , "Wroclaw" , 114.0 >,
+< "Bydgoszcz" , "Kolobrzeg" , 179.0 >,
+< "Bydgoszcz" , "Katowice" , 117.0 >,
+< "Bydgoszcz" , "Krakow" , 105.0 >,
+< "Bydgoszcz" , "Bialystok" , 159.0 >,
+< "Bydgoszcz" , "Lodz" , 198.0 >,
+< "Bydgoszcz" , "Poznan" , 189.0 >,
+< "Bydgoszcz" , "Rzeszow" , 166.0 >,
+< "Bydgoszcz" , "Szczecin" , 142.0 >,
+< "Bydgoszcz" , "Warsaw" , 137.0 >,
+< "Bydgoszcz" , "Wroclaw" , 163.0 >,
+< "Kolobrzeg" , "Katowice" , 131.0 >,
+< "Kolobrzeg" , "Krakow" , 159.0 >,
+< "Kolobrzeg" , "Bialystok" , 164.0 >,
+< "Kolobrzeg" , "Lodz" , 128.0 >,
+< "Kolobrzeg" , "Poznan" , 195.0 >,
+< "Kolobrzeg" , "Rzeszow" , 130.0 >,
+< "Kolobrzeg" , "Szczecin" , 105.0 >,
+< "Kolobrzeg" , "Warsaw" , 173.0 >,
+< "Kolobrzeg" , "Wroclaw" , 157.0 >,
+< "Katowice" , "Krakow" , 194.0 >,
+< "Katowice" , "Bialystok" , 125.0 >,
+< "Katowice" , "Lodz" , 110.0 >,
+< "Katowice" , "Poznan" , 132.0 >,
+< "Katowice" , "Rzeszow" , 159.0 >,
+< "Katowice" , "Szczecin" , 109.0 >,
+< "Katowice" , "Warsaw" , 126.0 >,
+< "Katowice" , "Wroclaw" , 100.0 >,
+< "Krakow" , "Bialystok" , 124.0 >,
+< "Krakow" , "Lodz" , 106.0 >,
+< "Krakow" , "Poznan" , 136.0 >,
+< "Krakow" , "Rzeszow" , 144.0 >,
+< "Krakow" , "Szczecin" , 168.0 >,
+< "Krakow" , "Warsaw" , 119.0 >,
+< "Krakow" , "Wroclaw" , 127.0 >,
+< "Bialystok" , "Lodz" , 105.0 >,
+< "Bialystok" , "Poznan" , 147.0 >,
+< "Bialystok" , "Rzeszow" , 140.0 >,
+< "Bialystok" , "Szczecin" , 198.0 >,
+< "Bialystok" , "Warsaw" , 104.0 >,
+< "Bialystok" , "Wroclaw" , 113.0 >,
+< "Lodz" , "Poznan" , 169.0 >,
+< "Lodz" , "Rzeszow" , 187.0 >,
+< "Lodz" , "Szczecin" , 196.0 >,
+< "Lodz" , "Warsaw" , 193.0 >,
+< "Lodz" , "Wroclaw" , 151.0 >,
+< "Poznan" , "Rzeszow" , 106.0 >,
+< "Poznan" , "Szczecin" , 125.0 >,
+< "Poznan" , "Warsaw" , 194.0 >,
+< "Poznan" , "Wroclaw" , 194.0 >,
+< "Rzeszow" , "Szczecin" , 123.0 >,
+< "Rzeszow" , "Warsaw" , 181.0 >,
+< "Rzeszow" , "Wroclaw" , 193.0 >,
+< "Szczecin" , "Warsaw" , 181.0 >,
+< "Szczecin" , "Wroclaw" , 195.0 >,
+< "Warsaw" , "Wroclaw" , 141.0 >,
+};
+nfailure = 140 ;
+failureset = [ 
+{ "LINK1" }
+{ "LINK2" }
+{ "LINK3" }
+{ "LINK4" }
+{ "LINK5" }
+{ "LINK6" }
+{ "LINK7" }
+{ "LINK8" }
+{ "LINK9" }
+{ "LINK10" }
+{ "LINK11" }
+{ "LINK12" }
+{ "LINK13" }
+{ "LINK14" }
+{ "LINK15" }
+{ "LINK16" }
+{ "LINK17" }
+{ "LINK18" }
+{ "LINK11","LINK13" }
+{ "LINK4","LINK5" }
+{ "LINK1","LINK3" }
+{ "LINK2","LINK12" }
+{ "LINK4","LINK13" }
+{ "LINK1","LINK18" }
+{ "LINK6","LINK15" }
+{ "LINK4","LINK17" }
+{ "LINK9","LINK16" }
+{ "LINK2","LINK7" }
+{ "LINK8","LINK16" }
+{ "LINK5","LINK13" }
+{ "LINK16","LINK18" }
+{ "LINK7","LINK17" }
+{ "LINK2","LINK10" }
+{ "LINK8","LINK11" }
+{ "LINK3","LINK4" }
+{ "LINK1","LINK17" }
+{ "LINK2","LINK15" }
+{ "LINK2","LINK9" }
+{ "LINK15","LINK16" }
+{ "LINK3","LINK17" }
+{ "LINK3","LINK10" }
+{ "LINK7","LINK8" }
+{ "LINK8","LINK15" }
+{ "LINK4","LINK7" }
+{ "LINK6","LINK7" }
+{ "LINK3","LINK12" }
+{ "LINK9","LINK10" }
+{ "LINK2","LINK16" }
+{ "LINK8","LINK12" }
+{ "LINK5","LINK16" }
+{ "LINK6","LINK18" }
+{ "LINK12","LINK14" }
+{ "LINK7","LINK14" }
+{ "LINK14","LINK16" }
+{ "LINK11","LINK16" }
+{ "LINK1","LINK2" }
+{ "LINK9","LINK17" }
+{ "LINK8","LINK9" }
+{ "LINK9","LINK11" }
+{ "LINK1","LINK6" }
+{ "LINK11","LINK14" }
+{ "LINK3","LINK15" }
+{ "LINK5","LINK15" }
+{ "LINK2","LINK3" }
+{ "LINK1","LINK12" }
+{ "LINK5","LINK7" }
+{ "LINK10","LINK12" }
+{ "LINK12","LINK18" }
+{ "LINK2","LINK17" }
+{ "LINK3","LINK7" }
+{ "LINK3","LINK9" }
+{ "LINK1","LINK7" }
+{ "LINK5","LINK10" }
+{ "LINK3","LINK18" }
+{ "LINK3","LINK6" }
+{ "LINK6","LINK17" }
+{ "LINK9","LINK18" }
+{ "LINK6","LINK16" }
+{ "LINK7","LINK18" }
+{ "LINK1","LINK10" }
+{ "LINK3","LINK13" }
+{ "LINK1","LINK5" }
+{ "LINK4","LINK12" }
+{ "LINK10","LINK13" }
+{ "LINK14","LINK17" }
+{ "LINK7","LINK13" }
+{ "LINK2","LINK5" }
+{ "LINK9","LINK14" }
+{ "LINK5","LINK17" }
+{ "LINK7","LINK16" }
+{ "LINK1","LINK16" }
+{ "LINK3","LINK16" }
+{ "LINK4","LINK6" }
+{ "LINK6","LINK10" }
+{ "LINK5","LINK9" }
+{ "LINK5","LINK18" }
+{ "LINK6","LINK12" }
+{ "LINK1","LINK14" }
+{ "LINK1","LINK15" }
+{ "LINK1","LINK11" }
+{ "LINK4","LINK10" }
+{ "LINK11","LINK18" }
+{ "LINK10","LINK17" }
+{ "LINK5","LINK14" }
+{ "LINK7","LINK10" }
+{ "LINK6","LINK11" }
+{ "LINK13","LINK17" }
+{ "LINK3","LINK5" }
+{ "LINK1","LINK8" }
+{ "LINK4","LINK11" }
+{ "LINK7","LINK15" }
+{ "LINK16","LINK17" }
+{ "LINK4","LINK9" }
+{ "LINK8","LINK10" }
+{ "LINK1","LINK13" }
+{ "LINK13","LINK15" }
+{ "LINK2","LINK13" }
+{ "LINK5","LINK6" }
+{ "LINK2","LINK8" }
+{ "LINK11","LINK17" }
+{ "LINK2","LINK11" }
+{ "LINK14","LINK15" }
+{ "LINK12","LINK17" }
+{ "LINK4","LINK18" }
+{ "LINK13","LINK16" }
+{ "LINK9","LINK12" }
+{ "LINK6","LINK8" }
+{ "LINK4","LINK8" }
+{ "LINK11","LINK15" }
+{ "LINK4","LINK14" }
+{ "LINK13","LINK18" }
+{ "LINK3","LINK14" }
+{ "LINK7","LINK9" }
+{ "LINK13","LINK14" }
+{ "LINK2","LINK14" }
+{ "LINK6","LINK13" }
+{ "LINK3","LINK8" }
+{ "LINK9","LINK15" }
+{ "LINK3","LINK11" }
+{ "LINK6","LINK9" }
+ ]; 
