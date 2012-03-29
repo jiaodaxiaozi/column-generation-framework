@@ -29,6 +29,8 @@ var parameter_data    = "params.dat"  ;
 var model_define_file = "model.ini"   ;    
 var __ROOT__          = "ROOT"        ;
 
+var runCplex          = new IloCplex(); // for saving default parameters
+
 
 /////// SETTING NEXT STATE //////////
 function nextState( nextObj , curObj ) {
@@ -84,18 +86,20 @@ function nextState( nextObj , curObj ) {
     var timeMark = timeMarker(); // mark time moment
     this.ncall ++ ; // update number of calling 
 
-	
+    // first model's parameters to default
     cplex.clearModel();
+    for ( var p in cplex ){
+      cplex[ p ] = runCplex[ p ]	
+    }
+
     cplex.tilim = 3600 * 48;  // 2 days solving 
     cplex.epgap = 0.00 ; // full search
 
 
-    //cplex.workdir = "/lscratch";
-    cplex.workmem = 1024 * 30  ;
+    cplex.workdir = "/lscratch";
+    cplex.workmem = 1024 * 20  ;
     cplex.nodefileind = 3 ;
     cplex.trelim  = 1024 * 40 ;
-	cplex.intsollim = 2100000000 ;
-	cplex.cutup =1000000000 ;
 
     cplex.parallelmode = -1 ; // opportunistic mode
     cplex.threads = 0 ; // use maximum threads
@@ -119,7 +123,6 @@ function nextState( nextObj , curObj ) {
 
     // next model to solve
     nextState( globalData , theopl );
- 
  
     // update information
     this.solvetime = elapsedTime( timeMark ); // running time
@@ -423,5 +426,7 @@ writeln();
 output_section( "RUNTIME" );
 output_value( "TOTALTIME" , elapsed_runtime );
 
+// free memory
+runCplex.end();
 
 } 

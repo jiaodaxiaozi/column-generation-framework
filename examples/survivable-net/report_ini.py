@@ -10,9 +10,9 @@ inputdir  = "ini/E*s[2,3,4,5]*e90*.ini"
 
 #inputdir  = "ini/24NET-s1*.ini"
 
-#inputdir  = "ini/NJ*s1*.ini"
-inputdir  = "ini/24NET-s*e90*.ini"
-inputdir  = "ini/24NET-hs*e120*.ini"
+inputdir  = "ini/NSF*s1*.ini"
+#inputdir  = "ini/24NET-s*e90*.ini"
+#inputdir  = "ini/24NET-hs*e120*.ini"
 
 def atoi(text):
     return int(text) if text.isdigit() else text

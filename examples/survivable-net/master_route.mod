@@ -73,7 +73,6 @@ execute {
     for( e in edgeset  )
         dual_reserve[l][e] = ctReserve[ l ][e].dual ;    
 
-
     writeln("Master Objective : " , cplex.getObjValue() , " nconfig : " , configset.size );
 
     if ( isModel("ROUTE") ){

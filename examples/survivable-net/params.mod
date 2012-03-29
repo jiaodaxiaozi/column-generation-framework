@@ -186,7 +186,8 @@ function DIJKSTRA( request , disp , takeroutecost )
 
     var endnode = request.dst ;
     while ( endnode != request.src ) {
-        
+       
+
         routecost = routecost + 1 ;    
         thepath[ pre[ endnode ] ] = 1 ;        
         endnode = pre[ endnode ].src ;    
