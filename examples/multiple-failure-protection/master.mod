@@ -169,6 +169,13 @@ execute DisplayResult {
 		writeln("NUMBER OF SELECTED CONFIG : " , nconfig );
 		writeln();
 
+        output_section("RESULT");
+        output_value("NCYCLE" , poolcycle.size );
+        output_value("NCONF"   , nactiveconfig );
+        output_value("NSEL" , nconfig );
+        output_value("RELAXOBJ" , preobj[0]);
+        output_value("INTOBJ" , cplex.getObjValue()); 
+        output_value("GAP" , GAP( preobj[0] , cplex.getObjValue() ));
 
 	} // end display 
 

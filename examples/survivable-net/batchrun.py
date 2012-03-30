@@ -9,7 +9,7 @@ homedir   = "/RQusagers/hoangha1/framework/examples/survivable-net/"
 inputdir  = "net/24NET-hs[2,3,4,5,6]*e120*.net"
 #inputdir  = "net/E*s[2,3,4,5]*e90*.net"
 #inputdir  = "net/NJ*s[2,3,4,5,6]*e[7]0*.net"
-inputdir  = "net/NSF*s1*.net"
+inputdir  = "net/E*s1*.net"
 
 #inputdir  = "net/2*s5*e100*.net"
 #inputdir  = "net/2*s1*.net"
