@@ -78,7 +78,7 @@ tuple config_record {
 int enter_point[ 0..1 ] = ... ; // entry_point[ 0 ] is flag , entry_point[ 1 ] is position
 
 float preobj[ 0..1 ] = ... ;
-
+int   gencon[ 0..1 ] = ... ;
 
 float dual_protect[ 1 .. nfailure ][ requestset ]  = ... ;
 

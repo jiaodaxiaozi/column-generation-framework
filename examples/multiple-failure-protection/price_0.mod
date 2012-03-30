@@ -121,7 +121,7 @@ execute {
 				
 	}
 		
-	setNextModel("MASTER-RELAX-0");
+	setNextModel("MASTER-RELAX-1");
 	
 	consider_cycle[ 0 ] = -1;
 	running[0]=0;

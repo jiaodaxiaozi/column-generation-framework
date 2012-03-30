@@ -11,7 +11,7 @@ execute {
 	cplex.cutup = 	-0.0001 ; // reduced cost 
 
 	
-	setNextModel("MASTER-RELAX-0");
+	setNextModel("MASTER-RELAX-1");
 }
 
 dvar  int+ y[ 1 .. nfailure ][ edgeset ][ requestset ] in 0..1 ;
@@ -117,7 +117,6 @@ execute {
 	
 	running[0] = 1 ;
 
-//	setNextModel("MASTER-RELAX-1");
 }  
 
   

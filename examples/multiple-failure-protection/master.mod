@@ -94,7 +94,8 @@ execute CollectDualValues {
 
 
 execute InRelaxProcess {
-
+	
+	gencon[ 0 ] = gencon[ 0 ] + 1 ;
 	
 
 	if (  isModel("MASTER-RELAX-0") || isModel("MASTER-RELAX-1")  ){
@@ -139,40 +140,27 @@ execute DisplayResult {
 	if ( isModel("MASTER-FINAL")  ) {
 
 
-		var nconfig = 0 ;
-		var nactiveconfig = 0;
+		var nsel = 0 ;
 
 		for (var c in poolset ){
 
-			nactiveconfig ++ ;
-
 			if ( z[c].solutionValue > 0 ){
-				nconfig ++ ;
+				nsel ++ ;
 				writeln("******");
-				writeln("CONFIG " , nconfig , " is repeated : " , z[c].solutionValue );
+				writeln("CONFIG " , nsel , " is repeated : " , z[c].solutionValue );
 				printConfiguration( c ) ;	
 			}
 		}
 
-		writeln();
-		writeln("------------------------------------------------");
-		writeln();
-		writeln("NUMBER OF FAILURE SETS : " , nfailure );
-  
-		
-		writeln("NUMBER OF NODES    : " ,  nodeset.size  );
-		writeln("NUMBER OF EDGES    : " ,  edgeset.size  );
-		writeln("NUMBER OF REQUESTS : " , requestset.size );
-
-		writeln("NUMBER OF CYCLE           : " , poolcycle.size );
-		writeln("NUMBER OF CONFIGURATION   : " , nactiveconfig );
-		writeln("NUMBER OF SELECTED CONFIG : " , nconfig );
-		writeln();
-
         output_section("RESULT");
+        output_value("NFAILURE" , nfailure );
+        output_value("NREQUEST" , requestset.size );
+        output_value("NNODE" , nodeset.size );
+        output_value("NEDGE" , edgeset.size );
         output_value("NCYCLE" , poolcycle.size );
-        output_value("NCONF"   , nactiveconfig );
-        output_value("NSEL" , nconfig );
+        output_value("NCONF"   , poolset.size );
+	output_value("GENCON" , gencon[0] );
+	output_value("NSEL" , nsel );
         output_value("RELAXOBJ" , preobj[0]);
         output_value("INTOBJ" , cplex.getObjValue()); 
         output_value("GAP" , GAP( preobj[0] , cplex.getObjValue() ));

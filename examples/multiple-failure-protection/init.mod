@@ -18,5 +18,6 @@ execute {
   
   TEMPVAR[ 0 ] = 0;
   setNextModel("REMOVE");
+  gencon[ 0 ]= 0;
 }
 
