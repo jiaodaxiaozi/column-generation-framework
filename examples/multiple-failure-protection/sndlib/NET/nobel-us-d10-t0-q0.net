@@ -1,0 +1,186 @@
+// NODE : 14
+// EDGE : 21
+// REQUEST : 91
+// AVE CONNECT : 59.5604
+// AVE DEGREE : 3
+// DUAL-FAILURE PERCENT = 10
+// NUM DUAL-FAILURE = 21
+// NUM TRIPLE-FAILURE = 0
+// NUM QUADRUPLE-FAILURE = 0
+nodeset = { 
+"Palo-Alto",
+"San-Diego",
+"Boulder",
+"Washington",
+"Atlanta",
+"Urbana-Champaign",
+"Ann-Arbor",
+"Lincoln",
+"Princeton",
+"Ithaca",
+"Pittsburgh",
+"Houston",
+"Salt-Lake-City",
+"Seattle"
+};
+edgeset = { 
+<"LINK1","Palo-Alto","San-Diego",1>,
+<"LINK2","Palo-Alto","Salt-Lake-City",1>,
+<"LINK3","Palo-Alto","Seattle",1>,
+<"LINK4","San-Diego","Houston",1>,
+<"LINK5","San-Diego","Seattle",1>,
+<"LINK6","Boulder","Lincoln",1>,
+<"LINK7","Boulder","Houston",1>,
+<"LINK8","Boulder","Salt-Lake-City",1>,
+<"LINK9","Washington","Princeton",1>,
+<"LINK10","Washington","Ithaca",1>,
+<"LINK11","Washington","Houston",1>,
+<"LINK12","Atlanta","Pittsburgh",1>,
+<"LINK13","Atlanta","Houston",1>,
+<"LINK14","Urbana-Champaign","Lincoln",1>,
+<"LINK15","Urbana-Champaign","Pittsburgh",1>,
+<"LINK16","Urbana-Champaign","Seattle",1>,
+<"LINK17","Ann-Arbor","Princeton",1>,
+<"LINK18","Ann-Arbor","Ithaca",1>,
+<"LINK19","Ann-Arbor","Salt-Lake-City",1>,
+<"LINK20","Princeton","Pittsburgh",1>,
+<"LINK21","Ithaca","Pittsburgh",1>
+ }; 
+requestset={
+< "Palo-Alto" , "San-Diego" , 52.0 >,
+< "Palo-Alto" , "Boulder" , 18.0 >,
+< "Palo-Alto" , "Washington" , 32.0 >,
+< "Palo-Alto" , "Atlanta" , 64.0 >,
+< "Palo-Alto" , "Urbana-Champaign" , 40.0 >,
+< "Palo-Alto" , "Ann-Arbor" , 34.0 >,
+< "Palo-Alto" , "Lincoln" , 14.0 >,
+< "Palo-Alto" , "Princeton" , 16.0 >,
+< "Palo-Alto" , "Ithaca" , 50.0 >,
+< "Palo-Alto" , "Pittsburgh" , 40.0 >,
+< "Palo-Alto" , "Houston" , 52.0 >,
+< "Palo-Alto" , "Salt-Lake-City" , 22.0 >,
+< "Palo-Alto" , "Seattle" , 24.0 >,
+< "San-Diego" , "Boulder" , 26.0 >,
+< "San-Diego" , "Washington" , 46.0 >,
+< "San-Diego" , "Atlanta" , 94.0 >,
+< "San-Diego" , "Urbana-Champaign" , 58.0 >,
+< "San-Diego" , "Ann-Arbor" , 48.0 >,
+< "San-Diego" , "Lincoln" , 20.0 >,
+< "San-Diego" , "Princeton" , 22.0 >,
+< "San-Diego" , "Ithaca" , 74.0 >,
+< "San-Diego" , "Pittsburgh" , 56.0 >,
+< "San-Diego" , "Houston" , 76.0 >,
+< "San-Diego" , "Salt-Lake-City" , 30.0 >,
+< "San-Diego" , "Seattle" , 32.0 >,
+< "Boulder" , "Washington" , 22.0 >,
+< "Boulder" , "Atlanta" , 44.0 >,
+< "Boulder" , "Urbana-Champaign" , 30.0 >,
+< "Boulder" , "Ann-Arbor" , 24.0 >,
+< "Boulder" , "Lincoln" , 12.0 >,
+< "Boulder" , "Princeton" , 10.0 >,
+< "Boulder" , "Ithaca" , 34.0 >,
+< "Boulder" , "Pittsburgh" , 26.0 >,
+< "Boulder" , "Houston" , 40.0 >,
+< "Boulder" , "Salt-Lake-City" , 16.0 >,
+< "Boulder" , "Seattle" , 14.0 >,
+< "Washington" , "Atlanta" , 122.0 >,
+< "Washington" , "Urbana-Champaign" , 74.0 >,
+< "Washington" , "Ann-Arbor" , 70.0 >,
+< "Washington" , "Lincoln" , 22.0 >,
+< "Washington" , "Princeton" , 60.0 >,
+< "Washington" , "Ithaca" , 168.0 >,
+< "Washington" , "Pittsburgh" , 194.0 >,
+< "Washington" , "Houston" , 78.0 >,
+< "Washington" , "Salt-Lake-City" , 24.0 >,
+< "Washington" , "Seattle" , 26.0 >,
+< "Atlanta" , "Urbana-Champaign" , 148.0 >,
+< "Atlanta" , "Ann-Arbor" , 126.0 >,
+< "Atlanta" , "Lincoln" , 44.0 >,
+< "Atlanta" , "Princeton" , 54.0 >,
+< "Atlanta" , "Ithaca" , 182.0 >,
+< "Atlanta" , "Pittsburgh" , 144.0 >,
+< "Atlanta" , "Houston" , 172.0 >,
+< "Atlanta" , "Salt-Lake-City" , 46.0 >,
+< "Atlanta" , "Seattle" , 52.0 >,
+< "Urbana-Champaign" , "Ann-Arbor" , 102.0 >,
+< "Urbana-Champaign" , "Lincoln" , 34.0 >,
+< "Urbana-Champaign" , "Princeton" , 34.0 >,
+< "Urbana-Champaign" , "Ithaca" , 114.0 >,
+< "Urbana-Champaign" , "Pittsburgh" , 88.0 >,
+< "Urbana-Champaign" , "Houston" , 102.0 >,
+< "Urbana-Champaign" , "Salt-Lake-City" , 30.0 >,
+< "Urbana-Champaign" , "Seattle" , 34.0 >,
+< "Ann-Arbor" , "Lincoln" , 26.0 >,
+< "Ann-Arbor" , "Princeton" , 32.0 >,
+< "Ann-Arbor" , "Ithaca" , 110.0 >,
+< "Ann-Arbor" , "Pittsburgh" , 86.0 >,
+< "Ann-Arbor" , "Houston" , 84.0 >,
+< "Ann-Arbor" , "Salt-Lake-City" , 26.0 >,
+< "Ann-Arbor" , "Seattle" , 28.0 >,
+< "Lincoln" , "Princeton" , 10.0 >,
+< "Lincoln" , "Ithaca" , 34.0 >,
+< "Lincoln" , "Pittsburgh" , 26.0 >,
+< "Lincoln" , "Houston" , 38.0 >,
+< "Lincoln" , "Salt-Lake-City" , 12.0 >,
+< "Lincoln" , "Seattle" , 12.0 >,
+< "Princeton" , "Ithaca" , 168.0 >,
+< "Princeton" , "Pittsburgh" , 236.0 >,
+< "Princeton" , "Houston" , 36.0 >,
+< "Princeton" , "Salt-Lake-City" , 12.0 >,
+< "Princeton" , "Seattle" , 12.0 >,
+< "Ithaca" , "Pittsburgh" , 324.0 >,
+< "Ithaca" , "Houston" , 122.0 >,
+< "Ithaca" , "Salt-Lake-City" , 36.0 >,
+< "Ithaca" , "Seattle" , 42.0 >,
+< "Pittsburgh" , "Houston" , 94.0 >,
+< "Pittsburgh" , "Salt-Lake-City" , 28.0 >,
+< "Pittsburgh" , "Seattle" , 32.0 >,
+< "Houston" , "Salt-Lake-City" , 40.0 >,
+< "Houston" , "Seattle" , 42.0 >,
+< "Salt-Lake-City" , "Seattle" , 16.0 >,
+};
+nfailure = 42 ;
+failureset = [ 
+{ "LINK1" }
+{ "LINK2" }
+{ "LINK3" }
+{ "LINK4" }
+{ "LINK5" }
+{ "LINK6" }
+{ "LINK7" }
+{ "LINK8" }
+{ "LINK9" }
+{ "LINK10" }
+{ "LINK11" }
+{ "LINK12" }
+{ "LINK13" }
+{ "LINK14" }
+{ "LINK15" }
+{ "LINK16" }
+{ "LINK17" }
+{ "LINK18" }
+{ "LINK19" }
+{ "LINK20" }
+{ "LINK21" }
+{ "LINK8","LINK20" }
+{ "LINK5","LINK13" }
+{ "LINK1","LINK12" }
+{ "LINK7","LINK18" }
+{ "LINK5","LINK7" }
+{ "LINK4","LINK20" }
+{ "LINK6","LINK14" }
+{ "LINK12","LINK17" }
+{ "LINK5","LINK19" }
+{ "LINK14","LINK18" }
+{ "LINK8","LINK14" }
+{ "LINK8","LINK11" }
+{ "LINK10","LINK21" }
+{ "LINK5","LINK11" }
+{ "LINK10","LINK12" }
+{ "LINK5","LINK16" }
+{ "LINK3","LINK12" }
+{ "LINK3","LINK18" }
+{ "LINK12","LINK16" }
+{ "LINK4","LINK6" }
+{ "LINK1","LINK9" }
+ ]; 

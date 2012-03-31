@@ -8,6 +8,11 @@ BEGIN {
 	nfail = 0;
 	rsum = 0 ;
 
+    nf1 = 0 ;
+    nf2 = 0 ;
+    nf3 = 0 ;
+    nf4 = 0 ;
+
 	srand()
 }
 
@@ -52,6 +57,7 @@ BEGIN {
 	ftype [ nfail ] = 1;
 	f_a [ nfail ] = $2 ;
 	nfail ++;
+    nf1 ++ ;
 
 }
 
@@ -61,9 +67,39 @@ BEGIN {
 	f_a [ nfail ] = $2 ;
 	f_b [ nfail ] = $3 ;
 	nfail ++;
+    nf2++ ;
 }
 
+/^FAILURE3/ {
+
+	ftype [ nfail ] = 3 ;
+	f_a [ nfail ] = $2 ;
+	f_b [ nfail ] = $3 ;
+    f_c [ nfail ] = $4 ;
+	nfail ++;
+    nf3 ++ ;
+}
+
+/^FAILURE4/ {
+
+	ftype [ nfail ] = 4 ;
+	f_a [ nfail ] = $2 ;
+	f_b [ nfail ] = $3 ;
+    f_c [ nfail ] = $4 ;
+    f_d [ nfail ] = $5 ;
+	nfail ++;
+    nf4 ++ ;
+}
+
+
+
+
+
 END {
+
+
+    take1 = nedge ;
+    take2 = int( nf2 * dpercent / 100 ) ;
 
 	
 	print "// NODE : "  nnode ;
@@ -71,9 +107,12 @@ END {
 	print "// REQUEST : " nreq ;
 	print "// AVE CONNECT : " ( rsum / nreq ) ;
 	print "// AVE DEGREE : "  ( 2 * nedge ) / nnode ;
-	print "// DUAL-FAILURE PERCENT = " percent ;
-	print "// NUM DUAL-FAILURE = " int( ( nfail - nedge ) * percent / 100 )
 
+	print "// DUAL-FAILURE PERCENT = " dpercent ;
+	print "// NUM DUAL-FAILURE = " take2 ;
+
+    print "// NUM TRIPLE-FAILURE = " take3;
+    print "// NUM QUADRUPLE-FAILURE = " take4 ;
 
 	PRIME = "\""
 
@@ -108,20 +147,40 @@ END {
 	print "};"
 
 
-	nfailure = int ((nfail - nedge) * percent  * 0.01)  + nedge ;
+	nfailure = take1 + take2 + take3 + take4 ;
 
 	print "nfailure = " nfailure " ;" ;
 
 	print "failureset = [ "
 
-	for ( i = 0 ; i < nfailure ; i ++ ) {
+	for ( i = 0 ; i < nfail ; i ++ ) {
 
-		if ( ftype[ i ] == 2 )
+		if ( ftype[ i ] == 4 && take4 ){
+
+			print "{ " PRIME f_a[ i ] PRIME "," PRIME f_b[ i ] PRIME "," PRIME f_c[i] PRIME "," PRIME f_d[i] PRIME  " }"
+            take4 -- ;
+		}
+
+
+		if ( ftype[ i ] == 3 && take3 ){
+
+			print "{ " PRIME f_a[ i ] PRIME "," PRIME f_b[ i ] PRIME "," PRIME f_c[i] PRIME  " }"
+            take3 -- ;
+		}
+
+
+		if ( ftype[ i ] == 2 && take2 ){
+
 			print "{ " PRIME f_a[ i ] PRIME "," PRIME f_b[ i ] PRIME " }"
-		
-		if ( ftype[ i ] == 1 )
-			print "{ " PRIME f_a[ i ] PRIME " }"
+            take2 -- ;
+		}
 
+		if ( ftype[ i ] == 1 && take1 ){
+		
+        	print "{ " PRIME f_a[ i ] PRIME " }"
+            take1 --;            
+
+        }
 	}	
 	
 	print " ]; "

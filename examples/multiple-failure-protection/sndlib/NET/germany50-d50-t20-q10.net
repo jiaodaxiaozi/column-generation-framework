@@ -1,0 +1,2850 @@
+// NODE : 50
+// EDGE : 88
+// REQUEST : 662
+// AVE CONNECT : 3.57251
+// AVE DEGREE : 3.52
+// DUAL-FAILURE PERCENT = 50
+// NUM DUAL-FAILURE = 1914
+// NUM TRIPLE-FAILURE = 20
+// NUM QUADRUPLE-FAILURE = 10
+nodeset = { 
+"Aachen",
+"Augsburg",
+"Bayreuth",
+"Berlin",
+"Bielefeld",
+"Braunschweig",
+"Bremen",
+"Bremerhaven",
+"Chemnitz",
+"Darmstadt",
+"Dortmund",
+"Dresden",
+"Duesseldorf",
+"Erfurt",
+"Essen",
+"Flensburg",
+"Frankfurt",
+"Freiburg",
+"Fulda",
+"Giessen",
+"Greifswald",
+"Hamburg",
+"Hannover",
+"Kaiserslautern",
+"Karlsruhe",
+"Kassel",
+"Kempten",
+"Kiel",
+"Koblenz",
+"Koeln",
+"Konstanz",
+"Leipzig",
+"Magdeburg",
+"Mannheim",
+"Muenchen",
+"Muenster",
+"Norden",
+"Nuernberg",
+"Oldenburg",
+"Osnabrueck",
+"Passau",
+"Regensburg",
+"Saarbruecken",
+"Schwerin",
+"Siegen",
+"Stuttgart",
+"Trier",
+"Ulm",
+"Wesel",
+"Wuerzburg"
+};
+edgeset = { 
+<"LINK1","Duesseldorf","Essen",1>,
+<"LINK2","Dortmund","Essen",1>,
+<"LINK3","Wesel","Essen",1>,
+<"LINK4","Koeln","Duesseldorf",1>,
+<"LINK5","Aachen","Koeln",1>,
+<"LINK6","Koblenz","Koeln",1>,
+<"LINK7","Muenster","Dortmund",1>,
+<"LINK8","Siegen","Dortmund",1>,
+<"LINK9","Kassel","Dortmund",1>,
+<"LINK10","Wesel","Aachen",1>,
+<"LINK11","Trier","Aachen",1>,
+<"LINK12","Bielefeld","Muenster",1>,
+<"LINK13","Osnabrueck","Muenster",1>,
+<"LINK14","Siegen","Koblenz",1>,
+<"LINK15","Frankfurt","Koblenz",1>,
+<"LINK16","Kaiserslautern","Koblenz",1>,
+<"LINK17","Trier","Koblenz",1>,
+<"LINK18","Bielefeld","Siegen",1>,
+<"LINK19","Giessen","Siegen",1>,
+<"LINK20","Oldenburg","Wesel",1>,
+<"LINK21","Norden","Wesel",1>,
+<"LINK22","Leipzig","Berlin",1>,
+<"LINK23","Dresden","Berlin",1>,
+<"LINK24","Schwerin","Berlin",1>,
+<"LINK25","Magdeburg","Berlin",1>,
+<"LINK26","Greifswald","Berlin",1>,
+<"LINK27","Dresden","Leipzig",1>,
+<"LINK28","Erfurt","Leipzig",1>,
+<"LINK29","Magdeburg","Leipzig",1>,
+<"LINK30","Bayreuth","Leipzig",1>,
+<"LINK31","Erfurt","Dresden",1>,
+<"LINK32","Chemnitz","Dresden",1>,
+<"LINK33","Chemnitz","Erfurt",1>,
+<"LINK34","Kassel","Erfurt",1>,
+<"LINK35","Wuerzburg","Erfurt",1>,
+<"LINK36","Bayreuth","Chemnitz",1>,
+<"LINK37","Magdeburg","Schwerin",1>,
+<"LINK38","Greifswald","Schwerin",1>,
+<"LINK39","Hamburg","Schwerin",1>,
+<"LINK40","Kiel","Schwerin",1>,
+<"LINK41","Braunschweig","Magdeburg",1>,
+<"LINK42","Kiel","Hamburg",1>,
+<"LINK43","Hannover","Hamburg",1>,
+<"LINK44","Braunschweig","Hamburg",1>,
+<"LINK45","Oldenburg","Bremen",1>,
+<"LINK46","Bremerhaven","Bremen",1>,
+<"LINK47","Hannover","Bremen",1>,
+<"LINK48","Flensburg","Kiel",1>,
+<"LINK49","Norden","Oldenburg",1>,
+<"LINK50","Osnabrueck","Oldenburg",1>,
+<"LINK51","Bremerhaven","Flensburg",1>,
+<"LINK52","Bielefeld","Hannover",1>,
+<"LINK53","Braunschweig","Hannover",1>,
+<"LINK54","Osnabrueck","Hannover",1>,
+<"LINK55","Braunschweig","Bielefeld",1>,
+<"LINK56","Kassel","Braunschweig",1>,
+<"LINK57","Giessen","Kassel",1>,
+<"LINK58","Fulda","Kassel",1>,
+<"LINK59","Darmstadt","Frankfurt",1>,
+<"LINK60","Giessen","Frankfurt",1>,
+<"LINK61","Fulda","Frankfurt",1>,
+<"LINK62","Mannheim","Darmstadt",1>,
+<"LINK63","Kaiserslautern","Darmstadt",1>,
+<"LINK64","Karlsruhe","Mannheim",1>,
+<"LINK65","Saarbruecken","Kaiserslautern",1>,
+<"LINK66","Karlsruhe","Kaiserslautern",1>,
+<"LINK67","Fulda","Giessen",1>,
+<"LINK68","Saarbruecken","Trier",1>,
+<"LINK69","Wuerzburg","Fulda",1>,
+<"LINK70","Karlsruhe","Saarbruecken",1>,
+<"LINK71","Karlsruhe","Stuttgart",1>,
+<"LINK72","Ulm","Stuttgart",1>,
+<"LINK73","Konstanz","Stuttgart",1>,
+<"LINK74","Wuerzburg","Stuttgart",1>,
+<"LINK75","Freiburg","Karlsruhe",1>,
+<"LINK76","Augsburg","Ulm",1>,
+<"LINK77","Freiburg","Konstanz",1>,
+<"LINK78","Kempten","Konstanz",1>,
+<"LINK79","Augsburg","Muenchen",1>,
+<"LINK80","Kempten","Muenchen",1>,
+<"LINK81","Passau","Muenchen",1>,
+<"LINK82","Nuernberg","Muenchen",1>,
+<"LINK83","Regensburg","Muenchen",1>,
+<"LINK84","Wuerzburg","Augsburg",1>,
+<"LINK85","Regensburg","Passau",1>,
+<"LINK86","Bayreuth","Nuernberg",1>,
+<"LINK87","Wuerzburg","Nuernberg",1>,
+<"LINK88","Regensburg","Nuernberg",1>
+ }; 
+requestset={
+< "Essen" , "Duesseldorf" , 34.0 >,
+< "Essen" , "Koeln" , 9.0 >,
+< "Essen" , "Dortmund" , 9.0 >,
+< "Essen" , "Aachen" , 2.0 >,
+< "Essen" , "Muenster" , 2.0 >,
+< "Essen" , "Koblenz" , 2.0 >,
+< "Essen" , "Siegen" , 2.0 >,
+< "Essen" , "Wesel" , 2.0 >,
+< "Essen" , "Berlin" , 2.0 >,
+< "Essen" , "Leipzig" , 2.0 >,
+< "Essen" , "Dresden" , 2.0 >,
+< "Essen" , "Erfurt" , 2.0 >,
+< "Essen" , "Chemnitz" , 2.0 >,
+< "Essen" , "Schwerin" , 2.0 >,
+< "Essen" , "Magdeburg" , 2.0 >,
+< "Essen" , "Hamburg" , 2.0 >,
+< "Essen" , "Bremen" , 2.0 >,
+< "Essen" , "Kiel" , 2.0 >,
+< "Essen" , "Norden" , 2.0 >,
+< "Essen" , "Hannover" , 2.0 >,
+< "Essen" , "Bielefeld" , 2.0 >,
+< "Essen" , "Osnabrueck" , 2.0 >,
+< "Essen" , "Frankfurt" , 2.0 >,
+< "Essen" , "Darmstadt" , 2.0 >,
+< "Essen" , "Mannheim" , 2.0 >,
+< "Essen" , "Saarbruecken" , 2.0 >,
+< "Essen" , "Stuttgart" , 2.0 >,
+< "Essen" , "Karlsruhe" , 2.0 >,
+< "Essen" , "Muenchen" , 2.0 >,
+< "Essen" , "Augsburg" , 2.0 >,
+< "Essen" , "Nuernberg" , 2.0 >,
+< "Essen" , "Wuerzburg" , 2.0 >,
+< "Duesseldorf" , "Koeln" , 76.0 >,
+< "Duesseldorf" , "Dortmund" , 25.0 >,
+< "Duesseldorf" , "Aachen" , 3.0 >,
+< "Duesseldorf" , "Muenster" , 6.0 >,
+< "Duesseldorf" , "Koblenz" , 2.0 >,
+< "Duesseldorf" , "Siegen" , 2.0 >,
+< "Duesseldorf" , "Wesel" , 5.0 >,
+< "Duesseldorf" , "Berlin" , 4.0 >,
+< "Duesseldorf" , "Leipzig" , 2.0 >,
+< "Duesseldorf" , "Dresden" , 2.0 >,
+< "Duesseldorf" , "Erfurt" , 2.0 >,
+< "Duesseldorf" , "Schwerin" , 2.0 >,
+< "Duesseldorf" , "Magdeburg" , 2.0 >,
+< "Duesseldorf" , "Greifswald" , 2.0 >,
+< "Duesseldorf" , "Hamburg" , 15.0 >,
+< "Duesseldorf" , "Bremen" , 2.0 >,
+< "Duesseldorf" , "Kiel" , 2.0 >,
+< "Duesseldorf" , "Oldenburg" , 2.0 >,
+< "Duesseldorf" , "Flensburg" , 2.0 >,
+< "Duesseldorf" , "Bremerhaven" , 2.0 >,
+< "Duesseldorf" , "Norden" , 2.0 >,
+< "Duesseldorf" , "Hannover" , 19.0 >,
+< "Duesseldorf" , "Bielefeld" , 4.0 >,
+< "Duesseldorf" , "Braunschweig" , 2.0 >,
+< "Duesseldorf" , "Osnabrueck" , 2.0 >,
+< "Duesseldorf" , "Kassel" , 2.0 >,
+< "Duesseldorf" , "Frankfurt" , 33.0 >,
+< "Duesseldorf" , "Darmstadt" , 2.0 >,
+< "Duesseldorf" , "Mannheim" , 2.0 >,
+< "Duesseldorf" , "Giessen" , 2.0 >,
+< "Duesseldorf" , "Trier" , 2.0 >,
+< "Duesseldorf" , "Fulda" , 2.0 >,
+< "Duesseldorf" , "Saarbruecken" , 2.0 >,
+< "Duesseldorf" , "Stuttgart" , 5.0 >,
+< "Duesseldorf" , "Karlsruhe" , 2.0 >,
+< "Duesseldorf" , "Ulm" , 2.0 >,
+< "Duesseldorf" , "Freiburg" , 2.0 >,
+< "Duesseldorf" , "Muenchen" , 4.0 >,
+< "Duesseldorf" , "Augsburg" , 2.0 >,
+< "Duesseldorf" , "Nuernberg" , 2.0 >,
+< "Duesseldorf" , "Wuerzburg" , 2.0 >,
+< "Duesseldorf" , "Regensburg" , 2.0 >,
+< "Koeln" , "Dortmund" , 13.0 >,
+< "Koeln" , "Aachen" , 10.0 >,
+< "Koeln" , "Muenster" , 2.0 >,
+< "Koeln" , "Koblenz" , 5.0 >,
+< "Koeln" , "Siegen" , 4.0 >,
+< "Koeln" , "Wesel" , 2.0 >,
+< "Koeln" , "Berlin" , 11.0 >,
+< "Koeln" , "Leipzig" , 3.0 >,
+< "Koeln" , "Dresden" , 2.0 >,
+< "Koeln" , "Erfurt" , 2.0 >,
+< "Koeln" , "Chemnitz" , 2.0 >,
+< "Koeln" , "Schwerin" , 2.0 >,
+< "Koeln" , "Magdeburg" , 2.0 >,
+< "Koeln" , "Hamburg" , 5.0 >,
+< "Koeln" , "Bremen" , 2.0 >,
+< "Koeln" , "Kiel" , 2.0 >,
+< "Koeln" , "Oldenburg" , 2.0 >,
+< "Koeln" , "Bremerhaven" , 2.0 >,
+< "Koeln" , "Norden" , 2.0 >,
+< "Koeln" , "Hannover" , 12.0 >,
+< "Koeln" , "Bielefeld" , 2.0 >,
+< "Koeln" , "Braunschweig" , 2.0 >,
+< "Koeln" , "Osnabrueck" , 2.0 >,
+< "Koeln" , "Kassel" , 2.0 >,
+< "Koeln" , "Frankfurt" , 28.0 >,
+< "Koeln" , "Darmstadt" , 2.0 >,
+< "Koeln" , "Mannheim" , 2.0 >,
+< "Koeln" , "Kaiserslautern" , 2.0 >,
+< "Koeln" , "Giessen" , 2.0 >,
+< "Koeln" , "Trier" , 5.0 >,
+< "Koeln" , "Fulda" , 2.0 >,
+< "Koeln" , "Saarbruecken" , 2.0 >,
+< "Koeln" , "Stuttgart" , 7.0 >,
+< "Koeln" , "Karlsruhe" , 2.0 >,
+< "Koeln" , "Ulm" , 2.0 >,
+< "Koeln" , "Konstanz" , 2.0 >,
+< "Koeln" , "Freiburg" , 2.0 >,
+< "Koeln" , "Muenchen" , 3.0 >,
+< "Koeln" , "Augsburg" , 2.0 >,
+< "Koeln" , "Kempten" , 2.0 >,
+< "Koeln" , "Nuernberg" , 3.0 >,
+< "Koeln" , "Bayreuth" , 2.0 >,
+< "Koeln" , "Wuerzburg" , 2.0 >,
+< "Koeln" , "Regensburg" , 2.0 >,
+< "Dortmund" , "Aachen" , 2.0 >,
+< "Dortmund" , "Muenster" , 6.0 >,
+< "Dortmund" , "Koblenz" , 2.0 >,
+< "Dortmund" , "Siegen" , 5.0 >,
+< "Dortmund" , "Wesel" , 2.0 >,
+< "Dortmund" , "Berlin" , 2.0 >,
+< "Dortmund" , "Leipzig" , 5.0 >,
+< "Dortmund" , "Dresden" , 2.0 >,
+< "Dortmund" , "Erfurt" , 2.0 >,
+< "Dortmund" , "Chemnitz" , 2.0 >,
+< "Dortmund" , "Schwerin" , 2.0 >,
+< "Dortmund" , "Magdeburg" , 2.0 >,
+< "Dortmund" , "Greifswald" , 2.0 >,
+< "Dortmund" , "Hamburg" , 3.0 >,
+< "Dortmund" , "Bremen" , 2.0 >,
+< "Dortmund" , "Kiel" , 2.0 >,
+< "Dortmund" , "Oldenburg" , 2.0 >,
+< "Dortmund" , "Flensburg" , 2.0 >,
+< "Dortmund" , "Bremerhaven" , 2.0 >,
+< "Dortmund" , "Norden" , 2.0 >,
+< "Dortmund" , "Hannover" , 15.0 >,
+< "Dortmund" , "Bielefeld" , 8.0 >,
+< "Dortmund" , "Braunschweig" , 2.0 >,
+< "Dortmund" , "Osnabrueck" , 2.0 >,
+< "Dortmund" , "Kassel" , 2.0 >,
+< "Dortmund" , "Frankfurt" , 6.0 >,
+< "Dortmund" , "Darmstadt" , 2.0 >,
+< "Dortmund" , "Mannheim" , 2.0 >,
+< "Dortmund" , "Giessen" , 2.0 >,
+< "Dortmund" , "Fulda" , 2.0 >,
+< "Dortmund" , "Saarbruecken" , 2.0 >,
+< "Dortmund" , "Stuttgart" , 2.0 >,
+< "Dortmund" , "Karlsruhe" , 2.0 >,
+< "Dortmund" , "Ulm" , 2.0 >,
+< "Dortmund" , "Freiburg" , 2.0 >,
+< "Dortmund" , "Muenchen" , 2.0 >,
+< "Dortmund" , "Augsburg" , 2.0 >,
+< "Dortmund" , "Nuernberg" , 2.0 >,
+< "Dortmund" , "Wuerzburg" , 2.0 >,
+< "Aachen" , "Muenster" , 2.0 >,
+< "Aachen" , "Koblenz" , 2.0 >,
+< "Aachen" , "Wesel" , 2.0 >,
+< "Aachen" , "Berlin" , 2.0 >,
+< "Aachen" , "Dresden" , 2.0 >,
+< "Aachen" , "Erfurt" , 2.0 >,
+< "Aachen" , "Hamburg" , 2.0 >,
+< "Aachen" , "Bremerhaven" , 2.0 >,
+< "Aachen" , "Norden" , 2.0 >,
+< "Aachen" , "Osnabrueck" , 2.0 >,
+< "Aachen" , "Frankfurt" , 3.0 >,
+< "Aachen" , "Kaiserslautern" , 2.0 >,
+< "Aachen" , "Trier" , 2.0 >,
+< "Aachen" , "Fulda" , 2.0 >,
+< "Aachen" , "Saarbruecken" , 2.0 >,
+< "Aachen" , "Konstanz" , 2.0 >,
+< "Aachen" , "Freiburg" , 3.0 >,
+< "Aachen" , "Nuernberg" , 2.0 >,
+< "Muenster" , "Siegen" , 2.0 >,
+< "Muenster" , "Wesel" , 2.0 >,
+< "Muenster" , "Berlin" , 2.0 >,
+< "Muenster" , "Schwerin" , 2.0 >,
+< "Muenster" , "Hamburg" , 2.0 >,
+< "Muenster" , "Bremen" , 2.0 >,
+< "Muenster" , "Bremerhaven" , 2.0 >,
+< "Muenster" , "Norden" , 2.0 >,
+< "Muenster" , "Hannover" , 2.0 >,
+< "Muenster" , "Bielefeld" , 5.0 >,
+< "Muenster" , "Osnabrueck" , 2.0 >,
+< "Muenster" , "Kassel" , 3.0 >,
+< "Muenster" , "Frankfurt" , 3.0 >,
+< "Muenster" , "Fulda" , 2.0 >,
+< "Muenster" , "Konstanz" , 2.0 >,
+< "Muenster" , "Nuernberg" , 2.0 >,
+< "Koblenz" , "Siegen" , 2.0 >,
+< "Koblenz" , "Berlin" , 2.0 >,
+< "Koblenz" , "Dresden" , 2.0 >,
+< "Koblenz" , "Hamburg" , 2.0 >,
+< "Koblenz" , "Bremerhaven" , 2.0 >,
+< "Koblenz" , "Norden" , 2.0 >,
+< "Koblenz" , "Bielefeld" , 2.0 >,
+< "Koblenz" , "Osnabrueck" , 2.0 >,
+< "Koblenz" , "Kassel" , 2.0 >,
+< "Koblenz" , "Frankfurt" , 2.0 >,
+< "Koblenz" , "Darmstadt" , 6.0 >,
+< "Koblenz" , "Mannheim" , 2.0 >,
+< "Koblenz" , "Kaiserslautern" , 2.0 >,
+< "Koblenz" , "Giessen" , 2.0 >,
+< "Koblenz" , "Trier" , 2.0 >,
+< "Koblenz" , "Fulda" , 2.0 >,
+< "Koblenz" , "Saarbruecken" , 2.0 >,
+< "Koblenz" , "Konstanz" , 2.0 >,
+< "Koblenz" , "Wuerzburg" , 2.0 >,
+< "Siegen" , "Berlin" , 2.0 >,
+< "Siegen" , "Hamburg" , 2.0 >,
+< "Siegen" , "Bremerhaven" , 2.0 >,
+< "Siegen" , "Osnabrueck" , 2.0 >,
+< "Siegen" , "Frankfurt" , 2.0 >,
+< "Siegen" , "Mannheim" , 2.0 >,
+< "Siegen" , "Giessen" , 2.0 >,
+< "Siegen" , "Fulda" , 2.0 >,
+< "Siegen" , "Saarbruecken" , 2.0 >,
+< "Siegen" , "Konstanz" , 2.0 >,
+< "Siegen" , "Nuernberg" , 2.0 >,
+< "Wesel" , "Berlin" , 2.0 >,
+< "Wesel" , "Hamburg" , 2.0 >,
+< "Wesel" , "Bremerhaven" , 2.0 >,
+< "Wesel" , "Norden" , 2.0 >,
+< "Wesel" , "Bielefeld" , 2.0 >,
+< "Wesel" , "Osnabrueck" , 2.0 >,
+< "Wesel" , "Frankfurt" , 2.0 >,
+< "Wesel" , "Fulda" , 2.0 >,
+< "Wesel" , "Saarbruecken" , 2.0 >,
+< "Wesel" , "Konstanz" , 2.0 >,
+< "Berlin" , "Leipzig" , 20.0 >,
+< "Berlin" , "Dresden" , 11.0 >,
+< "Berlin" , "Erfurt" , 3.0 >,
+< "Berlin" , "Chemnitz" , 2.0 >,
+< "Berlin" , "Schwerin" , 3.0 >,
+< "Berlin" , "Magdeburg" , 7.0 >,
+< "Berlin" , "Greifswald" , 4.0 >,
+< "Berlin" , "Hamburg" , 23.0 >,
+< "Berlin" , "Bremen" , 2.0 >,
+< "Berlin" , "Kiel" , 2.0 >,
+< "Berlin" , "Oldenburg" , 2.0 >,
+< "Berlin" , "Bremerhaven" , 2.0 >,
+< "Berlin" , "Hannover" , 25.0 >,
+< "Berlin" , "Bielefeld" , 2.0 >,
+< "Berlin" , "Braunschweig" , 2.0 >,
+< "Berlin" , "Osnabrueck" , 2.0 >,
+< "Berlin" , "Kassel" , 2.0 >,
+< "Berlin" , "Frankfurt" , 16.0 >,
+< "Berlin" , "Darmstadt" , 2.0 >,
+< "Berlin" , "Mannheim" , 2.0 >,
+< "Berlin" , "Kaiserslautern" , 2.0 >,
+< "Berlin" , "Giessen" , 2.0 >,
+< "Berlin" , "Trier" , 2.0 >,
+< "Berlin" , "Fulda" , 2.0 >,
+< "Berlin" , "Saarbruecken" , 2.0 >,
+< "Berlin" , "Stuttgart" , 3.0 >,
+< "Berlin" , "Karlsruhe" , 2.0 >,
+< "Berlin" , "Ulm" , 2.0 >,
+< "Berlin" , "Konstanz" , 2.0 >,
+< "Berlin" , "Freiburg" , 2.0 >,
+< "Berlin" , "Muenchen" , 4.0 >,
+< "Berlin" , "Augsburg" , 2.0 >,
+< "Berlin" , "Passau" , 2.0 >,
+< "Berlin" , "Nuernberg" , 3.0 >,
+< "Berlin" , "Bayreuth" , 2.0 >,
+< "Berlin" , "Wuerzburg" , 2.0 >,
+< "Leipzig" , "Dresden" , 10.0 >,
+< "Leipzig" , "Erfurt" , 11.0 >,
+< "Leipzig" , "Chemnitz" , 3.0 >,
+< "Leipzig" , "Schwerin" , 2.0 >,
+< "Leipzig" , "Magdeburg" , 6.0 >,
+< "Leipzig" , "Greifswald" , 2.0 >,
+< "Leipzig" , "Hamburg" , 17.0 >,
+< "Leipzig" , "Hannover" , 3.0 >,
+< "Leipzig" , "Bielefeld" , 2.0 >,
+< "Leipzig" , "Braunschweig" , 2.0 >,
+< "Leipzig" , "Frankfurt" , 4.0 >,
+< "Leipzig" , "Darmstadt" , 2.0 >,
+< "Leipzig" , "Mannheim" , 2.0 >,
+< "Leipzig" , "Stuttgart" , 2.0 >,
+< "Leipzig" , "Karlsruhe" , 2.0 >,
+< "Leipzig" , "Ulm" , 2.0 >,
+< "Leipzig" , "Muenchen" , 3.0 >,
+< "Leipzig" , "Augsburg" , 2.0 >,
+< "Leipzig" , "Nuernberg" , 9.0 >,
+< "Leipzig" , "Wuerzburg" , 2.0 >,
+< "Dresden" , "Erfurt" , 2.0 >,
+< "Dresden" , "Chemnitz" , 4.0 >,
+< "Dresden" , "Schwerin" , 2.0 >,
+< "Dresden" , "Magdeburg" , 2.0 >,
+< "Dresden" , "Greifswald" , 2.0 >,
+< "Dresden" , "Hamburg" , 2.0 >,
+< "Dresden" , "Bremen" , 2.0 >,
+< "Dresden" , "Kiel" , 2.0 >,
+< "Dresden" , "Norden" , 2.0 >,
+< "Dresden" , "Hannover" , 2.0 >,
+< "Dresden" , "Bielefeld" , 2.0 >,
+< "Dresden" , "Braunschweig" , 2.0 >,
+< "Dresden" , "Kassel" , 2.0 >,
+< "Dresden" , "Frankfurt" , 2.0 >,
+< "Dresden" , "Darmstadt" , 2.0 >,
+< "Dresden" , "Mannheim" , 2.0 >,
+< "Dresden" , "Trier" , 2.0 >,
+< "Dresden" , "Stuttgart" , 2.0 >,
+< "Dresden" , "Karlsruhe" , 2.0 >,
+< "Dresden" , "Ulm" , 2.0 >,
+< "Dresden" , "Konstanz" , 2.0 >,
+< "Dresden" , "Freiburg" , 2.0 >,
+< "Dresden" , "Muenchen" , 2.0 >,
+< "Dresden" , "Augsburg" , 2.0 >,
+< "Dresden" , "Nuernberg" , 2.0 >,
+< "Dresden" , "Bayreuth" , 2.0 >,
+< "Dresden" , "Wuerzburg" , 2.0 >,
+< "Dresden" , "Regensburg" , 2.0 >,
+< "Erfurt" , "Chemnitz" , 2.0 >,
+< "Erfurt" , "Schwerin" , 2.0 >,
+< "Erfurt" , "Magdeburg" , 6.0 >,
+< "Erfurt" , "Hamburg" , 2.0 >,
+< "Erfurt" , "Bremen" , 2.0 >,
+< "Erfurt" , "Kiel" , 2.0 >,
+< "Erfurt" , "Hannover" , 2.0 >,
+< "Erfurt" , "Bielefeld" , 2.0 >,
+< "Erfurt" , "Braunschweig" , 2.0 >,
+< "Erfurt" , "Kassel" , 2.0 >,
+< "Erfurt" , "Frankfurt" , 5.0 >,
+< "Erfurt" , "Darmstadt" , 2.0 >,
+< "Erfurt" , "Mannheim" , 2.0 >,
+< "Erfurt" , "Giessen" , 2.0 >,
+< "Erfurt" , "Fulda" , 2.0 >,
+< "Erfurt" , "Stuttgart" , 2.0 >,
+< "Erfurt" , "Karlsruhe" , 2.0 >,
+< "Erfurt" , "Muenchen" , 2.0 >,
+< "Erfurt" , "Augsburg" , 2.0 >,
+< "Erfurt" , "Nuernberg" , 2.0 >,
+< "Erfurt" , "Bayreuth" , 2.0 >,
+< "Erfurt" , "Wuerzburg" , 2.0 >,
+< "Chemnitz" , "Schwerin" , 2.0 >,
+< "Chemnitz" , "Magdeburg" , 2.0 >,
+< "Chemnitz" , "Hamburg" , 2.0 >,
+< "Chemnitz" , "Hannover" , 2.0 >,
+< "Chemnitz" , "Bielefeld" , 2.0 >,
+< "Chemnitz" , "Braunschweig" , 2.0 >,
+< "Chemnitz" , "Frankfurt" , 2.0 >,
+< "Chemnitz" , "Mannheim" , 2.0 >,
+< "Chemnitz" , "Giessen" , 2.0 >,
+< "Chemnitz" , "Stuttgart" , 2.0 >,
+< "Chemnitz" , "Karlsruhe" , 2.0 >,
+< "Chemnitz" , "Muenchen" , 2.0 >,
+< "Chemnitz" , "Augsburg" , 2.0 >,
+< "Chemnitz" , "Nuernberg" , 2.0 >,
+< "Chemnitz" , "Bayreuth" , 2.0 >,
+< "Chemnitz" , "Wuerzburg" , 2.0 >,
+< "Schwerin" , "Magdeburg" , 2.0 >,
+< "Schwerin" , "Greifswald" , 2.0 >,
+< "Schwerin" , "Hamburg" , 8.0 >,
+< "Schwerin" , "Bremen" , 2.0 >,
+< "Schwerin" , "Kiel" , 3.0 >,
+< "Schwerin" , "Hannover" , 2.0 >,
+< "Schwerin" , "Bielefeld" , 2.0 >,
+< "Schwerin" , "Frankfurt" , 2.0 >,
+< "Schwerin" , "Mannheim" , 2.0 >,
+< "Schwerin" , "Stuttgart" , 2.0 >,
+< "Schwerin" , "Karlsruhe" , 2.0 >,
+< "Schwerin" , "Muenchen" , 2.0 >,
+< "Schwerin" , "Augsburg" , 2.0 >,
+< "Schwerin" , "Nuernberg" , 2.0 >,
+< "Schwerin" , "Wuerzburg" , 2.0 >,
+< "Magdeburg" , "Greifswald" , 2.0 >,
+< "Magdeburg" , "Hamburg" , 2.0 >,
+< "Magdeburg" , "Bremen" , 2.0 >,
+< "Magdeburg" , "Kiel" , 2.0 >,
+< "Magdeburg" , "Hannover" , 2.0 >,
+< "Magdeburg" , "Bielefeld" , 2.0 >,
+< "Magdeburg" , "Braunschweig" , 3.0 >,
+< "Magdeburg" , "Frankfurt" , 2.0 >,
+< "Magdeburg" , "Mannheim" , 2.0 >,
+< "Magdeburg" , "Stuttgart" , 2.0 >,
+< "Magdeburg" , "Karlsruhe" , 2.0 >,
+< "Magdeburg" , "Muenchen" , 2.0 >,
+< "Magdeburg" , "Augsburg" , 2.0 >,
+< "Magdeburg" , "Nuernberg" , 2.0 >,
+< "Magdeburg" , "Bayreuth" , 2.0 >,
+< "Magdeburg" , "Wuerzburg" , 2.0 >,
+< "Greifswald" , "Hamburg" , 2.0 >,
+< "Greifswald" , "Bremen" , 2.0 >,
+< "Greifswald" , "Kiel" , 2.0 >,
+< "Greifswald" , "Hannover" , 2.0 >,
+< "Greifswald" , "Bielefeld" , 2.0 >,
+< "Greifswald" , "Frankfurt" , 2.0 >,
+< "Greifswald" , "Karlsruhe" , 2.0 >,
+< "Hamburg" , "Bremen" , 13.0 >,
+< "Hamburg" , "Kiel" , 14.0 >,
+< "Hamburg" , "Oldenburg" , 2.0 >,
+< "Hamburg" , "Flensburg" , 3.0 >,
+< "Hamburg" , "Bremerhaven" , 3.0 >,
+< "Hamburg" , "Norden" , 2.0 >,
+< "Hamburg" , "Hannover" , 71.0 >,
+< "Hamburg" , "Bielefeld" , 3.0 >,
+< "Hamburg" , "Braunschweig" , 2.0 >,
+< "Hamburg" , "Osnabrueck" , 2.0 >,
+< "Hamburg" , "Kassel" , 2.0 >,
+< "Hamburg" , "Frankfurt" , 11.0 >,
+< "Hamburg" , "Darmstadt" , 2.0 >,
+< "Hamburg" , "Mannheim" , 2.0 >,
+< "Hamburg" , "Giessen" , 2.0 >,
+< "Hamburg" , "Fulda" , 2.0 >,
+< "Hamburg" , "Saarbruecken" , 2.0 >,
+< "Hamburg" , "Stuttgart" , 3.0 >,
+< "Hamburg" , "Karlsruhe" , 2.0 >,
+< "Hamburg" , "Ulm" , 2.0 >,
+< "Hamburg" , "Freiburg" , 2.0 >,
+< "Hamburg" , "Muenchen" , 6.0 >,
+< "Hamburg" , "Augsburg" , 2.0 >,
+< "Hamburg" , "Nuernberg" , 2.0 >,
+< "Hamburg" , "Wuerzburg" , 2.0 >,
+< "Hamburg" , "Regensburg" , 2.0 >,
+< "Bremen" , "Kiel" , 2.0 >,
+< "Bremen" , "Oldenburg" , 4.0 >,
+< "Bremen" , "Flensburg" , 2.0 >,
+< "Bremen" , "Bremerhaven" , 2.0 >,
+< "Bremen" , "Norden" , 3.0 >,
+< "Bremen" , "Hannover" , 11.0 >,
+< "Bremen" , "Bielefeld" , 2.0 >,
+< "Bremen" , "Braunschweig" , 2.0 >,
+< "Bremen" , "Osnabrueck" , 2.0 >,
+< "Bremen" , "Kassel" , 2.0 >,
+< "Bremen" , "Frankfurt" , 2.0 >,
+< "Bremen" , "Darmstadt" , 2.0 >,
+< "Bremen" , "Mannheim" , 2.0 >,
+< "Bremen" , "Giessen" , 2.0 >,
+< "Bremen" , "Trier" , 2.0 >,
+< "Bremen" , "Stuttgart" , 2.0 >,
+< "Bremen" , "Karlsruhe" , 2.0 >,
+< "Bremen" , "Muenchen" , 2.0 >,
+< "Bremen" , "Augsburg" , 2.0 >,
+< "Bremen" , "Nuernberg" , 2.0 >,
+< "Bremen" , "Wuerzburg" , 2.0 >,
+< "Kiel" , "Oldenburg" , 2.0 >,
+< "Kiel" , "Flensburg" , 3.0 >,
+< "Kiel" , "Bremerhaven" , 2.0 >,
+< "Kiel" , "Hannover" , 2.0 >,
+< "Kiel" , "Bielefeld" , 2.0 >,
+< "Kiel" , "Braunschweig" , 2.0 >,
+< "Kiel" , "Kassel" , 2.0 >,
+< "Kiel" , "Frankfurt" , 2.0 >,
+< "Kiel" , "Darmstadt" , 2.0 >,
+< "Kiel" , "Mannheim" , 2.0 >,
+< "Kiel" , "Stuttgart" , 2.0 >,
+< "Kiel" , "Karlsruhe" , 2.0 >,
+< "Kiel" , "Muenchen" , 2.0 >,
+< "Kiel" , "Augsburg" , 2.0 >,
+< "Kiel" , "Nuernberg" , 2.0 >,
+< "Kiel" , "Bayreuth" , 2.0 >,
+< "Kiel" , "Wuerzburg" , 2.0 >,
+< "Oldenburg" , "Bremerhaven" , 2.0 >,
+< "Oldenburg" , "Norden" , 2.0 >,
+< "Oldenburg" , "Hannover" , 2.0 >,
+< "Oldenburg" , "Bielefeld" , 2.0 >,
+< "Oldenburg" , "Osnabrueck" , 2.0 >,
+< "Oldenburg" , "Frankfurt" , 2.0 >,
+< "Oldenburg" , "Stuttgart" , 2.0 >,
+< "Oldenburg" , "Muenchen" , 2.0 >,
+< "Flensburg" , "Bremerhaven" , 2.0 >,
+< "Flensburg" , "Hannover" , 2.0 >,
+< "Flensburg" , "Bielefeld" , 2.0 >,
+< "Flensburg" , "Frankfurt" , 5.0 >,
+< "Bremerhaven" , "Hannover" , 2.0 >,
+< "Bremerhaven" , "Bielefeld" , 2.0 >,
+< "Bremerhaven" , "Frankfurt" , 2.0 >,
+< "Norden" , "Hannover" , 2.0 >,
+< "Norden" , "Bielefeld" , 2.0 >,
+< "Norden" , "Osnabrueck" , 2.0 >,
+< "Norden" , "Frankfurt" , 2.0 >,
+< "Norden" , "Saarbruecken" , 2.0 >,
+< "Norden" , "Konstanz" , 2.0 >,
+< "Norden" , "Muenchen" , 2.0 >,
+< "Norden" , "Passau" , 2.0 >,
+< "Hannover" , "Bielefeld" , 25.0 >,
+< "Hannover" , "Braunschweig" , 5.0 >,
+< "Hannover" , "Osnabrueck" , 3.0 >,
+< "Hannover" , "Kassel" , 6.0 >,
+< "Hannover" , "Frankfurt" , 49.0 >,
+< "Hannover" , "Darmstadt" , 2.0 >,
+< "Hannover" , "Mannheim" , 2.0 >,
+< "Hannover" , "Giessen" , 2.0 >,
+< "Hannover" , "Trier" , 2.0 >,
+< "Hannover" , "Fulda" , 2.0 >,
+< "Hannover" , "Saarbruecken" , 2.0 >,
+< "Hannover" , "Stuttgart" , 2.0 >,
+< "Hannover" , "Karlsruhe" , 2.0 >,
+< "Hannover" , "Ulm" , 2.0 >,
+< "Hannover" , "Konstanz" , 2.0 >,
+< "Hannover" , "Freiburg" , 2.0 >,
+< "Hannover" , "Muenchen" , 2.0 >,
+< "Hannover" , "Augsburg" , 2.0 >,
+< "Hannover" , "Nuernberg" , 4.0 >,
+< "Hannover" , "Wuerzburg" , 2.0 >,
+< "Bielefeld" , "Braunschweig" , 2.0 >,
+< "Bielefeld" , "Osnabrueck" , 4.0 >,
+< "Bielefeld" , "Kassel" , 3.0 >,
+< "Bielefeld" , "Frankfurt" , 3.0 >,
+< "Bielefeld" , "Darmstadt" , 2.0 >,
+< "Bielefeld" , "Mannheim" , 2.0 >,
+< "Bielefeld" , "Giessen" , 2.0 >,
+< "Bielefeld" , "Fulda" , 2.0 >,
+< "Bielefeld" , "Saarbruecken" , 2.0 >,
+< "Bielefeld" , "Stuttgart" , 2.0 >,
+< "Bielefeld" , "Karlsruhe" , 2.0 >,
+< "Bielefeld" , "Ulm" , 2.0 >,
+< "Bielefeld" , "Muenchen" , 2.0 >,
+< "Bielefeld" , "Augsburg" , 2.0 >,
+< "Bielefeld" , "Nuernberg" , 2.0 >,
+< "Bielefeld" , "Bayreuth" , 2.0 >,
+< "Bielefeld" , "Wuerzburg" , 2.0 >,
+< "Braunschweig" , "Kassel" , 2.0 >,
+< "Braunschweig" , "Frankfurt" , 2.0 >,
+< "Braunschweig" , "Stuttgart" , 2.0 >,
+< "Braunschweig" , "Karlsruhe" , 2.0 >,
+< "Braunschweig" , "Muenchen" , 2.0 >,
+< "Osnabrueck" , "Frankfurt" , 2.0 >,
+< "Osnabrueck" , "Stuttgart" , 2.0 >,
+< "Osnabrueck" , "Muenchen" , 2.0 >,
+< "Kassel" , "Frankfurt" , 2.0 >,
+< "Kassel" , "Darmstadt" , 2.0 >,
+< "Kassel" , "Mannheim" , 2.0 >,
+< "Kassel" , "Giessen" , 2.0 >,
+< "Kassel" , "Fulda" , 2.0 >,
+< "Kassel" , "Stuttgart" , 2.0 >,
+< "Kassel" , "Karlsruhe" , 2.0 >,
+< "Kassel" , "Muenchen" , 2.0 >,
+< "Kassel" , "Nuernberg" , 2.0 >,
+< "Frankfurt" , "Darmstadt" , 25.0 >,
+< "Frankfurt" , "Mannheim" , 35.0 >,
+< "Frankfurt" , "Kaiserslautern" , 2.0 >,
+< "Frankfurt" , "Giessen" , 9.0 >,
+< "Frankfurt" , "Trier" , 2.0 >,
+< "Frankfurt" , "Fulda" , 2.0 >,
+< "Frankfurt" , "Saarbruecken" , 5.0 >,
+< "Frankfurt" , "Stuttgart" , 19.0 >,
+< "Frankfurt" , "Karlsruhe" , 8.0 >,
+< "Frankfurt" , "Ulm" , 5.0 >,
+< "Frankfurt" , "Konstanz" , 3.0 >,
+< "Frankfurt" , "Freiburg" , 2.0 >,
+< "Frankfurt" , "Muenchen" , 3.0 >,
+< "Frankfurt" , "Augsburg" , 2.0 >,
+< "Frankfurt" , "Kempten" , 2.0 >,
+< "Frankfurt" , "Passau" , 2.0 >,
+< "Frankfurt" , "Nuernberg" , 23.0 >,
+< "Frankfurt" , "Bayreuth" , 2.0 >,
+< "Frankfurt" , "Wuerzburg" , 3.0 >,
+< "Frankfurt" , "Regensburg" , 2.0 >,
+< "Darmstadt" , "Mannheim" , 4.0 >,
+< "Darmstadt" , "Kaiserslautern" , 2.0 >,
+< "Darmstadt" , "Giessen" , 2.0 >,
+< "Darmstadt" , "Trier" , 3.0 >,
+< "Darmstadt" , "Fulda" , 2.0 >,
+< "Darmstadt" , "Saarbruecken" , 2.0 >,
+< "Darmstadt" , "Stuttgart" , 2.0 >,
+< "Darmstadt" , "Karlsruhe" , 2.0 >,
+< "Darmstadt" , "Ulm" , 2.0 >,
+< "Darmstadt" , "Freiburg" , 2.0 >,
+< "Darmstadt" , "Muenchen" , 2.0 >,
+< "Darmstadt" , "Augsburg" , 2.0 >,
+< "Darmstadt" , "Nuernberg" , 2.0 >,
+< "Darmstadt" , "Wuerzburg" , 2.0 >,
+< "Mannheim" , "Kaiserslautern" , 4.0 >,
+< "Mannheim" , "Giessen" , 2.0 >,
+< "Mannheim" , "Trier" , 2.0 >,
+< "Mannheim" , "Fulda" , 2.0 >,
+< "Mannheim" , "Saarbruecken" , 5.0 >,
+< "Mannheim" , "Stuttgart" , 5.0 >,
+< "Mannheim" , "Karlsruhe" , 4.0 >,
+< "Mannheim" , "Ulm" , 2.0 >,
+< "Mannheim" , "Konstanz" , 2.0 >,
+< "Mannheim" , "Freiburg" , 2.0 >,
+< "Mannheim" , "Muenchen" , 2.0 >,
+< "Mannheim" , "Augsburg" , 2.0 >,
+< "Mannheim" , "Kempten" , 2.0 >,
+< "Mannheim" , "Nuernberg" , 2.0 >,
+< "Mannheim" , "Bayreuth" , 2.0 >,
+< "Mannheim" , "Wuerzburg" , 2.0 >,
+< "Kaiserslautern" , "Trier" , 2.0 >,
+< "Kaiserslautern" , "Saarbruecken" , 2.0 >,
+< "Kaiserslautern" , "Stuttgart" , 2.0 >,
+< "Kaiserslautern" , "Karlsruhe" , 3.0 >,
+< "Kaiserslautern" , "Muenchen" , 2.0 >,
+< "Giessen" , "Fulda" , 2.0 >,
+< "Giessen" , "Stuttgart" , 2.0 >,
+< "Giessen" , "Karlsruhe" , 2.0 >,
+< "Giessen" , "Muenchen" , 2.0 >,
+< "Giessen" , "Nuernberg" , 2.0 >,
+< "Giessen" , "Wuerzburg" , 2.0 >,
+< "Trier" , "Saarbruecken" , 2.0 >,
+< "Trier" , "Stuttgart" , 2.0 >,
+< "Trier" , "Karlsruhe" , 2.0 >,
+< "Trier" , "Muenchen" , 2.0 >,
+< "Fulda" , "Stuttgart" , 2.0 >,
+< "Fulda" , "Karlsruhe" , 2.0 >,
+< "Fulda" , "Muenchen" , 2.0 >,
+< "Fulda" , "Nuernberg" , 2.0 >,
+< "Fulda" , "Bayreuth" , 2.0 >,
+< "Fulda" , "Wuerzburg" , 2.0 >,
+< "Saarbruecken" , "Stuttgart" , 2.0 >,
+< "Saarbruecken" , "Karlsruhe" , 2.0 >,
+< "Saarbruecken" , "Freiburg" , 2.0 >,
+< "Saarbruecken" , "Muenchen" , 2.0 >,
+< "Saarbruecken" , "Augsburg" , 2.0 >,
+< "Saarbruecken" , "Nuernberg" , 2.0 >,
+< "Stuttgart" , "Karlsruhe" , 35.0 >,
+< "Stuttgart" , "Ulm" , 11.0 >,
+< "Stuttgart" , "Konstanz" , 4.0 >,
+< "Stuttgart" , "Freiburg" , 6.0 >,
+< "Stuttgart" , "Muenchen" , 30.0 >,
+< "Stuttgart" , "Augsburg" , 2.0 >,
+< "Stuttgart" , "Kempten" , 2.0 >,
+< "Stuttgart" , "Passau" , 2.0 >,
+< "Stuttgart" , "Nuernberg" , 35.0 >,
+< "Stuttgart" , "Bayreuth" , 2.0 >,
+< "Stuttgart" , "Wuerzburg" , 2.0 >,
+< "Stuttgart" , "Regensburg" , 2.0 >,
+< "Karlsruhe" , "Ulm" , 2.0 >,
+< "Karlsruhe" , "Konstanz" , 2.0 >,
+< "Karlsruhe" , "Freiburg" , 5.0 >,
+< "Karlsruhe" , "Muenchen" , 4.0 >,
+< "Karlsruhe" , "Augsburg" , 2.0 >,
+< "Karlsruhe" , "Kempten" , 2.0 >,
+< "Karlsruhe" , "Nuernberg" , 2.0 >,
+< "Karlsruhe" , "Bayreuth" , 2.0 >,
+< "Karlsruhe" , "Wuerzburg" , 2.0 >,
+< "Ulm" , "Konstanz" , 2.0 >,
+< "Ulm" , "Muenchen" , 2.0 >,
+< "Ulm" , "Augsburg" , 2.0 >,
+< "Ulm" , "Kempten" , 2.0 >,
+< "Ulm" , "Nuernberg" , 2.0 >,
+< "Ulm" , "Wuerzburg" , 2.0 >,
+< "Konstanz" , "Freiburg" , 3.0 >,
+< "Konstanz" , "Muenchen" , 5.0 >,
+< "Konstanz" , "Augsburg" , 2.0 >,
+< "Konstanz" , "Kempten" , 2.0 >,
+< "Konstanz" , "Bayreuth" , 2.0 >,
+< "Freiburg" , "Muenchen" , 2.0 >,
+< "Muenchen" , "Augsburg" , 20.0 >,
+< "Muenchen" , "Kempten" , 2.0 >,
+< "Muenchen" , "Passau" , 5.0 >,
+< "Muenchen" , "Nuernberg" , 32.0 >,
+< "Muenchen" , "Bayreuth" , 2.0 >,
+< "Muenchen" , "Wuerzburg" , 3.0 >,
+< "Muenchen" , "Regensburg" , 2.0 >,
+< "Augsburg" , "Kempten" , 2.0 >,
+< "Augsburg" , "Nuernberg" , 2.0 >,
+< "Augsburg" , "Bayreuth" , 2.0 >,
+< "Augsburg" , "Wuerzburg" , 2.0 >,
+< "Passau" , "Nuernberg" , 2.0 >,
+< "Passau" , "Bayreuth" , 2.0 >,
+< "Passau" , "Wuerzburg" , 2.0 >,
+< "Passau" , "Regensburg" , 2.0 >,
+< "Nuernberg" , "Bayreuth" , 5.0 >,
+< "Nuernberg" , "Wuerzburg" , 10.0 >,
+< "Nuernberg" , "Regensburg" , 9.0 >,
+< "Bayreuth" , "Wuerzburg" , 3.0 >,
+< "Bayreuth" , "Regensburg" , 3.0 >,
+};
+nfailure = 2032 ;
+failureset = [ 
+{ "LINK1" }
+{ "LINK2" }
+{ "LINK3" }
+{ "LINK4" }
+{ "LINK5" }
+{ "LINK6" }
+{ "LINK7" }
+{ "LINK8" }
+{ "LINK9" }
+{ "LINK10" }
+{ "LINK11" }
+{ "LINK12" }
+{ "LINK13" }
+{ "LINK14" }
+{ "LINK15" }
+{ "LINK16" }
+{ "LINK17" }
+{ "LINK18" }
+{ "LINK19" }
+{ "LINK20" }
+{ "LINK21" }
+{ "LINK22" }
+{ "LINK23" }
+{ "LINK24" }
+{ "LINK25" }
+{ "LINK26" }
+{ "LINK27" }
+{ "LINK28" }
+{ "LINK29" }
+{ "LINK30" }
+{ "LINK31" }
+{ "LINK32" }
+{ "LINK33" }
+{ "LINK34" }
+{ "LINK35" }
+{ "LINK36" }
+{ "LINK37" }
+{ "LINK38" }
+{ "LINK39" }
+{ "LINK40" }
+{ "LINK41" }
+{ "LINK42" }
+{ "LINK43" }
+{ "LINK44" }
+{ "LINK45" }
+{ "LINK46" }
+{ "LINK47" }
+{ "LINK48" }
+{ "LINK49" }
+{ "LINK50" }
+{ "LINK51" }
+{ "LINK52" }
+{ "LINK53" }
+{ "LINK54" }
+{ "LINK55" }
+{ "LINK56" }
+{ "LINK57" }
+{ "LINK58" }
+{ "LINK59" }
+{ "LINK60" }
+{ "LINK61" }
+{ "LINK62" }
+{ "LINK63" }
+{ "LINK64" }
+{ "LINK65" }
+{ "LINK66" }
+{ "LINK67" }
+{ "LINK68" }
+{ "LINK69" }
+{ "LINK70" }
+{ "LINK71" }
+{ "LINK72" }
+{ "LINK73" }
+{ "LINK74" }
+{ "LINK75" }
+{ "LINK76" }
+{ "LINK77" }
+{ "LINK78" }
+{ "LINK79" }
+{ "LINK80" }
+{ "LINK81" }
+{ "LINK82" }
+{ "LINK83" }
+{ "LINK84" }
+{ "LINK85" }
+{ "LINK86" }
+{ "LINK87" }
+{ "LINK88" }
+{ "LINK6","LINK19" }
+{ "LINK1","LINK64" }
+{ "LINK23","LINK47" }
+{ "LINK61","LINK88" }
+{ "LINK12","LINK25" }
+{ "LINK16","LINK32" }
+{ "LINK6","LINK17" }
+{ "LINK18","LINK55" }
+{ "LINK27","LINK85" }
+{ "LINK40","LINK66" }
+{ "LINK45","LINK74" }
+{ "LINK77","LINK85" }
+{ "LINK14","LINK35" }
+{ "LINK3","LINK41" }
+{ "LINK4","LINK65" }
+{ "LINK12","LINK38" }
+{ "LINK40","LINK85" }
+{ "LINK21","LINK77" }
+{ "LINK22","LINK33" }
+{ "LINK21","LINK42" }
+{ "LINK79","LINK84" }
+{ "LINK23","LINK86" }
+{ "LINK14","LINK83" }
+{ "LINK12","LINK52" }
+{ "LINK4","LINK31" }
+{ "LINK18","LINK42" }
+{ "LINK21","LINK58" }
+{ "LINK14","LINK75" }
+{ "LINK30","LINK62" }
+{ "LINK32","LINK43" }
+{ "LINK71","LINK82" }
+{ "LINK28","LINK39" }
+{ "LINK3","LINK77" }
+{ "LINK26","LINK48" }
+{ "LINK1","LINK80" }
+{ "LINK1","LINK59" }
+{ "LINK14","LINK87" }
+{ "LINK5","LINK74" }
+{ "LINK29","LINK61" }
+{ "LINK4","LINK70" }
+{ "LINK41","LINK70" }
+{ "LINK15","LINK69" }
+{ "LINK4","LINK38" }
+{ "LINK2","LINK76" }
+{ "LINK55","LINK80" }
+{ "LINK35","LINK71" }
+{ "LINK2","LINK65" }
+{ "LINK2","LINK3" }
+{ "LINK36","LINK66" }
+{ "LINK29","LINK37" }
+{ "LINK21","LINK65" }
+{ "LINK15","LINK70" }
+{ "LINK1","LINK29" }
+{ "LINK34","LINK74" }
+{ "LINK38","LINK47" }
+{ "LINK31","LINK44" }
+{ "LINK10","LINK33" }
+{ "LINK51","LINK73" }
+{ "LINK53","LINK65" }
+{ "LINK41","LINK74" }
+{ "LINK70","LINK80" }
+{ "LINK9","LINK47" }
+{ "LINK47","LINK85" }
+{ "LINK27","LINK58" }
+{ "LINK30","LINK75" }
+{ "LINK23","LINK26" }
+{ "LINK51","LINK55" }
+{ "LINK2","LINK70" }
+{ "LINK6","LINK38" }
+{ "LINK83","LINK85" }
+{ "LINK23","LINK74" }
+{ "LINK5","LINK6" }
+{ "LINK27","LINK60" }
+{ "LINK72","LINK87" }
+{ "LINK4","LINK18" }
+{ "LINK43","LINK80" }
+{ "LINK29","LINK60" }
+{ "LINK49","LINK53" }
+{ "LINK10","LINK32" }
+{ "LINK78","LINK84" }
+{ "LINK2","LINK52" }
+{ "LINK1","LINK70" }
+{ "LINK32","LINK44" }
+{ "LINK35","LINK78" }
+{ "LINK5","LINK51" }
+{ "LINK5","LINK24" }
+{ "LINK21","LINK25" }
+{ "LINK31","LINK50" }
+{ "LINK27","LINK38" }
+{ "LINK43","LINK48" }
+{ "LINK33","LINK42" }
+{ "LINK19","LINK77" }
+{ "LINK24","LINK76" }
+{ "LINK13","LINK34" }
+{ "LINK11","LINK15" }
+{ "LINK29","LINK84" }
+{ "LINK4","LINK9" }
+{ "LINK14","LINK63" }
+{ "LINK41","LINK61" }
+{ "LINK14","LINK27" }
+{ "LINK43","LINK60" }
+{ "LINK36","LINK42" }
+{ "LINK54","LINK78" }
+{ "LINK35","LINK68" }
+{ "LINK23","LINK48" }
+{ "LINK25","LINK54" }
+{ "LINK32","LINK81" }
+{ "LINK55","LINK88" }
+{ "LINK27","LINK53" }
+{ "LINK60","LINK72" }
+{ "LINK28","LINK33" }
+{ "LINK3","LINK27" }
+{ "LINK32","LINK87" }
+{ "LINK2","LINK37" }
+{ "LINK74","LINK86" }
+{ "LINK36","LINK85" }
+{ "LINK5","LINK38" }
+{ "LINK24","LINK38" }
+{ "LINK32","LINK33" }
+{ "LINK52","LINK67" }
+{ "LINK16","LINK27" }
+{ "LINK17","LINK59" }
+{ "LINK33","LINK59" }
+{ "LINK26","LINK50" }
+{ "LINK2","LINK16" }
+{ "LINK66","LINK71" }
+{ "LINK43","LINK81" }
+{ "LINK20","LINK71" }
+{ "LINK9","LINK56" }
+{ "LINK1","LINK78" }
+{ "LINK4","LINK5" }
+{ "LINK3","LINK22" }
+{ "LINK15","LINK54" }
+{ "LINK46","LINK62" }
+{ "LINK18","LINK84" }
+{ "LINK30","LINK58" }
+{ "LINK20","LINK35" }
+{ "LINK12","LINK13" }
+{ "LINK9","LINK17" }
+{ "LINK2","LINK72" }
+{ "LINK28","LINK74" }
+{ "LINK67","LINK72" }
+{ "LINK26","LINK53" }
+{ "LINK37","LINK59" }
+{ "LINK29","LINK67" }
+{ "LINK6","LINK32" }
+{ "LINK54","LINK71" }
+{ "LINK31","LINK76" }
+{ "LINK57","LINK68" }
+{ "LINK36","LINK54" }
+{ "LINK49","LINK85" }
+{ "LINK63","LINK64" }
+{ "LINK51","LINK63" }
+{ "LINK8","LINK85" }
+{ "LINK14","LINK22" }
+{ "LINK3","LINK29" }
+{ "LINK10","LINK39" }
+{ "LINK34","LINK44" }
+{ "LINK47","LINK48" }
+{ "LINK66","LINK85" }
+{ "LINK30","LINK33" }
+{ "LINK59","LINK79" }
+{ "LINK46","LINK79" }
+{ "LINK61","LINK75" }
+{ "LINK1","LINK49" }
+{ "LINK48","LINK77" }
+{ "LINK47","LINK59" }
+{ "LINK4","LINK64" }
+{ "LINK41","LINK51" }
+{ "LINK5","LINK7" }
+{ "LINK47","LINK83" }
+{ "LINK21","LINK24" }
+{ "LINK21","LINK78" }
+{ "LINK14","LINK61" }
+{ "LINK2","LINK74" }
+{ "LINK8","LINK61" }
+{ "LINK24","LINK33" }
+{ "LINK12","LINK16" }
+{ "LINK9","LINK87" }
+{ "LINK43","LINK58" }
+{ "LINK2","LINK41" }
+{ "LINK11","LINK85" }
+{ "LINK15","LINK36" }
+{ "LINK13","LINK48" }
+{ "LINK31","LINK69" }
+{ "LINK25","LINK59" }
+{ "LINK35","LINK47" }
+{ "LINK7","LINK82" }
+{ "LINK49","LINK77" }
+{ "LINK22","LINK53" }
+{ "LINK15","LINK76" }
+{ "LINK7","LINK17" }
+{ "LINK9","LINK65" }
+{ "LINK19","LINK86" }
+{ "LINK19","LINK56" }
+{ "LINK28","LINK55" }
+{ "LINK16","LINK56" }
+{ "LINK21","LINK86" }
+{ "LINK9","LINK21" }
+{ "LINK26","LINK69" }
+{ "LINK11","LINK49" }
+{ "LINK24","LINK87" }
+{ "LINK9","LINK41" }
+{ "LINK48","LINK78" }
+{ "LINK12","LINK66" }
+{ "LINK78","LINK88" }
+{ "LINK2","LINK4" }
+{ "LINK16","LINK25" }
+{ "LINK16","LINK57" }
+{ "LINK63","LINK78" }
+{ "LINK23","LINK76" }
+{ "LINK37","LINK85" }
+{ "LINK42","LINK72" }
+{ "LINK20","LINK26" }
+{ "LINK6","LINK64" }
+{ "LINK30","LINK43" }
+{ "LINK45","LINK62" }
+{ "LINK18","LINK40" }
+{ "LINK14","LINK44" }
+{ "LINK5","LINK22" }
+{ "LINK18","LINK62" }
+{ "LINK40","LINK88" }
+{ "LINK56","LINK88" }
+{ "LINK80","LINK84" }
+{ "LINK45","LINK83" }
+{ "LINK5","LINK53" }
+{ "LINK53","LINK76" }
+{ "LINK53","LINK85" }
+{ "LINK5","LINK69" }
+{ "LINK32","LINK52" }
+{ "LINK43","LINK47" }
+{ "LINK13","LINK70" }
+{ "LINK16","LINK19" }
+{ "LINK42","LINK48" }
+{ "LINK38","LINK63" }
+{ "LINK25","LINK72" }
+{ "LINK63","LINK70" }
+{ "LINK21","LINK70" }
+{ "LINK51","LINK67" }
+{ "LINK4","LINK80" }
+{ "LINK8","LINK65" }
+{ "LINK7","LINK52" }
+{ "LINK69","LINK87" }
+{ "LINK60","LINK63" }
+{ "LINK50","LINK80" }
+{ "LINK52","LINK55" }
+{ "LINK45","LINK77" }
+{ "LINK22","LINK61" }
+{ "LINK16","LINK72" }
+{ "LINK39","LINK66" }
+{ "LINK57","LINK72" }
+{ "LINK35","LINK62" }
+{ "LINK43","LINK78" }
+{ "LINK15","LINK39" }
+{ "LINK7","LINK9" }
+{ "LINK68","LINK72" }
+{ "LINK2","LINK69" }
+{ "LINK21","LINK85" }
+{ "LINK37","LINK86" }
+{ "LINK28","LINK45" }
+{ "LINK25","LINK46" }
+{ "LINK39","LINK86" }
+{ "LINK9","LINK45" }
+{ "LINK59","LINK73" }
+{ "LINK9","LINK46" }
+{ "LINK6","LINK62" }
+{ "LINK23","LINK85" }
+{ "LINK40","LINK64" }
+{ "LINK5","LINK33" }
+{ "LINK75","LINK77" }
+{ "LINK30","LINK52" }
+{ "LINK4","LINK41" }
+{ "LINK76","LINK83" }
+{ "LINK36","LINK81" }
+{ "LINK39","LINK74" }
+{ "LINK6","LINK47" }
+{ "LINK34","LINK75" }
+{ "LINK56","LINK85" }
+{ "LINK11","LINK86" }
+{ "LINK57","LINK71" }
+{ "LINK21","LINK74" }
+{ "LINK11","LINK87" }
+{ "LINK32","LINK42" }
+{ "LINK14","LINK26" }
+{ "LINK16","LINK17" }
+{ "LINK1","LINK63" }
+{ "LINK11","LINK58" }
+{ "LINK31","LINK58" }
+{ "LINK19","LINK28" }
+{ "LINK18","LINK29" }
+{ "LINK31","LINK82" }
+{ "LINK17","LINK22" }
+{ "LINK17","LINK58" }
+{ "LINK8","LINK57" }
+{ "LINK46","LINK49" }
+{ "LINK35","LINK53" }
+{ "LINK1","LINK75" }
+{ "LINK36","LINK62" }
+{ "LINK16","LINK45" }
+{ "LINK54","LINK87" }
+{ "LINK2","LINK51" }
+{ "LINK15","LINK88" }
+{ "LINK29","LINK64" }
+{ "LINK2","LINK8" }
+{ "LINK2","LINK73" }
+{ "LINK33","LINK47" }
+{ "LINK8","LINK76" }
+{ "LINK20","LINK45" }
+{ "LINK32","LINK46" }
+{ "LINK24","LINK60" }
+{ "LINK21","LINK54" }
+{ "LINK2","LINK87" }
+{ "LINK27","LINK29" }
+{ "LINK33","LINK48" }
+{ "LINK52","LINK57" }
+{ "LINK10","LINK42" }
+{ "LINK45","LINK65" }
+{ "LINK63","LINK69" }
+{ "LINK6","LINK20" }
+{ "LINK23","LINK71" }
+{ "LINK8","LINK62" }
+{ "LINK8","LINK60" }
+{ "LINK2","LINK63" }
+{ "LINK19","LINK35" }
+{ "LINK8","LINK74" }
+{ "LINK42","LINK57" }
+{ "LINK21","LINK61" }
+{ "LINK23","LINK25" }
+{ "LINK10","LINK66" }
+{ "LINK14","LINK58" }
+{ "LINK4","LINK83" }
+{ "LINK38","LINK51" }
+{ "LINK9","LINK66" }
+{ "LINK18","LINK37" }
+{ "LINK44","LINK52" }
+{ "LINK81","LINK84" }
+{ "LINK6","LINK85" }
+{ "LINK5","LINK18" }
+{ "LINK31","LINK86" }
+{ "LINK69","LINK76" }
+{ "LINK32","LINK37" }
+{ "LINK26","LINK58" }
+{ "LINK11","LINK28" }
+{ "LINK56","LINK67" }
+{ "LINK47","LINK63" }
+{ "LINK16","LINK68" }
+{ "LINK50","LINK54" }
+{ "LINK23","LINK66" }
+{ "LINK6","LINK29" }
+{ "LINK31","LINK33" }
+{ "LINK10","LINK43" }
+{ "LINK45","LINK63" }
+{ "LINK21","LINK88" }
+{ "LINK43","LINK59" }
+{ "LINK8","LINK44" }
+{ "LINK15","LINK29" }
+{ "LINK13","LINK78" }
+{ "LINK17","LINK45" }
+{ "LINK27","LINK37" }
+{ "LINK6","LINK72" }
+{ "LINK12","LINK76" }
+{ "LINK7","LINK75" }
+{ "LINK37","LINK78" }
+{ "LINK66","LINK77" }
+{ "LINK37","LINK51" }
+{ "LINK11","LINK52" }
+{ "LINK26","LINK75" }
+{ "LINK65","LINK81" }
+{ "LINK19","LINK73" }
+{ "LINK31","LINK42" }
+{ "LINK48","LINK70" }
+{ "LINK1","LINK76" }
+{ "LINK31","LINK63" }
+{ "LINK75","LINK76" }
+{ "LINK20","LINK27" }
+{ "LINK77","LINK84" }
+{ "LINK20","LINK41" }
+{ "LINK16","LINK80" }
+{ "LINK42","LINK66" }
+{ "LINK8","LINK52" }
+{ "LINK70","LINK82" }
+{ "LINK13","LINK60" }
+{ "LINK29","LINK58" }
+{ "LINK64","LINK81" }
+{ "LINK6","LINK11" }
+{ "LINK28","LINK68" }
+{ "LINK4","LINK6" }
+{ "LINK58","LINK83" }
+{ "LINK14","LINK66" }
+{ "LINK25","LINK42" }
+{ "LINK60","LINK68" }
+{ "LINK21","LINK39" }
+{ "LINK56","LINK75" }
+{ "LINK37","LINK64" }
+{ "LINK56","LINK59" }
+{ "LINK52","LINK85" }
+{ "LINK6","LINK83" }
+{ "LINK17","LINK81" }
+{ "LINK42","LINK49" }
+{ "LINK6","LINK66" }
+{ "LINK61","LINK68" }
+{ "LINK7","LINK48" }
+{ "LINK49","LINK74" }
+{ "LINK64","LINK67" }
+{ "LINK70","LINK71" }
+{ "LINK41","LINK47" }
+{ "LINK22","LINK45" }
+{ "LINK51","LINK81" }
+{ "LINK2","LINK5" }
+{ "LINK6","LINK18" }
+{ "LINK58","LINK60" }
+{ "LINK15","LINK71" }
+{ "LINK61","LINK69" }
+{ "LINK7","LINK47" }
+{ "LINK7","LINK55" }
+{ "LINK59","LINK71" }
+{ "LINK24","LINK65" }
+{ "LINK24","LINK77" }
+{ "LINK47","LINK76" }
+{ "LINK22","LINK29" }
+{ "LINK43","LINK64" }
+{ "LINK8","LINK58" }
+{ "LINK49","LINK61" }
+{ "LINK35","LINK73" }
+{ "LINK61","LINK66" }
+{ "LINK68","LINK82" }
+{ "LINK26","LINK34" }
+{ "LINK44","LINK47" }
+{ "LINK40","LINK80" }
+{ "LINK32","LINK77" }
+{ "LINK6","LINK77" }
+{ "LINK10","LINK48" }
+{ "LINK16","LINK78" }
+{ "LINK38","LINK86" }
+{ "LINK16","LINK21" }
+{ "LINK7","LINK73" }
+{ "LINK10","LINK34" }
+{ "LINK6","LINK21" }
+{ "LINK3","LINK66" }
+{ "LINK45","LINK49" }
+{ "LINK8","LINK24" }
+{ "LINK17","LINK86" }
+{ "LINK66","LINK82" }
+{ "LINK23","LINK72" }
+{ "LINK32","LINK55" }
+{ "LINK29","LINK53" }
+{ "LINK40","LINK75" }
+{ "LINK3","LINK39" }
+{ "LINK13","LINK51" }
+{ "LINK45","LINK58" }
+{ "LINK20","LINK74" }
+{ "LINK6","LINK41" }
+{ "LINK55","LINK71" }
+{ "LINK10","LINK70" }
+{ "LINK24","LINK28" }
+{ "LINK5","LINK86" }
+{ "LINK4","LINK25" }
+{ "LINK8","LINK86" }
+{ "LINK13","LINK25" }
+{ "LINK51","LINK64" }
+{ "LINK15","LINK31" }
+{ "LINK16","LINK54" }
+{ "LINK53","LINK67" }
+{ "LINK5","LINK15" }
+{ "LINK23","LINK63" }
+{ "LINK18","LINK69" }
+{ "LINK27","LINK74" }
+{ "LINK22","LINK31" }
+{ "LINK25","LINK55" }
+{ "LINK4","LINK54" }
+{ "LINK27","LINK35" }
+{ "LINK7","LINK63" }
+{ "LINK51","LINK86" }
+{ "LINK20","LINK31" }
+{ "LINK42","LINK64" }
+{ "LINK8","LINK33" }
+{ "LINK23","LINK81" }
+{ "LINK21","LINK46" }
+{ "LINK64","LINK88" }
+{ "LINK6","LINK49" }
+{ "LINK57","LINK75" }
+{ "LINK1","LINK7" }
+{ "LINK23","LINK28" }
+{ "LINK9","LINK84" }
+{ "LINK53","LINK74" }
+{ "LINK2","LINK36" }
+{ "LINK3","LINK85" }
+{ "LINK27","LINK88" }
+{ "LINK20","LINK29" }
+{ "LINK44","LINK86" }
+{ "LINK49","LINK51" }
+{ "LINK27","LINK78" }
+{ "LINK28","LINK51" }
+{ "LINK46","LINK84" }
+{ "LINK63","LINK75" }
+{ "LINK6","LINK14" }
+{ "LINK39","LINK41" }
+{ "LINK55","LINK60" }
+{ "LINK12","LINK42" }
+{ "LINK62","LINK76" }
+{ "LINK73","LINK74" }
+{ "LINK4","LINK47" }
+{ "LINK54","LINK79" }
+{ "LINK10","LINK54" }
+{ "LINK19","LINK69" }
+{ "LINK34","LINK53" }
+{ "LINK35","LINK36" }
+{ "LINK32","LINK50" }
+{ "LINK29","LINK88" }
+{ "LINK5","LINK81" }
+{ "LINK78","LINK80" }
+{ "LINK62","LINK74" }
+{ "LINK8","LINK41" }
+{ "LINK1","LINK36" }
+{ "LINK8","LINK36" }
+{ "LINK39","LINK46" }
+{ "LINK5","LINK30" }
+{ "LINK49","LINK50" }
+{ "LINK38","LINK58" }
+{ "LINK45","LINK53" }
+{ "LINK20","LINK51" }
+{ "LINK1","LINK37" }
+{ "LINK25","LINK49" }
+{ "LINK8","LINK48" }
+{ "LINK39","LINK55" }
+{ "LINK33","LINK63" }
+{ "LINK74","LINK82" }
+{ "LINK66","LINK78" }
+{ "LINK31","LINK62" }
+{ "LINK27","LINK83" }
+{ "LINK78","LINK79" }
+{ "LINK60","LINK87" }
+{ "LINK7","LINK72" }
+{ "LINK21","LINK31" }
+{ "LINK41","LINK76" }
+{ "LINK6","LINK76" }
+{ "LINK10","LINK76" }
+{ "LINK14","LINK38" }
+{ "LINK65","LINK69" }
+{ "LINK42","LINK58" }
+{ "LINK43","LINK66" }
+{ "LINK62","LINK85" }
+{ "LINK38","LINK64" }
+{ "LINK23","LINK87" }
+{ "LINK46","LINK57" }
+{ "LINK14","LINK28" }
+{ "LINK11","LINK61" }
+{ "LINK44","LINK62" }
+{ "LINK11","LINK24" }
+{ "LINK31","LINK70" }
+{ "LINK23","LINK78" }
+{ "LINK16","LINK69" }
+{ "LINK45","LINK78" }
+{ "LINK28","LINK36" }
+{ "LINK16","LINK28" }
+{ "LINK69","LINK77" }
+{ "LINK32","LINK65" }
+{ "LINK3","LINK19" }
+{ "LINK53","LINK54" }
+{ "LINK12","LINK62" }
+{ "LINK12","LINK22" }
+{ "LINK10","LINK44" }
+{ "LINK3","LINK4" }
+{ "LINK19","LINK51" }
+{ "LINK36","LINK87" }
+{ "LINK40","LINK54" }
+{ "LINK50","LINK71" }
+{ "LINK79","LINK87" }
+{ "LINK43","LINK55" }
+{ "LINK16","LINK81" }
+{ "LINK25","LINK37" }
+{ "LINK59","LINK85" }
+{ "LINK10","LINK11" }
+{ "LINK75","LINK79" }
+{ "LINK9","LINK44" }
+{ "LINK1","LINK23" }
+{ "LINK26","LINK80" }
+{ "LINK41","LINK75" }
+{ "LINK39","LINK81" }
+{ "LINK60","LINK84" }
+{ "LINK28","LINK66" }
+{ "LINK35","LINK52" }
+{ "LINK6","LINK63" }
+{ "LINK31","LINK40" }
+{ "LINK2","LINK21" }
+{ "LINK1","LINK54" }
+{ "LINK56","LINK76" }
+{ "LINK7","LINK86" }
+{ "LINK4","LINK66" }
+{ "LINK17","LINK33" }
+{ "LINK15","LINK43" }
+{ "LINK25","LINK78" }
+{ "LINK36","LINK60" }
+{ "LINK48","LINK75" }
+{ "LINK14","LINK54" }
+{ "LINK44","LINK54" }
+{ "LINK3","LINK40" }
+{ "LINK42","LINK86" }
+{ "LINK57","LINK81" }
+{ "LINK24","LINK27" }
+{ "LINK24","LINK81" }
+{ "LINK56","LINK86" }
+{ "LINK40","LINK47" }
+{ "LINK53","LINK62" }
+{ "LINK37","LINK47" }
+{ "LINK34","LINK41" }
+{ "LINK27","LINK40" }
+{ "LINK40","LINK48" }
+{ "LINK42","LINK43" }
+{ "LINK27","LINK59" }
+{ "LINK1","LINK66" }
+{ "LINK33","LINK57" }
+{ "LINK38","LINK45" }
+{ "LINK21","LINK75" }
+{ "LINK32","LINK69" }
+{ "LINK14","LINK39" }
+{ "LINK59","LINK68" }
+{ "LINK8","LINK83" }
+{ "LINK15","LINK20" }
+{ "LINK61","LINK64" }
+{ "LINK11","LINK88" }
+{ "LINK59","LINK81" }
+{ "LINK1","LINK51" }
+{ "LINK19","LINK85" }
+{ "LINK35","LINK50" }
+{ "LINK32","LINK49" }
+{ "LINK61","LINK83" }
+{ "LINK23","LINK24" }
+{ "LINK34","LINK86" }
+{ "LINK65","LINK85" }
+{ "LINK49","LINK52" }
+{ "LINK48","LINK88" }
+{ "LINK5","LINK20" }
+{ "LINK78","LINK86" }
+{ "LINK10","LINK37" }
+{ "LINK9","LINK23" }
+{ "LINK27","LINK82" }
+{ "LINK22","LINK88" }
+{ "LINK19","LINK79" }
+{ "LINK23","LINK55" }
+{ "LINK4","LINK33" }
+{ "LINK4","LINK39" }
+{ "LINK36","LINK69" }
+{ "LINK21","LINK47" }
+{ "LINK5","LINK71" }
+{ "LINK24","LINK83" }
+{ "LINK32","LINK39" }
+{ "LINK39","LINK53" }
+{ "LINK11","LINK22" }
+{ "LINK7","LINK15" }
+{ "LINK21","LINK38" }
+{ "LINK50","LINK72" }
+{ "LINK55","LINK76" }
+{ "LINK3","LINK17" }
+{ "LINK32","LINK84" }
+{ "LINK62","LINK70" }
+{ "LINK16","LINK74" }
+{ "LINK14","LINK88" }
+{ "LINK25","LINK31" }
+{ "LINK12","LINK82" }
+{ "LINK40","LINK63" }
+{ "LINK48","LINK85" }
+{ "LINK46","LINK75" }
+{ "LINK59","LINK82" }
+{ "LINK24","LINK30" }
+{ "LINK31","LINK80" }
+{ "LINK18","LINK31" }
+{ "LINK21","LINK67" }
+{ "LINK5","LINK46" }
+{ "LINK30","LINK67" }
+{ "LINK22","LINK59" }
+{ "LINK21","LINK55" }
+{ "LINK55","LINK66" }
+{ "LINK29","LINK45" }
+{ "LINK66","LINK70" }
+{ "LINK21","LINK48" }
+{ "LINK57","LINK63" }
+{ "LINK51","LINK88" }
+{ "LINK2","LINK25" }
+{ "LINK17","LINK84" }
+{ "LINK9","LINK10" }
+{ "LINK51","LINK75" }
+{ "LINK71","LINK75" }
+{ "LINK20","LINK36" }
+{ "LINK13","LINK82" }
+{ "LINK15","LINK53" }
+{ "LINK15","LINK19" }
+{ "LINK35","LINK54" }
+{ "LINK1","LINK53" }
+{ "LINK59","LINK75" }
+{ "LINK14","LINK36" }
+{ "LINK13","LINK80" }
+{ "LINK82","LINK83" }
+{ "LINK62","LINK72" }
+{ "LINK62","LINK77" }
+{ "LINK33","LINK70" }
+{ "LINK7","LINK49" }
+{ "LINK7","LINK20" }
+{ "LINK24","LINK44" }
+{ "LINK5","LINK70" }
+{ "LINK15","LINK82" }
+{ "LINK40","LINK78" }
+{ "LINK2","LINK11" }
+{ "LINK6","LINK57" }
+{ "LINK16","LINK46" }
+{ "LINK55","LINK56" }
+{ "LINK7","LINK21" }
+{ "LINK25","LINK60" }
+{ "LINK9","LINK64" }
+{ "LINK48","LINK68" }
+{ "LINK28","LINK43" }
+{ "LINK16","LINK30" }
+{ "LINK10","LINK55" }
+{ "LINK6","LINK37" }
+{ "LINK16","LINK43" }
+{ "LINK58","LINK86" }
+{ "LINK66","LINK83" }
+{ "LINK11","LINK60" }
+{ "LINK54","LINK84" }
+{ "LINK37","LINK53" }
+{ "LINK18","LINK21" }
+{ "LINK3","LINK21" }
+{ "LINK27","LINK76" }
+{ "LINK82","LINK85" }
+{ "LINK53","LINK81" }
+{ "LINK13","LINK77" }
+{ "LINK24","LINK66" }
+{ "LINK3","LINK35" }
+{ "LINK8","LINK70" }
+{ "LINK77","LINK79" }
+{ "LINK12","LINK63" }
+{ "LINK34","LINK84" }
+{ "LINK13","LINK84" }
+{ "LINK1","LINK8" }
+{ "LINK6","LINK84" }
+{ "LINK23","LINK68" }
+{ "LINK50","LINK75" }
+{ "LINK4","LINK13" }
+{ "LINK25","LINK57" }
+{ "LINK14","LINK80" }
+{ "LINK36","LINK51" }
+{ "LINK5","LINK55" }
+{ "LINK37","LINK42" }
+{ "LINK51","LINK54" }
+{ "LINK34","LINK55" }
+{ "LINK63","LINK83" }
+{ "LINK42","LINK81" }
+{ "LINK19","LINK34" }
+{ "LINK30","LINK54" }
+{ "LINK39","LINK70" }
+{ "LINK8","LINK56" }
+{ "LINK7","LINK85" }
+{ "LINK11","LINK18" }
+{ "LINK54","LINK68" }
+{ "LINK47","LINK74" }
+{ "LINK26","LINK44" }
+{ "LINK11","LINK80" }
+{ "LINK55","LINK79" }
+{ "LINK15","LINK42" }
+{ "LINK11","LINK56" }
+{ "LINK32","LINK68" }
+{ "LINK4","LINK62" }
+{ "LINK6","LINK7" }
+{ "LINK30","LINK59" }
+{ "LINK27","LINK28" }
+{ "LINK7","LINK18" }
+{ "LINK10","LINK40" }
+{ "LINK74","LINK87" }
+{ "LINK13","LINK71" }
+{ "LINK40","LINK55" }
+{ "LINK15","LINK77" }
+{ "LINK30","LINK66" }
+{ "LINK26","LINK33" }
+{ "LINK61","LINK79" }
+{ "LINK9","LINK32" }
+{ "LINK24","LINK75" }
+{ "LINK36","LINK55" }
+{ "LINK31","LINK74" }
+{ "LINK25","LINK27" }
+{ "LINK22","LINK70" }
+{ "LINK17","LINK21" }
+{ "LINK11","LINK37" }
+{ "LINK53","LINK80" }
+{ "LINK7","LINK26" }
+{ "LINK9","LINK37" }
+{ "LINK29","LINK87" }
+{ "LINK65","LINK84" }
+{ "LINK44","LINK76" }
+{ "LINK3","LINK38" }
+{ "LINK26","LINK86" }
+{ "LINK69","LINK79" }
+{ "LINK13","LINK24" }
+{ "LINK69","LINK71" }
+{ "LINK3","LINK61" }
+{ "LINK22","LINK46" }
+{ "LINK54","LINK77" }
+{ "LINK5","LINK12" }
+{ "LINK21","LINK83" }
+{ "LINK64","LINK80" }
+{ "LINK22","LINK63" }
+{ "LINK3","LINK57" }
+{ "LINK10","LINK46" }
+{ "LINK61","LINK85" }
+{ "LINK46","LINK48" }
+{ "LINK63","LINK72" }
+{ "LINK30","LINK73" }
+{ "LINK39","LINK87" }
+{ "LINK41","LINK77" }
+{ "LINK27","LINK55" }
+{ "LINK15","LINK73" }
+{ "LINK11","LINK33" }
+{ "LINK46","LINK70" }
+{ "LINK36","LINK53" }
+{ "LINK7","LINK84" }
+{ "LINK41","LINK73" }
+{ "LINK24","LINK63" }
+{ "LINK20","LINK57" }
+{ "LINK5","LINK60" }
+{ "LINK33","LINK82" }
+{ "LINK6","LINK80" }
+{ "LINK12","LINK41" }
+{ "LINK2","LINK56" }
+{ "LINK48","LINK57" }
+{ "LINK18","LINK53" }
+{ "LINK64","LINK83" }
+{ "LINK40","LINK52" }
+{ "LINK21","LINK45" }
+{ "LINK5","LINK80" }
+{ "LINK17","LINK69" }
+{ "LINK20","LINK47" }
+{ "LINK22","LINK52" }
+{ "LINK22","LINK83" }
+{ "LINK49","LINK76" }
+{ "LINK46","LINK63" }
+{ "LINK72","LINK83" }
+{ "LINK2","LINK50" }
+{ "LINK12","LINK59" }
+{ "LINK67","LINK87" }
+{ "LINK21","LINK26" }
+{ "LINK20","LINK68" }
+{ "LINK3","LINK67" }
+{ "LINK11","LINK26" }
+{ "LINK44","LINK59" }
+{ "LINK23","LINK51" }
+{ "LINK71","LINK73" }
+{ "LINK4","LINK27" }
+{ "LINK18","LINK28" }
+{ "LINK75","LINK85" }
+{ "LINK20","LINK73" }
+{ "LINK11","LINK55" }
+{ "LINK16","LINK39" }
+{ "LINK51","LINK58" }
+{ "LINK45","LINK81" }
+{ "LINK37","LINK73" }
+{ "LINK12","LINK61" }
+{ "LINK77","LINK88" }
+{ "LINK3","LINK30" }
+{ "LINK38","LINK46" }
+{ "LINK24","LINK68" }
+{ "LINK48","LINK67" }
+{ "LINK36","LINK71" }
+{ "LINK11","LINK17" }
+{ "LINK40","LINK62" }
+{ "LINK4","LINK21" }
+{ "LINK52","LINK53" }
+{ "LINK48","LINK84" }
+{ "LINK49","LINK88" }
+{ "LINK25","LINK30" }
+{ "LINK35","LINK57" }
+{ "LINK66","LINK72" }
+{ "LINK12","LINK53" }
+{ "LINK14","LINK86" }
+{ "LINK3","LINK83" }
+{ "LINK37","LINK66" }
+{ "LINK83","LINK88" }
+{ "LINK68","LINK80" }
+{ "LINK53","LINK82" }
+{ "LINK46","LINK51" }
+{ "LINK2","LINK59" }
+{ "LINK23","LINK64" }
+{ "LINK43","LINK53" }
+{ "LINK10","LINK58" }
+{ "LINK23","LINK67" }
+{ "LINK13","LINK28" }
+{ "LINK59","LINK65" }
+{ "LINK4","LINK17" }
+{ "LINK63","LINK79" }
+{ "LINK81","LINK86" }
+{ "LINK11","LINK27" }
+{ "LINK15","LINK38" }
+{ "LINK14","LINK81" }
+{ "LINK47","LINK66" }
+{ "LINK18","LINK23" }
+{ "LINK47","LINK55" }
+{ "LINK40","LINK87" }
+{ "LINK33","LINK80" }
+{ "LINK5","LINK34" }
+{ "LINK14","LINK32" }
+{ "LINK10","LINK28" }
+{ "LINK52","LINK54" }
+{ "LINK44","LINK65" }
+{ "LINK50","LINK87" }
+{ "LINK17","LINK55" }
+{ "LINK1","LINK20" }
+{ "LINK1","LINK74" }
+{ "LINK4","LINK87" }
+{ "LINK12","LINK49" }
+{ "LINK50","LINK65" }
+{ "LINK1","LINK35" }
+{ "LINK50","LINK68" }
+{ "LINK46","LINK88" }
+{ "LINK36","LINK68" }
+{ "LINK17","LINK85" }
+{ "LINK18","LINK66" }
+{ "LINK2","LINK20" }
+{ "LINK37","LINK65" }
+{ "LINK48","LINK52" }
+{ "LINK9","LINK25" }
+{ "LINK13","LINK62" }
+{ "LINK42","LINK52" }
+{ "LINK42","LINK82" }
+{ "LINK44","LINK79" }
+{ "LINK33","LINK87" }
+{ "LINK20","LINK81" }
+{ "LINK49","LINK71" }
+{ "LINK38","LINK87" }
+{ "LINK19","LINK87" }
+{ "LINK58","LINK80" }
+{ "LINK6","LINK34" }
+{ "LINK63","LINK81" }
+{ "LINK17","LINK35" }
+{ "LINK7","LINK16" }
+{ "LINK30","LINK45" }
+{ "LINK3","LINK54" }
+{ "LINK49","LINK84" }
+{ "LINK71","LINK83" }
+{ "LINK22","LINK62" }
+{ "LINK35","LINK85" }
+{ "LINK12","LINK18" }
+{ "LINK4","LINK42" }
+{ "LINK17","LINK79" }
+{ "LINK1","LINK18" }
+{ "LINK16","LINK48" }
+{ "LINK25","LINK39" }
+{ "LINK8","LINK67" }
+{ "LINK44","LINK88" }
+{ "LINK31","LINK75" }
+{ "LINK9","LINK59" }
+{ "LINK33","LINK52" }
+{ "LINK46","LINK86" }
+{ "LINK1","LINK15" }
+{ "LINK57","LINK79" }
+{ "LINK31","LINK72" }
+{ "LINK8","LINK78" }
+{ "LINK29","LINK62" }
+{ "LINK43","LINK84" }
+{ "LINK9","LINK19" }
+{ "LINK31","LINK54" }
+{ "LINK30","LINK36" }
+{ "LINK53","LINK83" }
+{ "LINK58","LINK62" }
+{ "LINK8","LINK23" }
+{ "LINK23","LINK58" }
+{ "LINK23","LINK80" }
+{ "LINK33","LINK86" }
+{ "LINK50","LINK73" }
+{ "LINK16","LINK51" }
+{ "LINK22","LINK24" }
+{ "LINK67","LINK83" }
+{ "LINK23","LINK79" }
+{ "LINK2","LINK28" }
+{ "LINK45","LINK46" }
+{ "LINK35","LINK70" }
+{ "LINK26","LINK70" }
+{ "LINK17","LINK43" }
+{ "LINK8","LINK54" }
+{ "LINK24","LINK49" }
+{ "LINK9","LINK73" }
+{ "LINK20","LINK44" }
+{ "LINK14","LINK70" }
+{ "LINK28","LINK78" }
+{ "LINK51","LINK82" }
+{ "LINK32","LINK48" }
+{ "LINK42","LINK75" }
+{ "LINK32","LINK83" }
+{ "LINK7","LINK58" }
+{ "LINK7","LINK87" }
+{ "LINK41","LINK68" }
+{ "LINK46","LINK47" }
+{ "LINK9","LINK86" }
+{ "LINK16","LINK40" }
+{ "LINK54","LINK73" }
+{ "LINK15","LINK22" }
+{ "LINK33","LINK81" }
+{ "LINK17","LINK25" }
+{ "LINK2","LINK71" }
+{ "LINK37","LINK39" }
+{ "LINK15","LINK64" }
+{ "LINK6","LINK70" }
+{ "LINK63","LINK66" }
+{ "LINK12","LINK55" }
+{ "LINK47","LINK77" }
+{ "LINK59","LINK77" }
+{ "LINK63","LINK73" }
+{ "LINK19","LINK65" }
+{ "LINK48","LINK64" }
+{ "LINK29","LINK66" }
+{ "LINK15","LINK52" }
+{ "LINK48","LINK87" }
+{ "LINK4","LINK23" }
+{ "LINK46","LINK52" }
+{ "LINK59","LINK83" }
+{ "LINK16","LINK42" }
+{ "LINK5","LINK40" }
+{ "LINK64","LINK71" }
+{ "LINK51","LINK71" }
+{ "LINK7","LINK10" }
+{ "LINK19","LINK30" }
+{ "LINK17","LINK66" }
+{ "LINK5","LINK63" }
+{ "LINK15","LINK27" }
+{ "LINK17","LINK48" }
+{ "LINK23","LINK62" }
+{ "LINK54","LINK66" }
+{ "LINK22","LINK37" }
+{ "LINK47","LINK67" }
+{ "LINK39","LINK60" }
+{ "LINK37","LINK40" }
+{ "LINK30","LINK69" }
+{ "LINK34","LINK85" }
+{ "LINK51","LINK61" }
+{ "LINK18","LINK19" }
+{ "LINK41","LINK69" }
+{ "LINK49","LINK73" }
+{ "LINK39","LINK61" }
+{ "LINK2","LINK86" }
+{ "LINK20","LINK50" }
+{ "LINK51","LINK72" }
+{ "LINK58","LINK65" }
+{ "LINK62","LINK80" }
+{ "LINK4","LINK29" }
+{ "LINK46","LINK77" }
+{ "LINK3","LINK46" }
+{ "LINK17","LINK54" }
+{ "LINK5","LINK17" }
+{ "LINK8","LINK35" }
+{ "LINK54","LINK69" }
+{ "LINK6","LINK9" }
+{ "LINK45","LINK71" }
+{ "LINK21","LINK81" }
+{ "LINK11","LINK34" }
+{ "LINK65","LINK68" }
+{ "LINK33","LINK38" }
+{ "LINK31","LINK71" }
+{ "LINK11","LINK30" }
+{ "LINK33","LINK54" }
+{ "LINK28","LINK72" }
+{ "LINK23","LINK83" }
+{ "LINK5","LINK28" }
+{ "LINK35","LINK58" }
+{ "LINK6","LINK73" }
+{ "LINK38","LINK59" }
+{ "LINK12","LINK88" }
+{ "LINK40","LINK86" }
+{ "LINK27","LINK81" }
+{ "LINK58","LINK85" }
+{ "LINK44","LINK80" }
+{ "LINK35","LINK86" }
+{ "LINK26","LINK77" }
+{ "LINK26","LINK60" }
+{ "LINK28","LINK56" }
+{ "LINK9","LINK78" }
+{ "LINK55","LINK59" }
+{ "LINK4","LINK50" }
+{ "LINK34","LINK52" }
+{ "LINK13","LINK43" }
+{ "LINK25","LINK48" }
+{ "LINK51","LINK77" }
+{ "LINK19","LINK61" }
+{ "LINK3","LINK26" }
+{ "LINK64","LINK72" }
+{ "LINK39","LINK71" }
+{ "LINK14","LINK65" }
+{ "LINK4","LINK44" }
+{ "LINK35","LINK87" }
+{ "LINK50","LINK82" }
+{ "LINK41","LINK64" }
+{ "LINK13","LINK52" }
+{ "LINK5","LINK73" }
+{ "LINK27","LINK87" }
+{ "LINK18","LINK47" }
+{ "LINK25","LINK63" }
+{ "LINK21","LINK80" }
+{ "LINK27","LINK61" }
+{ "LINK35","LINK49" }
+{ "LINK50","LINK55" }
+{ "LINK16","LINK52" }
+{ "LINK12","LINK44" }
+{ "LINK21","LINK35" }
+{ "LINK9","LINK54" }
+{ "LINK61","LINK72" }
+{ "LINK61","LINK80" }
+{ "LINK41","LINK54" }
+{ "LINK17","LINK23" }
+{ "LINK18","LINK38" }
+{ "LINK66","LINK69" }
+{ "LINK7","LINK41" }
+{ "LINK52","LINK84" }
+{ "LINK38","LINK84" }
+{ "LINK1","LINK11" }
+{ "LINK23","LINK35" }
+{ "LINK6","LINK43" }
+{ "LINK39","LINK67" }
+{ "LINK29","LINK78" }
+{ "LINK29","LINK44" }
+{ "LINK37","LINK60" }
+{ "LINK5","LINK43" }
+{ "LINK19","LINK84" }
+{ "LINK1","LINK19" }
+{ "LINK38","LINK74" }
+{ "LINK19","LINK49" }
+{ "LINK52","LINK70" }
+{ "LINK26","LINK84" }
+{ "LINK15","LINK81" }
+{ "LINK69","LINK70" }
+{ "LINK73","LINK82" }
+{ "LINK40","LINK84" }
+{ "LINK9","LINK72" }
+{ "LINK16","LINK50" }
+{ "LINK17","LINK72" }
+{ "LINK23","LINK56" }
+{ "LINK28","LINK35" }
+{ "LINK5","LINK10" }
+{ "LINK41","LINK58" }
+{ "LINK37","LINK74" }
+{ "LINK18","LINK65" }
+{ "LINK41","LINK62" }
+{ "LINK28","LINK32" }
+{ "LINK80","LINK82" }
+{ "LINK74","LINK79" }
+{ "LINK29","LINK74" }
+{ "LINK32","LINK47" }
+{ "LINK21","LINK51" }
+{ "LINK28","LINK69" }
+{ "LINK41","LINK86" }
+{ "LINK34","LINK66" }
+{ "LINK19","LINK76" }
+{ "LINK3","LINK36" }
+{ "LINK43","LINK82" }
+{ "LINK34","LINK68" }
+{ "LINK16","LINK77" }
+{ "LINK26","LINK67" }
+{ "LINK66","LINK79" }
+{ "LINK47","LINK53" }
+{ "LINK39","LINK51" }
+{ "LINK3","LINK43" }
+{ "LINK74","LINK76" }
+{ "LINK61","LINK74" }
+{ "LINK20","LINK23" }
+{ "LINK76","LINK86" }
+{ "LINK55","LINK85" }
+{ "LINK13","LINK59" }
+{ "LINK7","LINK53" }
+{ "LINK25","LINK66" }
+{ "LINK28","LINK62" }
+{ "LINK54","LINK75" }
+{ "LINK15","LINK68" }
+{ "LINK36","LINK79" }
+{ "LINK70","LINK85" }
+{ "LINK13","LINK39" }
+{ "LINK51","LINK59" }
+{ "LINK39","LINK56" }
+{ "LINK4","LINK51" }
+{ "LINK5","LINK54" }
+{ "LINK5","LINK48" }
+{ "LINK59","LINK61" }
+{ "LINK47","LINK52" }
+{ "LINK79","LINK83" }
+{ "LINK20","LINK84" }
+{ "LINK19","LINK80" }
+{ "LINK13","LINK17" }
+{ "LINK18","LINK46" }
+{ "LINK35","LINK44" }
+{ "LINK19","LINK82" }
+{ "LINK33","LINK78" }
+{ "LINK80","LINK85" }
+{ "LINK57","LINK82" }
+{ "LINK34","LINK54" }
+{ "LINK2","LINK85" }
+{ "LINK2","LINK43" }
+{ "LINK65","LINK82" }
+{ "LINK9","LINK79" }
+{ "LINK30","LINK61" }
+{ "LINK68","LINK73" }
+{ "LINK21","LINK52" }
+{ "LINK23","LINK49" }
+{ "LINK13","LINK56" }
+{ "LINK9","LINK85" }
+{ "LINK8","LINK87" }
+{ "LINK37","LINK61" }
+{ "LINK24","LINK50" }
+{ "LINK65","LINK71" }
+{ "LINK58","LINK68" }
+{ "LINK17","LINK60" }
+{ "LINK33","LINK85" }
+{ "LINK22","LINK80" }
+{ "LINK68","LINK71" }
+{ "LINK50","LINK60" }
+{ "LINK2","LINK64" }
+{ "LINK57","LINK80" }
+{ "LINK22","LINK50" }
+{ "LINK10","LINK72" }
+{ "LINK4","LINK67" }
+{ "LINK15","LINK34" }
+{ "LINK79","LINK80" }
+{ "LINK50","LINK79" }
+{ "LINK10","LINK85" }
+{ "LINK73","LINK84" }
+{ "LINK52","LINK74" }
+{ "LINK9","LINK69" }
+{ "LINK18","LINK77" }
+{ "LINK16","LINK29" }
+{ "LINK16","LINK53" }
+{ "LINK2","LINK75" }
+{ "LINK28","LINK81" }
+{ "LINK46","LINK71" }
+{ "LINK76","LINK80" }
+{ "LINK38","LINK81" }
+{ "LINK23","LINK29" }
+{ "LINK71","LINK84" }
+{ "LINK6","LINK44" }
+{ "LINK22","LINK85" }
+{ "LINK45","LINK67" }
+{ "LINK29","LINK65" }
+{ "LINK35","LINK69" }
+{ "LINK2","LINK79" }
+{ "LINK39","LINK78" }
+{ "LINK26","LINK61" }
+{ "LINK31","LINK85" }
+{ "LINK44","LINK63" }
+{ "LINK26","LINK38" }
+{ "LINK6","LINK53" }
+{ "LINK33","LINK77" }
+{ "LINK30","LINK46" }
+{ "LINK47","LINK49" }
+{ "LINK9","LINK16" }
+{ "LINK38","LINK40" }
+{ "LINK6","LINK52" }
+{ "LINK21","LINK27" }
+{ "LINK29","LINK52" }
+{ "LINK58","LINK81" }
+{ "LINK60","LINK61" }
+{ "LINK9","LINK51" }
+{ "LINK9","LINK33" }
+{ "LINK2","LINK39" }
+{ "LINK52","LINK75" }
+{ "LINK60","LINK86" }
+{ "LINK67","LINK75" }
+{ "LINK7","LINK46" }
+{ "LINK52","LINK80" }
+{ "LINK7","LINK76" }
+{ "LINK58","LINK69" }
+{ "LINK42","LINK76" }
+{ "LINK1","LINK48" }
+{ "LINK48","LINK50" }
+{ "LINK4","LINK82" }
+{ "LINK4","LINK48" }
+{ "LINK11","LINK81" }
+{ "LINK14","LINK71" }
+{ "LINK61","LINK71" }
+{ "LINK52","LINK56" }
+{ "LINK33","LINK51" }
+{ "LINK7","LINK60" }
+{ "LINK69","LINK72" }
+{ "LINK1","LINK13" }
+{ "LINK6","LINK27" }
+{ "LINK17","LINK50" }
+{ "LINK50","LINK52" }
+{ "LINK10","LINK36" }
+{ "LINK13","LINK19" }
+{ "LINK10","LINK17" }
+{ "LINK1","LINK82" }
+{ "LINK7","LINK28" }
+{ "LINK14","LINK68" }
+{ "LINK5","LINK58" }
+{ "LINK35","LINK59" }
+{ "LINK40","LINK69" }
+{ "LINK12","LINK60" }
+{ "LINK34","LINK60" }
+{ "LINK43","LINK63" }
+{ "LINK66","LINK68" }
+{ "LINK42","LINK87" }
+{ "LINK26","LINK47" }
+{ "LINK82","LINK87" }
+{ "LINK59","LINK76" }
+{ "LINK1","LINK33" }
+{ "LINK53","LINK86" }
+{ "LINK33","LINK45" }
+{ "LINK2","LINK84" }
+{ "LINK14","LINK42" }
+{ "LINK28","LINK37" }
+{ "LINK34","LINK76" }
+{ "LINK35","LINK80" }
+{ "LINK48","LINK74" }
+{ "LINK41","LINK50" }
+{ "LINK17","LINK49" }
+{ "LINK7","LINK77" }
+{ "LINK67","LINK77" }
+{ "LINK18","LINK61" }
+{ "LINK43","LINK79" }
+{ "LINK27","LINK65" }
+{ "LINK48","LINK61" }
+{ "LINK3","LINK18" }
+{ "LINK86","LINK88" }
+{ "LINK8","LINK9" }
+{ "LINK14","LINK23" }
+{ "LINK15","LINK61" }
+{ "LINK45","LINK69" }
+{ "LINK44","LINK53" }
+{ "LINK32","LINK80" }
+{ "LINK61","LINK77" }
+{ "LINK53","LINK60" }
+{ "LINK42","LINK70" }
+{ "LINK10","LINK82" }
+{ "LINK29","LINK63" }
+{ "LINK11","LINK69" }
+{ "LINK18","LINK57" }
+{ "LINK37","LINK43" }
+{ "LINK26","LINK54" }
+{ "LINK5","LINK37" }
+{ "LINK77","LINK83" }
+{ "LINK23","LINK73" }
+{ "LINK45","LINK73" }
+{ "LINK10","LINK13" }
+{ "LINK3","LINK14" }
+{ "LINK14","LINK51" }
+{ "LINK8","LINK37" }
+{ "LINK69","LINK80" }
+{ "LINK4","LINK30" }
+{ "LINK26","LINK71" }
+{ "LINK21","LINK73" }
+{ "LINK14","LINK57" }
+{ "LINK40","LINK60" }
+{ "LINK73","LINK80" }
+{ "LINK19","LINK62" }
+{ "LINK81","LINK87" }
+{ "LINK5","LINK47" }
+{ "LINK49","LINK86" }
+{ "LINK53","LINK61" }
+{ "LINK31","LINK41" }
+{ "LINK72","LINK73" }
+{ "LINK28","LINK58" }
+{ "LINK49","LINK54" }
+{ "LINK36","LINK63" }
+{ "LINK26","LINK45" }
+{ "LINK1","LINK43" }
+{ "LINK11","LINK72" }
+{ "LINK52","LINK82" }
+{ "LINK87","LINK88" }
+{ "LINK63","LINK71" }
+{ "LINK59","LINK62" }
+{ "LINK63","LINK82" }
+{ "LINK48","LINK58" }
+{ "LINK2","LINK66" }
+{ "LINK51","LINK80" }
+{ "LINK5","LINK9" }
+{ "LINK15","LINK48" }
+{ "LINK29","LINK56" }
+{ "LINK36","LINK83" }
+{ "LINK55","LINK70" }
+{ "LINK29","LINK59" }
+{ "LINK44","LINK49" }
+{ "LINK12","LINK43" }
+{ "LINK44","LINK58" }
+{ "LINK54","LINK88" }
+{ "LINK30","LINK86" }
+{ "LINK47","LINK71" }
+{ "LINK8","LINK84" }
+{ "LINK8","LINK15" }
+{ "LINK4","LINK20" }
+{ "LINK1","LINK85" }
+{ "LINK17","LINK28" }
+{ "LINK52","LINK73" }
+{ "LINK37","LINK75" }
+{ "LINK15","LINK80" }
+{ "LINK54","LINK58" }
+{ "LINK1","LINK88" }
+{ "LINK56","LINK74" }
+{ "LINK49","LINK79" }
+{ "LINK21","LINK36" }
+{ "LINK32","LINK85" }
+{ "LINK60","LINK85" }
+{ "LINK17","LINK30" }
+{ "LINK10","LINK24" }
+{ "LINK19","LINK53" }
+{ "LINK10","LINK71" }
+{ "LINK20","LINK80" }
+{ "LINK47","LINK60" }
+{ "LINK62","LINK81" }
+{ "LINK44","LINK72" }
+{ "LINK5","LINK83" }
+{ "LINK10","LINK81" }
+{ "LINK31","LINK43" }
+{ "LINK10","LINK74" }
+{ "LINK35","LINK79" }
+{ "LINK57","LINK66" }
+{ "LINK8","LINK68" }
+{ "LINK32","LINK64" }
+{ "LINK27","LINK44" }
+{ "LINK4","LINK49" }
+{ "LINK44","LINK70" }
+{ "LINK58","LINK61" }
+{ "LINK41","LINK81" }
+{ "LINK36","LINK75" }
+{ "LINK31","LINK57" }
+{ "LINK35","LINK39" }
+{ "LINK40","LINK72" }
+{ "LINK75","LINK87" }
+{ "LINK39","LINK82" }
+{ "LINK54","LINK74" }
+{ "LINK41","LINK45" }
+{ "LINK19","LINK40" }
+{ "LINK15","LINK75" }
+{ "LINK37","LINK69" }
+{ "LINK30","LINK87" }
+{ "LINK71","LINK81" }
+{ "LINK5","LINK27" }
+{ "LINK4","LINK26" }
+{ "LINK22","LINK74" }
+{ "LINK11","LINK41" }
+{ "LINK5","LINK29" }
+{ "LINK8","LINK81" }
+{ "LINK76","LINK88" }
+{ "LINK49","LINK57" }
+{ "LINK13","LINK40" }
+{ "LINK65","LINK83" }
+{ "LINK4","LINK68" }
+{ "LINK36","LINK70" }
+{ "LINK31","LINK65" }
+{ "LINK25","LINK85" }
+{ "LINK2","LINK81" }
+{ "LINK33","LINK73" }
+{ "LINK41","LINK88" }
+{ "LINK73","LINK81" }
+{ "LINK71","LINK80" }
+{ "LINK5","LINK25" }
+{ "LINK25","LINK53" }
+{ "LINK14","LINK56" }
+{ "LINK27","LINK51" }
+{ "LINK10","LINK57" }
+{ "LINK1","LINK34" }
+{ "LINK17","LINK37" }
+{ "LINK20","LINK88" }
+{ "LINK30","LINK82" }
+{ "LINK71","LINK74" }
+{ "LINK46","LINK53" }
+{ "LINK32","LINK78" }
+{ "LINK48","LINK65" }
+{ "LINK33","LINK41" }
+{ "LINK34","LINK56" }
+{ "LINK51","LINK79" }
+{ "LINK18","LINK30" }
+{ "LINK37","LINK80" }
+{ "LINK6","LINK39" }
+{ "LINK10","LINK50" }
+{ "LINK18","LINK67" }
+{ "LINK57","LINK61" }
+{ "LINK70","LINK76" }
+{ "LINK23","LINK88" }
+{ "LINK33","LINK55" }
+{ "LINK2","LINK15" }
+{ "LINK24","LINK26" }
+{ "LINK11","LINK38" }
+{ "LINK36","LINK61" }
+{ "LINK10","LINK88" }
+{ "LINK28","LINK52" }
+{ "LINK46","LINK73" }
+{ "LINK32","LINK58" }
+{ "LINK65","LINK79" }
+{ "LINK3","LINK23" }
+{ "LINK35","LINK37" }
+{ "LINK56","LINK68" }
+{ "LINK38","LINK79" }
+{ "LINK31","LINK37" }
+{ "LINK52","LINK65" }
+{ "LINK1","LINK65" }
+{ "LINK51","LINK68" }
+{ "LINK5","LINK49" }
+{ "LINK4","LINK63" }
+{ "LINK14","LINK77" }
+{ "LINK24","LINK40" }
+{ "LINK50","LINK85" }
+{ "LINK11","LINK78" }
+{ "LINK18","LINK51" }
+{ "LINK22","LINK44" }
+{ "LINK35","LINK41" }
+{ "LINK47","LINK69" }
+{ "LINK39","LINK48" }
+{ "LINK37","LINK67" }
+{ "LINK2","LINK27" }
+{ "LINK11","LINK29" }
+{ "LINK14","LINK37" }
+{ "LINK64","LINK76" }
+{ "LINK12","LINK78" }
+{ "LINK43","LINK49" }
+{ "LINK38","LINK57" }
+{ "LINK18","LINK44" }
+{ "LINK30","LINK47" }
+{ "LINK17","LINK83" }
+{ "LINK4","LINK34" }
+{ "LINK12","LINK14" }
+{ "LINK38","LINK60" }
+{ "LINK78","LINK83" }
+{ "LINK49","LINK81" }
+{ "LINK17","LINK41" }
+{ "LINK29","LINK50" }
+{ "LINK19","LINK64" }
+{ "LINK4","LINK69" }
+{ "LINK26","LINK35" }
+{ "LINK60","LINK81" }
+{ "LINK36","LINK88" }
+{ "LINK4","LINK77" }
+{ "LINK1","LINK21" }
+{ "LINK14","LINK29" }
+{ "LINK16","LINK55" }
+{ "LINK32","LINK73" }
+{ "LINK31","LINK68" }
+{ "LINK7","LINK13" }
+{ "LINK28","LINK76" }
+{ "LINK29","LINK71" }
+{ "LINK30","LINK60" }
+{ "LINK39","LINK45" }
+{ "LINK55","LINK86" }
+{ "LINK48","LINK80" }
+{ "LINK78","LINK85" }
+{ "LINK9","LINK36" }
+{ "LINK9","LINK48" }
+{ "LINK79","LINK86" }
+{ "LINK39","LINK88" }
+{ "LINK62","LINK79" }
+{ "LINK41","LINK82" }
+{ "LINK4","LINK56" }
+{ "LINK4","LINK58" }
+{ "LINK16","LINK36" }
+{ "LINK19","LINK67" }
+{ "LINK10","LINK21" }
+{ "LINK30","LINK83" }
+{ "LINK46","LINK80" }
+{ "LINK58","LINK66" }
+{ "LINK56","LINK58" }
+{ "LINK16","LINK79" }
+{ "LINK56","LINK64" }
+{ "LINK56","LINK66" }
+{ "LINK5","LINK45" }
+{ "LINK40","LINK65" }
+{ "LINK72","LINK82" }
+{ "LINK14","LINK50" }
+{ "LINK2","LINK77" }
+{ "LINK10","LINK61" }
+{ "LINK57","LINK86" }
+{ "LINK7","LINK32" }
+{ "LINK10","LINK20" }
+{ "LINK39","LINK63" }
+{ "LINK64","LINK87" }
+{ "LINK27","LINK42" }
+{ "LINK64","LINK65" }
+{ "LINK7","LINK36" }
+{ "LINK38","LINK53" }
+{ "LINK67","LINK70" }
+{ "LINK72","LINK76" }
+{ "LINK7","LINK64" }
+{ "LINK1","LINK4" }
+{ "LINK3","LINK8" }
+{ "LINK3","LINK31" }
+{ "LINK44","LINK87" }
+{ "LINK17","LINK38" }
+{ "LINK28","LINK49" }
+{ "LINK20","LINK34" }
+{ "LINK26","LINK27" }
+{ "LINK5","LINK64" }
+{ "LINK29","LINK54" }
+{ "LINK2","LINK45" }
+{ "LINK57","LINK88" }
+{ "LINK8","LINK46" }
+{ "LINK16","LINK22" }
+{ "LINK23","LINK50" }
+{ "LINK15","LINK83" }
+{ "LINK18","LINK70" }
+{ "LINK5","LINK75" }
+{ "LINK10","LINK29" }
+{ "LINK29","LINK31" }
+{ "LINK57","LINK64" }
+{ "LINK1","LINK28" }
+{ "LINK61","LINK81" }
+{ "LINK22","LINK35" }
+{ "LINK45","LINK51" }
+{ "LINK45","LINK55" }
+{ "LINK12","LINK64" }
+{ "LINK11","LINK32" }
+{ "LINK43","LINK73" }
+{ "LINK6","LINK65" }
+{ "LINK10","LINK73" }
+{ "LINK4","LINK35" }
+{ "LINK25","LINK69" }
+{ "LINK22","LINK68" }
+{ "LINK35","LINK76" }
+{ "LINK19","LINK57" }
+{ "LINK9","LINK52" }
+{ "LINK12","LINK20" }
+{ "LINK9","LINK75" }
+{ "LINK61","LINK86" }
+{ "LINK39","LINK65" }
+{ "LINK42","LINK73" }
+{ "LINK31","LINK32" }
+{ "LINK60","LINK73" }
+{ "LINK31","LINK46" }
+{ "LINK3","LINK5" }
+{ "LINK66","LINK80" }
+{ "LINK53","LINK84" }
+{ "LINK28","LINK48" }
+{ "LINK3","LINK47" }
+{ "LINK78","LINK81" }
+{ "LINK12","LINK34" }
+{ "LINK24","LINK64" }
+{ "LINK37","LINK41" }
+{ "LINK5","LINK88" }
+{ "LINK24","LINK69" }
+{ "LINK30","LINK65" }
+{ "LINK12","LINK31" }
+{ "LINK11","LINK13" }
+{ "LINK35","LINK55" }
+{ "LINK34","LINK71" }
+{ "LINK26","LINK40" }
+{ "LINK33","LINK39" }
+{ "LINK8","LINK42" }
+{ "LINK31","LINK47" }
+{ "LINK29","LINK77" }
+{ "LINK31","LINK81" }
+{ "LINK1","LINK47" }
+{ "LINK10","LINK67" }
+{ "LINK24","LINK72" }
+{ "LINK69","LINK83" }
+{ "LINK25","LINK83" }
+{ "LINK47","LINK72" }
+{ "LINK50","LINK88" }
+{ "LINK12","LINK67" }
+{ "LINK15","LINK44" }
+{ "LINK20","LINK49" }
+{ "LINK20","LINK48" }
+{ "LINK46","LINK54" }
+{ "LINK15","LINK86" }
+{ "LINK35","LINK40" }
+{ "LINK72","LINK86" }
+{ "LINK14","LINK34" }
+{ "LINK58","LINK72" }
+{ "LINK16","LINK18" }
+{ "LINK2","LINK26" }
+{ "LINK24","LINK25" }
+{ "LINK8","LINK80" }
+{ "LINK5","LINK61" }
+{ "LINK9","LINK88" }
+{ "LINK48","LINK62" }
+{ "LINK1","LINK25" }
+{ "LINK13","LINK87" }
+{ "LINK63","LINK67" }
+{ "LINK56","LINK78" }
+{ "LINK26","LINK66" }
+{ "LINK70","LINK86" }
+{ "LINK51","LINK66" }
+{ "LINK6","LINK13" }
+{ "LINK5","LINK31" }
+{ "LINK28","LINK65" }
+{ "LINK39","LINK42" }
+{ "LINK15","LINK55" }
+{ "LINK38","LINK83" }
+{ "LINK1","LINK44" }
+{ "LINK60","LINK78" }
+{ "LINK41","LINK67" }
+{ "LINK24","LINK85" }
+{ "LINK12","LINK19" }
+{ "LINK21","LINK53" }
+{ "LINK15","LINK78" }
+{ "LINK32","LINK40" }
+{ "LINK28","LINK86" }
+{ "LINK56","LINK79" }
+{ "LINK19","LINK31" }
+{ "LINK36","LINK77" }
+{ "LINK27","LINK33" }
+{ "LINK12","LINK75" }
+{ "LINK59","LINK60" }
+{ "LINK8","LINK28" }
+{ "LINK49","LINK63" }
+{ "LINK13","LINK38" }
+{ "LINK31","LINK53" }
+{ "LINK3","LINK69" }
+{ "LINK35","LINK51" }
+{ "LINK32","LINK86" }
+{ "LINK33","LINK65" }
+{ "LINK31","LINK88" }
+{ "LINK4","LINK16" }
+{ "LINK5","LINK78" }
+{ "LINK33","LINK56" }
+{ "LINK14","LINK55" }
+{ "LINK37","LINK49" }
+{ "LINK42","LINK61" }
+{ "LINK12","LINK33" }
+{ "LINK4","LINK36" }
+{ "LINK12","LINK77" }
+{ "LINK47","LINK73" }
+{ "LINK18","LINK75" }
+{ "LINK14","LINK19" }
+{ "LINK71","LINK87" }
+{ "LINK31","LINK77" }
+{ "LINK19","LINK59" }
+{ "LINK47","LINK79" }
+{ "LINK3","LINK51" }
+{ "LINK9","LINK43" }
+{ "LINK18","LINK52" }
+{ "LINK29","LINK39" }
+{ "LINK7","LINK74" }
+{ "LINK13","LINK67" }
+{ "LINK16","LINK33" }
+{ "LINK67","LINK79" }
+{ "LINK47","LINK81" }
+{ "LINK41","LINK85" }
+{ "LINK6","LINK45" }
+{ "LINK10","LINK16" }
+{ "LINK23","LINK36" }
+{ "LINK84","LINK86" }
+{ "LINK27","LINK56" }
+{ "LINK3","LINK55" }
+{ "LINK24","LINK58" }
+{ "LINK22","LINK57" }
+{ "LINK44","LINK71" }
+{ "LINK11","LINK48" }
+{ "LINK24","LINK45" }
+{ "LINK28","LINK84" }
+{ "LINK27","LINK77" }
+{ "LINK14","LINK45" }
+{ "LINK20","LINK75" }
+{ "LINK47","LINK50" }
+{ "LINK15","LINK35" }
+{ "LINK5","LINK65" }
+{ "LINK2","LINK18" }
+{ "LINK11","LINK82" }
+{ "LINK10","LINK69" }
+{ "LINK31","LINK64" }
+{ "LINK2","LINK67" }
+{ "LINK3","LINK74" }
+{ "LINK25","LINK32" }
+{ "LINK31","LINK34" }
+{ "LINK16","LINK37" }
+{ "LINK18","LINK74" }
+{ "LINK17","LINK42" }
+{ "LINK57","LINK59" }
+{ "LINK69","LINK85" }
+{ "LINK29","LINK55" }
+{ "LINK9","LINK50" }
+{ "LINK67","LINK85" }
+{ "LINK33","LINK34" }
+{ "LINK2","LINK32" }
+{ "LINK3","LINK82" }
+{ "LINK23","LINK30" }
+{ "LINK26","LINK74" }
+{ "LINK34","LINK35" }
+{ "LINK17","LINK39" }
+{ "LINK36","LINK64" }
+{ "LINK46","LINK50" }
+{ "LINK10","LINK25" }
+{ "LINK11","LINK77" }
+{ "LINK8","LINK11" }
+{ "LINK18","LINK64" }
+{ "LINK46","LINK58" }
+{ "LINK1","LINK87" }
+{ "LINK11","LINK57" }
+{ "LINK20","LINK70" }
+{ "LINK7","LINK25" }
+{ "LINK38","LINK68" }
+{ "LINK13","LINK41" }
+{ "LINK42","LINK54" }
+{ "LINK11","LINK79" }
+{ "LINK18","LINK50" }
+{ "LINK7","LINK54" }
+{ "LINK37","LINK62" }
+{ "LINK13","LINK86" }
+{ "LINK46","LINK81" }
+{ "LINK43","LINK51" }
+{ "LINK49","LINK70" }
+{ "LINK72","LINK75" }
+{ "LINK37","LINK45" }
+{ "LINK33","LINK46" }
+{ "LINK12","LINK35" }
+{ "LINK25","LINK67" }
+{ "LINK44","LINK45" }
+{ "LINK70","LINK72" }
+{ "LINK38","LINK61" }
+{ "LINK43","LINK67" }
+{ "LINK47","LINK75" }
+{ "LINK17","LINK47" }
+{ "LINK28","LINK63" }
+{ "LINK30","LINK85" }
+{ "LINK25","LINK68" }
+{ "LINK18","LINK27" }
+{ "LINK70","LINK75" }
+{ "LINK6","LINK51" }
+{ "LINK27","LINK39" }
+{ "LINK8","LINK88" }
+{ "LINK24","LINK37" }
+{ "LINK16","LINK26" }
+{ "LINK62","LINK78" }
+{ "LINK38","LINK88" }
+{ "LINK6","LINK12" }
+{ "LINK57","LINK85" }
+{ "LINK73","LINK85" }
+{ "LINK20","LINK22" }
+{ "LINK43","LINK83" }
+{ "LINK55","LINK64" }
+{ "LINK4","LINK71" }
+{ "LINK47","LINK57" }
+{ "LINK2","LINK23" }
+{ "LINK43","LINK62" }
+{ "LINK64","LINK69" }
+{ "LINK10","LINK52" }
+{ "LINK41","LINK49" }
+{ "LINK3","LINK76" }
+{ "LINK77","LINK78" }
+{ "LINK13","LINK72" }
+{ "LINK4","LINK8" }
+{ "LINK48","LINK79" }
+{ "LINK68","LINK78" }
+{ "LINK8","LINK51" }
+{ "LINK9","LINK61" }
+{ "LINK19","LINK74" }
+{ "LINK3","LINK45" }
+{ "LINK22","LINK76" }
+{ "LINK21","LINK71" }
+{ "LINK18","LINK80" }
+{ "LINK45","LINK76" }
+{ "LINK13","LINK46" }
+{ "LINK32","LINK38" }
+{ "LINK37","LINK87" }
+{ "LINK25","LINK58" }
+{ "LINK5","LINK13" }
+{ "LINK24","LINK52" }
+{ "LINK15","LINK65" }
+{ "LINK50","LINK66" }
+{ "LINK61","LINK76" }
+{ "LINK69","LINK82" }
+{ "LINK28","LINK70" }
+{ "LINK8","LINK32" }
+{ "LINK38","LINK67" }
+{ "LINK41","LINK52" }
+{ "LINK19","LINK33" }
+{ "LINK56","LINK62" }
+{ "LINK7","LINK23" }
+{ "LINK46","LINK60" }
+{ "LINK33","LINK83" }
+{ "LINK10","LINK51" }
+{ "LINK10","LINK86" }
+{ "LINK35","LINK56" }
+{ "LINK18","LINK59" }
+{ "LINK30","LINK38" }
+{ "LINK48","LINK54" }
+{ "LINK54","LINK86" }
+{ "LINK37","LINK83" }
+{ "LINK70","LINK78" }
+{ "LINK45","LINK60" }
+{ "LINK19","LINK50" }
+{ "LINK17","LINK75" }
+{ "LINK18","LINK78" }
+{ "LINK18","LINK41" }
+{ "LINK50","LINK76" }
+{ "LINK25","LINK43" }
+{ "LINK17","LINK57" }
+{ "LINK29","LINK68" }
+{ "LINK24","LINK53" }
+{ "LINK9","LINK31" }
+{ "LINK10","LINK18" }
+{ "LINK32","LINK62" }
+{ "LINK12","LINK54" }
+{ "LINK15","LINK57" }
+{ "LINK12","LINK39" }
+{ "LINK48","LINK59" }
+{ "LINK20","LINK53" }
+{ "LINK36","LINK80" }
+{ "LINK21","LINK59" }
+{ "LINK29","LINK49" }
+{ "LINK10","LINK64" }
+{ "LINK76","LINK81" }
+{ "LINK23","LINK65" }
+{ "LINK60","LINK83" }
+{ "LINK17","LINK77" }
+{ "LINK22","LINK47" }
+{ "LINK80","LINK83" }
+{ "LINK58","LINK64" }
+{ "LINK27","LINK72" }
+{ "LINK4","LINK22" }
+{ "LINK36","LINK78" }
+{ "LINK4","LINK88" }
+{ "LINK8","LINK69" }
+{ "LINK28","LINK54" }
+{ "LINK53","LINK63" }
+{ "LINK19","LINK46" }
+{ "LINK18","LINK87" }
+{ "LINK70","LINK73" }
+{ "LINK24","LINK57" }
+{ "LINK26","LINK56" }
+{ "LINK6","LINK40" }
+{ "LINK1","LINK61" }
+{ "LINK60","LINK64" }
+{ "LINK7","LINK88" }
+{ "LINK28","LINK85" }
+{ "LINK11","LINK75" }
+{ "LINK35","LINK83" }
+{ "LINK7","LINK15","LINK65" }
+{ "LINK10","LINK24","LINK71" }
+{ "LINK7","LINK13","LINK15" }
+{ "LINK35","LINK48","LINK63" }
+{ "LINK6","LINK26","LINK45" }
+{ "LINK11","LINK19","LINK54" }
+{ "LINK4","LINK26","LINK57" }
+{ "LINK27","LINK80","LINK82" }
+{ "LINK67","LINK73","LINK74" }
+{ "LINK22","LINK56","LINK66" }
+{ "LINK7","LINK85","LINK88" }
+{ "LINK17","LINK32","LINK74" }
+{ "LINK7","LINK12","LINK17" }
+{ "LINK7","LINK11","LINK20" }
+{ "LINK30","LINK42","LINK55" }
+{ "LINK2","LINK77","LINK88" }
+{ "LINK15","LINK24","LINK32" }
+{ "LINK44","LINK49","LINK61" }
+{ "LINK22","LINK66","LINK83" }
+{ "LINK34","LINK39","LINK65" }
+{ "LINK1","LINK5","LINK65","LINK80" }
+{ "LINK1","LINK7","LINK13","LINK24" }
+{ "LINK1","LINK26","LINK58","LINK88" }
+{ "LINK1","LINK49","LINK50","LINK79" }
+{ "LINK1","LINK58","LINK85","LINK88" }
+{ "LINK1","LINK42","LINK67","LINK80" }
+{ "LINK1","LINK56","LINK77","LINK79" }
+{ "LINK1","LINK22","LINK36","LINK55" }
+{ "LINK1","LINK24","LINK68","LINK76" }
+{ "LINK1","LINK28","LINK36","LINK58" }
+ ]; 

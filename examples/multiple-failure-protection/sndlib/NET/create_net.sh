@@ -2,11 +2,11 @@
 
 PATHSRC="RWA"
 
-#rm -f *.net
+rm -f *.net
 rm -f *.ran
 
 
-for item in $( ls ../$PATHSRC/geant.rwa ) ; do
+for item in $( ls ../$PATHSRC/*.rwa ) ; do
 
 	SRC=$item
 	
@@ -22,10 +22,18 @@ for item in $( ls ../$PATHSRC/geant.rwa ) ; do
 
 	for (( percent = 0 ; percent <= 100 ; percent +=10 )); do
 
-		echo "converting $DST  --> $filename-$percent.net" 
+		echo "converting $DST  --> $filename-d$percent-t0-q0.net" 
+		awk -v dpercent=$percent -v take3=0 -v take4=0  -f ran2net.awk $DST   > $filename-d$percent-t0-q0.net
 
-		awk -v percent=$percent -f ran2net.awk $DST   > $filename-$percent.net
 	done
+
+	
+	echo "converting $DST  --> $filename-d50-t10-q0.net"
+    awk -v dpercent=50 -v take3=10  -v take4=0  -f ran2net.awk $DST   > $filename-d50-t10-q0.net
+
+	echo "converting $DST  --> $filename-d50-t20-q10.net"
+    awk -v dpercent=50 -v take3=20  -v take4=10  -f ran2net.awk $DST   > $filename-d50-t20-q10.net
+
 done
 
 rm -f *.ran
