@@ -4,7 +4,7 @@ import time
 import commands
 import sys
 
-homedir   = "/RQexec/hoangha1/framework/examples/multiple-failure-protection/"
+homedir   = os.getcwd() + "/"
 datadir   = homedir + "sndlib/"
 inputdir  = datadir + "NET/polska*d0*.net"
 outputdir = datadir + "OUT/"
@@ -19,6 +19,7 @@ if __name__ == "__main__" :
 
     print "RUN BATCH OF EXPERIMENTS"
     print "------------------------"
+    print "Home Dir: " , homedir
 
     # delete script
     os.system("rm -f " + scriptdir + "*" )

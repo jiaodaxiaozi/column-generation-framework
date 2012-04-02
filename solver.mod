@@ -99,7 +99,7 @@ function nextState( nextObj , curObj ) {
     cplex.workdir = "/lscratch";
     cplex.workmem = 1024 * 40  ;
     cplex.nodefileind = 3 ;
-    cplex.trelim  = 1024 * 60 ;
+    cplex.trelim  = 1024 * 60 ; 
 
     cplex.parallelmode = -1 ; // opportunistic mode
     cplex.threads = 0 ; // use maximum threads
