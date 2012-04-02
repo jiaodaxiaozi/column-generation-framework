@@ -93,13 +93,13 @@ function nextState( nextObj , curObj ) {
     }
 
     cplex.tilim = 3600 * 48;  // 2 days solving 
-    cplex.epgap = 0.00 ; // full search
+    cplex.epgap = 0.01 ;      // 1 percent
 
 
-    cplex.workdir = "/lscratch";
-    cplex.workmem = 1024 * 20  ;
-    cplex.nodefileind = 3 ;
-    cplex.trelim  = 1024 * 40 ;
+    //cplex.workdir = "/lscratch";
+    cplex.workmem = 1024 * 30  ;
+    //cplex.nodefileind = 3 ;
+    //cplex.trelim  = 1024 * 60 ;
 
     cplex.parallelmode = -1 ; // opportunistic mode
     cplex.threads = 0 ; // use maximum threads

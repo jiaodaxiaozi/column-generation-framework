@@ -159,8 +159,8 @@ execute DisplayResult {
         output_value("NEDGE" , edgeset.size );
         output_value("NCYCLE" , poolcycle.size );
         output_value("NCONF"   , poolset.size );
-	output_value("GENCON" , gencon[0] );
-	output_value("NSEL" , nsel );
+    	output_value("GENCON" , gencon[0] );
+    	output_value("NSEL" , nsel );
         output_value("RELAXOBJ" , preobj[0]);
         output_value("INTOBJ" , cplex.getObjValue()); 
         output_value("GAP" , GAP( preobj[0] , cplex.getObjValue() ));
