@@ -97,7 +97,7 @@ function nextState( nextObj , curObj ) {
 
 
     cplex.workdir = "/lscratch";
-    cplex.workmem = 1024 * 30  ;
+    cplex.workmem = 1024 * 40  ;
     cplex.nodefileind = 3 ;
     cplex.trelim  = 1024 * 60 ;
 
