@@ -4,8 +4,8 @@ import time
 import commands
 import sys
 
-homedir   = os.getcwd() + "/"
-datadir   = homedir + "sndlib/"
+homedir   = "/RQexec/hoangha1/framework/examples/multiple-failure-protection/"
+datadir   = "sndlib/"
 inputdir  = datadir + "NET/polska*d0*.net"
 outputdir = datadir + "OUT/"
 inidir    = datadir + "INI/"

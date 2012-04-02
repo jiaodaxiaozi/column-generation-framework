@@ -2,9 +2,9 @@
 
 include "params.mod";
 
-float dummy_cost = 10000.0;
+float dummy_cost = 100000.0;
 
-float basic_rate_threshold = 0.5 ;
+float basic_rate_threshold = 0.3 ;
 
 dvar float+ dummy [1.. nfailure ][ requestset ] ;
 
@@ -22,7 +22,7 @@ execute STARTSOLVEINT {
 			dummy[ f ][ r ].UB = 0 ;
 		}	
 	
-		cplex.tilim = 12 * 3600  ; // limit 12 searching for integer solution 
+		cplex.tilim = 24 * 3600  ; // limit 2 days searching for integer solution 
 		cplex.epgap = 0.01 ;	// stop with small gap
 
 		
@@ -121,7 +121,7 @@ execute InRelaxProcess {
 		}
 	
 
-		enter_point[ 0 ] = (( n_basic / poolset.size ) <= basic_rate_threshold )  && ( max_reduced > 0.01 ) && (cplex.getObjValue() < preobj[0] ); 
+		enter_point[ 0 ] = (( n_basic / poolset.size ) <= basic_rate_threshold )  && ( max_reduced > 0.0001 ) && (cplex.getObjValue() < preobj[0] ); 
 
 		writeln("Master Objective : " , cplex.getObjValue() , " nconfig = ", poolset.size , " basic-rate = " , 	n_basic/ poolset.size,
 			" max-reduced = " , max_reduced  , " ncycle = " , poolcycle.size , " DUMMY SUM = " , dummy_sum );

@@ -96,7 +96,6 @@ function nextState( nextObj , curObj ) {
     cplex.epgap = 0.0001 ;      // 1 percent
 
 
-    cplex.workdir = "/lscratch";
     cplex.workmem = 1024 * 40  ;
     cplex.nodefileind = 3 ;
     cplex.trelim  = 1024 * 60 ; 
