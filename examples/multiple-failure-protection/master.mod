@@ -4,7 +4,7 @@ include "params.mod";
 
 float dummy_cost = 100000.0;
 
-float basic_rate_threshold = 0.3 ;
+float basic_rate_threshold = 0.5 ;
 
 dvar float+ dummy [1.. nfailure ][ requestset ] ;
 

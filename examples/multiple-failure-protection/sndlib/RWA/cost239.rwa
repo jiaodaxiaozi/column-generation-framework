@@ -1,0 +1,125 @@
+WAVELENGTH 32
+
+#NODE SECTION  ID  ( X Y )
+
+NODE Paris
+NODE Milan
+NODE Zurich
+NODE Prague
+NODE Vienna
+NODE Berlin
+NODE Amsterdam
+NODE Luxembourg
+NODE Brussels
+NODE London
+NODE Copenhagen
+
+
+#EDGE SECTION ID ( SOURCE TARGET ) ( SOURCE_PORT ) ( TARGET_PORT) DISTANCE 
+
+EDGE S1  ( London Copenhagen )
+EDGE S2  ( London Paris )
+EDGE S3  ( London Brussels )
+EDGE S4  ( Paris Brussels )
+EDGE S5  ( London Amsterdam )
+EDGE S6  ( Amsterdam Copenhagen )
+EDGE S7  ( Brussels Amsterdam )
+EDGE S8  ( Brussels Luxembourg )
+EDGE S9  ( Amsterdam Luxembourg )
+EDGE S10 ( Amsterdam Berlin )
+EDGE S11 ( Copenhagen Berlin )
+EDGE S12 ( Paris Berlin )
+EDGE S13 ( Copenhagen  Prague )
+EDGE S14 ( Luxembourg Prague )
+EDGE S15 ( Prague Berlin )
+EDGE S16 ( Berlin Vienna )
+EDGE S17 ( Prague Vienna )
+EDGE S18 ( Luxembourg  Zurich )
+EDGE S19 ( Zurich Prague ) 
+EDGE S20 ( Zurich Vienna )
+EDGE S21 ( Paris Zurich )
+EDGE S22 ( Brussels Milan )
+EDGE S23 ( Paris Milan )
+EDGE S24 ( Zurich Milan )
+EDGE S25 ( Milan Vienna )
+ 
+#REQUEST SECTION   SOURCE TARTGET CAPACITY
+
+REQUEST Paris Milan  12.5
+REQUEST Paris Zurich 15
+REQUEST Paris Prague 2.5
+REQUEST Paris Vienna 5
+REQUEST Paris Berlin 27.5
+REQUEST Paris Amsterdam 12.5
+REQUEST Paris Luxembourg 2.5
+REQUEST Paris Brussels 17.5
+REQUEST Paris London 25
+REQUEST Paris Copenhagen 2.5
+
+REQUEST Milan Zurich 15
+REQUEST Milan Prague 2.5
+REQUEST Milan Vienna 7.5
+REQUEST Milan Berlin 22.5
+REQUEST Milan Amsterdam 5
+REQUEST Milan Luxembourg 2.5
+REQUEST Milan Brussels 5
+REQUEST Milan London 7.5
+REQUEST Milan Copenhagen 2.5
+
+REQUEST Zurich Prague 2.5
+REQUEST Zurich Vienna 7.5
+REQUEST Zurich Berlin 27.5
+REQUEST Zurich Amsterdam 7.5
+REQUEST Zurich Luxembourg 2.5
+REQUEST Zurich Brussels 7.5
+REQUEST Zurich London 7.5
+REQUEST Zurich Copenhagen 2.5
+
+REQUEST Prague Vienna 2.5
+REQUEST Prague Berlin 5
+REQUEST Prague Amsterdam 2.5
+REQUEST Prague Luxembourg 2.5
+REQUEST Prague Brussels 2.5
+REQUEST Prague London 2.5
+REQUEST Prague Copenhagen 2.5
+
+
+REQUEST Vienna Berlin 22.5
+REQUEST Vienna Amsterdam 2.5
+REQUEST Vienna Luxembourg 2.5
+REQUEST Vienna Brussels 2.5
+REQUEST Vienna London 5
+REQUEST Vienna Copenhagen 2.5
+
+REQUEST Berlin Amsterdam 20
+REQUEST Berlin Luxembourg 5
+REQUEST Berlin Brussels 15
+REQUEST Berlin London 20
+REQUEST Berlin Copenhagen 7.5
+
+REQUEST Amsterdam Luxembourg 2.5
+REQUEST Amsterdam Brussels 10
+REQUEST Amsterdam London 12.5
+REQUEST Amsterdam Copenhagen 2.5
+
+
+REQUEST Luxembourg Brussels 2.5
+REQUEST Luxembourg London 2.5
+REQUEST Luxembourg Copenhagen 2.5
+
+REQUEST Brussels London 10
+REQUEST Brussels Copenhagen 2.5
+
+REQUEST London Copenhagen 2.5
+
+
+
+
+
+
+
+
+
+
+
+

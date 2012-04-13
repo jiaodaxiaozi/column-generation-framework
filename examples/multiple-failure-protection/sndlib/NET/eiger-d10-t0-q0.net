@@ -1,0 +1,263 @@
+// NODE : 30
+// EDGE : 40
+// REQUEST : 57
+// AVE CONNECT : 1.68421
+// AVE DEGREE : 2.66667
+// DUAL-FAILURE PERCENT = 10
+// NUM DUAL-FAILURE = 78
+// NUM TRIPLE-FAILURE = 0
+// NUM QUADRUPLE-FAILURE = 0
+nodeset = { 
+"N1",
+"N2",
+"N3",
+"N4",
+"N5",
+"N6",
+"N7",
+"N8",
+"N9",
+"N10",
+"N11",
+"N12",
+"N13",
+"N14",
+"N15",
+"N16",
+"N17",
+"N18",
+"N19",
+"N20",
+"N21",
+"N22",
+"N23",
+"N24",
+"N25",
+"N26",
+"N27",
+"N28",
+"N29",
+"N30"
+};
+edgeset = { 
+<"LINK1","N1","N2",1>,
+<"LINK2","N2","N3",1>,
+<"LINK3","N3","N5",1>,
+<"LINK4","N5","N6",1>,
+<"LINK5","N1","N4",1>,
+<"LINK6","N3","N8",1>,
+<"LINK7","N4","N7",1>,
+<"LINK8","N7","N8",1>,
+<"LINK9","N8","N9",1>,
+<"LINK10","N9","N6",1>,
+<"LINK11","N4","N10",1>,
+<"LINK12","N10","N12",1>,
+<"LINK13","N12","N7",1>,
+<"LINK14","N7","N14",1>,
+<"LINK15","N14","N21",1>,
+<"LINK16","N21","N8",1>,
+<"LINK17","N9","N23",1>,
+<"LINK18","N23","N24",1>,
+<"LINK19","N24","N25",1>,
+<"LINK20","N25","N26",1>,
+<"LINK21","N26","N21",1>,
+<"LINK22","N11","N13",1>,
+<"LINK23","N13","N16",1>,
+<"LINK24","N12","N15",1>,
+<"LINK25","N11","N12",1>,
+<"LINK26","N15","N14",1>,
+<"LINK27","N16","N17",1>,
+<"LINK28","N17","N15",1>,
+<"LINK29","N17","N18",1>,
+<"LINK30","N18","N19",1>,
+<"LINK31","N14","N19",1>,
+<"LINK32","N19","N20",1>,
+<"LINK33","N20","N22",1>,
+<"LINK34","N22","N21",1>,
+<"LINK35","N22","N27",1>,
+<"LINK36","N27","N26",1>,
+<"LINK37","N22","N30",1>,
+<"LINK38","N30","N29",1>,
+<"LINK39","N29","N28",1>,
+<"LINK40","N28","N26",1>
+ }; 
+requestset={
+< "N12" , "N23" , 1 >,
+< "N9" , "N12" , 1 >,
+< "N10" , "N15" , 1 >,
+< "N22" , "N26" , 1 >,
+< "N24" , "N30" , 1 >,
+< "N6" , "N11" , 1 >,
+< "N7" , "N19" , 1 >,
+< "N7" , "N16" , 1 >,
+< "N1" , "N29" , 1 >,
+< "N18" , "N22" , 1 >,
+< "N5" , "N30" , 1 >,
+< "N9" , "N20" , 1 >,
+< "N17" , "N22" , 1 >,
+< "N3" , "N6" , 1 >,
+< "N7" , "N15" , 1 >,
+< "N8" , "N30" , 1 >,
+< "N15" , "N20" , 1 >,
+< "N1" , "N13" , 1 >,
+< "N4" , "N7" , 1 >,
+< "N6" , "N9" , 1 >,
+< "N3" , "N14" , 1 >,
+< "N24" , "N25" , 1 >,
+< "N14" , "N18" , 1 >,
+< "N8" , "N12" , 1 >,
+< "N9" , "N27" , 1 >,
+< "N24" , "N29" , 1 >,
+< "N13" , "N25" , 1 >,
+< "N14" , "N26" , 1 >,
+< "N17" , "N23" , 1 >,
+< "N22" , "N24" , 1 >,
+< "N8" , "N18" , 1 >,
+< "N13" , "N22" , 1 >,
+< "N17" , "N21" , 1 >,
+< "N5" , "N17" , 1 >,
+< "N4" , "N14" , 1 >,
+< "N12" , "N29" , 1 >,
+< "N7" , "N9" , 1 >,
+< "N17" , "N18" , 1 >,
+< "N3" , "N27" , 1 >,
+< "N14" , "N16" , 1 >,
+< "N9" , "N26" , 2 >,
+< "N3" , "N28" , 2 >,
+< "N14" , "N15" , 2 >,
+< "N13" , "N18" , 2 >,
+< "N5" , "N21" , 2 >,
+< "N8" , "N26" , 2 >,
+< "N5" , "N9" , 2 >,
+< "N10" , "N30" , 2 >,
+< "N1" , "N18" , 2 >,
+< "N15" , "N17" , 2 >,
+< "N12" , "N20" , 4 >,
+< "N1" , "N8" , 4 >,
+< "N1" , "N11" , 4 >,
+< "N7" , "N26" , 4 >,
+< "N4" , "N19" , 4 >,
+< "N11" , "N26" , 8 >,
+< "N11" , "N28" , 8 >,
+};
+nfailure = 118 ;
+failureset = [ 
+{ "LINK1" }
+{ "LINK2" }
+{ "LINK3" }
+{ "LINK4" }
+{ "LINK5" }
+{ "LINK6" }
+{ "LINK7" }
+{ "LINK8" }
+{ "LINK9" }
+{ "LINK10" }
+{ "LINK11" }
+{ "LINK12" }
+{ "LINK13" }
+{ "LINK14" }
+{ "LINK15" }
+{ "LINK16" }
+{ "LINK17" }
+{ "LINK18" }
+{ "LINK19" }
+{ "LINK20" }
+{ "LINK21" }
+{ "LINK22" }
+{ "LINK23" }
+{ "LINK24" }
+{ "LINK25" }
+{ "LINK26" }
+{ "LINK27" }
+{ "LINK28" }
+{ "LINK29" }
+{ "LINK30" }
+{ "LINK31" }
+{ "LINK32" }
+{ "LINK33" }
+{ "LINK34" }
+{ "LINK35" }
+{ "LINK36" }
+{ "LINK37" }
+{ "LINK38" }
+{ "LINK39" }
+{ "LINK40" }
+{ "LINK21","LINK40" }
+{ "LINK24","LINK39" }
+{ "LINK6","LINK18" }
+{ "LINK37","LINK38" }
+{ "LINK5","LINK16" }
+{ "LINK6","LINK10" }
+{ "LINK1","LINK38" }
+{ "LINK6","LINK26" }
+{ "LINK8","LINK21" }
+{ "LINK17","LINK27" }
+{ "LINK24","LINK37" }
+{ "LINK20","LINK35" }
+{ "LINK2","LINK32" }
+{ "LINK18","LINK28" }
+{ "LINK3","LINK7" }
+{ "LINK2","LINK34" }
+{ "LINK4","LINK12" }
+{ "LINK6","LINK32" }
+{ "LINK3","LINK26" }
+{ "LINK8","LINK25" }
+{ "LINK1","LINK22" }
+{ "LINK4","LINK11" }
+{ "LINK2","LINK21" }
+{ "LINK21","LINK38" }
+{ "LINK16","LINK25" }
+{ "LINK9","LINK40" }
+{ "LINK14","LINK35" }
+{ "LINK20","LINK23" }
+{ "LINK27","LINK38" }
+{ "LINK35","LINK36" }
+{ "LINK4","LINK13" }
+{ "LINK4","LINK25" }
+{ "LINK24","LINK26" }
+{ "LINK10","LINK20" }
+{ "LINK12","LINK34" }
+{ "LINK10","LINK39" }
+{ "LINK7","LINK29" }
+{ "LINK16","LINK40" }
+{ "LINK3","LINK22" }
+{ "LINK20","LINK27" }
+{ "LINK7","LINK15" }
+{ "LINK33","LINK34" }
+{ "LINK26","LINK36" }
+{ "LINK7","LINK24" }
+{ "LINK11","LINK17" }
+{ "LINK21","LINK35" }
+{ "LINK1","LINK28" }
+{ "LINK2","LINK22" }
+{ "LINK8","LINK36" }
+{ "LINK14","LINK34" }
+{ "LINK4","LINK15" }
+{ "LINK20","LINK31" }
+{ "LINK10","LINK38" }
+{ "LINK4","LINK21" }
+{ "LINK4","LINK30" }
+{ "LINK7","LINK37" }
+{ "LINK35","LINK38" }
+{ "LINK3","LINK23" }
+{ "LINK22","LINK39" }
+{ "LINK12","LINK15" }
+{ "LINK4","LINK40" }
+{ "LINK7","LINK23" }
+{ "LINK5","LINK35" }
+{ "LINK29","LINK33" }
+{ "LINK5","LINK20" }
+{ "LINK5","LINK18" }
+{ "LINK4","LINK6" }
+{ "LINK20","LINK28" }
+{ "LINK25","LINK38" }
+{ "LINK20","LINK36" }
+{ "LINK6","LINK28" }
+{ "LINK24","LINK30" }
+{ "LINK14","LINK40" }
+{ "LINK11","LINK31" }
+{ "LINK30","LINK38" }
+{ "LINK27","LINK40" }
+{ "LINK15","LINK19" }
+{ "LINK17","LINK40" }
+ ]; 

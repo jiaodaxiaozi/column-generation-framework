@@ -9,5 +9,5 @@
 #PBS -e server-run.err
 
 
-cd /RQusagers/hoangha1/framework/examples/multiple-failure-protection/sndlib/NET
+cd /RQexec/hoangha1/framework/examples/multiple-failure-protection/sndlib/NET
 ./create_net.sh
