@@ -131,13 +131,13 @@ logicset = {
 < 40 , "4" , "12" , 1 >
 < 41 , "12" , "4" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

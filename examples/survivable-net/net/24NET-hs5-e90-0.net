@@ -364,13 +364,13 @@ logicset = {
 < 178 , "19" , "4" , 1 >
 < 179 , "4" , "19" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

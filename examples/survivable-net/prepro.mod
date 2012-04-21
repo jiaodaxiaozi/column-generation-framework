@@ -7,16 +7,20 @@ dvar int  flow[ logicset ][ edgeset ] in 0..1 ;
 
 execute {
 
-    writeln("Preprocessing ...") ;
-        
+        writeln("Preprocessing ...") ;
 
-         writeln("STARTCAP = " , startcap );
+        output_section("INPUT");
+        output_value("STARTCAP" , startcap );        
+        output_value("ELINK" , edgeset.size );
+        output_value("LLINK" , logicset.size );
+        output_value("NFAILURE" , nfailure );
+
         writeln("E-LINK   = " , edgeset.size );
         writeln("L-LINK   = " , logicset.size );
         writeln("NFAILURE = " , nfailure );
         
-    for ( var e in edgeset )
-        writeln("capacity of " , e , " = " , e.cap );
+        for ( var e in edgeset )
+             writeln("capacity of " , e , " = " , e.cap );
 }
 
 minimize sum( l in logicset , e in edgeset ) flow[ l ][ e ] ;
@@ -76,7 +80,6 @@ execute {
  
 writeln("NUMBER CONFIGSETS : " , configset.size );
 
-setNextModel("RELAX-ROUTE");
-
+setNextModel("RELAX-ADD-ROUTE");
 
 } 

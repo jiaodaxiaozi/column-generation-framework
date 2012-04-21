@@ -155,13 +155,13 @@ logicset = {
 < 78 , "3" , "2" , 1 >
 < 79 , "2" , "3" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

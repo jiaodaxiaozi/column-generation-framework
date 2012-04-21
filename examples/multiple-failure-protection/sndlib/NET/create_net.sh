@@ -34,6 +34,8 @@ for item in $( ls ../$PATHSRC/*.rwa ) ; do
 	echo "converting $DST  --> $filename-d50-t20-q10.net"
     awk -v dpercent=50 -v take3=20  -v take4=10  -f ran2net.awk $DST   > $filename-d50-t20-q10.net
 
+    echo "converting $DST --> $filename-node.net"
+    awk -v pnode=1 -f ran2net.awk $DST > $filename-node.net
 done
 
 rm -f *.ran

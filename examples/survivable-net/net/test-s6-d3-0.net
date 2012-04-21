@@ -61,13 +61,13 @@ logicset = {
 < 20 , "v7" , "v6" , 1 >
 < 21 , "v6" , "v7" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

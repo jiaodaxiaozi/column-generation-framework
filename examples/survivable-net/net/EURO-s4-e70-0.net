@@ -307,13 +307,13 @@ logicset = {
 < 138 , "N7" , "N6" , 1 >
 < 139 , "N6" , "N7" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

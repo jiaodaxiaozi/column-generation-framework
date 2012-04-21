@@ -71,6 +71,7 @@ execute STARTSOLVEINT {
 		std = Opl.sqrt(  std / edgeset.size ) ;
 		writeln("STD WAVE = " , std ) ;
 
+        output_section( "WAVE" );
 		output_value( "NWAVE" , nwave );
 		output_value( "AVE-WAVE" , ave );
 		output_value( "STD-WAVE" , std );

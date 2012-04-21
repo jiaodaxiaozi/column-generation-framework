@@ -179,13 +179,13 @@ logicset = {
 < 58 , "N9" , "N18" , 1 >
 < 59 , "N18" , "N9" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

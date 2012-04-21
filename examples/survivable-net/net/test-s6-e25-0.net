@@ -89,13 +89,13 @@ logicset = {
 < 48 , "v7" , "v4" , 1 >
 < 49 , "v4" , "v7" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

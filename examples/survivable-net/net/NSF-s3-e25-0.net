@@ -139,13 +139,13 @@ logicset = {
 < 48 , "10" , "9" , 1 >
 < 49 , "9" , "10" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

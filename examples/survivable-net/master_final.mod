@@ -2,10 +2,8 @@
 include "params.mod";
 
 
-dvar int+      route[ logicset ] in 0..1; // can route
 dvar int+      z[  configset ] in 0..1; // number of copy of configurations
 dvar int+      reserve[ edgeset ][ logicset ]  in 0..1 ;
-dvar int+      f_route [ edgeset ][ logicset ] in 0..1 ;
 
 // flow desc :      failure         l1          l2           : l2 is routed on l1
 dvar int+ flow[ 1..nfailure ][ logicset ][ logicset ] in 0..1 ;
@@ -20,7 +18,7 @@ execute STARTSOLVEINT {
 
     if ( isModel("FINAL") ) {
 
-        cplex.epgap = 0.03 ;    // stop with small gap
+        cplex.epgap = 0.01 ;    // stop with small gap
 
     }
 
@@ -44,25 +42,10 @@ subject to {
     ctReserve :
         reserve[e][l] == sum ( c in configset , r in routeset : c.logic_id == l.id && r.config_id == c.id && r.edge_id == e.id ) z[c]  ;
 
-    sum ( l in logicset ) route[ l ] == NROUTE[0];
-
     sum( l in logicset , f in 1..nfailure ) protect[ f ][ l ] == NPROTECT[0] ;
-
-    // decompose route vs no route
-    forall ( l in logicset , e in edgeset ){
-
-        f_route[ e ][ l ] <= reserve[e][l];
-	    f_route[ e ][ l ] <= route[ l ] ;
-	    f_route[ e ][ l ] >= route[ l ] + reserve[e][l] - 1 ;
-
-
-    }
-
-
 
     // routing constraint
     forall( e in edgeset ){
-        sum( l in logicset ) f_route[ e ][ l ] <= e.cap ; 
         sum( l in logicset ) reserve[ e ][ l ] <=  ( e.cap + addrouting[ e ]) ; 
     }
 
@@ -149,7 +132,7 @@ execute CollectDualValues {
 execute InRelaxProcess {
 
         
-        writeln("Master Objective : " , cplex.getObjValue() , " nconfig : " , configset.size  , " routeset : " , routeset.size);
+    writeln("Master Objective : " , cplex.getObjValue() , " nconfig : " , configset.size  , " routeset : " , routeset.size);
 
 
     if ( isModel("FINAL") ) {

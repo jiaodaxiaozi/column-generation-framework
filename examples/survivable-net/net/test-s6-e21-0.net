@@ -81,13 +81,13 @@ logicset = {
 < 40 , "v1" , "v5" , 1 >
 < 41 , "v5" , "v1" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

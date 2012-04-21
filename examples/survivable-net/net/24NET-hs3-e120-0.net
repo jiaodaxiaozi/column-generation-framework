@@ -415,13 +415,13 @@ logicset = {
 < 238 , "22" , "15" , 1 >
 < 239 , "15" , "22" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

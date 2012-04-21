@@ -92,9 +92,6 @@ BEGIN {
 }
 
 
-
-
-
 END {
 
 
@@ -108,11 +105,22 @@ END {
 	print "// AVE CONNECT : " ( rsum / nreq ) ;
 	print "// AVE DEGREE : "  ( 2 * nedge ) / nnode ;
 
-	print "// DUAL-FAILURE PERCENT = " dpercent ;
-	print "// NUM DUAL-FAILURE = " take2 ;
+    if ( pnode > 0 ) {
+    
+        print "// NODE PROTECTION "
+    }
+    
+    else
+    {
 
-    print "// NUM TRIPLE-FAILURE = " take3;
-    print "// NUM QUADRUPLE-FAILURE = " take4 ;
+    	print "// DUAL-FAILURE PERCENT = " dpercent ;
+    	print "// NUM DUAL-FAILURE = " take2 ;
+
+        print "// NUM TRIPLE-FAILURE = " take3;
+        print "// NUM QUADRUPLE-FAILURE = " take4 ;
+
+    }
+
 
 	PRIME = "\""
 
@@ -146,45 +154,76 @@ END {
 
 	print "};"
 
+    if ( pnode > 0 ){
 
-	nfailure = take1 + take2 + take3 + take4 ;
+        # single node protection
+        nfailure = nnode 
+        print "nfailure = " nfailure " ;" ;
+        print "failureset = [ "
 
-	print "nfailure = " nfailure " ;" ;
+        # protect each node
+        for ( i = 0 ; i < nnode ; i ++ ) {
 
-	print "failureset = [ "
+            tline = "{"
+            for ( e = 0 ; e  < nedge ; e ++ )
+                if ( edgesrc[e]==nodeset[i] || edgedst[e]==nodeset[i] ){
+           
+                   tline = tline  PRIME "LINK" ( e + 1 ) PRIME ","
+                     
+                }
 
-	for ( i = 0 ; i < nfail ; i ++ ) {
-
-		if ( ftype[ i ] == 4 && take4 ){
-
-			print "{ " PRIME f_a[ i ] PRIME "," PRIME f_b[ i ] PRIME "," PRIME f_c[i] PRIME "," PRIME f_d[i] PRIME  " }"
-            take4 -- ;
-		}
-
-
-		if ( ftype[ i ] == 3 && take3 ){
-
-			print "{ " PRIME f_a[ i ] PRIME "," PRIME f_b[ i ] PRIME "," PRIME f_c[i] PRIME  " }"
-            take3 -- ;
-		}
-
-
-		if ( ftype[ i ] == 2 && take2 ){
-
-			print "{ " PRIME f_a[ i ] PRIME "," PRIME f_b[ i ] PRIME " }"
-            take2 -- ;
-		}
-
-		if ( ftype[ i ] == 1 && take1 ){
-		
-        	print "{ " PRIME f_a[ i ] PRIME " }"
-            take1 --;            
-
+            tline = substr( tline , 0 , length( tline ) - 1 )
+            tline = tline  " }"
+            print tline 
+            
         }
-	}	
-	
-	print " ]; "
+
+        
+        print " ]; "
+    
+        exit 0
+    } 
+    else
+    {
+        # generate failure due to several scenario
+        nfailure = take1 + take2 + take3 + take4 ;
+
+        print "nfailure = " nfailure " ;" ;
+
+        print "failureset = [ "
+
+        for ( i = 0 ; i < nfail ; i ++ ) {
+
+            if ( ftype[ i ] == 4 && take4 ){
+
+                print "{ " PRIME f_a[ i ] PRIME "," PRIME f_b[ i ] PRIME "," PRIME f_c[i] PRIME "," PRIME f_d[i] PRIME  " }"
+                take4 -- ;
+            }
 
 
+            if ( ftype[ i ] == 3 && take3 ){
+
+                print "{ " PRIME f_a[ i ] PRIME "," PRIME f_b[ i ] PRIME "," PRIME f_c[i] PRIME  " }"
+                take3 -- ;
+            }
+
+
+            if ( ftype[ i ] == 2 && take2 ){
+
+                print "{ " PRIME f_a[ i ] PRIME "," PRIME f_b[ i ] PRIME " }"
+                take2 -- ;
+            }
+
+            if ( ftype[ i ] == 1 && take1 ){
+            
+                print "{ " PRIME f_a[ i ] PRIME " }"
+                take1 --;            
+
+            }
+        }	
+        
+        print " ]; "
+
+    }
 }
 

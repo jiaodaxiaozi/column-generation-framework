@@ -227,13 +227,13 @@ logicset = {
 < 138 , "6" , "9" , 1 >
 < 139 , "9" , "6" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

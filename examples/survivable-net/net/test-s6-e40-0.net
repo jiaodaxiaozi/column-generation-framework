@@ -119,13 +119,13 @@ logicset = {
 < 78 , "v4" , "v6" , 1 >
 < 79 , "v6" , "v4" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

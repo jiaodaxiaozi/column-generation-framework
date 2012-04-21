@@ -1,0 +1,13 @@
+configsol = {};
+dual_reserve = [];
+dual_support = [];
+routeset = {};
+configset = {};
+thepath = [];
+RELAX=[];
+spare = [];
+insurance = [];
+fixroute = [] ;
+
+ADD_ROUTE = [] ;
+MAX_FL = [] ;

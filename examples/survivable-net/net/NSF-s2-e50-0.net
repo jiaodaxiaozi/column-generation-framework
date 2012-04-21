@@ -188,13 +188,13 @@ logicset = {
 < 98 , "4" , "9" , 1 >
 < 99 , "9" , "4" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

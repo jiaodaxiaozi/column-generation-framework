@@ -237,13 +237,13 @@ logicset = {
 < 68 , "N8" , "N7" , 1 >
 < 69 , "N7" , "N8" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

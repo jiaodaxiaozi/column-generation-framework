@@ -1,7 +1,9 @@
 include "../../sysmsg.mod" ; // include this line in every global configuration file
 
-float   NPROTECT[ 0..20 ] = ... ;
-float   NROUTE[0..20] = ... ;
+int   RELAX_ADD_ROUTE = 20 ;
+int   RELAX_PROTECT   = 19 ;
+int   RELAX_RESTORE   = 18 ;
+
 float   RELAX[ 0..20] = ... ;
 
 { string } nodeset = ... ; 
@@ -56,9 +58,14 @@ tuple route_record {
 float dual_support[ logicset ] = ... ;
 float dual_reserve[ logicset ][ edgeset ] = ... ;
 int thepath[ edgeset ] = ... ;
-int addrouting[ edgeset ] = ... ;
 
+int ADD_ROUTE[ 0..0 ] = ... ;
+int MAX_FL [ 0..0 ] = ... ;
+
+int spare[ edgeset ] = ... ; 
+int insurance[ 1..nfailure ][ logicset ] = ... ; 
 float startcap    = sum( e in edgeset ) e.cap;
+int fixroute[ edgeset ][ logicset ] = ... ; 
 
 { config_record } configsol = ... ;
 /*---------------------------------------------------------------------------------------------------------------------------
@@ -194,7 +201,7 @@ function DIJKSTRA( request , disp , takeroutecost )
         
     }
 
-    var dualcost  = edis[ request.dst ] + dual_support[ request ];
+    var dualcost  = edis[ request.dst ] - dual_support[ request ];
 
 
     if ( takeroutecost ) {
@@ -204,7 +211,7 @@ function DIJKSTRA( request , disp , takeroutecost )
 
     if ( disp ) writeln( "route cost : " , routecost , " price cost : " , dualcost );
 
-    if ( dualcost > -0.0001 ) return false ;
+    if ( dualcost > -0.01 ) return false ;
  
     var cid = 0 ;
 

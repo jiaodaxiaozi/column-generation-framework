@@ -347,13 +347,13 @@ logicset = {
 < 178 , "N15" , "N9" , 1 >
 < 179 , "N9" , "N15" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

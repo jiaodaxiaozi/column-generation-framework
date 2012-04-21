@@ -216,13 +216,13 @@ logicset = {
 < 56 , "N5" , "N13" , 1 >
 < 57 , "N13" , "N5" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

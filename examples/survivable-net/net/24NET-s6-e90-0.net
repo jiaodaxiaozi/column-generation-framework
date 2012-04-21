@@ -321,13 +321,13 @@ logicset = {
 < 178 , "15" , "22" , 1 >
 < 179 , "22" , "15" , 1 >
 };
-dual_support=[];
-dual_reserve=[];
-configset = {};
-routeset = {} ;
-thepath=[];
-NROUTE =[];
-addrouting = [] ;
-RELAX = [] ;
-NPROTECT=[];
-configsol = {};
+
+
+
+
+
+
+
+
+
+

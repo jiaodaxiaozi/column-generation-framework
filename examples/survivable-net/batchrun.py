@@ -5,21 +5,21 @@ import commands
 import sys
 
 #inputdir = "net/NJ*s1*e40-0.net"
-homedir   = "/RQusagers/hoangha1/framework/examples/survivable-net/"
-inputdir  = "net/24NET-hs[2,3,4,5,6]*e120*.net"
+homedir   = "/RQexec/hoangha1/framework/examples/survivable-net/"
+inputdir  = "net/24NET-s[2,3,4,5]*e90*.net"
 #inputdir  = "net/E*s[2,3,4,5]*e90*.net"
-#inputdir  = "net/NJ*s[2,3,4,5,6]*e[7]0*.net"
-inputdir  = "net/E*s1*.net"
+#inputdir  = "net/NJ*s[2,3,4,5]*e[2,7]0*.net"
+#inputdir  = "net/E*s1*.net"
 
 #inputdir  = "net/2*s5*e100*.net"
 #inputdir  = "net/2*s1*.net"
 
-#inputdir  = "net/E*s1*.net"
+#inputdir  = "net/*s1*.net"
 #inputdir  = "net/E*s1*e90*.net"
-#inputdir  = "net/24NET-s3*e90*.net"
+#inputdir  = "net/24NET-hs1*e120*.net"
 
 
-rundir    = "/RQusagers/hoangha1/framework/"
+rundir    = "/RQexec/hoangha1/framework/"
 outputdir =  "out/"
 inidir    =  "ini/"
 scriptdir = homedir + "script/"
@@ -49,7 +49,7 @@ if __name__ == "__main__" :
 		print "output   : " , outname
 		print "error    : " , errname
 		print "ini      : " , ininame
-                print "script   : " , scrname
+		print "script   : " , scrname
 
 		exe = cmd % ( ins , ininame )
   
@@ -62,7 +62,7 @@ if __name__ == "__main__" :
 		
 		sf.write("#\n")
 		sf.write("#PBS -l walltime=120:00:00\n") 
-		sf.write("#PBS -l nodes=1:m48G:ppn=12\n")
+		sf.write("#PBS -l nodes=1:m48G:ppn=4\n")
 		sf.write("#PBS -W umask=022\n")
 		sf.write("#PBS -r n\n")
 		sf.write("\n")

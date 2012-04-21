@@ -55,7 +55,7 @@ if __name__ == "__main__" :
         
         sf.write("#\n")
         sf.write("#PBS -l walltime=120:00:00\n") 
-        sf.write("#PBS -l nodes=1:m48G:ppn=12\n")
+        sf.write("#PBS -l nodes=1:m48G:ppn=4\n")
         sf.write("#PBS -W umask=022\n")
         sf.write("#PBS -r n\n")
         sf.write("\n")
