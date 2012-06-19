@@ -6,11 +6,11 @@ import sys
 
 homedir   = "/RQexec/hoangha1/framework/examples/multiple-failure-protection/"
 datadir   = "sndlib/"
-inputdir  = datadir + "NET/polska*.net"
-inputdir  = datadir + "NET/atlanta-*.net"
-inputdir  = datadir + "NET/nobel-us-*.net"
-inputdir  = datadir + "NET/us14n21s*.net"
-inputdir  = datadir + "NET/geant*.net"
+#inputdir  = datadir + "NET/polska*.net"
+#inputdir  = datadir + "NET/atlanta-*.net"
+inputdir  = datadir + "NET/nobel-us-d100*.net"
+#inputdir  = datadir + "NET/us14n21s*.net"
+#inputdir  = datadir + "NET/geant*.net"
 outputdir = datadir + "OUT/"
 inidir    = datadir + "INI/"
 

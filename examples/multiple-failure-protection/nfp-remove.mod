@@ -16,9 +16,6 @@ execute {
 	
   } else setNextModel("WORKING");
   
-  
-  
-
 }
 
 maximize is_ok ;
@@ -61,9 +58,6 @@ execute {
 		else
 			acceptfailureset[ TEMPVAR[0] ] = 0;
 	
-		
-
-
 
 		// finish !
 		if ( TEMPVAR[0] == nfailure ) {
@@ -72,7 +66,6 @@ execute {
 				if ( i != j && failureset_inside[ i ][ j ] == 1 && acceptfailureset[ j ] > 0 )
 					acceptfailureset[ i ] = 0 ;
 					
-				
 
 			var naccept = 0 ;
 

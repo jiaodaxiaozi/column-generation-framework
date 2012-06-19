@@ -6,7 +6,7 @@ import re
 
 
 inputdir  = "ini/N*s[2,3,4,5]*.ini"
-inputdir  = "ini/NJ*s1*.ini"
+inputdir  = "ini/NSF*s1*.ini"
 
 #inputdir  = "ini/24NET-s1*.ini"
 
