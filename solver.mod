@@ -93,7 +93,7 @@ function nextState( nextObj , curObj ) {
     }
 
     cplex.tilim = 3600 * 48;  // 2 days solving 
-    cplex.epgap = 0.0001 ;      // 1 percent
+    cplex.epgap = 0.01 ;      // 1 percent
 
 
     cplex.workmem = 1024 * 20  ;
