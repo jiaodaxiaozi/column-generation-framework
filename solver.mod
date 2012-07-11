@@ -11,6 +11,16 @@ include "plugins.mod" ;
 string input = "" ;
 string output= "" ;
 
+tuple _MODEL_RECORD_ {
+
+    string  id ;
+    string  fname ;
+    int     relax ; 
+    
+};
+
+{ _MODEL_RECORD_ } MODELSET = ... ;
+
  
 main {
 
@@ -26,7 +36,6 @@ main {
 
 var parameter_file    = "params.mod"  ;
 var parameter_data    = "params.dat"  ;
-var model_define_file = "model.ini"   ;    
 var __ROOT__          = "ROOT"        ;
 
 var runCplex          = new IloCplex(); // for saving default parameters
@@ -38,12 +47,12 @@ function nextState( nextObj , curObj ) {
     if ( curObj == null ) {
     
         nextObj._NEXT_MODEL_  = "" ;    
-        nextObj._MODEL_STATUS_= 0  ;    
+        nextObj._MODEL_DISPLAY_STATUS_= 0  ;    
 	
     } else {
    
         nextObj._MODEL_       = curObj._NEXT_MODEL_ ;    
-        nextObj._MODEL_STATUS_= curObj._MODEL_STATUS_  ;
+        nextObj._MODEL_DISPLAY_STATUS_= curObj._MODEL_DISPLAY_STATUS_  ;
     }
 
      nextObj._OUTFILE_ = thisOplModel.output ; 
@@ -72,21 +81,19 @@ function nextState( nextObj , curObj ) {
     this.acctime        = 0    ; // accumulated running time in seconds
     this.solvetime      = 0    ; // solving time 
     this.relax          = relax; // relax this model or not
-            
-    // methods
-    this.mipsolve         = mipsolve    ;
+
 
             
  }
 
 
  //// SOLVING MODEL ////
- function mipsolve(  ) {
+function mipsolve ( THEMODEL ) {
  
     var timeMark = timeMarker(); // mark time moment
-    this.ncall ++ ; // update number of calling 
+    THEMODEL.ncall ++ ; // update number of calling 
 
-    // first model's parameters to default
+    // set model's parameters to default
     cplex.clearModel();
     for ( var p in cplex ){
       cplex[ p ] = runCplex[ p ]	
@@ -96,15 +103,15 @@ function nextState( nextObj , curObj ) {
     cplex.epgap = 0.01 ;      // 1 percent
 
 
+    /*
     cplex.workmem = 1024 * 20  ;
     cplex.nodefileind = 3 ;
-    cplex.trelim  = 1024 * 40 ; 
+    cplex.trelim  = 1024 * 40 ;*/ 
 
     cplex.parallelmode = -1 ; // opportunistic mode
     cplex.threads = 0 ; // use maximum threads
 
-    var theopl         = new IloOplModel( this.mipdefinition , cplex ) ;  // create execution object    
-
+    var theopl         = new IloOplModel( THEMODEL.mipdefinition , cplex ) ;  // create execution object    
 
     theopl.settings.mainEndEnabled = true ;
  
@@ -114,8 +121,7 @@ function nextState( nextObj , curObj ) {
     theopl.addDataSource( globalData ) ;    // add data source 
     theopl.generate() ; // generate execution object
     
- 
-    if ( this.relax )    theopl.convertAllIntVars() ;    // relax model
+    if ( THEMODEL.relax )    theopl.convertAllIntVars() ;    // relax model
     
     if ( cplex.solve() )      
         theopl.postProcess() ;  // call post process    
@@ -124,14 +130,14 @@ function nextState( nextObj , curObj ) {
     nextState( globalData , theopl );
  
     // update information
-    this.solvetime = elapsedTime( timeMark ); // running time
-    this.acctime += this.solvetime ; // accumulated running time                
+    THEMODEL.solvetime = elapsedTime( timeMark ); // running time
+    THEMODEL.acctime += THEMODEL.solvetime ; // accumulated running time                
  
     
     // display result
-    if ( globalData._MODEL_STATUS_ > 0 ) {
-        write( AVATAR() , " solve " + this.mipid  + " (\"" + this.mipsource.name + "\"" + ( this.relax ? ",\"relax\"" : "" ) + ") => " );
-        writeln( " called: " , this.ncall , " runtime: ", this.solvetime , " acc. time: " , this.acctime  );    
+    if ( globalData._MODEL_DISPLAY_STATUS_ > 0 ) {
+        write( AVATAR() , " solve " + THEMODEL.mipid  + " (\"" + THEMODEL.mipsource.name + "\"" + ( THEMODEL.relax ? ",\"relax\"" : "" ) + ") => " );
+        writeln( " called: " , THEMODEL.ncall , " runtime: ", THEMODEL.solvetime , " acc. time: " , THEMODEL.acctime  );    
     }
    
  
@@ -178,53 +184,14 @@ function assertModel( m ) {
 
 //// READ MODEL DEFINITION FILE ////
 function readModelDefinition() {
-
-    var  TERM_MODEL = "MODEL" ;
-    var  TERM_RELAX = "RELAX" ;
-    
-    var f = new IloOplInputFile( );
-    f.open(model_define_file );
-    
-    writeln();
-    lineSep(" MODEL DEFINTION ",".");
-    writeln();
-    
-    while (!f.eof) {
       
-      var line  = f.readline();      // one line 
-      var pieces = line.split(" "); // split into term
-      
-      var terms = new Array();
+    // load model definition
+    for ( var md in thisOplModel.MODELSET )
+    {
+        writeln( "[MODEL]" , " >>> " , md.id  , " >>> " , md.fname , " " , md.relax > 0 ? "(relax)" : ""  );        
+        lstModel[ lstModel.length ] = new MIPMODEL( md.id , md.fname , md.relax > 0 ); // create model
+    }
 
-      for ( var i = 0 ; i < pieces.length ; i ++ ){
-      
-        // split again by tab
-
-        var tabs = pieces[ i ].split("\t");
-
-        for ( var j = 0 ; j < tabs.length ; j ++ )
- 
-            // not empty term
-            if ( tabs[ j ].length ) terms[ terms.length ] = tabs[ j ] ;
-
-      }
-      
-      // [MODEL] //
-      if ( terms[0] == TERM_MODEL ) {
-       
-        var isrelax = ( terms[3] == null ) ? false : terms[3].toUpperCase() == TERM_RELAX;
-        
-        
-        writeln( "[" + terms[0] + "]" , " >>> " , terms[1]  , " >>> " , terms[2] , " " , isrelax ? "(relax)" : ""  );        
-        lstModel[ lstModel.length ] = new MIPMODEL( terms[1] , terms[2] , isrelax ); // create model
-        
-      }
-
-    } // end while
-
-    f.close();    
-    
-    
 }
     
 /*---------------------------------------------------------------------------------------------------------------------------
@@ -250,14 +217,12 @@ function readModelDefinition() {
    
         
 
-    assertExisted(  model_define_file );
     assertExisted(  parameter_file );
 	assertExisted(  parameter_data );
     assertExisted(  thisOplModel.input );    
 
     writeln( AVATAR() , " PARAMETER DEFINITION   : " , parameter_file );
 	writeln( AVATAR() , " PARAMETER DATA         : " , parameter_data );
-    writeln( AVATAR() , " MODEL DEFINE           : " , model_define_file );
     
 
     
@@ -329,7 +294,7 @@ function readModelDefinition() {
     if ( callModel == null ) {
       writeln( AVATAR() , " no model with id: " , globalData._MODEL_ , " !" );
       stop();
-    } else callModel.mipsolve();
+    } else mipsolve( callModel );
       
 
     

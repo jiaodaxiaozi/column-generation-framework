@@ -1,6 +1,6 @@
 string _MODEL_          = ... ; // current solving model
 string _NEXT_MODEL_     = ... ; // next model to solve
-int    _MODEL_STATUS_   = ... ; // model show status
+int    _MODEL_DISPLAY_STATUS_   = ... ; // model show status
 
 string _OUTFILE_        = ... ; // output filename
 
@@ -23,9 +23,9 @@ execute {
 
     
     ///// MODEL STATUS //////
-    function setModelStatus( status ) {
+    function setModelDisplayStatus( status ) {
     
-        _MODEL_STATUS_ = status ;
+        _MODEL_DISPLAY_STATUS_ = status ;
     }
     
     //// NEXT MODEL TO SOLVE ////

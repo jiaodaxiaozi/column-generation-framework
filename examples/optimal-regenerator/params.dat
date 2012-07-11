@@ -1,0 +1,14 @@
+
+DIRECTED_EDGESET = {};
+DEMAND = {};
+REGENERATOR_COST = #[  
+
+    10: [2,2.5,3.12] ,
+    40: [6,7.5,9.36] ,
+   100: [10,12.5,15.6] ,
+
+  ]#;
+
+K_SDSET = {} ;
+SINGLEHOP_SET = {};
+SINGLEHOP_EDGESET = {} ;
