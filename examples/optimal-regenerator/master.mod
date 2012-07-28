@@ -7,52 +7,56 @@
 
 include "params.mod";
 
-float dummy_cost = 10000.0;
+float dummy_cost = 1000000.0;
 
-dvar float+ dummy [ 1..nitem ] ; // dummy variables for initial solution
-dvar int+   z[ patternset ] ; // number of copy of configurations
+dvar int+ dummy_var[ 1 .. PERIOD ][ BITRATE ][ NODESET ][ NODESET ]   ;
 
+// number of copies of singlehop configuration
+dvar int+ z[ SINGLEHOP_CONFIGINDEX ] ;
+// number of copies of multihop configuration
+dvar int+ y[ 1.. PERIOD][ MULTIHOP_CONFIGSET  ] ;
+// number of available singlehop links from VI to VJ 
+dvar int+ provide[ BITRATE ][ NODESET ][ NODESET ];
 
 
 execute{
 
-    setModelStatus( 1 );	
+    setModelDisplayStatus( 1 );	
 
-	if ( isModel( "FINAL" ) ) {
-		
-		// CPLEX setting parameters for solving MIP
-		
-		cplex.tilim = 3600  ; // limit 1h searching for integer solution 
-		cplex.epgap = 0.03 ;	// stop with small gap
-		cplex.parallelmode = -1 ; // opportunistic mode
-		cplex.threads = 0 ; // use maximum threads
+    writeln("MASTER SOLVING");	
 
-	}
-	
-	if ( isModel("ROOT" ) ) {
-	
-		setNextModel( "PRICE"  );
-	
-	}
-	
-	
+    writeln(SINGLEHOP_CONFIGINDEX);	
+    stop();
 }
 
 
-minimize sum( c in patternset ) z[c]  
-       + sum( i in 1..nitem ) dummy[ i ] * dummy_cost ;
+
+minimize  sum( c in SINGLEHOP_CONFIGINDEX ) c.cost * z[ c ] +  sum( p in 1..PERIOD , b in BITRATE , vs  in NODESET , vd  in NODESET ) dummy_var[ p ][ b ][ vs ][ vd ] ; 
+;
 
 
 subject to {
 
-	// provide all needed item
-	forall( i in 1..nitem )
-	ctDemand:
-			dummy[ i ] + sum( c in patternset ) z[c] * c.a[ i ]  >= item_demand[ i ];
+    
+
+    forall(  b in BITRATE , vi  in NODESET , vj  in NODESET ) {
+
+       provide[ b ][ vi ][ vj ] == sum( cindex in SINGLEHOP_CONFIGINDEX , c in SINGLEHOP_CONFIGSET , p in SINGLEHOP_SET 
+                                    : c.index == cindex.index & c.rate == b && c.indexPath == p.index && p.src == vi.id && p.dst == vj.id ) z[ cindex ] ;
+    }
+
+    forall( p in 1..PERIOD , b in BITRATE , vs  in NODESET , vd  in NODESET ) {
+
+    // satisfy request
+         sum( m in MULTIHOP_CONFIGSET : m.src == vs.id &&  m.dst == vd.id && m.bitrate == b ) y[ p ][ m ] + dummy_var[ p ][ b ][ vs ][ vd ]
+     >=  sum ( dem in DEMAND : dem.period == p  && dem.bitrate == b && dem.src == vs.id && dem.dst == vd.id ) dem.nrequest ;
+
+    } 
 	
 };
 
 
+float dummy_measure = sum( p in 1..PERIOD , b in BITRATE , vs  in NODESET , vd  in NODESET ) dummy_var[ p ][ b ][ vs ][ vd ] ;
 
 /********************************************** 
 
@@ -63,58 +67,14 @@ subject to {
 	
 execute CollectDualValues {
 
-	for ( var i = 1 ; i <= nitem ; i ++ )
-		dual_demand[ i ] = ctDemand[ i ].dual;
 	
 	
 }
 
-execute InRelaxProcess {
+execute {
 
-
-	if ( isModel( "ROOT" ) ){
-
-		writeln("Master Objective : " , relaxobj[0] , " number of patterns = ",  patternset.size );
-		relaxobj[ 0 ] = cplex.getObjValue();
-		
-		
-	}	
+    writeln( "Master Objective: " , cplex.getObjValue(), " Dummy Amount : " , dummy_measure );
 
 }
-
-execute DisplayResult {
-
-	if (isModel( "FINAL") ) {
-	
-		writeln();
-		lineSep( " FINAL SOLUTION "  , "-" );
-		writeln();
-
-		var nconfig = 0 ;
-		for (var c in patternset )
-		if ( z[c].solutionValue > 0 ){
-			nconfig = nconfig + 1 ;
-			writeln("PATTERN " , nconfig , " is repeated : " , z[c].solutionValue );
-			printPattern( c ) ;
-		}
-
-		writeln();
-	
-		output_section("RESULT");
-
-	        writeln("Relax = " , relaxobj[0] );
-        	writeln("Int   = " , cplex.getObjValue());
-	        writeln("GAP : " , GAP( relaxobj[0]  , cplex.getObjValue() ));
-
-		output_value( "RELAX" , relaxobj[0] );
-		output_value( "OBJ" , cplex.getObjValue());
-		output_value( "GAP" , GAP( relaxobj[0]  , cplex.getObjValue() ));
-
-	} // end display 
-
-
-}
-
-
 
 

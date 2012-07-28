@@ -94,8 +94,16 @@ execute {
 
     if ( K_SDSET.size == 0 ) {
         writeln("DISPLAY K-SHORTEST PATH RESULTS");
-        writeln("There is " , SINGLEHOP_SET.length , " lightpaths" );  
-        stop();
+        writeln("There is " , SINGLEHOP_SET.size , " lightpaths" );  
+        for  ( var i = 0 ; i < SINGLEHOP_SET.size ; i ++ ){
+
+            write("lightpath " , i , " : " );
+            for( var ed in SINGLEHOP_EDGESET )
+                if ( ed.indexPath == i )
+                    write( Opl.item( DIRECTED_EDGESET , ed.indexEdge ) ) ; writeln();     
+
+        }
+        setNextModel("RELAXMASTER");
     }
 }
 

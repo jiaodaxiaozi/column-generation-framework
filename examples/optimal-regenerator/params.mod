@@ -84,3 +84,30 @@ tuple path_edge_record {
 { path_record } SINGLEHOP_SET = ... ; 
 { path_edge_record } SINGLEHOP_EDGESET = ... ;
 
+tuple  wavelength_configuration_record {
+
+    int     index ;
+    int     indexPath ;
+    int     rate ;
+};
+
+{ wavelength_configuration_record } SINGLEHOP_CONFIGSET = ... ;
+
+tuple   singlehop_configindex_record {
+
+    int index ;
+    float cost;
+};
+
+{ singlehop_configindex_record } SINGLEHOP_CONFIGINDEX = ... ;
+
+tuple multihop_configuration_record {
+
+    int bitrate;
+    string src ;
+    string dst ;
+};
+
+{ multihop_configuration_record } MULTIHOP_CONFIGSET = ... ;
+
+
