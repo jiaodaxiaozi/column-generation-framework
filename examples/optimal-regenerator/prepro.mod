@@ -102,5 +102,8 @@ execute {
     writeln( REGENERATOR_COST[ 100 ][ 1500 ] );
     writeln( REGENERATOR_COST[ 100 ][ 3000 ] );
 
+    FINISH_RELAX_FLAG.add( 1 ); // add single flag
+    FINISH_RELAX_FLAG.add( 2 ); // add multi flag
+
     setNextModel("KPATH");
 }

@@ -4,6 +4,6 @@ MODELSET= {
 < "ROOT" , "prepro.mod" , 1 > 
 < "KPATH" , "kpath.mod" , 0 > 
 < "RELAXMASTER" , "master.mod" , 1 > 
-
-
+< "SINGLEPRICE" , "singleprice.mod" , 0 >
+< "MULTIPRICE" , "multiprice.mod" , 0 >
 };

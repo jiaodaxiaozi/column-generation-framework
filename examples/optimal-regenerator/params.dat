@@ -10,9 +10,18 @@ REGENERATOR_COST = #[
   ]#;
 
 K_SDSET = {} ;
+CAL_MULTISET = {};
+
+FINISH_RELAX_FLAG = {};
+
+
 SINGLEHOP_SET = {};
 SINGLEHOP_EDGESET = {} ;
 
-SINGLEHOP_CONFIGSET   = {} ;
-SINGLEHOP_CONFIGINDEX = {} ;
-MULTIHOP_CONFIGSET    = {} ;
+WAVELENGTH_CONFIGSET   = {};
+WAVELENGTH_CONFIGINDEX = {};
+MULTIHOP_CONFIGSET    = {};
+MULTIHOP_LINKSET = {};
+dual_provide = [];
+dual_request = [];
+dual_avail   = [];
