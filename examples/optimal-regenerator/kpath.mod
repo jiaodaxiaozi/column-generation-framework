@@ -84,8 +84,14 @@ execute {
         SINGLEHOP_SET.addOnly(  startIndex + k - 1 , SRC , DST , pathlength[ k ] );
         
         if (k==1)
-            for ( var b in BITRATE)
-                WAVELENGTH_CONFIGSET.addOnly(0,startIndex,b);
+            for ( var b in BITRATE){
+
+                // generate dummy wavelength configuration
+                var newIndex = WAVELENGTH_CONFIGSET.size ;
+                WAVELENGTH_CONFIGSET.addOnly( newIndex ,startIndex,b);                
+                WAVELENGTH_CONFIGINDEX.addOnly( newIndex , dummy_cost );
+
+            }
 
         for ( var e in DIRECTED_EDGESET )
         if ( flow[ k ][ e ].solutionValue > 0 )
@@ -106,9 +112,7 @@ execute {
                     write( Opl.item( DIRECTED_EDGESET , ed.indexEdge ) ) ; writeln();     
 
         }
-        // generate dummy wavelength configuration at index 0
-        WAVELENGTH_CONFIGINDEX.addOnly( 0 , dummy_cost );
-
+        
         setNextModel("RELAXMASTER");
     }
 }

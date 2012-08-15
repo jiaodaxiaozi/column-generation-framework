@@ -23,10 +23,10 @@ execute{
 
     setModelDisplayStatus( 1 );	
     	
-    if (FINISH_RELAX_FLAG.size == 1){
+    if (FINISH_RELAX_FLAG.size == 0){
         writeln("FINAL MASTER SOLVING"); stop();
     } else
-        writeln("START MASTER SOLVING");
+        writeln("START MASTER SOLVING : " , FINISH_RELAX_FLAG );
 }
 
 
@@ -42,11 +42,11 @@ subject to {
 
        ctProvide : 
             
-            provide[ b ][ vi ][ vj ]
-             <= sum( cindex in WAVELENGTH_CONFIGINDEX , c in WAVELENGTH_CONFIGSET , p in SINGLEHOP_SET 
-                        : c.index == cindex.index && c.bitrate == b && c.indexPath == p.index && p.src == vi.id && p.dst == vj.id ) z[ cindex ] ;
+            
+             sum( cindex in WAVELENGTH_CONFIGINDEX , c in WAVELENGTH_CONFIGSET , p in SINGLEHOP_SET 
+                        : c.index == cindex.index && c.bitrate == b && c.indexPath == p.index && p.src == vi.id && p.dst == vj.id ) z[ cindex ] 
         
-
+             == provide[ b ][ vi ][ vj ] ;
 
     }
 
@@ -54,7 +54,7 @@ subject to {
 
         // satisfy request
         ctRequest: 
-             sum( m in MULTIHOP_CONFIGSET : m.src == vs.id &&  m.dst == vd.id && m.bitrate == b && m.period == p ) y[ p ][ m ] + dummy_var[ p ][ b ][ vs ][ vd ]
+             sum( m in MULTIHOP_CONFIGSET : m.src == vs.id &&  m.dst == vd.id && m.bitrate == b && m.period == p ) y[ p ][ m ]  + dummy_var[ p ][ b ][ vs ][ vd ]
          >=  sum ( dem in DEMAND : dem.period == p  && dem.bitrate == b && dem.src == vs.id && dem.dst == vd.id ) dem.nrequest ;
     }
 
@@ -71,7 +71,10 @@ subject to {
 
 
 float dummy_multi = sum( p in 1..PERIOD , b in BITRATE , vs  in NODESET , vd  in NODESET ) dummy_var[ p ][ b ][ vs ][ vd ] ;
-float dummy_wavelength = sum( c in WAVELENGTH_CONFIGINDEX : c.index == 0) z[c] ;
+float dummy_wavelength = sum( c in WAVELENGTH_CONFIGINDEX : c.cost >= ( dummy_cost -1 ) ) z[c] ;
+
+float totalprovide = sum(   b in BITRATE , vi  in NODESET , vj  in NODESET ) provide[ b ][ vi ][ vj ];
+
 /********************************************** 
 
 	POST PROCESSING
@@ -104,14 +107,20 @@ execute CollectDualValues {
                         CAL_MULTISET.add( vi.id , vj.id , p , b);
 
                 }
+
+
+     // call single price           
+     setNextModel("SINGLEPRICE");  
+     FINISH_RELAX_FLAG.remove( 1 );     
     
 
-    setNextModel("MULTIPRICE");  FINISH_RELAX_FLAG.remove( 2 );     
+    
 }
 
 execute {
 
-    writeln( "Master Objective: " , cplex.getObjValue(), " Dummy Multi: " , dummy_multi , " Dummy Wavelength: " , dummy_wavelength );
+    writeln( "Master Objective: " , cplex.getObjValue(), " Dummy Multi: " , dummy_multi , " Dummy Wavelength: " , dummy_wavelength , " Provide " , totalprovide );
+    
     
 }
 

@@ -15,13 +15,13 @@ int    bitrate ;
 
 execute {
 
-	//writeln("SOLVING MULTI-PRICE");
+	//setModelDisplayStatus( 1 );	
 	
 
 	// CPLEX settings for PRICING
 	
 	cplex.intsollim = 1; // take only one solution
-	cplex.cutup = 	-0.001 ; // reduced cost 		
+	cplex.cutup = 	-0.01 ; // reduced cost 		
 	cplex.parallelmode = -1 ; // opportunistic mode
 	cplex.threads = 0 ; // use maximum threads
 	
@@ -89,7 +89,8 @@ execute {
 	writeln("Price Objective : " , cplex.getObjValue()  );  
 	
 	// add new configuration	
-	FINISH_RELAX_FLAG.add( 2 );
+	FINISH_RELAX_FLAG.add( 1 );
+	
 		
 	var newindex = MULTIHOP_CONFIGSET.size ;
 	writeln("New Index ", newindex);
