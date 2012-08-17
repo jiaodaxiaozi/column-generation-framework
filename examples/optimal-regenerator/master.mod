@@ -22,11 +22,8 @@ dvar int+ provide[ BITRATE ][ NODESET ][ NODESET ];
 execute{
 
     setModelDisplayStatus( 1 );	
-    	
-    if (FINISH_RELAX_FLAG.size == 0){
-        writeln("FINAL MASTER SOLVING"); stop();
-    } else
-        writeln("START MASTER SOLVING : " , FINISH_RELAX_FLAG );
+
+    writeln("SOLVING : " , getModel() , FINISH_RELAX_FLAG );
 }
 
 
@@ -84,9 +81,17 @@ float totalprovide = sum(   b in BITRATE , vi  in NODESET , vj  in NODESET ) pro
 	
 execute CollectDualValues {
 
-
-	var p ,  b , vi , vj ;
-    // copy dual values
+if ( isModel("RELAXMASTER" )) {
+    if (FINISH_RELAX_FLAG.size == 0){
+            setNextModel("FINALMASTER"); 
+           
+            output_section("SOLUTION");
+            output_value("RELAX-OBJ" ,  cplex.getObjValue() );
+     } 
+    else {
+     
+    	var p ,  b , vi , vj ;
+        // copy dual values
     for ( b in BITRATE )
         for( vi in NODESET )
             for( vj in NODESET ){
@@ -108,13 +113,14 @@ execute CollectDualValues {
 
                 }
 
+       // call single price           
+        setNextModel("SINGLEPRICE");  
+        FINISH_RELAX_FLAG.remove( 1 );     
+     } 
+} else {
 
-     // call single price           
-     setNextModel("SINGLEPRICE");  
-     FINISH_RELAX_FLAG.remove( 1 );     
-    
-
-    
+        output_value("INT-OBJ" , cplex.getObjValue() );
+     };    
 }
 
 execute {

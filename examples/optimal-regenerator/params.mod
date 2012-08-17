@@ -153,3 +153,5 @@ float dual_request[ 1..PERIOD ][ BITRATE][ NODESET][ NODESET] = ... ;
 float dual_avail[ 1..PERIOD ][ BITRATE][ NODESET][ NODESET] = ... ;
 // dual cost
 float dummy_cost = 10000000.0;
+
+
