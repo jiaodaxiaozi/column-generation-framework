@@ -25,3 +25,14 @@ MULTIHOP_LINKSET = {};
 dual_provide = [];
 dual_request = [];
 dual_avail   = [];
+dual_wave    = [];
+dual_slot    = [];
+dual_regen   = [];
+
+RELAXOBJ = [] ;
+
+WAVELENGTH_CONFIGSTAT = {};
+
+SINGLEHOP_DEGREESET = {};
+
+MULTIHOP_INTERSET = {};

@@ -2,6 +2,12 @@
 
 include "../../sysmsg.mod" ; // include this line in every global configuration file
 
+
+int NWAVELENGTH = ... ;
+int NNODESLOT   = ... ;
+int NGEN        = ... ;
+
+
 // a node description 
 tuple node_record  {
 
@@ -87,7 +93,9 @@ tuple path_record {
     string src ;   // source of that lightpath
     string dst ;   // destination of that lightpath
     float  pathLength ; // length of lightpath
+    int    reach ; // which transmission reach is applied
 }
+
 
 tuple path_edge_record {
 
@@ -117,6 +125,27 @@ tuple   singlehop_configindex_record {
     float cost;
 };
 
+tuple singlehop_degree_record {
+
+    int index ;
+    string nodeid ;
+    int  degree ;
+}
+
+{ singlehop_degree_record } SINGLEHOP_DEGREESET = ... ;
+
+tuple singlehop_cost_record  {
+
+    int  index ;
+    int  rate  ;
+    int  reach ;
+    float cost ;
+    int  count ; 
+};
+
+{ singlehop_cost_record } WAVELENGTH_CONFIGSTAT = ... ;
+
+
 // set of single hop configuration 
 { singlehop_configindex_record } WAVELENGTH_CONFIGINDEX = ... ;
 
@@ -143,6 +172,16 @@ tuple multihop_link_record {
 // set of all multiple hop linkset
 { multihop_link_record } MULTIHOP_LINKSET = ... ;
 
+tuple multihop_inter_record {
+
+    int index ;
+    string nodeid ;
+};
+
+
+{ multihop_inter_record } MULTIHOP_INTERSET = ... ;
+
+
 { int } FINISH_RELAX_FLAG = ... ;  // finish relax process
 
 // dual provide
@@ -153,5 +192,14 @@ float dual_request[ 1..PERIOD ][ BITRATE][ NODESET][ NODESET] = ... ;
 float dual_avail[ 1..PERIOD ][ BITRATE][ NODESET][ NODESET] = ... ;
 // dual cost
 float dummy_cost = 10000000.0;
+// dual wavelength
+float dual_wave[ 0..0 ] = ... ;
+// dual slot 
+float dual_slot[ NODESET ] = ... ;
+// dual regen
+float dual_regen[ 1..PERIOD ][ NODESET ] = ... ;
+
+
+float RELAXOBJ[0..0] = ... ;
 
 

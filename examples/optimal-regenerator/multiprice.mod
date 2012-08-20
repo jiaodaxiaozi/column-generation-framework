@@ -21,7 +21,7 @@ execute {
 	// CPLEX settings for PRICING
 	
 	cplex.intsollim = 1; // take only one solution
-	cplex.cutup = 	-0.01 ; // reduced cost 		
+	cplex.cutup = 	-0.001 ; // reduced cost 		
 	cplex.parallelmode = -1 ; // opportunistic mode
 	cplex.threads = 0 ; // use maximum threads
 	
@@ -46,7 +46,7 @@ execute {
 
 
 dvar  int+ e[ NODESET ][ NODESET ] in 0..1; // edge
-
+dvar  int+ inte[ NODESET ] in 0..1 ; // intermediate nodes
 
 minimize   - sum( vi in NODESET , vj in NODESET : vi.id == SRC && vj.id == DST)  dual_request[ period ][ bitrate][ vi ][ vj ] 
            - sum( vi in NODESET , vj in NODESET)  dual_avail[ period ][ bitrate][ vi ][ vj ] * e[ vi][vj] ;
@@ -57,7 +57,7 @@ subject to {
 	  sum ( vs in NODESET : v.id != vs.id ) e[ vs ][ v] == sum ( vd in NODESET : v.id != vd.id ) e[ v ][ vd ];
 
 	forall ( v in NODESET : v.id != SRC && v.id != DST)
-	  sum ( vs in NODESET : v.id != vs.id ) e[ vs ][ v] <= 1;
+	  sum ( vs in NODESET : v.id != vs.id ) e[ vs ][ v] == inte[v];
 
 	forall ( v in NODESET : v.id == SRC ){
 	
@@ -95,6 +95,10 @@ execute {
 	var newindex = MULTIHOP_CONFIGSET.size ;
 	writeln("New Index ", newindex);
 	MULTIHOP_CONFIGSET.addOnly(newindex,period,bitrate,SRC,DST);
+
+    for ( var v in NODESET )
+    if ( inte[v].solutionValue > 0.5 ) 
+        MULTIHOP_INTERSET.addOnly( newindex, v.id );
 	
 	write("PATH :");
 	for ( var vi in NODESET)
