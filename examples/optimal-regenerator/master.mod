@@ -94,7 +94,7 @@ float cost2d[ b in BITRATE ][ tr in TRSET ] = sum ( c in WAVELENGTH_CONFIGINDEX,
 int   count2d[ b in BITRATE ][ tr in TRSET ] = sum ( c in WAVELENGTH_CONFIGINDEX, s in  WAVELENGTH_CONFIGSTAT : s.index == c.index &&  s.rate == b && s.reach == tr ) z[c] * s.count ;  
 
 int   number_wavelength = sum ( c in WAVELENGTH_CONFIGINDEX ) z[c ] ;
-
+int   number_regen [ p in 1..PERIOD ] = sum( v in NODESET ) x[ p ][ v ] ;
 
 /********************************************** 
 
@@ -105,6 +105,10 @@ int   number_wavelength = sum ( c in WAVELENGTH_CONFIGINDEX ) z[c ] ;
 	
 execute CollectDualValues {
 
+            // copy dual values
+        var v, p ,  b , vi , vj ,tr;
+
+
 if ( isModel("RELAXMASTER" )) {
     if (FINISH_RELAX_FLAG.size == 0){
             setNextModel("FINALMASTER"); 
@@ -113,34 +117,42 @@ if ( isModel("RELAXMASTER" )) {
      } 
     else {
     
-        for ( var v in NODESET )
+
+        // copy dual slot values
+        for ( v in NODESET )
             dual_slot[ v ] = ctSlot[v].dual ;
 
 
         dual_wave[ 0 ] = ctWave.dual ;
-         
-    	var p ,  b , vi , vj ;
-        // copy dual values
-    for ( b in BITRATE )
-        for( vi in NODESET )
-            for( vj in NODESET ){
-	           
-               dual_provide[ b ][ vi ][ vj ] = ctProvide[ b ][ vi ][ vj ].dual ;
 
-           }
-    for ( p = 1 ; p <= PERIOD; p ++ )
+         
+    	
+        // copy regen dual values
+        for ( p = 1 ; p <= PERIOD; p ++ )
+        for ( v in NODESET )
+            dual_regen[ p][ v ] = ctRegen[ p ][ v ].dual ;
+        
+        // copy provide dual values
         for ( b in BITRATE )
             for( vi in NODESET )
-                for( vj in NODESET ){
+                for( vj in NODESET )	           
+                    dual_provide[ b ][ vi ][ vj ] = ctProvide[ b ][ vi ][ vj ].dual ;
 
-                    dual_request[ p ][ b ][ vi ][ vj ] = ctRequest[ p ][ b ][ vi ][ vj ].dual ;
-                    dual_avail[ p ][ b ][ vi ][ vj ]   = ctAvail[ p ][ b ][ vi ][ vj ].dual ;
+                
+        // copy request & avail dual values
+        for ( p = 1 ; p <= PERIOD; p ++ )
+            for ( b in BITRATE )
+                for( vi in NODESET )
+                    for( vj in NODESET ){
+
+                        dual_request[ p ][ b ][ vi ][ vj ] = ctRequest[ p ][ b ][ vi ][ vj ].dual ;
+                        dual_avail[ p ][ b ][ vi ][ vj ]   = ctAvail[ p ][ b ][ vi ][ vj ].dual ;
     
-                    // add new multihop process
-                    if ( vi.id != vj.id)
-                        CAL_MULTISET.add( vi.id , vj.id , p , b);
+                        // add new multihop process
+                        if ( vi.id != vj.id)
+                            CAL_MULTISET.add( vi.id , vj.id , p , b);
 
-                }
+                    }
 
        // call single price           
         setNextModel("SINGLEPRICE");  
@@ -154,6 +166,10 @@ if ( isModel("RELAXMASTER" )) {
             output_value("INT-OBJ" , intobj );
             output_value("GAP" , GAP( RELAXOBJ[0], intobj ));
             output_value("WAVELENGTH" , number_wavelength );
+
+            for ( p = 1 ; p <= PERIOD ; p ++ )
+                output_value( "NREGEN-PERIOD-" + p + ":" , number_regen[ p ] );    
+
 
             for ( b in BITRATE ){
                 output_value("COST-BY-RATE-" + b , costbyrate[ b ] );
