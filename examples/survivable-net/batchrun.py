@@ -6,7 +6,7 @@ import sys
 
 #inputdir = "net/NJ*s1*e40-0.net"
 homedir   = "/RQexec/hoangha1/framework/examples/survivable-net/"
-inputdir  = "net/24NET-s[2,3,4,5]*e90*.net"
+#inputdir  = "net/24NET-s[2,3,4,5]*e90*.net"
 #inputdir  = "net/E*s[2,3,4,5]*e90*.net"
 #inputdir  = "net/NJ*s[2,3,4,5]*e[2,7]0*.net"
 #inputdir  = "net/E*s1*.net"
@@ -18,6 +18,8 @@ inputdir  = "net/24NET-s[2,3,4,5]*e90*.net"
 #inputdir  = "net/E*s1*e90*.net"
 #inputdir  = "net/24NET-hs1*e120*.net"
 
+inputdir  = "net/24*s1*e35*.net"
+inputdir  = "net/NJ*s1*e16*.net"
 
 rundir    = "/RQexec/hoangha1/framework/"
 outputdir =  "out/"
@@ -25,7 +27,7 @@ inidir    =  "ini/"
 scriptdir = homedir + "script/"
 
 
-cmd = "oplrun -deploy -D input=\"%s\" -D output=\"%s\" " + "../../solver.mod"
+cmd = "oplrun -deploy -D input=\"%s\" -D output=\"%s\" " + "../../solver.mod model.dat"
 
 if __name__ == "__main__" :
 

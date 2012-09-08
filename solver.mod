@@ -103,13 +103,10 @@ function mipsolve ( THEMODEL ) {
     cplex.epgap = 0.01 ;      // 1 percent
 
 
-    /*
+    
     cplex.workmem = 1024 * 20  ;
     cplex.nodefileind = 3 ;
-    cplex.trelim  = 1024 * 40 ;*/ 
-
-    cplex.parallelmode = -1 ; // opportunistic mode
-    cplex.threads = 0 ; // use maximum threads
+    cplex.trelim  = 1024 * 40 ; 
 
     var theopl         = new IloOplModel( THEMODEL.mipdefinition , cplex ) ;  // create execution object    
 

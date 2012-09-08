@@ -35,12 +35,13 @@ execute {
 
     CAL_MULTISET.remove( firstItem ); 
 
-    
+    setNextModel("MULTIPRICE");
+
  	
 	if (CAL_MULTISET.size == 0){
 		// last instance for multi price
 		setNextModel("RELAXMASTER");
-	}	else setNextModel("MULTIPRICE");
+	}	
 
 }
 
@@ -49,7 +50,8 @@ dvar  int+ e[ NODESET ][ NODESET ] in 0..1; // edge
 dvar  int+ inte[ NODESET ] in 0..1 ; // intermediate nodes
 
 minimize   - sum( vi in NODESET , vj in NODESET : vi.id == SRC && vj.id == DST)  dual_request[ period ][ bitrate][ vi ][ vj ] 
-           - sum( vi in NODESET , vj in NODESET)  dual_avail[ period ][ bitrate][ vi ][ vj ] * e[ vi][vj] ;
+           - sum( vi in NODESET , vj in NODESET)  dual_avail[ period ][ bitrate][ vi ][ vj ] * e[ vi][vj] 
+           - sum( v  in NODESET ) inte[ v ] * dual_regen[ period ][ v ] ;
 
 subject to {
 
@@ -72,7 +74,8 @@ subject to {
 		sum ( vo in NODESET : v.id != vo.id ) e[ v ][ vo] == 0;
 
 	}
-	  
+
+ //   sum ( v in NODESET ) inte[ v ] <= 2 ;	  
   
 
 } 
@@ -85,6 +88,8 @@ subject to {
 
 execute {
 	
+	setNextModel("RELAXMASTER");
+
 	writeln("FIND AUGMENTED MULTIHOP FROM " + SRC +  "->" + DST + " IN PERIOD " + period + " WITH BITRATE " + bitrate);
 	writeln("Price Objective : " , cplex.getObjValue()  );  
 	
@@ -94,7 +99,7 @@ execute {
 		
 	var newindex = MULTIHOP_CONFIGSET.size ;
 	writeln("New Index ", newindex);
-	MULTIHOP_CONFIGSET.addOnly(newindex,period,bitrate,SRC,DST);
+	MULTIHOP_CONFIGSET.addOnly(newindex,period,bitrate,SRC,DST );
 
     for ( var v in NODESET )
     if ( inte[v].solutionValue > 0.5 ) 

@@ -145,8 +145,18 @@ def generate_logic( degree , genedge , ishalf ) :
                 logictopo.append( [ v1 , v2 ] )
                 logictopo.append( [ v2 , v1 ] )                
                 ge += 1
+                # update degree
+                logicdeg[ v1 ] += 1
+                logicdeg[ v2 ] += 1
 
-    
+    # verify logic topology
+    needrerun = 0 
+    for v in lstNode  :
+        if logicdeg[ v ] == 2 :
+            print "node " , v , " has degree " , logicdeg[ v ]
+            needrerun = 1
+    if needrerun:
+        generate_logic( degree , genedge , ishalf ) 
 #
 # Reading topo information
 #
@@ -542,22 +552,22 @@ if __name__ == "__main__" :
         print "" 
         print "TOPO :" , basename , "\n"
 
-        for i in range( 1 ) :
+        for i in range( 100 ) :
 
-            #if basename == "NSF" :    
-            #    generate_topo( basename , [] , [ 21 , 25 , 50 , 80 ] , i , False , [1,2,3,4,5,6] ) 
+            if basename == "NSF" :    
+                generate_topo( basename , [] , [ 10 , 18 ] , i , False , [1] ) 
                 
 
-            #if basename == "EURO" :    
-            #    generate_topo( basename , [3 ] ,  [ 30 , 35 , 70 , 90  ] ,  i , False , [1,2,3,4,5,6] ) 
+            if basename == "EURO" :    
+                generate_topo( basename , [] ,  [ 25  ] ,  i , False , [1] ) 
                 
-            #if basename == "NJLATA" :    
-            #    generate_topo( basename , [ 3 ] ,  [ 20, 40, 70 ] ,  i , False , [1,2,3,4,5,6] ) 
+            if basename == "NJLATA" :    
+                generate_topo( basename , [ ] ,  [ 14 , 16 ] ,  i , False , [1] ) 
 
             #if basename == "test" :
 		
             #    generate_topo( basename , [ 3 ] ,  [ 20 ] ,  i , False , [1,2,3,4,5,6] ) 
 
             if basename == "24NET" :
-                generate_topo( basename , [  ] , [ 40 , 70 , 90  ]  ,  i , False , [1,2,3,4,5,6] ) 
-                generate_topo( basename , [  ] , [ 40 , 90 , 120  ]  ,  i , True ,  [1,2,3,4,5,6] ) 
+                generate_topo( basename , [  ] , [ 35  ]  ,  i , False , [1] ) 
+                generate_topo( basename , [  ] , [ 20,30,40,50,60  ]  ,  i , False ,  [5] ) 

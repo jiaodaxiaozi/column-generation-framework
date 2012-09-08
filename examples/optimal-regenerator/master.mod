@@ -8,14 +8,14 @@
 include "params.mod";
 
 
-dvar int+ dummy_var[ 1 .. PERIOD ][ BITRATE ][ NODESET ][ NODESET ]   ;
+dvar float+ dummy_var[ 1 .. PERIOD ][ BITRATE ][ NODESET ][ NODESET ]   ;
 
 // number of copies of singlehop configuration
 dvar int+ z[ WAVELENGTH_CONFIGINDEX ] ;
 // number of copies of multihop configuration
 dvar int+ y[ 1.. PERIOD][ MULTIHOP_CONFIGSET  ] ;
 // number of available singlehop links from VI to VJ 
-dvar int+ provide[ BITRATE ][ NODESET ][ NODESET ];
+dvar float+ provide[ BITRATE ][ NODESET ][ NODESET ];
 // intermediate node
 dvar int+ x[ 1..PERIOD][ NODESET ] in 0..1 ;
 
@@ -24,6 +24,12 @@ execute{
     setModelDisplayStatus( 1 );	
 
     writeln("SOLVING : " , getModel() , FINISH_RELAX_FLAG );
+    
+    if ( isModel( "FINALMASTER" ) ){
+        cplex.epgap = 0.05 ;
+        writeln( "FINAL MASTER WITH " , WAVELENGTH_CONFIGINDEX.size , " SINGLE HOP AND " , MULTIHOP_CONFIGSET.size , " MULTIHOP ");
+    }
+
 }
 
 
@@ -63,7 +69,7 @@ subject to {
     }
 
     // avaialabity for multihop
-    forall( p in 1..PERIOD , b in BITRATE , vi  in NODESET , vj in NODESET ) {
+    forall( p in 1..PERIOD , b in BITRATE , vi  in NODESET , vj in NODESET  ) {
         ctAvail:
             sum( m in MULTIHOP_CONFIGSET , l in MULTIHOP_LINKSET : m.bitrate == b && m.index == l.index && l.id_vi == vi.id && l.id_vj == vj.id  && m.period == p)
                 y[ p ][ m ] <= provide[ b ][ vi ][ vj ];
@@ -72,7 +78,8 @@ subject to {
 
    forall( p in 1..PERIOD , v in NODESET )
     ctRegen :
-        sum( m in MULTIHOP_CONFIGSET , s in MULTIHOP_INTERSET : m.index == s.index && s.nodeid == v.id && m.period == p ) y[p][m] <= x[p][v] * 100000; 
+        sum( m in MULTIHOP_CONFIGSET , s in MULTIHOP_INTERSET :  m.index == s.index && s.nodeid == v.id && m.period == p ) 
+                y[p][m] <= x[p][v] * (sum( dem in DEMAND ) dem.nrequest); 
 
   
    forall( p in 1..PERIOD )
@@ -87,14 +94,16 @@ float dummy_wavelength = sum( c in WAVELENGTH_CONFIGINDEX : c.cost >= ( dummy_co
 float totalprovide = sum(   b in BITRATE , vi  in NODESET , vj  in NODESET ) provide[ b ][ vi ][ vj ];
 
 float costbyrate[ b in BITRATE ] = sum ( c in WAVELENGTH_CONFIGINDEX, s in  WAVELENGTH_CONFIGSTAT : s.index == c.index && s.rate == b ) z[c] * s.cost ;  
-int   countbyrate[ b in BITRATE ] = sum ( c in WAVELENGTH_CONFIGINDEX, s in  WAVELENGTH_CONFIGSTAT : s.index == c.index &&  s.rate == b ) z[c] * s.count ;  
+float   countbyrate[ b in BITRATE ] = sum ( c in WAVELENGTH_CONFIGINDEX, s in  WAVELENGTH_CONFIGSTAT : s.index == c.index &&  s.rate == b ) z[c] * s.count ;  
   
 
 float cost2d[ b in BITRATE ][ tr in TRSET ] = sum ( c in WAVELENGTH_CONFIGINDEX, s in  WAVELENGTH_CONFIGSTAT : s.index == c.index && s.rate == b && s.reach == tr ) z[c] * s.cost ;  
-int   count2d[ b in BITRATE ][ tr in TRSET ] = sum ( c in WAVELENGTH_CONFIGINDEX, s in  WAVELENGTH_CONFIGSTAT : s.index == c.index &&  s.rate == b && s.reach == tr ) z[c] * s.count ;  
+float   count2d[ b in BITRATE ][ tr in TRSET ] = sum ( c in WAVELENGTH_CONFIGINDEX, s in  WAVELENGTH_CONFIGSTAT : s.index == c.index &&  s.rate == b && s.reach == tr ) z[c] * s.count ;  
 
-int   number_wavelength = sum ( c in WAVELENGTH_CONFIGINDEX ) z[c ] ;
-int   number_regen [ p in 1..PERIOD ] = sum( v in NODESET ) x[ p ][ v ] ;
+float   number_wavelength = sum ( c in WAVELENGTH_CONFIGINDEX ) z[c ] ;
+float   number_regen [ p in 1..PERIOD ] = sum( v in NODESET ) x[ p ][ v ] ;
+
+
 
 /********************************************** 
 
@@ -108,11 +117,45 @@ execute CollectDualValues {
             // copy dual values
         var v, p ,  b , vi , vj ,tr;
 
-
+// ======================================================== RELAX MASTER ================================================================
 if ( isModel("RELAXMASTER" )) {
-    if (FINISH_RELAX_FLAG.size == 0){
-            setNextModel("FINALMASTER"); 
+
+
+    NMASTERCALL[ 0 ]  = NMASTERCALL[ 0 ] + 1 ;
+
+    //output_value("STEP" ,  NMASTERCALL[0] );
+    output_value( "MO" , cplex.getObjValue());
+    output_value( "NC" , cplex.getNcols());
+
+    // keep ratio nbasic / notbasic
+
+    var ratiobasic = 0.70 ;
+    var nbasic = 0 ;
+    var nnonbasic = 0 ;
+
+    var highestRS = 0.0 ;
+    var removeIndex = 0 ;
+
+    for ( p = 1 ; p <= PERIOD ; p ++ )
+    for ( ms in MULTIHOP_CONFIGSET  ){
+        if ( y[ p ][ ms ].reducedCost == 0.0 ) nbasic +=1 ; else nnonbasic +=1 ;
+        if ( y[ p ][ ms ].reducedCost > highestRS ) {
+            highestRS = y[ p ][ ms ].reducedCost ; 
+            removeIndex = Opl.ord( MULTIHOP_CONFIGSET , ms ) ;
+        } 
+    }
+ 
+    writeln( "Basis Ratio : " , nnonbasic / nbasic , " Highest RS : " , highestRS); 
+    /*if ( nnonbasic / nbasic >= ratiobasic )
+        MULTIHOP_CONFIGSET.remove(  Opl.item( MULTIHOP_CONFIGSET , removeIndex ) );
+     */ 
+
+    output_value("RS" , highestRS );
+    output_value("RATIO" , nnonbasic / nbasic );
+
+    if (FINISH_RELAX_FLAG.size == 0 ){
            
+           setNextModel("FINALMASTER"); 
            RELAXOBJ[0] = cplex.getObjValue();
      } 
     else {
@@ -158,7 +201,12 @@ if ( isModel("RELAXMASTER" )) {
         setNextModel("SINGLEPRICE");  
         FINISH_RELAX_FLAG.remove( 1 );     
      } 
-} else {
+}
+
+
+ // =============================== FINAL MASTER ================================================== 
+ if ( isModel("FINALMASTER"))
+ {
             output_section("SOLUTION");
             var intobj = cplex.getObjValue();
 
@@ -191,9 +239,12 @@ if ( isModel("RELAXMASTER" )) {
 
 execute {
 
-    writeln( "Master Objective: " , cplex.getObjValue(), " Dummy Multi: " , dummy_multi , " Dummy Wavelength: " , dummy_wavelength , " Provide " , totalprovide );
+    writeln( "Master Objective: " , cplex.getObjValue(), " Dummy Multi: " , dummy_multi 
+            , " Dummy Wavelength: " , dummy_wavelength 
+            , " Provide " , totalprovide , " NCALL : " , NMASTERCALL[ 0 ] , " NSINGLE : " , WAVELENGTH_CONFIGINDEX.size ,  " NMULTI : " , MULTIHOP_CONFIGSET.size  );
     
     
-}
+
+    }
 
 

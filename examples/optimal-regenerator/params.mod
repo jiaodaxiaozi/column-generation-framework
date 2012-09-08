@@ -201,5 +201,5 @@ float dual_regen[ 1..PERIOD ][ NODESET ] = ... ;
 
 
 float RELAXOBJ[0..0] = ... ;
-
+int   NMASTERCALL[ 0..0 ] = ... ;
 

@@ -1,0 +1,14 @@
+#!/bin/csh
+#
+#PBS -l walltime=120:00:00
+#PBS -l nodes=1:m48G:ppn=4
+#PBS -W umask=022
+#PBS -r n
+
+#PBS -o OUT/US-1-4096-1.out
+#PBS -e OUT/US-1-4096-1.err
+
+module add cplex-studio
+
+cd /RQexec/hoangha1/framework/examples/optimal-regenerator/
+oplrun -deploy -D input=US-1-4096-1.dat -D output=OUT/US-1-4096-1.sol ../../solver.mod model.dat

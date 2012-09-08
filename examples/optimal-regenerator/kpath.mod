@@ -97,7 +97,7 @@ execute {
 
                 // generate dummy wavelength configuration
                 var newIndex = WAVELENGTH_CONFIGSET.size ;
-                WAVELENGTH_CONFIGSET.addOnly( newIndex ,startIndex,b);                
+                WAVELENGTH_CONFIGSET.addOnly( newIndex ,startIndex,b );                
                 WAVELENGTH_CONFIGINDEX.addOnly( newIndex , dummy_cost );
 
             }

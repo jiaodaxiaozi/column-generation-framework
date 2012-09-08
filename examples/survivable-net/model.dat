@@ -1,0 +1,23 @@
+MODELSET= { 
+
+< "ROOT" , "prepro.mod" , 0 > 
+< "RELAX-ADD-ROUTE" , "master_add_route.mod" , 1 > 
+< "PRICE-ADD-ROUTE" , "price_add_route.mod" , 0 > 
+< "ADD-ROUTE" , "master_add_route.mod" , 0 > 
+
+< "RELAX-PROTECT" , "master_protect.mod" , 1 > 
+< "PROTECTION" , "master_protect.mod" , 0 > 
+< "PRICE-PROTECT" , "price_protect.mod" , 0 > 
+
+< "RELAX-RESERVE" , "master_reserve.mod" , 1 > 
+< "RESERVE" , "master_reserve.mod" , 0 > 
+< "PRICE-RESERVE" , "price_reserve.mod" , 0 > 
+
+< "RELAX-RESTORE" , "master_restore.mod" , 1 > 
+< "RESTORE" , "master_restore.mod" , 0 > 
+< "PRICE-RESTORE" , "price_restore.mod" , 0 > 
+
+< "MAXWAVE" , "maxwave.mod" , 0 > 
+
+};
+
