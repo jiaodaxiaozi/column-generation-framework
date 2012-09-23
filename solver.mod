@@ -9,7 +9,6 @@
 include "plugins.mod" ; 
  
 string input = "" ;
-string output= "" ;
 
 tuple _MODEL_RECORD_ {
 
@@ -55,7 +54,6 @@ function nextState( nextObj , curObj ) {
         nextObj._MODEL_DISPLAY_STATUS_= curObj._MODEL_DISPLAY_STATUS_  ;
     }
 
-     nextObj._OUTFILE_ = thisOplModel.output ; 
 }
     
 /*---------------------------------------------------------------------------------------------------------------------------
@@ -103,10 +101,9 @@ function mipsolve ( THEMODEL ) {
     cplex.epgap = 0.01 ;      // 1 percent
 
 
-    
-    cplex.workmem = 1024 * 20  ;
-    cplex.nodefileind = 3 ;
-    cplex.trelim  = 1024 * 40 ; 
+    // maximum parallel
+    cplex.threads = 0 ;
+    cplex.parallelmode = -1 ;
 
     var theopl         = new IloOplModel( THEMODEL.mipdefinition , cplex ) ;  // create execution object    
 
@@ -205,15 +202,8 @@ function readModelDefinition() {
     
     if ( thisOplModel.input == "" ) {   writeln( AVATAR() , "  input need to be specified ( -D input=filename ) " ); writeln(); stop(); }    
     
-	writeln( AVATAR() , " PATH         : " , getPWDPath() );	
     writeln( AVATAR() , " INPUT        : " , thisOplModel.input  );
     
-    if ( thisOplModel.output != "" ){		
-		writeln( AVATAR() , " OUTPUT       : " , thisOplModel.output ); 
-    }
-   
-        
-
     assertExisted(  parameter_file );
 	assertExisted(  parameter_data );
     assertExisted(  thisOplModel.input );    
@@ -274,7 +264,6 @@ function readModelDefinition() {
 
  readModelDefinition(); // read model definition 
  
- empty_output();
  
  assertModel( __ROOT__ );
 
@@ -369,13 +358,7 @@ leftWrite( model.acctime ,txt_total_size + 1 );
 leftWrite( model.acctime /  model.ncall ,txt_mean_size + 1 ); 
 leftWrite( model.relax ,txt_relax_size + 1 );
 leftWrite( model.mipsource.name ,txt_source_size + 1 );
-
-	writeln();
-	
-	output_section( "RUNTIME-" + model.mipid );
-	output_value( "CALL" , model.ncall );
-	output_value( "TOTALTIME" , model.acctime );
-
+writeln();
 }
   
 writeln();
@@ -383,9 +366,6 @@ lineSep("" ,"-");
 writeln("OVERALL-RUNTIME: " , elapsed_runtime );
 lineSep("" ,"-");    
 writeln();
-
-output_section( "RUNTIME" );
-output_value( "TOTALTIME" , elapsed_runtime );
 
 // free memory
 runCplex.end();

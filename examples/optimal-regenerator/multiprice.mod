@@ -95,15 +95,18 @@ execute {
 	
 	// add new configuration	
 	FINISH_RELAX_FLAG.add( 1 );
-	
+
+	var newindex = 0;
+
+	while( MULTIHOP_CONFIGSET.find( newindex ) != null ) newindex ++ ;	
 		
-	var newindex = MULTIHOP_CONFIGSET.size ;
 	writeln("New Index ", newindex);
 	MULTIHOP_CONFIGSET.addOnly(newindex,period,bitrate,SRC,DST );
 
     for ( var v in NODESET )
     if ( inte[v].solutionValue > 0.5 ) 
-        MULTIHOP_INTERSET.addOnly( newindex, v.id );
+	
+        MULTIHOP_INTERSET.addOnly(  newindex, v.id );
 	
 	write("PATH :");
 	for ( var vi in NODESET)

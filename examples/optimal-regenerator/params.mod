@@ -117,11 +117,12 @@ tuple  wavelength_configuration_record {
 
 // set of all single hop lightpaths in a wavelength configuration
 { wavelength_configuration_record } WAVELENGTH_CONFIGSET = ... ;
+{ wavelength_configuration_record } WAVELENGTH_CONFIGSET_TMP = ... ;
 
 // description of wavelength configuration with cost
 tuple   singlehop_configindex_record {
 
-    int index ;
+    key int index ;
     float cost;
 };
 
@@ -144,15 +145,17 @@ tuple singlehop_cost_record  {
 };
 
 { singlehop_cost_record } WAVELENGTH_CONFIGSTAT = ... ;
+{ singlehop_cost_record } WAVELENGTH_CONFIGSTAT_TMP = ... ;
 
 
 // set of single hop configuration 
 { singlehop_configindex_record } WAVELENGTH_CONFIGINDEX = ... ;
+{ singlehop_configindex_record } WAVELENGTH_CONFIGINDEX_TMP = ... ;
 
 // description of multiple hop lightpaths
 tuple multihop_configuration_record {
 
-    int index  ; // index of multihop configuration 
+    key int index  ; // index of multihop configuration 
     int period ; // period of multihop configuration
     int bitrate; // bitrate of multiple hop lightpaths
     string src ; // source of multiple hop lightpaths
@@ -169,17 +172,19 @@ tuple multihop_link_record {
 
 // set of all multiple hop lightpaths
 { multihop_configuration_record } MULTIHOP_CONFIGSET = ... ;
+{ multihop_configuration_record } MULTIHOP_CONFIGSET_TMP = ... ;
 // set of all multiple hop linkset
 { multihop_link_record } MULTIHOP_LINKSET = ... ;
+{ multihop_link_record } MULTIHOP_LINKSET_TMP = ... ;
 
 tuple multihop_inter_record {
-
     int index ;
     string nodeid ;
 };
 
 
 { multihop_inter_record } MULTIHOP_INTERSET = ... ;
+{ multihop_inter_record } MULTIHOP_INTERSET_TMP = ... ;
 
 
 { int } FINISH_RELAX_FLAG = ... ;  // finish relax process
@@ -202,4 +207,4 @@ float dual_regen[ 1..PERIOD ][ NODESET ] = ... ;
 
 float RELAXOBJ[0..0] = ... ;
 int   NMASTERCALL[ 0..0 ] = ... ;
-
+int   NCOLDEL [ 0..0 ] = ... ;

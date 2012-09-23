@@ -107,6 +107,7 @@ execute {
     
 
     setNextModel("KPATH");
-    
+
+    NCOLDEL[ 0 ] = 0 ;    
     NMASTERCALL[0] = 0 ;
 }

@@ -79,7 +79,8 @@ execute {
 	writeln("Price Objective : " , cplex.getObjValue() , " Cost : " , thecost.solutionValue );  
 		
 	var newindex = WAVELENGTH_CONFIGINDEX.size ;
-	writeln("New Index : " , newindex )
+	while ( WAVELENGTH_CONFIGINDEX.find( newindex ) != null ) newindex ++ ;
+	writeln("New SINGLE Index : " , newindex )
 	FINISH_RELAX_FLAG.add( 1 );
 
 

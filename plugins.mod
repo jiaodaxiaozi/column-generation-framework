@@ -15,6 +15,38 @@ function GAP( relaxObj , intObj ) {
 	
 }
 	
+
+//// FILTER COLLECTION ////
+function filterCollection( theCollect , removeField , removeValue , buffer  ){
+
+	
+	buffer.clear();
+
+	var nOrigin = theCollect.size ;	
+	var nKeep = 0 ;
+	for ( var it in theCollect )
+	if ( it[ removeField ] != removeValue )
+	{ 
+		buffer.add( it );
+		nKeep = nKeep + 1 ;
+	}
+	
+
+	theCollect.clear();
+	for ( it in buffer )
+		theCollect.add( it ) ;
+
+	if ( nKeep != theCollect.size ) {
+		writeln("Size is not correct " , nKeep , " <> " , theCollect.size );
+		stop();
+	}
+
+	for ( it in theCollect )
+	if ( it[ removeField ] == removeValue ){
+		writeln("not clearly remove " ,removeField , " = " , removeValue );
+		stop();
+	}
+}
 //// MARK TIME MOMENT ////
 function  timeMarker() {
 
@@ -90,6 +122,7 @@ function maxLength( n, st  ) {
   return  n < st.toString().length ? st.toString().length : n ;
 }
 
+/*
 ///////// GET CURRENT ABSOLUTE PATH //////////   
 function getPWDPath(){
 
@@ -99,5 +132,6 @@ function getPWDPath(){
 
 } 
 
+*/
 
 }; // end execute

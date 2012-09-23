@@ -1,0 +1,199 @@
+  
+NWAVELENGTH =  56 ;
+
+
+NODESET = { 
+"Hannover"
+"Frankfurt"
+"Hamburg"
+"Norden"
+"Bremen"
+"Berlin"
+"Muenchen"
+"Ulm"
+"Nuernberg"
+"Stuttgart"
+"Karlsruhe"
+"Mannheim"
+"Essen"
+"Dortmund"
+"Duesseldorf"
+"Koeln"
+"Leipzig"
+ };  
+EDGESET = { 
+< "L11" , "Berlin" , "Hamburg" >
+< "L12" , "Hamburg" , "Berlin" >
+< "L21" , "Berlin" , "Hannover" >
+< "L22" , "Hannover" , "Berlin" >
+< "L31" , "Berlin" , "Leipzig" >
+< "L32" , "Leipzig" , "Berlin" >
+< "L41" , "Bremen" , "Hamburg" >
+< "L42" , "Hamburg" , "Bremen" >
+< "L51" , "Bremen" , "Hannover" >
+< "L52" , "Hannover" , "Bremen" >
+< "L61" , "Bremen" , "Norden" >
+< "L62" , "Norden" , "Bremen" >
+< "L71" , "Dortmund" , "Essen" >
+< "L72" , "Essen" , "Dortmund" >
+< "L81" , "Dortmund" , "Hannover" >
+< "L82" , "Hannover" , "Dortmund" >
+< "L91" , "Dortmund" , "Koeln" >
+< "L92" , "Koeln" , "Dortmund" >
+< "L101" , "Dortmund" , "Norden" >
+< "L102" , "Norden" , "Dortmund" >
+< "L111" , "Duesseldorf" , "Essen" >
+< "L112" , "Essen" , "Duesseldorf" >
+< "L121" , "Duesseldorf" , "Koeln" >
+< "L122" , "Koeln" , "Duesseldorf" >
+< "L131" , "Frankfurt" , "Hannover" >
+< "L132" , "Hannover" , "Frankfurt" >
+< "L141" , "Frankfurt" , "Koeln" >
+< "L142" , "Koeln" , "Frankfurt" >
+< "L151" , "Frankfurt" , "Leipzig" >
+< "L152" , "Leipzig" , "Frankfurt" >
+< "L161" , "Frankfurt" , "Mannheim" >
+< "L162" , "Mannheim" , "Frankfurt" >
+< "L171" , "Frankfurt" , "Nuernberg" >
+< "L172" , "Nuernberg" , "Frankfurt" >
+< "L181" , "Hamburg" , "Hannover" >
+< "L182" , "Hannover" , "Hamburg" >
+< "L191" , "Hannover" , "Leipzig" >
+< "L192" , "Leipzig" , "Hannover" >
+< "L201" , "Karlsruhe" , "Mannheim" >
+< "L202" , "Mannheim" , "Karlsruhe" >
+< "L211" , "Karlsruhe" , "Stuttgart" >
+< "L212" , "Stuttgart" , "Karlsruhe" >
+< "L221" , "Leipzig" , "Nuernberg" >
+< "L222" , "Nuernberg" , "Leipzig" >
+< "L231" , "Muenchen" , "Nuernberg" >
+< "L232" , "Nuernberg" , "Muenchen" >
+< "L241" , "Muenchen" , "Ulm" >
+< "L242" , "Ulm" , "Muenchen" >
+< "L251" , "Nuernberg" , "Stuttgart" >
+< "L252" , "Stuttgart" , "Nuernberg" >
+< "L261" , "Stuttgart" , "Ulm" >
+< "L262" , "Ulm" , "Stuttgart" > };  
+
+DEMAND = { 
+< "Berlin" , "Bremen" , 2> 
+< "Berlin" , "Dortmund" , 2> 
+< "Berlin" , "Duesseldorf" , 2> 
+< "Berlin" , "Essen" , 2> 
+< "Berlin" , "Frankfurt" , 4> 
+< "Berlin" , "Hamburg" , 3> 
+< "Berlin" , "Hannover" , 3> 
+< "Berlin" , "Karlsruhe" , 1> 
+< "Berlin" , "Koeln" , 2> 
+< "Berlin" , "Leipzig" , 5> 
+< "Berlin" , "Mannheim" , 1> 
+< "Berlin" , "Muenchen" , 2> 
+< "Berlin" , "Nuernberg" , 2> 
+< "Berlin" , "Stuttgart" , 2> 
+< "Berlin" , "Ulm" , 2> 
+< "Bremen" , "Dortmund" , 1> 
+< "Bremen" , "Duesseldorf" , 1> 
+< "Bremen" , "Essen" , 1> 
+< "Bremen" , "Frankfurt" , 2> 
+< "Bremen" , "Hamburg" , 2> 
+< "Bremen" , "Hannover" , 2> 
+< "Bremen" , "Karlsruhe" , 1> 
+< "Bremen" , "Koeln" , 1> 
+< "Bremen" , "Leipzig" , 2> 
+< "Bremen" , "Mannheim" , 1> 
+< "Bremen" , "Muenchen" , 1> 
+< "Bremen" , "Nuernberg" , 1> 
+< "Bremen" , "Stuttgart" , 1> 
+< "Bremen" , "Ulm" , 1> 
+< "Dortmund" , "Duesseldorf" , 3> 
+< "Dortmund" , "Essen" , 3> 
+< "Dortmund" , "Frankfurt" , 4> 
+< "Dortmund" , "Hamburg" , 2> 
+< "Dortmund" , "Hannover" , 2> 
+< "Dortmund" , "Karlsruhe" , 1> 
+< "Dortmund" , "Koeln" , 2> 
+< "Dortmund" , "Leipzig" , 2> 
+< "Dortmund" , "Mannheim" , 1> 
+< "Dortmund" , "Muenchen" , 2> 
+< "Dortmund" , "Nuernberg" , 1> 
+< "Dortmund" , "Stuttgart" , 2> 
+< "Dortmund" , "Ulm" , 1> 
+< "Duesseldorf" , "Essen" , 4> 
+< "Duesseldorf" , "Frankfurt" , 4> 
+< "Duesseldorf" , "Hamburg" , 2> 
+< "Duesseldorf" , "Hannover" , 2> 
+< "Duesseldorf" , "Karlsruhe" , 1> 
+< "Duesseldorf" , "Koeln" , 4> 
+< "Duesseldorf" , "Leipzig" , 2> 
+< "Duesseldorf" , "Mannheim" , 1> 
+< "Duesseldorf" , "Muenchen" , 2> 
+< "Duesseldorf" , "Nuernberg" , 2> 
+< "Duesseldorf" , "Stuttgart" , 2> 
+< "Duesseldorf" , "Ulm" , 1> 
+< "Essen" , "Frankfurt" , 3> 
+< "Essen" , "Hamburg" , 2> 
+< "Essen" , "Hannover" , 2> 
+< "Essen" , "Karlsruhe" , 1> 
+< "Essen" , "Koeln" , 2> 
+< "Essen" , "Leipzig" , 2> 
+< "Essen" , "Mannheim" , 1> 
+< "Essen" , "Muenchen" , 1> 
+< "Essen" , "Nuernberg" , 1> 
+< "Essen" , "Stuttgart" , 2> 
+< "Essen" , "Ulm" , 1> 
+< "Frankfurt" , "Hamburg" , 4> 
+< "Frankfurt" , "Hannover" , 5> 
+< "Frankfurt" , "Karlsruhe" , 2> 
+< "Frankfurt" , "Koeln" , 4> 
+< "Frankfurt" , "Leipzig" , 6> 
+< "Frankfurt" , "Mannheim" , 4> 
+< "Frankfurt" , "Muenchen" , 4> 
+< "Frankfurt" , "Norden" , 17> 
+< "Frankfurt" , "Nuernberg" , 4> 
+< "Frankfurt" , "Stuttgart" , 5> 
+< "Frankfurt" , "Ulm" , 3> 
+< "Hamburg" , "Hannover" , 4> 
+< "Hamburg" , "Karlsruhe" , 1> 
+< "Hamburg" , "Koeln" , 2> 
+< "Hamburg" , "Leipzig" , 3> 
+< "Hamburg" , "Mannheim" , 1> 
+< "Hamburg" , "Muenchen" , 2> 
+< "Hamburg" , "Nuernberg" , 2> 
+< "Hamburg" , "Stuttgart" , 2> 
+< "Hamburg" , "Ulm" , 2> 
+< "Hannover" , "Karlsruhe" , 1> 
+< "Hannover" , "Koeln" , 2> 
+< "Hannover" , "Leipzig" , 4> 
+< "Hannover" , "Mannheim" , 2> 
+< "Hannover" , "Muenchen" , 2> 
+< "Hannover" , "Nuernberg" , 2> 
+< "Hannover" , "Stuttgart" , 2> 
+< "Hannover" , "Ulm" , 2> 
+< "Karlsruhe" , "Koeln" , 1> 
+< "Karlsruhe" , "Leipzig" , 1> 
+< "Karlsruhe" , "Mannheim" , 1> 
+< "Karlsruhe" , "Muenchen" , 1> 
+< "Karlsruhe" , "Nuernberg" , 1> 
+< "Karlsruhe" , "Stuttgart" , 2> 
+< "Karlsruhe" , "Ulm" , 1> 
+< "Koeln" , "Leipzig" , 2> 
+< "Koeln" , "Mannheim" , 1> 
+< "Koeln" , "Muenchen" , 2> 
+< "Koeln" , "Nuernberg" , 2> 
+< "Koeln" , "Stuttgart" , 2> 
+< "Koeln" , "Ulm" , 2> 
+< "Leipzig" , "Mannheim" , 2> 
+< "Leipzig" , "Muenchen" , 3> 
+< "Leipzig" , "Nuernberg" , 2> 
+< "Leipzig" , "Stuttgart" , 3> 
+< "Leipzig" , "Ulm" , 2> 
+< "Mannheim" , "Muenchen" , 1> 
+< "Mannheim" , "Nuernberg" , 1> 
+< "Mannheim" , "Stuttgart" , 2> 
+< "Mannheim" , "Ulm" , 1> 
+< "Muenchen" , "Nuernberg" , 2> 
+< "Muenchen" , "Stuttgart" , 2> 
+< "Muenchen" , "Ulm" , 2> 
+< "Nuernberg" , "Stuttgart" , 2> 
+< "Nuernberg" , "Ulm" , 2> 
+< "Stuttgart" , "Ulm" , 3>  }; 

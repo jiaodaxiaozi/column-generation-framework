@@ -1,0 +1,497 @@
+  
+NWAVELENGTH =  64 ;
+
+
+NODESET = { 
+"Amsterdam"
+"Athens"
+"Barcelona"
+"Belgrade"
+"Berlin"
+"Bordeaux"
+"Brussels"
+"Budapest"
+"Copenhagen"
+"Dublin"
+"Frankfurt"
+"Glasgow"
+"Hamburg"
+"London"
+"Lyon"
+"Madrid"
+"Milan"
+"Munich"
+"Oslo"
+"Paris"
+"Prague"
+"Rome"
+"Stockholm"
+"Strasbourg"
+"Vienna"
+"Warsaw"
+"Zagreb"
+"Zurich"
+ };  
+EDGESET = { 
+< "L11" , "Amsterdam" , "Brussels" >
+< "L12" , "Brussels" , "Amsterdam" >
+< "L21" , "Amsterdam" , "Glasgow" >
+< "L22" , "Glasgow" , "Amsterdam" >
+< "L31" , "Amsterdam" , "Hamburg" >
+< "L32" , "Hamburg" , "Amsterdam" >
+< "L41" , "Amsterdam" , "London" >
+< "L42" , "London" , "Amsterdam" >
+< "L51" , "Athens" , "Belgrade" >
+< "L52" , "Belgrade" , "Athens" >
+< "L61" , "Athens" , "Rome" >
+< "L62" , "Rome" , "Athens" >
+< "L71" , "Barcelona" , "Lyon" >
+< "L72" , "Lyon" , "Barcelona" >
+< "L81" , "Barcelona" , "Madrid" >
+< "L82" , "Madrid" , "Barcelona" >
+< "L91" , "Belgrade" , "Budapest" >
+< "L92" , "Budapest" , "Belgrade" >
+< "L101" , "Belgrade" , "Zagreb" >
+< "L102" , "Zagreb" , "Belgrade" >
+< "L111" , "Berlin" , "Copenhagen" >
+< "L112" , "Copenhagen" , "Berlin" >
+< "L121" , "Berlin" , "Hamburg" >
+< "L122" , "Hamburg" , "Berlin" >
+< "L131" , "Berlin" , "Munich" >
+< "L132" , "Munich" , "Berlin" >
+< "L141" , "Berlin" , "Prague" >
+< "L142" , "Prague" , "Berlin" >
+< "L151" , "Berlin" , "Warsaw" >
+< "L152" , "Warsaw" , "Berlin" >
+< "L161" , "Bordeaux" , "Madrid" >
+< "L162" , "Madrid" , "Bordeaux" >
+< "L171" , "Bordeaux" , "Paris" >
+< "L172" , "Paris" , "Bordeaux" >
+< "L181" , "Brussels" , "Frankfurt" >
+< "L182" , "Frankfurt" , "Brussels" >
+< "L191" , "Brussels" , "Paris" >
+< "L192" , "Paris" , "Brussels" >
+< "L201" , "Budapest" , "Prague" >
+< "L202" , "Prague" , "Budapest" >
+< "L211" , "Budapest" , "Warsaw" >
+< "L212" , "Warsaw" , "Budapest" >
+< "L221" , "Copenhagen" , "Oslo" >
+< "L222" , "Oslo" , "Copenhagen" >
+< "L231" , "Dublin" , "Glasgow" >
+< "L232" , "Glasgow" , "Dublin" >
+< "L241" , "Dublin" , "London" >
+< "L242" , "London" , "Dublin" >
+< "L251" , "Frankfurt" , "Hamburg" >
+< "L252" , "Hamburg" , "Frankfurt" >
+< "L261" , "Frankfurt" , "Munich" >
+< "L262" , "Munich" , "Frankfurt" >
+< "L271" , "Frankfurt" , "Strasbourg" >
+< "L272" , "Strasbourg" , "Frankfurt" >
+< "L281" , "London" , "Paris" >
+< "L282" , "Paris" , "London" >
+< "L291" , "Lyon" , "Paris" >
+< "L292" , "Paris" , "Lyon" >
+< "L301" , "Milan" , "Munich" >
+< "L302" , "Munich" , "Milan" >
+< "L311" , "Milan" , "Rome" >
+< "L312" , "Rome" , "Milan" >
+< "L321" , "Milan" , "Zurich" >
+< "L322" , "Zurich" , "Milan" >
+< "L331" , "Munich" , "Vienna" >
+< "L332" , "Vienna" , "Munich" >
+< "L341" , "Oslo" , "Stockholm" >
+< "L342" , "Stockholm" , "Oslo" >
+< "L351" , "Paris" , "Strasbourg" >
+< "L352" , "Strasbourg" , "Paris" >
+< "L361" , "Prague" , "Vienna" >
+< "L362" , "Vienna" , "Prague" >
+< "L371" , "Rome" , "Zagreb" >
+< "L372" , "Zagreb" , "Rome" >
+< "L381" , "Stockholm" , "Warsaw" >
+< "L382" , "Warsaw" , "Stockholm" >
+< "L391" , "Zurich" , "Lyon" >
+< "L392" , "Lyon" , "Zurich" >
+< "L401" , "Strasbourg" , "Zurich" >
+< "L402" , "Zurich" , "Strasbourg" >
+< "L411" , "Vienna" , "Zagreb" >
+< "L412" , "Zagreb" , "Vienna" > };  
+
+DEMAND = { 
+< "Amsterdam" , "Athens" , 2> 
+< "Amsterdam" , "Barcelona" , 2> 
+< "Amsterdam" , "Belgrade" , 1> 
+< "Amsterdam" , "Berlin" , 4> 
+< "Amsterdam" , "Bordeaux" , 1> 
+< "Amsterdam" , "Brussels" , 4> 
+< "Amsterdam" , "Budapest" , 1> 
+< "Amsterdam" , "Copenhagen" , 2> 
+< "Amsterdam" , "Dublin" , 1> 
+< "Amsterdam" , "Frankfurt" , 4> 
+< "Amsterdam" , "Glasgow" , 6> 
+< "Amsterdam" , "Hamburg" , 6> 
+< "Amsterdam" , "London" , 8> 
+< "Amsterdam" , "Lyon" , 2> 
+< "Amsterdam" , "Madrid" , 2> 
+< "Amsterdam" , "Milan" , 4> 
+< "Amsterdam" , "Munich" , 3> 
+< "Amsterdam" , "Oslo" , 2> 
+< "Amsterdam" , "Paris" , 2> 
+< "Amsterdam" , "Prague" , 2> 
+< "Amsterdam" , "Rome" , 3> 
+< "Amsterdam" , "Stockholm" , 3> 
+< "Amsterdam" , "Strasbourg" , 2> 
+< "Amsterdam" , "Vienna" , 2> 
+< "Amsterdam" , "Warsaw" , 4> 
+< "Amsterdam" , "Zagreb" , 1> 
+< "Amsterdam" , "Zurich" , 2> 
+< "Athens" , "Barcelona" , 1> 
+< "Athens" , "Belgrade" , 1> 
+< "Athens" , "Berlin" , 1> 
+< "Athens" , "Bordeaux" , 1> 
+< "Athens" , "Brussels" , 1> 
+< "Athens" , "Budapest" , 1> 
+< "Athens" , "Copenhagen" , 1> 
+< "Athens" , "Dublin" , 1> 
+< "Athens" , "Frankfurt" , 2> 
+< "Athens" , "Glasgow" , 1> 
+< "Athens" , "Hamburg" , 1> 
+< "Athens" , "London" , 1> 
+< "Athens" , "Lyon" , 1> 
+< "Athens" , "Madrid" , 1> 
+< "Athens" , "Milan" , 1> 
+< "Athens" , "Munich" , 1> 
+< "Athens" , "Oslo" , 1> 
+< "Athens" , "Paris" , 1> 
+< "Athens" , "Prague" , 1> 
+< "Athens" , "Rome" , 1> 
+< "Athens" , "Stockholm" , 1> 
+< "Athens" , "Strasbourg" , 1> 
+< "Athens" , "Vienna" , 1> 
+< "Athens" , "Warsaw" , 1> 
+< "Athens" , "Zagreb" , 1> 
+< "Athens" , "Zurich" , 1> 
+< "Barcelona" , "Belgrade" , 1> 
+< "Barcelona" , "Berlin" , 1> 
+< "Barcelona" , "Bordeaux" , 1> 
+< "Barcelona" , "Brussels" , 1> 
+< "Barcelona" , "Budapest" , 1> 
+< "Barcelona" , "Copenhagen" , 1> 
+< "Barcelona" , "Dublin" , 1> 
+< "Barcelona" , "Frankfurt" , 4> 
+< "Barcelona" , "Glasgow" , 1> 
+< "Barcelona" , "Hamburg" , 1> 
+< "Barcelona" , "London" , 3> 
+< "Barcelona" , "Lyon" , 1> 
+< "Barcelona" , "Madrid" , 2> 
+< "Barcelona" , "Milan" , 2> 
+< "Barcelona" , "Munich" , 1> 
+< "Barcelona" , "Oslo" , 1> 
+< "Barcelona" , "Paris" , 1> 
+< "Barcelona" , "Prague" , 1> 
+< "Barcelona" , "Rome" , 1> 
+< "Barcelona" , "Stockholm" , 1> 
+< "Barcelona" , "Strasbourg" , 1> 
+< "Barcelona" , "Vienna" , 1> 
+< "Barcelona" , "Warsaw" , 1> 
+< "Barcelona" , "Zagreb" , 1> 
+< "Barcelona" , "Zurich" , 1> 
+< "Belgrade" , "Berlin" , 1> 
+< "Belgrade" , "Bordeaux" , 1> 
+< "Belgrade" , "Brussels" , 1> 
+< "Belgrade" , "Budapest" , 1> 
+< "Belgrade" , "Copenhagen" , 1> 
+< "Belgrade" , "Dublin" , 1> 
+< "Belgrade" , "Frankfurt" , 1> 
+< "Belgrade" , "Glasgow" , 1> 
+< "Belgrade" , "Hamburg" , 1> 
+< "Belgrade" , "London" , 1> 
+< "Belgrade" , "Lyon" , 1> 
+< "Belgrade" , "Madrid" , 1> 
+< "Belgrade" , "Milan" , 1> 
+< "Belgrade" , "Munich" , 1> 
+< "Belgrade" , "Oslo" , 1> 
+< "Belgrade" , "Paris" , 1> 
+< "Belgrade" , "Prague" , 1> 
+< "Belgrade" , "Rome" , 1> 
+< "Belgrade" , "Stockholm" , 1> 
+< "Belgrade" , "Strasbourg" , 1> 
+< "Belgrade" , "Vienna" , 1> 
+< "Belgrade" , "Warsaw" , 1> 
+< "Belgrade" , "Zagreb" , 1> 
+< "Belgrade" , "Zurich" , 1> 
+< "Berlin" , "Bordeaux" , 1> 
+< "Berlin" , "Brussels" , 1> 
+< "Berlin" , "Budapest" , 1> 
+< "Berlin" , "Copenhagen" , 1> 
+< "Berlin" , "Dublin" , 1> 
+< "Berlin" , "Frankfurt" , 6> 
+< "Berlin" , "Glasgow" , 2> 
+< "Berlin" , "Hamburg" , 3> 
+< "Berlin" , "London" , 3> 
+< "Berlin" , "Lyon" , 1> 
+< "Berlin" , "Madrid" , 1> 
+< "Berlin" , "Milan" , 2> 
+< "Berlin" , "Munich" , 2> 
+< "Berlin" , "Oslo" , 1> 
+< "Berlin" , "Paris" , 1> 
+< "Berlin" , "Prague" , 2> 
+< "Berlin" , "Rome" , 1> 
+< "Berlin" , "Stockholm" , 1> 
+< "Berlin" , "Strasbourg" , 1> 
+< "Berlin" , "Vienna" , 1> 
+< "Berlin" , "Warsaw" , 3> 
+< "Berlin" , "Zagreb" , 1> 
+< "Berlin" , "Zurich" , 1> 
+< "Bordeaux" , "Brussels" , 1> 
+< "Bordeaux" , "Budapest" , 1> 
+< "Bordeaux" , "Copenhagen" , 1> 
+< "Bordeaux" , "Dublin" , 1> 
+< "Bordeaux" , "Frankfurt" , 2> 
+< "Bordeaux" , "Glasgow" , 1> 
+< "Bordeaux" , "Hamburg" , 1> 
+< "Bordeaux" , "London" , 4> 
+< "Bordeaux" , "Lyon" , 1> 
+< "Bordeaux" , "Madrid" , 1> 
+< "Bordeaux" , "Milan" , 1> 
+< "Bordeaux" , "Munich" , 1> 
+< "Bordeaux" , "Oslo" , 1> 
+< "Bordeaux" , "Paris" , 1> 
+< "Bordeaux" , "Prague" , 1> 
+< "Bordeaux" , "Rome" , 1> 
+< "Bordeaux" , "Stockholm" , 1> 
+< "Bordeaux" , "Strasbourg" , 1> 
+< "Bordeaux" , "Vienna" , 1> 
+< "Bordeaux" , "Warsaw" , 1> 
+< "Bordeaux" , "Zagreb" , 1> 
+< "Bordeaux" , "Zurich" , 1> 
+< "Brussels" , "Budapest" , 1> 
+< "Brussels" , "Copenhagen" , 1> 
+< "Brussels" , "Dublin" , 1> 
+< "Brussels" , "Frankfurt" , 2> 
+< "Brussels" , "Glasgow" , 1> 
+< "Brussels" , "Hamburg" , 1> 
+< "Brussels" , "London" , 2> 
+< "Brussels" , "Lyon" , 1> 
+< "Brussels" , "Madrid" , 1> 
+< "Brussels" , "Milan" , 1> 
+< "Brussels" , "Munich" , 1> 
+< "Brussels" , "Oslo" , 1> 
+< "Brussels" , "Paris" , 1> 
+< "Brussels" , "Prague" , 1> 
+< "Brussels" , "Rome" , 1> 
+< "Brussels" , "Stockholm" , 1> 
+< "Brussels" , "Strasbourg" , 1> 
+< "Brussels" , "Vienna" , 1> 
+< "Brussels" , "Warsaw" , 1> 
+< "Brussels" , "Zagreb" , 1> 
+< "Brussels" , "Zurich" , 1> 
+< "Budapest" , "Copenhagen" , 1> 
+< "Budapest" , "Dublin" , 1> 
+< "Budapest" , "Frankfurt" , 2> 
+< "Budapest" , "Glasgow" , 1> 
+< "Budapest" , "Hamburg" , 1> 
+< "Budapest" , "London" , 1> 
+< "Budapest" , "Lyon" , 1> 
+< "Budapest" , "Madrid" , 1> 
+< "Budapest" , "Milan" , 1> 
+< "Budapest" , "Munich" , 1> 
+< "Budapest" , "Oslo" , 1> 
+< "Budapest" , "Paris" , 1> 
+< "Budapest" , "Prague" , 1> 
+< "Budapest" , "Rome" , 1> 
+< "Budapest" , "Stockholm" , 1> 
+< "Budapest" , "Strasbourg" , 1> 
+< "Budapest" , "Vienna" , 1> 
+< "Budapest" , "Warsaw" , 1> 
+< "Budapest" , "Zagreb" , 1> 
+< "Budapest" , "Zurich" , 1> 
+< "Copenhagen" , "Dublin" , 1> 
+< "Copenhagen" , "Frankfurt" , 1> 
+< "Copenhagen" , "Glasgow" , 1> 
+< "Copenhagen" , "Hamburg" , 1> 
+< "Copenhagen" , "London" , 1> 
+< "Copenhagen" , "Lyon" , 1> 
+< "Copenhagen" , "Madrid" , 1> 
+< "Copenhagen" , "Milan" , 1> 
+< "Copenhagen" , "Munich" , 1> 
+< "Copenhagen" , "Oslo" , 1> 
+< "Copenhagen" , "Paris" , 1> 
+< "Copenhagen" , "Prague" , 1> 
+< "Copenhagen" , "Rome" , 1> 
+< "Copenhagen" , "Stockholm" , 1> 
+< "Copenhagen" , "Strasbourg" , 1> 
+< "Copenhagen" , "Vienna" , 1> 
+< "Copenhagen" , "Warsaw" , 1> 
+< "Copenhagen" , "Zagreb" , 1> 
+< "Copenhagen" , "Zurich" , 1> 
+< "Dublin" , "Frankfurt" , 1> 
+< "Dublin" , "Glasgow" , 1> 
+< "Dublin" , "Hamburg" , 1> 
+< "Dublin" , "London" , 2> 
+< "Dublin" , "Lyon" , 1> 
+< "Dublin" , "Madrid" , 1> 
+< "Dublin" , "Milan" , 1> 
+< "Dublin" , "Munich" , 1> 
+< "Dublin" , "Oslo" , 1> 
+< "Dublin" , "Paris" , 1> 
+< "Dublin" , "Prague" , 1> 
+< "Dublin" , "Rome" , 1> 
+< "Dublin" , "Stockholm" , 1> 
+< "Dublin" , "Strasbourg" , 1> 
+< "Dublin" , "Vienna" , 1> 
+< "Dublin" , "Warsaw" , 1> 
+< "Dublin" , "Zagreb" , 1> 
+< "Dublin" , "Zurich" , 1> 
+< "Frankfurt" , "Glasgow" , 3> 
+< "Frankfurt" , "Hamburg" , 4> 
+< "Frankfurt" , "London" , 4> 
+< "Frankfurt" , "Lyon" , 4> 
+< "Frankfurt" , "Madrid" , 2> 
+< "Frankfurt" , "Milan" , 6> 
+< "Frankfurt" , "Munich" , 7> 
+< "Frankfurt" , "Oslo" , 1> 
+< "Frankfurt" , "Paris" , 2> 
+< "Frankfurt" , "Prague" , 3> 
+< "Frankfurt" , "Rome" , 6> 
+< "Frankfurt" , "Stockholm" , 2> 
+< "Frankfurt" , "Strasbourg" , 5> 
+< "Frankfurt" , "Vienna" , 2> 
+< "Frankfurt" , "Warsaw" , 7> 
+< "Frankfurt" , "Zagreb" , 1> 
+< "Frankfurt" , "Zurich" , 3> 
+< "Glasgow" , "Hamburg" , 2> 
+< "Glasgow" , "London" , 11> 
+< "Glasgow" , "Lyon" , 1> 
+< "Glasgow" , "Madrid" , 1> 
+< "Glasgow" , "Milan" , 2> 
+< "Glasgow" , "Munich" , 2> 
+< "Glasgow" , "Oslo" , 1> 
+< "Glasgow" , "Paris" , 2> 
+< "Glasgow" , "Prague" , 1> 
+< "Glasgow" , "Rome" , 2> 
+< "Glasgow" , "Stockholm" , 1> 
+< "Glasgow" , "Strasbourg" , 1> 
+< "Glasgow" , "Vienna" , 1> 
+< "Glasgow" , "Warsaw" , 2> 
+< "Glasgow" , "Zagreb" , 1> 
+< "Glasgow" , "Zurich" , 1> 
+< "Hamburg" , "London" , 3> 
+< "Hamburg" , "Lyon" , 1> 
+< "Hamburg" , "Madrid" , 1> 
+< "Hamburg" , "Milan" , 2> 
+< "Hamburg" , "Munich" , 2> 
+< "Hamburg" , "Oslo" , 1> 
+< "Hamburg" , "Paris" , 1> 
+< "Hamburg" , "Prague" , 1> 
+< "Hamburg" , "Rome" , 1> 
+< "Hamburg" , "Stockholm" , 1> 
+< "Hamburg" , "Strasbourg" , 1> 
+< "Hamburg" , "Vienna" , 1> 
+< "Hamburg" , "Warsaw" , 2> 
+< "Hamburg" , "Zagreb" , 1> 
+< "Hamburg" , "Zurich" , 1> 
+< "London" , "Lyon" , 2> 
+< "London" , "Madrid" , 4> 
+< "London" , "Milan" , 3> 
+< "London" , "Munich" , 3> 
+< "London" , "Oslo" , 1> 
+< "London" , "Paris" , 5> 
+< "London" , "Prague" , 2> 
+< "London" , "Rome" , 2> 
+< "London" , "Stockholm" , 2> 
+< "London" , "Strasbourg" , 2> 
+< "London" , "Vienna" , 1> 
+< "London" , "Warsaw" , 3> 
+< "London" , "Zagreb" , 1> 
+< "London" , "Zurich" , 2> 
+< "Lyon" , "Madrid" , 1> 
+< "Lyon" , "Milan" , 2> 
+< "Lyon" , "Munich" , 1> 
+< "Lyon" , "Oslo" , 1> 
+< "Lyon" , "Paris" , 1> 
+< "Lyon" , "Prague" , 1> 
+< "Lyon" , "Rome" , 1> 
+< "Lyon" , "Stockholm" , 1> 
+< "Lyon" , "Strasbourg" , 1> 
+< "Lyon" , "Vienna" , 1> 
+< "Lyon" , "Warsaw" , 1> 
+< "Lyon" , "Zagreb" , 1> 
+< "Lyon" , "Zurich" , 1> 
+< "Madrid" , "Milan" , 1> 
+< "Madrid" , "Munich" , 1> 
+< "Madrid" , "Oslo" , 1> 
+< "Madrid" , "Paris" , 1> 
+< "Madrid" , "Prague" , 1> 
+< "Madrid" , "Rome" , 1> 
+< "Madrid" , "Stockholm" , 1> 
+< "Madrid" , "Strasbourg" , 1> 
+< "Madrid" , "Vienna" , 1> 
+< "Madrid" , "Warsaw" , 1> 
+< "Madrid" , "Zagreb" , 1> 
+< "Madrid" , "Zurich" , 1> 
+< "Milan" , "Munich" , 3> 
+< "Milan" , "Oslo" , 1> 
+< "Milan" , "Paris" , 1> 
+< "Milan" , "Prague" , 1> 
+< "Milan" , "Rome" , 2> 
+< "Milan" , "Stockholm" , 1> 
+< "Milan" , "Strasbourg" , 2> 
+< "Milan" , "Vienna" , 1> 
+< "Milan" , "Warsaw" , 2> 
+< "Milan" , "Zagreb" , 1> 
+< "Milan" , "Zurich" , 2> 
+< "Munich" , "Oslo" , 1> 
+< "Munich" , "Paris" , 1> 
+< "Munich" , "Prague" , 2> 
+< "Munich" , "Rome" , 2> 
+< "Munich" , "Stockholm" , 1> 
+< "Munich" , "Strasbourg" , 2> 
+< "Munich" , "Vienna" , 1> 
+< "Munich" , "Warsaw" , 2> 
+< "Munich" , "Zagreb" , 1> 
+< "Munich" , "Zurich" , 2> 
+< "Oslo" , "Paris" , 1> 
+< "Oslo" , "Prague" , 1> 
+< "Oslo" , "Rome" , 1> 
+< "Oslo" , "Stockholm" , 1> 
+< "Oslo" , "Strasbourg" , 1> 
+< "Oslo" , "Vienna" , 1> 
+< "Oslo" , "Warsaw" , 1> 
+< "Oslo" , "Zagreb" , 1> 
+< "Oslo" , "Zurich" , 1> 
+< "Paris" , "Prague" , 1> 
+< "Paris" , "Rome" , 1> 
+< "Paris" , "Stockholm" , 1> 
+< "Paris" , "Strasbourg" , 1> 
+< "Paris" , "Vienna" , 1> 
+< "Paris" , "Warsaw" , 1> 
+< "Paris" , "Zagreb" , 1> 
+< "Paris" , "Zurich" , 1> 
+< "Prague" , "Rome" , 1> 
+< "Prague" , "Stockholm" , 1> 
+< "Prague" , "Strasbourg" , 1> 
+< "Prague" , "Vienna" , 1> 
+< "Prague" , "Warsaw" , 2> 
+< "Prague" , "Zagreb" , 1> 
+< "Prague" , "Zurich" , 1> 
+< "Rome" , "Stockholm" , 1> 
+< "Rome" , "Strasbourg" , 1> 
+< "Rome" , "Vienna" , 1> 
+< "Rome" , "Warsaw" , 2> 
+< "Rome" , "Zagreb" , 1> 
+< "Rome" , "Zurich" , 1> 
+< "Stockholm" , "Strasbourg" , 1> 
+< "Stockholm" , "Vienna" , 1> 
+< "Stockholm" , "Warsaw" , 1> 
+< "Stockholm" , "Zagreb" , 1> 
+< "Stockholm" , "Zurich" , 1> 
+< "Strasbourg" , "Vienna" , 1> 
+< "Strasbourg" , "Warsaw" , 1> 
+< "Strasbourg" , "Zagreb" , 1> 
+< "Strasbourg" , "Zurich" , 2> 
+< "Vienna" , "Warsaw" , 1> 
+< "Vienna" , "Zagreb" , 1> 
+< "Vienna" , "Zurich" , 1> 
+< "Warsaw" , "Zagreb" , 1> 
+< "Warsaw" , "Zurich" , 1> 
+< "Zagreb" , "Zurich" , 1>  }; 

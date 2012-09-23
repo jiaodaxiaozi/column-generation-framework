@@ -114,52 +114,109 @@ float   number_regen [ p in 1..PERIOD ] = sum( v in NODESET ) x[ p ][ v ] ;
 	
 execute CollectDualValues {
 
+
             // copy dual values
         var v, p ,  b , vi , vj ,tr;
-
+    writeln( "Master Objective: " , cplex.getObjValue(), " Dummy Multi: " , dummy_multi 
+            , " Dummy Wavelength: " , dummy_wavelength 
+            , " Provide " , totalprovide , " NCALL : " , NMASTERCALL[ 0 ] , " NSINGLE : " , WAVELENGTH_CONFIGINDEX.size ,  " NMULTI : " , MULTIHOP_CONFIGSET.size  );
+ 
 // ======================================================== RELAX MASTER ================================================================
 if ( isModel("RELAXMASTER" )) {
 
 
     NMASTERCALL[ 0 ]  = NMASTERCALL[ 0 ] + 1 ;
-
-    //output_value("STEP" ,  NMASTERCALL[0] );
-    output_value( "MO" , cplex.getObjValue());
-    output_value( "NC" , cplex.getNcols());
-
     // keep ratio nbasic / notbasic
 
-    var ratiobasic = 0.70 ;
+    var ratiobasic = 1.0 ;
     var nbasic = 0 ;
     var nnonbasic = 0 ;
 
-    var highestRS = 0.0 ;
-    var removeIndex = 0 ;
+
+    function reduceObject( _period , _index , _reduceCost , _ismulti ){
+
+	this.period = _period ;
+	this.index  = _index  ;
+	this.reduceCost = _reduceCost ;
+	this.ismulti    = _ismulti ;
+
+    } 
+
+    var sortVar = new Array();
+   
 
     for ( p = 1 ; p <= PERIOD ; p ++ )
-    for ( ms in MULTIHOP_CONFIGSET  ){
+    for ( var ms in MULTIHOP_CONFIGSET  ){
+
         if ( y[ p ][ ms ].reducedCost == 0.0 ) nbasic +=1 ; else nnonbasic +=1 ;
-        if ( y[ p ][ ms ].reducedCost > highestRS ) {
-            highestRS = y[ p ][ ms ].reducedCost ; 
-            removeIndex = Opl.ord( MULTIHOP_CONFIGSET , ms ) ;
-        } 
+
+	sortVar[ sortVar.length ] = new reduceObject( p , ms.index , y[ p ][ ms ].reducedCost , 1 );
     }
  
-    writeln( "Basis Ratio : " , nnonbasic / nbasic , " Highest RS : " , highestRS); 
-    /*if ( nnonbasic / nbasic >= ratiobasic )
-        MULTIHOP_CONFIGSET.remove(  Opl.item( MULTIHOP_CONFIGSET , removeIndex ) );
-     */ 
+    for ( ms in WAVELENGTH_CONFIGINDEX ){
 
-    output_value("RS" , highestRS );
-    output_value("RATIO" , nnonbasic / nbasic );
+        if ( z[ ms ].reducedCost == 0.0 ) nbasic +=1 ; else nnonbasic +=1 ;
 
+	sortVar[ sortVar.length ] = new reduceObject( 0 , ms.index , z[ ms ].reducedCost , 0 );
+	
+    }
+
+    // sort var
+
+    for ( var i1 = 0 ; i1 < ( sortVar.length - 1 ) ; i1 ++ )
+    for ( var i2 = i1 + 1  ; i2 <  sortVar.length  ; i2 ++ )
+	if (  sortVar[ i1 ].reduceCost > sortVar[ i2 ].reduceCost ) {
+
+		// swap value 
+		var tmp ;
+		tmp = sortVar[i1] ; sortVar[i1] = sortVar[ i2 ] ; sortVar[ i2 ] = tmp ;
+		
+	}
+ 
+
+    writeln( "Basis Ratio : " , nnonbasic / nbasic , " Highest RS : " , sortVar[ sortVar.length - 1 ].reduceCost , " Removed " , NCOLDEL[0] ); 
+	
     if (FINISH_RELAX_FLAG.size == 0 ){
            
            setNextModel("FINALMASTER"); 
-           RELAXOBJ[0] = cplex.getObjValue();
+       	   RELAXOBJ[0] = cplex.getObjValue();
+
+	   // remove nonbasic column
+    	   if ( nnonbasic > 0 && nbasic > 0 &&  ( (nnonbasic / nbasic) > ratiobasic ) )
+   	   {
+
+
+		for ( var i = nbasic * ( ratiobasic + 1) ; i < sortVar.length ;  i ++ ){
+
+		var delObj = sortVar[ i ] ;
+		var removeIndex = delObj.index ;
+
+    		NCOLDEL[ 0 ] = NCOLDEL[ 0 ] + 1 ;
+		if ( delObj.ismulti == 0 ){
+
+			filterCollection( WAVELENGTH_CONFIGINDEX , "index" , removeIndex , WAVELENGTH_CONFIGINDEX_TMP );
+			filterCollection( WAVELENGTH_CONFIGSET , "index" , removeIndex , WAVELENGTH_CONFIGSET_TMP );
+			filterCollection( WAVELENGTH_CONFIGSTAT , "index" , removeIndex , WAVELENGTH_CONFIGSTAT_TMP );
+		}
+		else{
+			filterCollection( MULTIHOP_CONFIGSET , "index" , removeIndex , MULTIHOP_CONFIGSET_TMP );
+			filterCollection( MULTIHOP_LINKSET , "index" , removeIndex , MULTIHOP_LINKSET_TMP );
+			filterCollection( MULTIHOP_INTERSET , "index" , removeIndex , MULTIHOP_INTERSET_TMP );
+		}
+
+
+		FINISH_RELAX_FLAG.add( 1 );
+		setNextModel("RELAXMASTER"); 
+
+
+		}
+
+    	}  
      } 
     else {
     
+        setNextModel("SINGLEPRICE");  
+        FINISH_RELAX_FLAG.remove( 1 );     
 
         // copy dual slot values
         for ( v in NODESET )
@@ -196,39 +253,38 @@ if ( isModel("RELAXMASTER" )) {
                             CAL_MULTISET.add( vi.id , vj.id , p , b);
 
                     }
+	}
+    
 
-       // call single price           
-        setNextModel("SINGLEPRICE");  
-        FINISH_RELAX_FLAG.remove( 1 );     
-     } 
 }
 
 
  // =============================== FINAL MASTER ================================================== 
  if ( isModel("FINALMASTER"))
  {
-            output_section("SOLUTION");
+	    lineSep("FINAL","-");
             var intobj = cplex.getObjValue();
 
-            output_value("RELAX-OBJ" ,  RELAXOBJ[0] );
-            output_value("INT-OBJ" , intobj );
-            output_value("GAP" , GAP( RELAXOBJ[0], intobj ));
-            output_value("WAVELENGTH" , number_wavelength );
+            writeln("RELAX-OBJ : " ,  RELAXOBJ[0] );
+            writeln("INT-OBJ: " , intobj );
+            writeln("GAP : " , GAP( RELAXOBJ[0], intobj ));
+            writeln("WAVELENGTH : " , number_wavelength );
+	    writeln("NCOLDEL : " , NCOLDEL[ 0 ] ) ;
 
             for ( p = 1 ; p <= PERIOD ; p ++ )
-                output_value( "NREGEN-PERIOD-" + p + ":" , number_regen[ p ] );    
+                writeln( "NREGEN-PERIOD-" + p + ":" , number_regen[ p ] );    
 
 
             for ( b in BITRATE ){
-                output_value("COST-BY-RATE-" + b , costbyrate[ b ] );
-                output_value("COUNT-BY-RATE-" + b , countbyrate[ b ] );
+                writeln("COST-BY-RATE-" + b + "=" , costbyrate[ b ] );
+                writeln("COUNT-BY-RATE-" + b + "=", countbyrate[ b ] );
             }
 
             for ( b in BITRATE )
             for ( tr in TRSET ) {
 
-                output_value("COST-2D-RATE-" + b + "-TR-" + tr , cost2d[ b ][ tr ] );
-                output_value("COUNT-2D-RATE-" + b + "-TR-" + tr , count2d[ b ][ tr ] );
+                writeln("COST-2D-RATE-" + b + "-TR-" + tr + "=" , cost2d[ b ][ tr ] );
+                writeln("COUNT-2D-RATE-" + b + "-TR-" + tr + "=", count2d[ b ][ tr ] );
  
             }    
 
@@ -237,14 +293,9 @@ if ( isModel("RELAXMASTER" )) {
      };    
 }
 
-execute {
 
-    writeln( "Master Objective: " , cplex.getObjValue(), " Dummy Multi: " , dummy_multi 
-            , " Dummy Wavelength: " , dummy_wavelength 
-            , " Provide " , totalprovide , " NCALL : " , NMASTERCALL[ 0 ] , " NSINGLE : " , WAVELENGTH_CONFIGINDEX.size ,  " NMULTI : " , MULTIHOP_CONFIGSET.size  );
-    
+   
     
 
-    }
 
 
