@@ -128,6 +128,7 @@ if ( isModel("RELAXMASTER" )) {
     NMASTERCALL[ 0 ]  = NMASTERCALL[ 0 ] + 1 ;
     // keep ratio nbasic / notbasic
 
+	var ratiowarn  = 2.0 ;
     var ratiobasic = 1.0 ;
     var nbasic = 0 ;
     var nnonbasic = 0 ;
@@ -174,44 +175,50 @@ if ( isModel("RELAXMASTER" )) {
 	}
  
 
-    writeln( "Basis Ratio : " , nnonbasic / nbasic , " Highest RS : " , sortVar[ sortVar.length - 1 ].reduceCost , " Removed " , NCOLDEL[0] ); 
-	
+    writeln( "Ratio : " , nnonbasic / nbasic , " Highest RS : " , sortVar[ sortVar.length - 1 ].reduceCost , " Removed " , NCOLDEL[0] ); 
+
+   // remove nonbasic column
+   if ( nnonbasic > 0 && nbasic > 0 &&  ( (nnonbasic / nbasic) > ratiowarn ) )
+   	   {
+
+
+			for ( var i = nbasic * ( ratiobasic + 1) ; i < sortVar.length ;  i ++ ){
+
+				var delObj = sortVar[ i ] ;
+				var removeIndex = delObj.index ;
+
+				NCOLDEL[ 0 ] = NCOLDEL[ 0 ] + 1 ;
+				
+				if ( delObj.ismulti == 0 ){
+
+					filterCollection( WAVELENGTH_CONFIGINDEX , "index" , removeIndex , WAVELENGTH_CONFIGINDEX_TMP );
+					filterCollection( WAVELENGTH_CONFIGSET , "index" , removeIndex , WAVELENGTH_CONFIGSET_TMP );
+					filterCollection( WAVELENGTH_CONFIGSTAT , "index" , removeIndex , WAVELENGTH_CONFIGSTAT_TMP );
+				}
+				
+				else{
+					
+					filterCollection( MULTIHOP_CONFIGSET , "index" , removeIndex , MULTIHOP_CONFIGSET_TMP );
+					filterCollection( MULTIHOP_LINKSET , "index" , removeIndex , MULTIHOP_LINKSET_TMP );
+					filterCollection( MULTIHOP_INTERSET , "index" , removeIndex , MULTIHOP_INTERSET_TMP );
+
+				}
+
+
+				FINISH_RELAX_FLAG.add( 1 );
+				setNextModel("RELAXMASTER"); 
+
+
+			}
+
+   	} else	
+
     if (FINISH_RELAX_FLAG.size == 0 ){
            
            setNextModel("FINALMASTER"); 
        	   RELAXOBJ[0] = cplex.getObjValue();
 
-	   // remove nonbasic column
-    	   if ( nnonbasic > 0 && nbasic > 0 &&  ( (nnonbasic / nbasic) > ratiobasic ) )
-   	   {
-
-
-		for ( var i = nbasic * ( ratiobasic + 1) ; i < sortVar.length ;  i ++ ){
-
-		var delObj = sortVar[ i ] ;
-		var removeIndex = delObj.index ;
-
-    		NCOLDEL[ 0 ] = NCOLDEL[ 0 ] + 1 ;
-		if ( delObj.ismulti == 0 ){
-
-			filterCollection( WAVELENGTH_CONFIGINDEX , "index" , removeIndex , WAVELENGTH_CONFIGINDEX_TMP );
-			filterCollection( WAVELENGTH_CONFIGSET , "index" , removeIndex , WAVELENGTH_CONFIGSET_TMP );
-			filterCollection( WAVELENGTH_CONFIGSTAT , "index" , removeIndex , WAVELENGTH_CONFIGSTAT_TMP );
-		}
-		else{
-			filterCollection( MULTIHOP_CONFIGSET , "index" , removeIndex , MULTIHOP_CONFIGSET_TMP );
-			filterCollection( MULTIHOP_LINKSET , "index" , removeIndex , MULTIHOP_LINKSET_TMP );
-			filterCollection( MULTIHOP_INTERSET , "index" , removeIndex , MULTIHOP_INTERSET_TMP );
-		}
-
-
-		FINISH_RELAX_FLAG.add( 1 );
-		setNextModel("RELAXMASTER"); 
-
-
-		}
-
-    	}  
+ 
      } 
     else {
     

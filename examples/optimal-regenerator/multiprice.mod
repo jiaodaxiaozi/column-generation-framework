@@ -75,7 +75,7 @@ subject to {
 
 	}
 
- //   sum ( v in NODESET ) inte[ v ] <= 2 ;	  
+   sum ( v in NODESET ) inte[ v ] <= 2 ;	  
   
 
 } 
@@ -88,7 +88,7 @@ subject to {
 
 execute {
 	
-	setNextModel("RELAXMASTER");
+	//setNextModel("RELAXMASTER");
 
 	writeln("FIND AUGMENTED MULTIHOP FROM " + SRC +  "->" + DST + " IN PERIOD " + period + " WITH BITRATE " + bitrate);
 	writeln("Price Objective : " , cplex.getObjValue()  );  
