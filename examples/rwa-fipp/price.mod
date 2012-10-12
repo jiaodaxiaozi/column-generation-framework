@@ -3,7 +3,7 @@ include "params.mod" ;
 
 dvar float+ cost ;
 dvar float+ p[ DEMAND ]  ;
-dvar float+ pp[ DEMAND ] in 0..2 ;// provide of protect
+dvar float+ pp[ DEMAND ] in 0..1 ;// provide of protect
 dvar int+ x[ EDGESET ] in 0..1;
 dvar int+ y[ DEMAND  ][ EDGESET ] in 0..1;
 
@@ -45,7 +45,7 @@ subject to {
 	// protect circle
 	forall ( e in EDGESET  ) {
 
-			sum( d in DEMAND )  protect[d][e] <= z[e] ;
+			max( d in DEMAND )  protect[d][e] == z[e] ;
 	}
 
 	// cost
@@ -64,26 +64,28 @@ subject to {
 
 
 		// if p[d] = 0 then pp[d] = 0
-		pp[ d ] <= 2 * p[ d ];
-		// if p[d] > 0 then pp[d] >= 1
-		pp[ d ] * d.nrequest >= p[d] ;
+        forall( e in EDGESET : e.src == d.src )
+            pp[ d ] >= y[ d ][ e ];
 	
 		forall ( e in EDGESET )
-			( protect[d][e] + y[d][e] ) <= 1 + abs(pp[d] - 1 );	
+			( protect[d][e] + y[d][e] ) <= 1 ;	
 
 	}
 
 	
 
-	// cyccle
+	// cycles
 
-	forall ( v in NODESET )
+	forall ( v in NODESET ){
 		sum( e in EDGESET : e.src == v ) z[e] == sum ( e in EDGESET : e.dst == v ) z[e] ;
+		sum( e in EDGESET : e.src == v || e.dst == v ) z[e] <= 2 ;
+    }
 
 	
 
 }
 
+int colorEdge[ EDGESET ] ;
 execute {
 
 	setNextModel("RELAXMASTER");
@@ -91,17 +93,112 @@ execute {
 
 	CONFIGSET.addOnly( cost.solutionValue, p.solutionValue );
 
-	// write out the result 
+    var d , e , listE ;
 
-	/*
-	for ( var d in DEMAND )
+
+    function drawColor( lstE , color ){
+        
+        for ( var it = 0; it < lstE.length ; it++ )
+        if ( colorEdge[ lstE[ it ] ] == color ){
+
+            // if no edge with color connect to this edge
+            var ncolor = 0;
+            var nextEdge = null ; 
+            for ( var it1 = 0 ; it1 < lstE.length ; it1 ++ )
+            if ( lstE[ it1 ].src == lstE[ it ].dst )
+            { 
+              if (colorEdge[ lstE[ it1 ] ] == color)        ncolor ++ ;
+              if (colorEdge[ lstE[ it1 ] ] == 0 )   nextEdge = lstE[ it1 ] ;      
+           
+            }
+           
+            if ( ncolor == 0 && nextEdge != null ){
+
+                colorEdge[ nextEdge ] = color ;
+                drawColor( lstE , color ) ;
+                break ;
+            } 
+        } 
+
+    }
+
+    function writePath( color , currentEdge ) {
+    
+        write( currentEdge.src , "->" );
+        colorEdge[ currentEdge ] = 0 ;
+        var nt = 0 ;
+        for ( var ee in EDGESET )
+        if ( colorEdge[ ee ] == color && ee.src == currentEdge.dst ){
+            writePath( color , ee );
+            nt ++ ;
+        } 
+        if ( nt == 0 ) write( currentEdge.dst );
+    }
+
+    function writeFlow( dem , lstE ){
+
+        // clear colorEdge
+        for ( var ee in EDGESET ) colorEdge[ ee ] = 0 ;
+        // draw source edge
+        var c = 1;
+        for ( var it = 0; it < lstE.length ; it++ )
+        if ( lstE[ it ].src == dem.src )  
+            { colorEdge[ lstE[ it ] ] = c; drawColor( lstE , c ); c++; }
+
+        for ( var cc = 1 ; cc < c ; cc ++ ){
+        
+            for ( ee in EDGESET )
+            if ( colorEdge[ ee ] == cc && ee.src == dem.src ) {
+                write("Path " , cc , ":" );
+                writePath( cc  , ee ) ;
+                writeln();
+            }            
+        }
+    };
+
+
+	// write out the working part 
+	for ( d in DEMAND )
 	if ( p[ d ].solutionValue > 0 ) 
 	{
-		writeln("Demand " , d , " = " , p[ d ].solutionValue );
-		for ( var e in EDGESET )
+		writeln("DEMAND " , d , " = " , p[ d ].solutionValue );
+        writeln("--- working ---");
+        // working path
+        listE = new Array();
+		for ( e in EDGESET )
 		if ( y[ d ][ e ].solutionValue > 0 ) 
-			write( e , " " );
-		writeln();
+            listE[ listE.length ] = e;
+        writeFlow( d,  listE );
 
-	}*/	
+        writeln("--- protecting ---");
+        // protecting path
+        listE = new Array();
+        for( e in EDGESET )
+        if ( protect[ d ][ e ].solutionValue > 0 ) 
+            listE[ listE.length ] = e;
+        
+        writeFlow( d ,listE );
+ 
+	}	
+
+    // writing cycles
+    for ( e in EDGESET )
+        colorEdge[ e ] = 0 ;
+
+    function visit( ed ) {
+
+        colorEdge[ ed ] = 1 ;
+        write( ed.src , "->");
+        var ncount = 0 ;
+        for ( var ee in EDGESET )
+        if ( z[ ee ].solutionValue > 0 && colorEdge[ ee ] == 0 && ed.dst == ee.src ){
+        
+            visit( ee ); 
+            ncount ++ ;
+        }
+        if ( ncount ==0 ) write( ed.dst );
+    }
+    writeln("CYCLES : ");
+    for ( e in EDGESET )
+    if ( z[ e ].solutionValue > 0.5 && colorEdge[ e ] == 0 )     { write("cycle ="); visit( e ); writeln(); }
 }
