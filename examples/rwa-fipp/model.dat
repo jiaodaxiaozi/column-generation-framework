@@ -1,5 +1,8 @@
 MODELSET= { 
 
 < "ROOT" , "prepro.mod" , 0 > 
+< "RELAXMASTER" , "master.mod" , 1 > 
+< "FINAL" , "master.mod" , 0 > 
+< "PRICE" , "price.mod" , 0> 
 };
 

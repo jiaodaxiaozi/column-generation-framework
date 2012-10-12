@@ -1,1 +1,10 @@
 
+
+CONFIGSET = {} ;
+
+dual_wave = [ ];
+dual_provide = [ ] ;
+
+
+RELAXOBJ = [];
+

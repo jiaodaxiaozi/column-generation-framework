@@ -29,3 +29,17 @@ tuple demand_record {
 
 { demand_record } DEMAND =...; // set of all demands
 
+
+tuple config_record {
+
+
+	float cost ;
+	float provide[ DEMAND ];	
+
+}
+
+{ config_record } CONFIGSET = ... ;
+
+float dual_wave[0..0] = ... ;
+float dual_provide[ DEMAND ] = ... ;
+float RELAXOBJ[0..0] = ... ;
