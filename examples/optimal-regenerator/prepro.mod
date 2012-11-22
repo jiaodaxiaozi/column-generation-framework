@@ -65,6 +65,7 @@ execute {
             var trafficdemand = ( SEED_TRAFFIC * node_i.pop * node_j.pop / ( totalpop * totalpop )) * ( node_i.pop /( node_i.pop + node_j.pop));
 
             //writeln("period " , k , " trafficdemand " , trafficdemand );         
+            writeln("TRAFFIC:" , node_i.id , ":" , node_j.id , ":" , trafficdemand );
 
             // number of 100Gps
             var n100 = Math.floor( trafficdemand / 100 );
@@ -85,6 +86,14 @@ execute {
        } 
 
     }
+
+    /*
+    for ( var dd in DEMAND ) {
+
+        writeln( "TRAFFICDEMAND ", dd.period , ":" ,  dd.bitrate , ":" , dd.src , ":" , dd.dst , ":" , dd.nrequest );
+    } */   
+
+    stop();
 
     writeln( "number request 100 = " , nre100 );
     writeln( "number request 40  = " , nre40  );

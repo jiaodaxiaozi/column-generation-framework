@@ -156,6 +156,7 @@ execute {
         }
     };
 
+    /*
 
 	// write out the working part 
 	for ( d in DEMAND )
@@ -201,4 +202,5 @@ execute {
     writeln("CYCLES : ");
     for ( e in EDGESET )
     if ( z[ e ].solutionValue > 0.5 && colorEdge[ e ] == 0 )     { write("cycle ="); visit( e ); writeln(); }
+    */
 }

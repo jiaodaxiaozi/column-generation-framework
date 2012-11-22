@@ -213,7 +213,7 @@ if ( isModel("RELAXMASTER" )) {
 
    	} else	
 
-    if (FINISH_RELAX_FLAG.size == 0 ){
+    if (FINISH_RELAX_FLAG.size == 0 || NMASTERCALL[0] > 2000 ){
            
            setNextModel("FINALMASTER"); 
        	   RELAXOBJ[0] = cplex.getObjValue();

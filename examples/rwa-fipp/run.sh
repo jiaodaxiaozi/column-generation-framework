@@ -1,3 +1,3 @@
 #!/bin/bash
 
-oplrun -deploy -D input=./sndlib/RWA/dfn-bwin.rwa ../../solver.mod model.dat
+oplrun -deploy -D input=./sndlib/RWA/pdh.rwa ../../solver.mod model.dat

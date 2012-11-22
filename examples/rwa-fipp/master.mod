@@ -25,6 +25,7 @@ subject to {
 
 
 float dummysum = sum ( d in DEMAND ) dummy[ d ] ;
+int   usedwave = sum ( c in CONFIGSET ) z[c] ;
 execute {
 
 	writeln("Master Objective : " , cplex.getObjValue() , " Dummy : " , dummysum );
@@ -51,6 +52,6 @@ execute {
 		writeln("INTOBJ   :" , cplex.getObjValue());
 		writeln("RELAXOBJ :" , RELAXOBJ[ 0 ]  );
 		writeln("GAP      :" , GAP( cplex.getObjValue()  , RELAXOBJ[0] )) ;
-
+        writeln("USED WAVE:" , usedwave );
 	}
 }

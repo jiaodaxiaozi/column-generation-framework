@@ -1,0 +1,14 @@
+#!/bin/csh
+#
+#PBS -l walltime=120:00:00
+#PBS -l nodes=1:m48G:ppn=4
+#PBS -W umask=022
+#PBS -r n
+
+#PBS -o out/polska.out
+#PBS -e out/polska.err
+
+module add cplex-studio
+
+cd /RQexec/hoangha1/framework/examples/rwa-fipp/
+oplrun -deploy -D input="sndlib/RWA/polska.rwa" ../../solver.mod model.dat

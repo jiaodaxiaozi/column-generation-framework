@@ -11,4 +11,4 @@
 module add cplex-studio
 
 cd /RQexec/hoangha1/framework/examples/optimal-regenerator/
-oplrun -deploy -D input=US-1-512-1.dat -D output=OUT/US-1-512-1.sol ../../solver.mod model.dat
+oplrun -deploy -D input=US-1-512-1.dat ../../solver.mod model.dat
