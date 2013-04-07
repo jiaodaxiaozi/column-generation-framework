@@ -1,5 +1,6 @@
 MODELSET= { 
 
-< "ROOT" , "shortest.mod" , 1 > 
+< "ROOT" , "prepro.mod" , 1 > 
+< "KPATH" , "spath.mod" , 1 > 
 };
 
