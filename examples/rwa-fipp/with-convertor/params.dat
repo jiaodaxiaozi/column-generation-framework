@@ -1,0 +1,21 @@
+
+
+CONFIGSET = {} ;
+CONFIGSET_TMP = {} ;
+
+ROUTESET = {} ;
+
+
+dual_work = [ ];
+dual_wave = [ ];
+dual_protect = [ ];
+dual_provide = [ ] ;
+
+
+RELAXOBJ = [];
+
+NARROW_FLOW = [];
+// TOUCH = [];
+EXTRA_CALL = [];
+
+

@@ -1,0 +1,14 @@
+#!/bin/csh
+#
+#PBS -l walltime=168:00:00
+#PBS -l nodes=1:m48G:ppn=12
+#PBS -W umask=022
+#PBS -r n
+
+#PBS -o out/atlanta.out
+#PBS -e out/atlanta.err
+
+module add cplex-studio
+
+cd /RQexec/hoangha1/framework/examples/rwa-fipp/with-convertor/
+oplrun -deploy -D input="sndlib/NET/atlanta.net" ../../../solver.mod model.dat

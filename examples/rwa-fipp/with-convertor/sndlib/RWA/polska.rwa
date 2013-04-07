@@ -1,0 +1,122 @@
+  
+NWAVELENGTH =  40 ;
+
+NODESET = { 
+"Gdansk"
+"Bydgoszcz"
+"Kolobrzeg"
+"Katowice"
+"Krakow"
+"Bialystok"
+"Lodz"
+"Poznan"
+"Rzeszow"
+"Szczecin"
+"Warsaw"
+"Wroclaw"
+ };  
+EDGESET = { 
+< "Link_0_101" , "Gdansk" , "Warsaw" >
+< "Link_0_102" , "Warsaw" , "Gdansk" >
+< "Link_0_21" , "Gdansk" , "Kolobrzeg" >
+< "Link_0_22" , "Kolobrzeg" , "Gdansk" >
+< "Link_1_21" , "Bydgoszcz" , "Kolobrzeg" >
+< "Link_1_22" , "Kolobrzeg" , "Bydgoszcz" >
+< "Link_1_71" , "Bydgoszcz" , "Poznan" >
+< "Link_1_72" , "Poznan" , "Bydgoszcz" >
+< "Link_1_101" , "Bydgoszcz" , "Warsaw" >
+< "Link_1_102" , "Warsaw" , "Bydgoszcz" >
+< "Link_2_91" , "Kolobrzeg" , "Szczecin" >
+< "Link_2_92" , "Szczecin" , "Kolobrzeg" >
+< "Link_3_41" , "Katowice" , "Krakow" >
+< "Link_3_42" , "Krakow" , "Katowice" >
+< "Link_3_61" , "Katowice" , "Lodz" >
+< "Link_3_62" , "Lodz" , "Katowice" >
+< "Link_3_111" , "Katowice" , "Wroclaw" >
+< "Link_3_112" , "Wroclaw" , "Katowice" >
+< "Link_4_81" , "Krakow" , "Rzeszow" >
+< "Link_4_82" , "Rzeszow" , "Krakow" >
+< "Link_4_101" , "Krakow" , "Warsaw" >
+< "Link_4_102" , "Warsaw" , "Krakow" >
+< "Link_5_81" , "Bialystok" , "Rzeszow" >
+< "Link_5_82" , "Rzeszow" , "Bialystok" >
+< "Link_5_101" , "Bialystok" , "Warsaw" >
+< "Link_5_102" , "Warsaw" , "Bialystok" >
+< "Link_6_101" , "Lodz" , "Warsaw" >
+< "Link_6_102" , "Warsaw" , "Lodz" >
+< "Link_6_111" , "Lodz" , "Wroclaw" >
+< "Link_6_112" , "Wroclaw" , "Lodz" >
+< "Link_7_91" , "Poznan" , "Szczecin" >
+< "Link_7_92" , "Szczecin" , "Poznan" >
+< "Link_7_111" , "Poznan" , "Wroclaw" >
+< "Link_7_112" , "Wroclaw" , "Poznan" >
+< "Link_0_51" , "Gdansk" , "Bialystok" >
+< "Link_0_52" , "Bialystok" , "Gdansk" > };  
+
+DEMAND = { 
+< "Gdansk" , "Bydgoszcz" , 4> 
+< "Gdansk" , "Kolobrzeg" , 3> 
+< "Gdansk" , "Katowice" , 3> 
+< "Gdansk" , "Krakow" , 2> 
+< "Gdansk" , "Bialystok" , 4> 
+< "Gdansk" , "Lodz" , 3> 
+< "Gdansk" , "Poznan" , 3> 
+< "Gdansk" , "Rzeszow" , 3> 
+< "Gdansk" , "Szczecin" , 3> 
+< "Gdansk" , "Warsaw" , 2> 
+< "Gdansk" , "Wroclaw" , 2> 
+< "Bydgoszcz" , "Kolobrzeg" , 3> 
+< "Bydgoszcz" , "Katowice" , 2> 
+< "Bydgoszcz" , "Krakow" , 2> 
+< "Bydgoszcz" , "Bialystok" , 3> 
+< "Bydgoszcz" , "Lodz" , 4> 
+< "Bydgoszcz" , "Poznan" , 3> 
+< "Bydgoszcz" , "Rzeszow" , 3> 
+< "Bydgoszcz" , "Szczecin" , 3> 
+< "Bydgoszcz" , "Warsaw" , 3> 
+< "Bydgoszcz" , "Wroclaw" , 3> 
+< "Kolobrzeg" , "Katowice" , 3> 
+< "Kolobrzeg" , "Krakow" , 3> 
+< "Kolobrzeg" , "Bialystok" , 3> 
+< "Kolobrzeg" , "Lodz" , 2> 
+< "Kolobrzeg" , "Poznan" , 4> 
+< "Kolobrzeg" , "Rzeszow" , 3> 
+< "Kolobrzeg" , "Szczecin" , 2> 
+< "Kolobrzeg" , "Warsaw" , 3> 
+< "Kolobrzeg" , "Wroclaw" , 3> 
+< "Katowice" , "Krakow" , 4> 
+< "Katowice" , "Bialystok" , 2> 
+< "Katowice" , "Lodz" , 2> 
+< "Katowice" , "Poznan" , 3> 
+< "Katowice" , "Rzeszow" , 3> 
+< "Katowice" , "Szczecin" , 2> 
+< "Katowice" , "Warsaw" , 2> 
+< "Katowice" , "Wroclaw" , 2> 
+< "Krakow" , "Bialystok" , 2> 
+< "Krakow" , "Lodz" , 2> 
+< "Krakow" , "Poznan" , 3> 
+< "Krakow" , "Rzeszow" , 3> 
+< "Krakow" , "Szczecin" , 3> 
+< "Krakow" , "Warsaw" , 2> 
+< "Krakow" , "Wroclaw" , 2> 
+< "Bialystok" , "Lodz" , 2> 
+< "Bialystok" , "Poznan" , 3> 
+< "Bialystok" , "Rzeszow" , 3> 
+< "Bialystok" , "Szczecin" , 4> 
+< "Bialystok" , "Warsaw" , 2> 
+< "Bialystok" , "Wroclaw" , 2> 
+< "Lodz" , "Poznan" , 3> 
+< "Lodz" , "Rzeszow" , 3> 
+< "Lodz" , "Szczecin" , 4> 
+< "Lodz" , "Warsaw" , 4> 
+< "Lodz" , "Wroclaw" , 3> 
+< "Poznan" , "Rzeszow" , 2> 
+< "Poznan" , "Szczecin" , 2> 
+< "Poznan" , "Warsaw" , 4> 
+< "Poznan" , "Wroclaw" , 4> 
+< "Rzeszow" , "Szczecin" , 2> 
+< "Rzeszow" , "Warsaw" , 3> 
+< "Rzeszow" , "Wroclaw" , 4> 
+< "Szczecin" , "Warsaw" , 3> 
+< "Szczecin" , "Wroclaw" , 4> 
+< "Warsaw" , "Wroclaw" , 3>  }; 

@@ -1,0 +1,15 @@
+
+
+CONFIGSET = {} ;
+CONFIGSET_TMP = {} ;
+
+dual_wave = [ ];
+dual_provide = [ ] ;
+
+
+RELAXOBJ = [];
+
+NARROW_FLOW = [];
+
+EXTRA_CALL = [];
+

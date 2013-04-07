@@ -1,0 +1,14 @@
+#!/bin/csh
+#
+#PBS -l walltime=168:00:00
+#PBS -l nodes=1:m48G:ppn=4
+#PBS -W umask=022
+#PBS -r n
+
+#PBS -o out/nobel-germany.out
+#PBS -e out/nobel-germany.err
+
+module add cplex-studio
+
+cd /RQexec/hoangha1/framework/examples/rwa-fipp/without-convertor/
+oplrun -deploy -D input="sndlib/NET/nobel-germany.net" ../../../solver.mod model.dat

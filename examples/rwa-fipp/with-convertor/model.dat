@@ -1,0 +1,11 @@
+MODELSET= { 
+
+< "ROOT" , "prepro1.mod" , 0 > 
+< "RELAXMASTER1" , "master1.mod" , 1 > 
+< "RELAXMASTER" , "master.mod" , 1 > 
+< "FINAL1" , "master1.mod" , 0 > 
+< "FINAL" , "master.mod" , 0 > 
+< "PRICE1" , "price1.mod" , 0> 
+< "PRICE" , "price.mod" , 0> 
+};
+

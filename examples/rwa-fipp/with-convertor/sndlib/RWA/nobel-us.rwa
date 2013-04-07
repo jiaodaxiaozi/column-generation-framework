@@ -1,0 +1,156 @@
+  
+NWAVELENGTH =  70 ;
+
+
+NODESET = { 
+"Palo-Alto"
+"San-Diego"
+"Boulder"
+"Washington"
+"Atlanta"
+"Urbana-Champaign"
+"Ann-Arbor"
+"Lincoln"
+"Princeton"
+"Ithaca"
+"Pittsburgh"
+"Houston"
+"Salt-Lake-City"
+"Seattle"
+ };  
+EDGESET = { 
+< "L11" , "Palo-Alto" , "San-Diego" >
+< "L12" , "San-Diego" , "Palo-Alto" >
+< "L21" , "Palo-Alto" , "Salt-Lake-City" >
+< "L22" , "Salt-Lake-City" , "Palo-Alto" >
+< "L31" , "Palo-Alto" , "Seattle" >
+< "L32" , "Seattle" , "Palo-Alto" >
+< "L41" , "San-Diego" , "Houston" >
+< "L42" , "Houston" , "San-Diego" >
+< "L51" , "San-Diego" , "Seattle" >
+< "L52" , "Seattle" , "San-Diego" >
+< "L61" , "Boulder" , "Lincoln" >
+< "L62" , "Lincoln" , "Boulder" >
+< "L71" , "Boulder" , "Houston" >
+< "L72" , "Houston" , "Boulder" >
+< "L81" , "Boulder" , "Salt-Lake-City" >
+< "L82" , "Salt-Lake-City" , "Boulder" >
+< "L91" , "Washington" , "Princeton" >
+< "L92" , "Princeton" , "Washington" >
+< "L101" , "Washington" , "Ithaca" >
+< "L102" , "Ithaca" , "Washington" >
+< "L111" , "Washington" , "Houston" >
+< "L112" , "Houston" , "Washington" >
+< "L121" , "Atlanta" , "Pittsburgh" >
+< "L122" , "Pittsburgh" , "Atlanta" >
+< "L131" , "Atlanta" , "Houston" >
+< "L132" , "Houston" , "Atlanta" >
+< "L141" , "Urbana-Champaign" , "Lincoln" >
+< "L142" , "Lincoln" , "Urbana-Champaign" >
+< "L151" , "Urbana-Champaign" , "Pittsburgh" >
+< "L152" , "Pittsburgh" , "Urbana-Champaign" >
+< "L161" , "Urbana-Champaign" , "Seattle" >
+< "L162" , "Seattle" , "Urbana-Champaign" >
+< "L171" , "Ann-Arbor" , "Princeton" >
+< "L172" , "Princeton" , "Ann-Arbor" >
+< "L181" , "Ann-Arbor" , "Ithaca" >
+< "L182" , "Ithaca" , "Ann-Arbor" >
+< "L191" , "Ann-Arbor" , "Salt-Lake-City" >
+< "L192" , "Salt-Lake-City" , "Ann-Arbor" >
+< "L201" , "Princeton" , "Pittsburgh" >
+< "L202" , "Pittsburgh" , "Princeton" >
+< "L211" , "Ithaca" , "Pittsburgh" >
+< "L212" , "Pittsburgh" , "Ithaca" > };  
+
+DEMAND = { 
+< "Palo-Alto" , "San-Diego" , 4> 
+< "Palo-Alto" , "Boulder" , 2> 
+< "Palo-Alto" , "Washington" , 2> 
+< "Palo-Alto" , "Atlanta" , 4> 
+< "Palo-Alto" , "Urbana-Champaign" , 3> 
+< "Palo-Alto" , "Ann-Arbor" , 3> 
+< "Palo-Alto" , "Lincoln" , 1> 
+< "Palo-Alto" , "Princeton" , 1> 
+< "Palo-Alto" , "Ithaca" , 4> 
+< "Palo-Alto" , "Pittsburgh" , 3> 
+< "Palo-Alto" , "Houston" , 4> 
+< "Palo-Alto" , "Salt-Lake-City" , 2> 
+< "Palo-Alto" , "Seattle" , 2> 
+< "San-Diego" , "Boulder" , 2> 
+< "San-Diego" , "Washington" , 3> 
+< "San-Diego" , "Atlanta" , 6> 
+< "San-Diego" , "Urbana-Champaign" , 4> 
+< "San-Diego" , "Ann-Arbor" , 3> 
+< "San-Diego" , "Lincoln" , 2> 
+< "San-Diego" , "Princeton" , 2> 
+< "San-Diego" , "Ithaca" , 5> 
+< "San-Diego" , "Pittsburgh" , 4> 
+< "San-Diego" , "Houston" , 5> 
+< "San-Diego" , "Salt-Lake-City" , 2> 
+< "San-Diego" , "Seattle" , 2> 
+< "Boulder" , "Washington" , 2> 
+< "Boulder" , "Atlanta" , 3> 
+< "Boulder" , "Urbana-Champaign" , 2> 
+< "Boulder" , "Ann-Arbor" , 2> 
+< "Boulder" , "Lincoln" , 1> 
+< "Boulder" , "Princeton" , 1> 
+< "Boulder" , "Ithaca" , 3> 
+< "Boulder" , "Pittsburgh" , 2> 
+< "Boulder" , "Houston" , 3> 
+< "Boulder" , "Salt-Lake-City" , 1> 
+< "Boulder" , "Seattle" , 1> 
+< "Washington" , "Atlanta" , 8> 
+< "Washington" , "Urbana-Champaign" , 5> 
+< "Washington" , "Ann-Arbor" , 5> 
+< "Washington" , "Lincoln" , 2> 
+< "Washington" , "Princeton" , 4> 
+< "Washington" , "Ithaca" , 11> 
+< "Washington" , "Pittsburgh" , 13> 
+< "Washington" , "Houston" , 5> 
+< "Washington" , "Salt-Lake-City" , 2> 
+< "Washington" , "Seattle" , 2> 
+< "Atlanta" , "Urbana-Champaign" , 10> 
+< "Atlanta" , "Ann-Arbor" , 8> 
+< "Atlanta" , "Lincoln" , 3> 
+< "Atlanta" , "Princeton" , 4> 
+< "Atlanta" , "Ithaca" , 12> 
+< "Atlanta" , "Pittsburgh" , 9> 
+< "Atlanta" , "Houston" , 11> 
+< "Atlanta" , "Salt-Lake-City" , 3> 
+< "Atlanta" , "Seattle" , 4> 
+< "Urbana-Champaign" , "Ann-Arbor" , 7> 
+< "Urbana-Champaign" , "Lincoln" , 3> 
+< "Urbana-Champaign" , "Princeton" , 3> 
+< "Urbana-Champaign" , "Ithaca" , 8> 
+< "Urbana-Champaign" , "Pittsburgh" , 6> 
+< "Urbana-Champaign" , "Houston" , 7> 
+< "Urbana-Champaign" , "Salt-Lake-City" , 2> 
+< "Urbana-Champaign" , "Seattle" , 3> 
+< "Ann-Arbor" , "Lincoln" , 2> 
+< "Ann-Arbor" , "Princeton" , 2> 
+< "Ann-Arbor" , "Ithaca" , 7> 
+< "Ann-Arbor" , "Pittsburgh" , 6> 
+< "Ann-Arbor" , "Houston" , 6> 
+< "Ann-Arbor" , "Salt-Lake-City" , 2> 
+< "Ann-Arbor" , "Seattle" , 2> 
+< "Lincoln" , "Princeton" , 1> 
+< "Lincoln" , "Ithaca" , 3> 
+< "Lincoln" , "Pittsburgh" , 2> 
+< "Lincoln" , "Houston" , 3> 
+< "Lincoln" , "Salt-Lake-City" , 1> 
+< "Lincoln" , "Seattle" , 1> 
+< "Princeton" , "Ithaca" , 11> 
+< "Princeton" , "Pittsburgh" , 15> 
+< "Princeton" , "Houston" , 3> 
+< "Princeton" , "Salt-Lake-City" , 1> 
+< "Princeton" , "Seattle" , 1> 
+< "Ithaca" , "Pittsburgh" , 21> 
+< "Ithaca" , "Houston" , 8> 
+< "Ithaca" , "Salt-Lake-City" , 3> 
+< "Ithaca" , "Seattle" , 3> 
+< "Pittsburgh" , "Houston" , 6> 
+< "Pittsburgh" , "Salt-Lake-City" , 2> 
+< "Pittsburgh" , "Seattle" , 2> 
+< "Houston" , "Salt-Lake-City" , 3> 
+< "Houston" , "Seattle" , 3> 
+< "Salt-Lake-City" , "Seattle" , 1>  }; 

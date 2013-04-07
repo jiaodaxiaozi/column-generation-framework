@@ -17,6 +17,11 @@ function GAP( relaxObj , intObj ) {
 	
 
 //// FILTER COLLECTION ////
+//
+//
+// remove elements from a collection where removeField=removeValue
+//
+//
 function filterCollection( theCollect , removeField , removeValue , buffer  ){
 
 	
