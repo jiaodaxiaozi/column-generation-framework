@@ -129,7 +129,7 @@ if ( isModel("RELAXMASTER" )) {
     // keep ratio nbasic / notbasic
 
 	var ratiowarn  = 2.0 ;
-    var ratiobasic = 1.0 ;
+    var ratiobasic = 1.0;
     var nbasic = 0 ;
     var nnonbasic = 0 ;
 
@@ -213,7 +213,7 @@ if ( isModel("RELAXMASTER" )) {
 
    	} else	
 
-    if (FINISH_RELAX_FLAG.size == 0 || NMASTERCALL[0] > 2000 ){
+    if (FINISH_RELAX_FLAG.size == 0 || NMASTERCALL[0] > 2000  ){
            
            setNextModel("FINALMASTER"); 
        	   RELAXOBJ[0] = cplex.getObjValue();
@@ -269,14 +269,14 @@ if ( isModel("RELAXMASTER" )) {
  // =============================== FINAL MASTER ================================================== 
  if ( isModel("FINALMASTER"))
  {
-	    lineSep("FINAL","-");
+    	    lineSep("FINAL","-");
             var intobj = cplex.getObjValue();
 
             writeln("RELAX-OBJ : " ,  RELAXOBJ[0] );
             writeln("INT-OBJ: " , intobj );
             writeln("GAP : " , GAP( RELAXOBJ[0], intobj ));
             writeln("WAVELENGTH : " , number_wavelength );
-	    writeln("NCOLDEL : " , NCOLDEL[ 0 ] ) ;
+    	    writeln("NCOLDEL : " , NCOLDEL[ 0 ] ) ;
 
             for ( p = 1 ; p <= PERIOD ; p ++ )
                 writeln( "NREGEN-PERIOD-" + p + ":" , number_regen[ p ] );    
@@ -295,9 +295,12 @@ if ( isModel("RELAXMASTER" )) {
  
             }    
 
-
-        
-     };    
+            for ( b in BITRATE )
+            for ( vs in NODESET )
+            for ( vd in NODESET )
+            if ( provide[ b ][ vs ][ vd ] > 0 )
+                writeln( "PROVIDE:" , b , ":" , vs.id , ":" , vd.id , ":" , provide[ b ][ vs ][ vd ] ); 
+};    
 }
 
 

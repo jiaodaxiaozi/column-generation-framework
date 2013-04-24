@@ -88,7 +88,7 @@ subject to {
 
 execute {
 	
-	//setNextModel("RELAXMASTER");
+	setNextModel("RELAXMASTER");
 
 	writeln("FIND AUGMENTED MULTIHOP FROM " + SRC +  "->" + DST + " IN PERIOD " + period + " WITH BITRATE " + bitrate);
 	writeln("Price Objective : " , cplex.getObjValue()  );  
