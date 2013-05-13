@@ -62,7 +62,7 @@ forall ( k in 1 .. KPATH_ONE ) {
 // ---------------------------------------------------------------------------------------------------- //
 
 int  reach[ k in 1..KPATH_ONE ] = min( tr in TRSET ) (pathlength[ k ] <= tr ? tr : 1000000) ; 
-
+int  tcount[ b in BITRATE ][ t in TRSET ]  = 0;
 execute {
 
     var startIndex = 0;
@@ -95,8 +95,7 @@ execute {
             }
 
             if ( K_SDSET.size == 0 ) {
-                // ---------------------------------------------------------------------------------------------------- //
-                // FINISS FINDING SHORTEST PATHS
+                
                 // ---------------------------------------------------------------------------------------------------- //
                 writeln("DISPLAY K-SHORTEST PATH RESULTS");
                 writeln("There is " , SINGLEHOP_SET.size , " lightpaths" );  
@@ -116,16 +115,32 @@ execute {
                                , " (" , thepath.src 
                                , "->" , thepath.dst , ")" );  
 
+ 
                         for ( var j = 0 ; j < DEMAND.size ; j ++ )
                         {
                                 var dd  = Opl.item( DEMAND , j );
-                                if ( dd.src == thepath.src && dd.dst == thepath.dst){
-                                    writeln( dd );
+                                if ( dd.src == thepath.src && dd.dst == thepath.dst && thepath.reach < 4000){
+                                    
+                                    writeln("DEMAND : " , dd , " BITRATE : " , dd.bitrate );
+                                   tcount[ dd.bitrate ][ thepath.reach ] = tcount[ dd.bitrate ][ thepath.reach ] + 1 ;
                                 }
                         }
 
                 } // end for all paths
 
+                //writeln( " requests : " , tcount );
+                for ( tr in TRSET ) {
+                        write("TR " , tr , " : ");
+                        var tsum = 0 ;
+                        var tband= 0;
+                        for ( b in BITRATE ){
+                            write( " " , tcount[ b ][ tr ] );
+                            tsum = tsum + tcount[ b ][ tr ] ;
+                            tband = tband + tcount[b][tr] * b ;
+                           }
+                        write(" : " , tsum , " : " , tband ); 
+                        writeln();
+                 }
                 stop();
 
             }
