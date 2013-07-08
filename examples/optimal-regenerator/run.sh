@@ -1,3 +1,3 @@
 #!/bin/bash
 
-oplrun -deploy -D input=US.map ../../solver.mod model.dat
+oplrun -deploy -D input=US-1-512-1.dat ../../solver.mod model.dat

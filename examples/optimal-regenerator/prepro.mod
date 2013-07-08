@@ -58,8 +58,8 @@ execute {
         {
             var trafficdemand = ( SEED_TRAFFIC * node_i.pop * node_j.pop / ( totalpop * totalpop )) * ( node_i.pop /( node_i.pop + node_j.pop));
 
-            // writeln("period " , k , " trafficdemand " , trafficdemand );         
-            // writeln("TRAFFIC:" , node_i.id , ":" , node_j.id , ":" , trafficdemand );
+            writeln("period " , k , " trafficdemand " , trafficdemand );         
+            writeln("TRAFFIC:" , node_i.id , ":" , node_j.id , ":" , trafficdemand );
 
             // number of 100Gps
             var n100 = Math.floor( trafficdemand / 100 );
@@ -95,8 +95,8 @@ execute {
     writeln( "40Gps 1500km :", REGENERATOR_COST[ 40 ][ 1500 ] );
     writeln( "40Gps 3000km :", REGENERATOR_COST[ 40 ][ 3000 ] );
 
-    writeln( "100Gps 3000km :" , REGENERATOR_COST[ 100 ][ 750 ] );
-    writeln( "100Gps 3000km :",REGENERATOR_COST[ 100 ][ 1500 ] );
+    writeln( "100Gps 750km  :" , REGENERATOR_COST[ 100 ][ 750 ] );
+    writeln( "100Gps 1500km :",REGENERATOR_COST[ 100 ][ 1500 ] );
     writeln( "100Gps 3000km :",REGENERATOR_COST[ 100 ][ 3000 ] );
 
 

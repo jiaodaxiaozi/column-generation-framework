@@ -17,7 +17,7 @@ execute {
 
     K_SDSET.remove( firstItem ); 
 
-    writeln("FIND " + KPATH_PARAM + "-SHORTESTPATH FROM " + SRC +  "->" + DST );
+//    writeln("FIND " + KPATH_PARAM + "-SHORTESTPATH FROM " + SRC +  "->" + DST );
     
     setNextModel("KPATH") ;
 }
@@ -89,7 +89,7 @@ execute {
         if ( startIndex <= obj.index )
             startIndex = obj.index + 1 ;
 
-        writeln("Start Index = " , startIndex );
+ //       writeln("Start Index = " , startIndex );
 
         for ( var k = 1 ; k <= KPATH_PARAM ; k ++ ) 
             if ( reach[ k ] < 1000000 )

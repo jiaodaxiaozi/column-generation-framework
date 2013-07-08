@@ -15,7 +15,7 @@ int    bitrate ;
 
 execute {
 
-	//setModelDisplayStatus( 1 );	
+	setModelDisplayStatus( 1 );	
 	
 
 	// CPLEX settings for PRICING

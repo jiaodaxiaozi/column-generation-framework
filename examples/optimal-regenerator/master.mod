@@ -213,7 +213,7 @@ if ( isModel("RELAXMASTER" )) {
 
    	} else	
 
-    if (FINISH_RELAX_FLAG.size == 0 || NMASTERCALL[0] > 2000  ){
+    if ((FINISH_RELAX_FLAG.size == 0 || NMASTERCALL[0] > 1000  ) && dummy_multi < 0.01 && dummy_wavelength < 0.01 ) {
            
            setNextModel("FINALMASTER"); 
        	   RELAXOBJ[0] = cplex.getObjValue();
@@ -221,8 +221,9 @@ if ( isModel("RELAXMASTER" )) {
  
      } 
     else {
-    
-        setNextModel("SINGLEPRICE");  
+
+            setNextModel("SINGLEPRICE");  
+
         FINISH_RELAX_FLAG.remove( 1 );     
 
         // copy dual slot values
