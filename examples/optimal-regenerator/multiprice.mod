@@ -15,7 +15,7 @@ int    bitrate ;
 
 execute {
 
-	setModelDisplayStatus( 1 );	
+//	setModelDisplayStatus( 1 );	
 	
 
 	// CPLEX settings for PRICING
@@ -101,22 +101,31 @@ execute {
 	while( MULTIHOP_CONFIGSET.find( newindex ) != null ) newindex ++ ;	
 		
 	writeln("New Index ", newindex);
-	MULTIHOP_CONFIGSET.addOnly(newindex,period,bitrate,SRC,DST );
 
-    for ( var v in NODESET )
-    if ( inte[v].solutionValue > 0.5 ) 
+    for ( var bb in BITRATE ) {
+
+        if ( bb != bitrate ) 
+            continue ;	
+
+        MULTIHOP_CONFIGSET.addOnly(newindex,period,bb,SRC,DST );
+
+        for ( var v in NODESET )
+        if ( inte[v].solutionValue > 0.5 ) 
 	
         MULTIHOP_INTERSET.addOnly(  newindex, v.id );
 	
-	write("PATH :");
-	for ( var vi in NODESET)
-		for( var vj in NODESET)
-			if ( e[ vi][vj].solutionValue > 0){
-				write( vi.id , "=>" , vj.id, " ");
-				MULTIHOP_LINKSET.addOnly( newindex , vi.id , vj.id );	
-			}
-			writeln();
-	
+    	write("PATH :");
+        	for ( var vi in NODESET)
+	        	for( var vj in NODESET)
+		    	if ( e[ vi][vj].solutionValue > 0){
+		    		write( vi.id , "=>" , vj.id, " ");
+		    		MULTIHOP_LINKSET.addOnly( newindex , vi.id , vj.id );	
+		    	}
+    	writeln();
+
+
+        newindex = newindex + 1 ;
+    }	
 	
 }  
 

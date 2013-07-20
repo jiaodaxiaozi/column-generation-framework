@@ -36,9 +36,6 @@ execute {
     // ---------------------------------------------------------------------------------------------------- //
     // TRAFFIC GENERATION
     // ---------------------------------------------------------------------------------------------------- //
-    var nre100 = 0 ;
-    var nre40  = 0 ;
-    var nre10  = 0 ;
 
     K_SDSET.clear();
 
@@ -56,35 +53,22 @@ execute {
 
         for ( var k = 1 ; k <= PERIOD ; k ++ )
         {
-            var trafficdemand = ( SEED_TRAFFIC * node_i.pop * node_j.pop / ( totalpop * totalpop )) * ( node_i.pop /( node_i.pop + node_j.pop));
 
-            writeln("period " , k , " trafficdemand " , trafficdemand );         
-            writeln("TRAFFIC:" , node_i.id , ":" , node_j.id , ":" , trafficdemand );
+            if ( node_i.pop >= 14.0 && node_j.pop >= 14.0 ) { 
 
-            // number of 100Gps
-            var n100 = Math.floor( trafficdemand / 100 );
-            // number of 40Gps
-            var n40  = Math.floor( ( trafficdemand - 100 * n100 ) / 40 );
-            // number of 10Gps
-            var n10  = Math.ceil( ( trafficdemand - n100 * 100 - n40 * 40 )/ 10 ) ;
+                var trafficdemand = 10 * ( SEED_TRAFFIC * node_i.pop * node_j.pop / ( totalpop * totalpop )) * ( node_i.pop /( node_i.pop + node_j.pop));
 
+                // writeln("period " , k , " trafficdemand " , trafficdemand );         
+                 writeln("TRAFFIC:" , node_i.id , ":" , node_j.id , ":" , trafficdemand );
 
-            writeln("100Gps : " , n100 , " 40Gps : " , n40 , " 10Gps : " , n10 );
-            if ( n100 > 0 ) DEMAND.add( k , 100 , node_i.id , node_j.id, n100 );
-            if ( n40 > 0 ) DEMAND.add( k , 40 , node_i.id , node_j.id, n40 );
-            if ( n10 > 0 ) DEMAND.add( k , 10 , node_i.id , node_j.id, n10 );
+                DEMAND.add( k , node_i.id , node_j.id, trafficdemand );
+            }
 
-            nre100 += n100 ;
-            nre40  += n40  ;
-            nre10  += n10  ;
         } 
 
     }
 
 
-    writeln( "number request 100 = " , nre100 );
-    writeln( "number request 40  = " , nre40  );
-    writeln( "number request 10  = " , nre10  );
 
     writeln( "REGENERATOR COST" );
     writeln( "10Gps 750km  :" , REGENERATOR_COST[ 10 ][ 750 ] );

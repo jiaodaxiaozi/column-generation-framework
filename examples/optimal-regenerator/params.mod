@@ -53,10 +53,9 @@ float REGENERATOR_COST[ BITRATE ][ TRSET ] = ...; // generate cost of a regenera
 tuple demand_record {
 
     int period   ;  // demand at period
-    int bitrate  ;  // bitrate
     string src   ;  // source  
     string dst   ;  // destination
-    int nrequest ;  // number of requests
+    float traffic ;  // number of requests
 };
 
 { demand_record } DEMAND =...; // set of all demands

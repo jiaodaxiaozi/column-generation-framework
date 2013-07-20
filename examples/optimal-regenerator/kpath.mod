@@ -17,7 +17,7 @@ execute {
 
     K_SDSET.remove( firstItem ); 
 
-//    writeln("FIND " + KPATH_PARAM + "-SHORTESTPATH FROM " + SRC +  "->" + DST );
+writeln("FIND " + KPATH_PARAM + "-SHORTESTPATH FROM " + SRC +  "->" + DST );
     
     setNextModel("KPATH") ;
 }

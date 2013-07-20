@@ -8,7 +8,7 @@
 include "params.mod";
 
 
-dvar float+ dummy_var[ 1 .. PERIOD ][ BITRATE ][ NODESET ][ NODESET ]   ;
+dvar float+ dummy_var[ 1 .. PERIOD ][ NODESET ][ NODESET ]   ;
 
 // number of copies of singlehop configuration
 dvar int+ z[ WAVELENGTH_CONFIGINDEX ] ;
@@ -18,7 +18,7 @@ dvar int+ y[ 1.. PERIOD][ MULTIHOP_CONFIGSET  ] ;
 dvar float+ provide[ BITRATE ][ NODESET ][ NODESET ];
 // intermediate node
 dvar int+ x[ 1..PERIOD][ NODESET ] in 0..1 ;
-
+dvar float+ groom[ NODESET ][ NODESET ][ BITRATE ] ;
 execute{
 
     setModelDisplayStatus( 1 );	
@@ -35,7 +35,7 @@ execute{
 
 
 minimize       sum( c in WAVELENGTH_CONFIGINDEX ) c.cost * z[ c ] 
-            +  sum( p in 1..PERIOD , b in BITRATE , vs  in NODESET , vd  in NODESET ) dummy_var[ p ][ b ][ vs ][ vd ] * dummy_cost ; 
+            +  sum( p in 1..PERIOD , vs  in NODESET , vd  in NODESET ) dummy_var[ p ][ vs ][ vd ] * dummy_cost ; 
 
 subject to {
 
@@ -64,10 +64,16 @@ subject to {
 
         // satisfy request
         ctRequest: 
-             sum( m in MULTIHOP_CONFIGSET : m.src == vs.id &&  m.dst == vd.id && m.bitrate == b && m.period == p ) y[ p ][ m ]  + dummy_var[ p ][ b ][ vs ][ vd ]
-         >=  sum ( dem in DEMAND : dem.period == p  && dem.bitrate == b && dem.src == vs.id && dem.dst == vd.id ) dem.nrequest ;
+             sum( m in MULTIHOP_CONFIGSET : m.src == vs.id &&  m.dst == vd.id && m.bitrate == b && m.period == p ) y[ p ][ m ]  
+                >=  
+            groom[ vs ][ vd ][ b ] ;
     }
 
+    forall( vs in NODESET , vd in NODESET , p in 1..PERIOD ){
+
+           sum( b in BITRATE ) groom[ vs ][ vd ][ b ] * b + dummy_var[p][vs][vd] >= sum( d in DEMAND : d.src == vs.id && d.dst == vd.id ) d.traffic;
+    
+    }
     // avaialabity for multihop
     forall( p in 1..PERIOD , b in BITRATE , vi  in NODESET , vj in NODESET  ) {
         ctAvail:
@@ -79,7 +85,7 @@ subject to {
    forall( p in 1..PERIOD , v in NODESET )
     ctRegen :
         sum( m in MULTIHOP_CONFIGSET , s in MULTIHOP_INTERSET :  m.index == s.index && s.nodeid == v.id && m.period == p ) 
-                y[p][m] <= x[p][v] * (sum( dem in DEMAND ) dem.nrequest); 
+                y[p][m] <= x[p][v] * NNODESLOT;
 
   
    forall( p in 1..PERIOD )
@@ -88,7 +94,7 @@ subject to {
 };
 
 
-float dummy_multi = sum( p in 1..PERIOD , b in BITRATE , vs  in NODESET , vd  in NODESET ) dummy_var[ p ][ b ][ vs ][ vd ] ;
+float dummy_multi = sum( p in 1..PERIOD , vs  in NODESET , vd  in NODESET ) dummy_var[ p ][ vs ][ vd ] ;
 float dummy_wavelength = sum( c in WAVELENGTH_CONFIGINDEX : c.cost >= ( dummy_cost -1 ) ) z[c] ;
 
 float totalprovide = sum(   b in BITRATE , vi  in NODESET , vj  in NODESET ) provide[ b ][ vi ][ vj ];
@@ -213,7 +219,7 @@ if ( isModel("RELAXMASTER" )) {
 
    	} else	
 
-    if ((FINISH_RELAX_FLAG.size == 0 || NMASTERCALL[0] > 1000  ) && dummy_multi < 0.01 && dummy_wavelength < 0.01 ) {
+    if ((FINISH_RELAX_FLAG.size == 0 || NMASTERCALL[0] > 500  ) && dummy_multi < 0.01 && dummy_wavelength < 0.01 ) {
            
            setNextModel("FINALMASTER"); 
        	   RELAXOBJ[0] = cplex.getObjValue();
