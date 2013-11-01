@@ -1,0 +1,9 @@
+#!/bin/csh
+#PBS -l walltime=168:00:00
+#PBS -l nodes=1:m48G:ppn=12
+#PBS -W umask=022
+#PBS -o OUT/map-14336.out 
+#PBS -e OUT/map-14336.err 
+module add cplex-studio
+cd /RQexec/hoangha1/framework/examples/optimal-regenerator/
+oplrun -deploy -D input=map-14336.dat ../../solver.mod model.dat

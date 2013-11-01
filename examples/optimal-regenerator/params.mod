@@ -43,7 +43,6 @@ tuple directed_edge_record {
 { directed_edge_record }  DIRECTED_EDGESET    = ... ;
 
 
-int PERIOD = ...; // number of periods
 int KPATH_PARAM = ... ; // number of k shortest paths between source and destination
 {int} BITRATE = { 10 , 40 , 100 };  // bitrate
 {int} TRSET = { 750 , 1500 , 3000 }; // transmission range
@@ -52,7 +51,6 @@ float REGENERATOR_COST[ BITRATE ][ TRSET ] = ...; // generate cost of a regenera
 
 tuple demand_record {
 
-    int period   ;  // demand at period
     string src   ;  // source  
     string dst   ;  // destination
     float traffic ;  // number of requests
@@ -79,7 +77,6 @@ tuple SRCDST_record {
 tuple CALHOP_record {
     string id_src ;
     string id_dst ;
-    int    period ;
     int    bitrate ;
 }
 
@@ -116,7 +113,6 @@ tuple  wavelength_configuration_record {
 
 // set of all single hop lightpaths in a wavelength configuration
 { wavelength_configuration_record } WAVELENGTH_CONFIGSET = ... ;
-{ wavelength_configuration_record } WAVELENGTH_CONFIGSET_TMP = ... ;
 
 // description of wavelength configuration with cost
 tuple   singlehop_configindex_record {
@@ -124,6 +120,8 @@ tuple   singlehop_configindex_record {
     key int index ;
     float cost;
 };
+
+
 
 tuple singlehop_degree_record {
 
@@ -144,18 +142,15 @@ tuple singlehop_cost_record  {
 };
 
 { singlehop_cost_record } WAVELENGTH_CONFIGSTAT = ... ;
-{ singlehop_cost_record } WAVELENGTH_CONFIGSTAT_TMP = ... ;
 
 
 // set of single hop configuration 
 { singlehop_configindex_record } WAVELENGTH_CONFIGINDEX = ... ;
-{ singlehop_configindex_record } WAVELENGTH_CONFIGINDEX_TMP = ... ;
 
 // description of multiple hop lightpaths
 tuple multihop_configuration_record {
 
     key int index  ; // index of multihop configuration 
-    int period ; // period of multihop configuration
     int bitrate; // bitrate of multiple hop lightpaths
     string src ; // source of multiple hop lightpaths
     string dst ; // destination of multiple hop lightpaths
@@ -171,10 +166,8 @@ tuple multihop_link_record {
 
 // set of all multiple hop lightpaths
 { multihop_configuration_record } MULTIHOP_CONFIGSET = ... ;
-{ multihop_configuration_record } MULTIHOP_CONFIGSET_TMP = ... ;
 // set of all multiple hop linkset
 { multihop_link_record } MULTIHOP_LINKSET = ... ;
-{ multihop_link_record } MULTIHOP_LINKSET_TMP = ... ;
 
 tuple multihop_inter_record {
     int index ;
@@ -183,7 +176,6 @@ tuple multihop_inter_record {
 
 
 { multihop_inter_record } MULTIHOP_INTERSET = ... ;
-{ multihop_inter_record } MULTIHOP_INTERSET_TMP = ... ;
 
 
 { int } FINISH_RELAX_FLAG = ... ;  // finish relax process
@@ -191,9 +183,7 @@ tuple multihop_inter_record {
 // dual provide
 float dual_provide[ BITRATE ][ NODESET  ][ NODESET ] = ... ;
 // dual requests
-float dual_request[ 1..PERIOD ][ BITRATE][ NODESET][ NODESET] = ... ;
-// dual availability
-float dual_avail[ 1..PERIOD ][ BITRATE][ NODESET][ NODESET] = ... ;
+float dual_request[ BITRATE][ NODESET][ NODESET] = ... ;
 // dual cost
 float dummy_cost = 10000000.0;
 // dual wavelength
@@ -201,9 +191,8 @@ float dual_wave[ 0..0 ] = ... ;
 // dual slot 
 float dual_slot[ NODESET ] = ... ;
 // dual regen
-float dual_regen[ 1..PERIOD ][ NODESET ] = ... ;
+float dual_regen[ NODESET ] = ... ;
 
 
-float RELAXOBJ[0..0] = ... ;
+float RELAXOBJ[0..5] = ... ;
 int   NMASTERCALL[ 0..0 ] = ... ;
-int   NCOLDEL [ 0..0 ] = ... ;

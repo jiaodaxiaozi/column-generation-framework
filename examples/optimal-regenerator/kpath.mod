@@ -17,7 +17,7 @@ execute {
 
     K_SDSET.remove( firstItem ); 
 
-writeln("FIND " + KPATH_PARAM + "-SHORTESTPATH FROM " + SRC +  "->" + DST );
+    writeln("FIND " + KPATH_PARAM + "-SHORTESTPATH FROM " + SRC +  "->" + DST );
     
     setNextModel("KPATH") ;
 }
@@ -95,7 +95,6 @@ execute {
             if ( reach[ k ] < 1000000 )
             {
 
-
                 SINGLEHOP_SET.addOnly(  startIndex + k - 1 , SRC , DST , pathlength[ k ].solutionValue , reach[k] );
 
                 if (k==1)
@@ -135,8 +134,11 @@ execute {
 
                     }
 
-
                     setNextModel("RELAXMASTER");
-                }
-            }
+                    saveStateToFile("singlehop_set.mod" , "SINGLEHOP_SET" );
+                    saveStateToFile("singlehop_edgeset.mod" , "SINGLEHOP_EDGESET" );
+                    stop();
+
+               }
+}
 

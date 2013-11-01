@@ -65,6 +65,31 @@ function elapsedTime( previous ) {
 	return Opl.round(( currentMoment - previous ) / 1000.0 );
 }
 
+//// SAVE VARIABLE TO FILE ////
+function saveVarToFile( statefile ,v  ){
+
+    var ofile = new IloOplOutputFile( statefile );
+
+    for ( var item in thisOplModel.dataElements )
+    if ( v == item )
+        ofile.writeln( item , "=" , thisOplModel.dataElements[  item] , ";");
+
+    ofile.close();
+
+};
+
+//// SAVE STATE TO FILE ////
+function saveStateToFile( statefile   ){
+
+    var ofile = new IloOplOutputFile( statefile );
+
+    for ( var item in thisOplModel.dataElements )
+        ofile.writeln( item , "=" , thisOplModel.dataElements[  item] , ";");
+
+    ofile.close();
+
+};
+
 
 //// LINE SEPARATOR //// 
 

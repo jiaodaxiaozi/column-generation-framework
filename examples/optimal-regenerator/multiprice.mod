@@ -10,7 +10,6 @@ include "params.mod";
 
 string SRC ;
 string DST ;
-int    period ;
 int    bitrate ;
 
 execute {
@@ -20,7 +19,7 @@ execute {
 
 	// CPLEX settings for PRICING
 	
-	cplex.intsollim = 1; // take only one solution
+//	cplex.intsollim = 1; // take only one solution
 	cplex.cutup = 	-0.001 ; // reduced cost 		
 	cplex.parallelmode = -1 ; // opportunistic mode
 	cplex.threads = 0 ; // use maximum threads
@@ -29,7 +28,6 @@ execute {
 
     SRC = firstItem.id_src ;
     DST = firstItem.id_dst ;
-    period = firstItem.period ;
     bitrate = firstItem.bitrate ;
 
 
@@ -49,9 +47,9 @@ execute {
 dvar  int+ e[ NODESET ][ NODESET ] in 0..1; // edge
 dvar  int+ inte[ NODESET ] in 0..1 ; // intermediate nodes
 
-minimize   - sum( vi in NODESET , vj in NODESET : vi.id == SRC && vj.id == DST)  dual_request[ period ][ bitrate][ vi ][ vj ] 
-           - sum( vi in NODESET , vj in NODESET)  dual_avail[ period ][ bitrate][ vi ][ vj ] * e[ vi][vj] 
-           - sum( v  in NODESET ) inte[ v ] * dual_regen[ period ][ v ] ;
+minimize   - sum( vi in NODESET , vj in NODESET : vi.id == SRC && vj.id == DST)  dual_request[ bitrate][ vi ][ vj ] 
+           + sum( vi in NODESET , vj in NODESET)  dual_provide[ bitrate][ vi ][ vj ] * e[ vi][vj] 
+           - sum( v  in NODESET ) inte[ v ] * dual_regen[ v ] ;
 
 subject to {
 
@@ -90,7 +88,7 @@ execute {
 	
 	setNextModel("RELAXMASTER");
 
-	writeln("FIND AUGMENTED MULTIHOP FROM " + SRC +  "->" + DST + " IN PERIOD " + period + " WITH BITRATE " + bitrate);
+	writeln("FIND AUGMENTED MULTIHOP FROM " + SRC +  "->" + DST + " WITH BITRATE " + bitrate);
 	writeln("Price Objective : " , cplex.getObjValue()  );  
 	
 	// add new configuration	
@@ -107,7 +105,7 @@ execute {
         if ( bb != bitrate ) 
             continue ;	
 
-        MULTIHOP_CONFIGSET.addOnly(newindex,period,bb,SRC,DST );
+        MULTIHOP_CONFIGSET.addOnly(newindex,bb,SRC,DST );
 
         for ( var v in NODESET )
         if ( inte[v].solutionValue > 0.5 ) 
@@ -126,7 +124,7 @@ execute {
 
         newindex = newindex + 1 ;
     }	
-	
+
 }  
 
   

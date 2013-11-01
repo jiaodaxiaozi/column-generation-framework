@@ -1,7 +1,7 @@
 MODELSET= { 
 
 < "ROOT" , "prepro.mod" , 1 > 
-< "KPATH" , "kpath.mod" , 0 > 
+//< "KPATH" , "kpath.mod" , 0 > 
 < "RELAXMASTER" , "master.mod" , 1 > 
 < "FINALMASTER" , "master.mod" , 0 > 
 

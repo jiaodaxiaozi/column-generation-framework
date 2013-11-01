@@ -17,7 +17,7 @@ execute {
 
 	// CPLEX settings for PRICING
 	
-	cplex.intsollim = 1; // take only one solution
+	//cplex.intsollim = 1; // take only one solution
 	cplex.cutup = 	-0.001 ; // reduced cost 		
 	cplex.parallelmode = -1 ; // opportunistic mode
 	cplex.threads = 0 ; // use maximum threads
@@ -34,9 +34,7 @@ dvar  int+ d[ NODESET ] ;
 dvar  int+ select[ DIRECTED_EDGESET ] in 0..1 ;
 
 minimize      thecost - dual_wave[0] 
-
                       - sum ( v in NODESET ) dual_slot[ v ] * d[ v ]  
-
                       - sum ( b in BITRATE , vi in NODESET , vj in NODESET)  
 							dual_provide[ b ][ vi ][ vj ] * ( sum( p in SINGLEHOP_SET : p.src == vi.id && p.dst == vj.id ) a[b][p]   )  ;			
 
@@ -89,7 +87,7 @@ execute {
         SINGLEHOP_DEGREESET.addOnly( newindex , v.id , d[v].solutionValue );	
 
 	// add new wavelength configuration
-	WAVELENGTH_CONFIGINDEX.addOnly( newindex , thecost.solutionValue );
+	WAVELENGTH_CONFIGINDEX.addOnly( newindex , thecost.solutionValue  );
 
     var b , tr ;
 
@@ -102,7 +100,6 @@ execute {
 			if ( a [ b ][ p ].solutionValue > 0.5 )
 	 			WAVELENGTH_CONFIGSET.addOnly( newindex , p.index , b );
 
-	
 }  
 
   

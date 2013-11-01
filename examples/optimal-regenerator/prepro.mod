@@ -10,6 +10,7 @@ execute {
     writeln("");
     writeln("number of nodes :" , NODESET.size );
     writeln("number of undirected edges :" , UNDIRECTED_EDGESET.size );
+    writeln("SEED TRAFFIC : " , SEED_TRAFFIC );
 
     // ---------------------------------------------------------------------------------------------------- //
     // GENERATE DIRECTED EDGES
@@ -23,7 +24,6 @@ execute {
     } 
 
     writeln("number of directed edges : " , DIRECTED_EDGESET.size );
-    writeln("number of period : " , PERIOD ); 
 
     // ---------------------------------------------------------------------------------------------------- //
     // TOTAL POPULATION
@@ -39,6 +39,10 @@ execute {
 
     K_SDSET.clear();
 
+
+
+    var unitload = 0 ;
+
     // GENERATE DIRECTED TRAFFIC  
     for ( i = 0 ; i < NODESET.size ; i ++ )
         for ( var j = 0 ; j < NODESET.size ; j ++ )  
@@ -49,26 +53,21 @@ execute {
 
                 K_SDSET.add( node_i.id , node_j.id );
 
-        //writeln( "generate traffic from " , node_i.id , " => " , node_j.id , " : " );
+                unitload = unitload +   ( node_i.pop * node_j.pop / ( totalpop * totalpop )) * ( node_i.pop /( node_i.pop + node_j.pop));
 
-        for ( var k = 1 ; k <= PERIOD ; k ++ )
-        {
 
-            if ( node_i.pop >= 14.0 && node_j.pop >= 14.0 ) { 
 
-                var trafficdemand = 10 * ( SEED_TRAFFIC * node_i.pop * node_j.pop / ( totalpop * totalpop )) * ( node_i.pop /( node_i.pop + node_j.pop));
 
-                // writeln("period " , k , " trafficdemand " , trafficdemand );         
-                 writeln("TRAFFIC:" , node_i.id , ":" , node_j.id , ":" , trafficdemand );
+        var trafficdemand =  ( SEED_TRAFFIC * node_i.pop * node_j.pop / ( totalpop * totalpop )) * ( node_i.pop /( node_i.pop + node_j.pop));
 
-                DEMAND.add( k , node_i.id , node_j.id, trafficdemand );
-            }
+         writeln("TRAFFIC:" , node_i.id , ":" , node_j.id , ":" , trafficdemand );
+         DEMAND.add( node_i.id , node_j.id, trafficdemand );
 
-        } 
 
     }
 
 
+    writeln( "UNITLOAD     :" , unitload ) ;
 
     writeln( "REGENERATOR COST" );
     writeln( "10Gps 750km  :" , REGENERATOR_COST[ 10 ][ 750 ] );
@@ -86,8 +85,7 @@ execute {
 
 
     FINISH_RELAX_FLAG.add( 1 ); // add  flag
-    setNextModel("KPATH");
-    NCOLDEL[ 0 ] = 0 ;    
+    setNextModel("RELAXMASTER");
     NMASTERCALL[0] = 0 ;
 
 
