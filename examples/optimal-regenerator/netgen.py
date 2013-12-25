@@ -20,7 +20,7 @@ if __name__ == "__main__" :
         f.write("SEED_TRAFFIC = " + str(seed) + "; \n")
         f.write("NNODESLOT = 1024 ; \n" )
         f.write("NWAVELENGTH = 256 ; \n")
-        f.write("NGEN = 12 ; \n")
+        f.write("NGEN = 6 ; \n")
 
 
         f.close()
